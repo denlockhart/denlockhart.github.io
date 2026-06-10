@@ -201,6 +201,10 @@ function filteredUnits() {
 function renderCatalog() {
   const list = $("catalog-list");
   list.innerHTML = "";
+  const header = document.createElement("div");
+  header.className = "catalog-header";
+  header.innerHTML = "<span>Unit</span><span>Action</span>";
+  list.appendChild(header);
   for (const u of filteredUnits()) {
     const div = document.createElement("div");
     div.className = "catalog-item";
@@ -296,23 +300,33 @@ function renderBrigades() {
   for (const b of state.brigades) {
     const card = document.createElement("div");
     card.className = "brigade-card" + (b.id === state.activeBrigadeId ? " brigade-active" : "");
+    const cardHeader = document.createElement("div");
+    cardHeader.className = "brigade-card-header";
+    cardHeader.textContent = b.name;
+    card.appendChild(cardHeader);
+    const body = document.createElement("div");
+    body.className = "brigade-card-body";
     const activeBtn = document.createElement("button");
     activeBtn.type = "button";
     activeBtn.className = b.id === state.activeBrigadeId ? "primary" : "";
     activeBtn.textContent = b.id === state.activeBrigadeId ? "Active" : "Make Active";
     activeBtn.disabled = b.id === state.activeBrigadeId;
     activeBtn.onclick = () => setActiveBrigade(b.id);
-    card.appendChild(activeBtn);
+    body.appendChild(activeBtn);
     const nameIn = document.createElement("input");
     nameIn.value = b.name;
     nameIn.placeholder = "Brigade name";
-    nameIn.oninput = () => { b.name = nameIn.value; if (b.id === state.activeBrigadeId) updateActiveBrigadeLabel(); };
+    nameIn.oninput = () => {
+      b.name = nameIn.value;
+      cardHeader.textContent = b.name;
+      if (b.id === state.activeBrigadeId) updateActiveBrigadeLabel();
+    };
     const leaderIn = document.createElement("input");
     leaderIn.value = b.leader;
     leaderIn.placeholder = "Brigade leader";
     leaderIn.oninput = () => { b.leader = leaderIn.value; };
-    card.appendChild(nameIn);
-    card.appendChild(leaderIn);
+    body.appendChild(nameIn);
+    body.appendChild(leaderIn);
 
     const delBtn = document.createElement("button");
     delBtn.type = "button";
@@ -320,10 +334,14 @@ function renderBrigades() {
     delBtn.textContent = "Delete Brigade";
     delBtn.disabled = state.brigades.length <= 1;
     delBtn.onclick = () => deleteBrigade(b.id);
-    card.appendChild(delBtn);
+    body.appendChild(delBtn);
 
     const unitsDiv = document.createElement("div");
     unitsDiv.className = "brigade-units";
+    const unitHeader = document.createElement("div");
+    unitHeader.className = "brigade-units-header";
+    unitHeader.innerHTML = "<span>Unit</span><span>Pts</span>";
+    unitsDiv.appendChild(unitHeader);
     const assigned = state.entries.filter((e) => b.unitIds.includes(e.id));
     if (assigned.length === 0) {
       const empty = document.createElement("div");
@@ -346,14 +364,15 @@ function renderBrigades() {
         unitsDiv.appendChild(row);
       }
     }
-    card.appendChild(unitsDiv);
+    body.appendChild(unitsDiv);
 
     const count = b.unitIds.length;
     const pts = brigadePoints(b);
     const warn = document.createElement("div");
     warn.className = "meta brigade-summary";
     warn.textContent = count + " units, " + pts + " pts" + (count < 2 || count > 8 ? " (need 2-8)" : "");
-    card.appendChild(warn);
+    body.appendChild(warn);
+    card.appendChild(body);
     list.appendChild(card);
   }
   list.scrollTop = scrollTop;
@@ -585,7 +604,7 @@ function buildArmyPdfDoc() {
     muted: [120, 110, 90],
     rowAlt: [248, 244, 236],
     ruleBg: [252, 250, 246],
-    headerFill: [192, 192, 192],
+    headerFill: [220, 220, 220],
     headerText: [0, 0, 0],
   };
 
@@ -639,11 +658,14 @@ function buildArmyPdfDoc() {
   function drawSectionTitle(title) {
     newPageIf(14);
     const barH = 8;
-    doc.setFillColor(...colors.headerFill);
+    doc.setFillColor(220, 220, 220);
     doc.rect(margin, y, contentW, barH, "F");
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.25);
+    doc.rect(margin, y, contentW, barH);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
-    doc.setTextColor(...colors.headerText);
+    doc.setTextColor(0, 0, 0);
     doc.text(pdfSafeText(title), margin + 2, y + 5.5);
     y += barH + 4;
   }
@@ -655,11 +677,14 @@ function buildArmyPdfDoc() {
     const rowH = 8.5;
     newPageIf(rowH + 2);
     let x = tableX;
-    doc.setFillColor(...colors.headerFill);
+    doc.setFillColor(220, 220, 220);
     doc.rect(tableX, y, tableW, rowH, "F");
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.25);
+    doc.rect(tableX, y, tableW, rowH);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.setTextColor(...colors.headerText);
+    doc.setTextColor(0, 0, 0);
     for (const col of tableCols) {
       const tx = col.align === "center"
         ? x + col.width / 2
