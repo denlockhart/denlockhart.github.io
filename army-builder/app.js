@@ -1062,8 +1062,8 @@ function buildArmyPdfDoc() {
     drawUnitsTable(unassigned);
   }
 
-  drawFateCardsAppendix();
   drawSpecialRulesAppendix();
+  drawFateCardsAppendix();
 
   y += 2;
   drawHRule();
