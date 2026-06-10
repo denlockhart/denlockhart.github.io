@@ -396,7 +396,6 @@ function renderSummary() {
 function renderAll() {
   renderCatalog();
   renderBrigades();
-  renderFateCards();
   renderSummary();
   updateActiveBrigadeLabel();
 }
@@ -415,29 +414,6 @@ function ensureFateCards(sheet) {
     sheet.fateCards = getFateCards(sheet);
   }
 }
-
-function renderFateCards() {
-  const panel = $("fate-cards-panel");
-  const list = $("fate-cards-list");
-  if (!panel || !list) return;
-  const cards = getFateCards();
-  if (!cards || !cards.length) {
-    panel.classList.add("hidden");
-    list.innerHTML = "";
-    return;
-  }
-  panel.classList.remove("hidden");
-  list.innerHTML = "";
-  for (const card of cards) {
-    const row = document.createElement("div");
-    row.className = "fate-card-row";
-    row.innerHTML =
-      '<div class="fate-card-rank">' + esc(card.rank) + "</div>" +
-      "<div><strong>" + esc(card.name) + '</strong><div class="meta">' + esc(card.text) + "</div></div>";
-    list.appendChild(row);
-  }
-}
-
 
 function updateEliteOptionLabels(profile) {
   const elite = getEliteCosts();
