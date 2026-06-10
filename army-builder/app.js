@@ -564,6 +564,7 @@ function pdfUnitRowData(entry) {
     weapon: fmtWeapon(entry),
     stats: fire + " / " + entry.melee + " / " + entry.tenacity,
     pts: String(entryPointsCost(entry)),
+    rules: (entry.specialRules || []).join(", "),
   };
 }
 
@@ -587,14 +588,15 @@ function buildArmyPdfDoc() {
   };
 
   const tableCols = [
-    { key: "unit", label: "Unit", width: 68, align: "left" },
-    { key: "figs", label: "Figs", width: 14, align: "center" },
-    { key: "weapon", label: "Weapon (Range)", width: 52, align: "left" },
-    { key: "stats", label: "F / M / T", width: 22, align: "center" },
-    { key: "pts", label: "Pts", width: 14, align: "right" },
+    { key: "unit", label: "Unit", width: 44, align: "left" },
+    { key: "figs", label: "Figs", width: 12, align: "center" },
+    { key: "weapon", label: "Weapon (Range)", width: 36, align: "left" },
+    { key: "stats", label: "F / M / T", width: 18, align: "center" },
+    { key: "pts", label: "Pts", width: 12, align: "right" },
+    { key: "rules", label: "Special Rules", width: contentW - 122, align: "left" },
   ];
-  const tableW = tableCols.reduce((s, c) => s + c.width, 0);
-  const tableX = margin + (contentW - tableW) / 2;
+  const tableW = contentW;
+  const tableX = margin;
 
   function newPageIf(need) {
     if (y + need > pageH - margin) {
