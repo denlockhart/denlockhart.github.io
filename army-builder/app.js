@@ -544,21 +544,13 @@ function collectUsedSpecialRules() {
   return sorted;
 }
 
-function writeSpecialRulesAppendix(writeLine) {
-  const rules = collectUsedSpecialRules();
-  const texts = state.sheet && state.sheet.specialRuleText;
-  if (!rules.length || !texts) return;
-  y += 2;
-  writeLine("Special Rules", 11, "bold");
-  for (const name of rules) {
-    const text = texts[name];
-    if (!text) continue;
-    writeLine(name, 9, "bold");
-    for (const line of text.split("\n")) {
-      writeLine(line, 8);
-    }
-    y += 1;
-  }
+function pdfSafeText(text) {
+  return String(text)
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/\u00BC/g, "1/4")
+    .replace(/\u00BD/g, "1/2")
+    .replace(/\u2022/g, "-");
 }
 
 function buildArmyPdfDoc() {
@@ -581,11 +573,28 @@ function buildArmyPdfDoc() {
     newPageIf(8);
     doc.setFont("helvetica", style || "normal");
     doc.setFontSize(size);
-    const lines = doc.splitTextToSize(text, maxW);
+    const lines = doc.splitTextToSize(pdfSafeText(text), maxW);
     for (const line of lines) {
       newPageIf(6);
       doc.text(line, margin, y);
       y += size * 0.45 + 2.5;
+    }
+  }
+
+  function writeSpecialRulesAppendix() {
+    const rules = collectUsedSpecialRules();
+    const texts = state.sheet && state.sheet.specialRuleText;
+    if (!rules.length || !texts) return;
+    y += 2;
+    writeLine("Special Rules", 11, "bold");
+    for (const name of rules) {
+      const text = texts[name];
+      if (!text) continue;
+      writeLine(name, 9, "bold");
+      for (const line of text.split("\n")) {
+        writeLine(line, 8);
+      }
+      y += 1;
     }
   }
 
@@ -623,7 +632,7 @@ function buildArmyPdfDoc() {
     }
   }
 
-  writeSpecialRulesAppendix(writeLine);
+  writeSpecialRulesAppendix();
 
   y += 2;
   writeLine("Based on Perry Miniatures V&F army sheets v3.1", 8);
@@ -666,16 +675,21 @@ function exportPdf() {
     return;
   }
 
-  closePdfPreview();
-  const built = buildArmyPdfDoc();
-  state.pendingPdfDoc = built.doc;
-  state.pendingPdfFilename = built.filename;
-  state.pendingPdfUrl = URL.createObjectURL(built.doc.output("blob"));
+  try {
+    closePdfPreview();
+    const built = buildArmyPdfDoc();
+    state.pendingPdfDoc = built.doc;
+    state.pendingPdfFilename = built.filename;
+    state.pendingPdfUrl = URL.createObjectURL(built.doc.output("blob"));
 
-  const frame = $("pdf-preview-frame");
-  frame.src = state.pendingPdfUrl;
-  $("pdf-preview-dialog").showModal();
-  showError("");
+    const frame = $("pdf-preview-frame");
+    frame.src = state.pendingPdfUrl;
+    $("pdf-preview-dialog").showModal();
+    showError("");
+  } catch (err) {
+    console.error(err);
+    showError("Could not generate PDF: " + err.message);
+  }
 }
 
 function clearArmy() {
