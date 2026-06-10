@@ -597,7 +597,7 @@ function buildArmyPdfDoc() {
   const tableW = contentW;
   const tableX = margin;
   const tableSize = 9;
-  const rulesSize = 8;
+  const rulesSize = 10;
 
   function newPageIf(need) {
     if (y + need > pageH - margin) {
@@ -790,12 +790,14 @@ function buildArmyPdfDoc() {
       if (!text) continue;
 
       const body = formatRuleBody(text);
-      const titleSize = 10.5;
-      const bodySize = 9.5;
+      const titleSize = 11.5;
+      const bodySize = 10.5;
       const boxPad = 3;
+      const titleLineH = titleSize * 0.45 + 0.5;
+      const bodyLineH = bodySize * 0.45 + 0.5;
       const titleLines = splitLines(name, contentW - boxPad * 2, titleSize);
       const bodyLines = splitLines(body, contentW - boxPad * 2, bodySize);
-      const boxH = boxPad * 2 + titleLines.length * 4.8 + 1.5 + bodyLines.length * 4.2;
+      const boxH = boxPad * 2 + titleLines.length * titleLineH + 1.5 + bodyLines.length * bodyLineH;
 
       newPageIf(boxH + 3);
       doc.setFillColor(...colors.ruleBg);
@@ -809,7 +811,7 @@ function buildArmyPdfDoc() {
       doc.setTextColor(...colors.dark);
       for (const line of titleLines) {
         doc.text(line, margin + boxPad, ty);
-        ty += 4.8;
+        ty += titleLineH;
       }
 
       ty += 1;
@@ -819,7 +821,7 @@ function buildArmyPdfDoc() {
       for (const line of bodyLines) {
         const isBullet = line.trimStart().startsWith("-");
         doc.text(line, margin + boxPad + (isBullet ? 2 : 0), ty);
-        ty += 4.2;
+        ty += bodyLineH;
       }
 
       y += boxH + 3;
