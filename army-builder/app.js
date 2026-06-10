@@ -585,6 +585,8 @@ function buildArmyPdfDoc() {
     muted: [120, 110, 90],
     rowAlt: [248, 244, 236],
     ruleBg: [252, 250, 246],
+    headerFill: [192, 192, 192],
+    headerText: [0, 0, 0],
   };
 
   const tableCols = [
@@ -637,11 +639,11 @@ function buildArmyPdfDoc() {
   function drawSectionTitle(title) {
     newPageIf(14);
     const barH = 8;
-    doc.setFillColor(...colors.dark);
+    doc.setFillColor(...colors.headerFill);
     doc.rect(margin, y, contentW, barH, "F");
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
-    doc.setTextColor(...colors.gold);
+    doc.setTextColor(...colors.headerText);
     doc.text(pdfSafeText(title), margin + 2, y + 5.5);
     y += barH + 4;
   }
@@ -653,11 +655,11 @@ function buildArmyPdfDoc() {
     const rowH = 8.5;
     newPageIf(rowH + 2);
     let x = tableX;
-    doc.setFillColor(...colors.dark);
+    doc.setFillColor(...colors.headerFill);
     doc.rect(tableX, y, tableW, rowH, "F");
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.setTextColor(...colors.gold);
+    doc.setTextColor(...colors.headerText);
     for (const col of tableCols) {
       const tx = col.align === "center"
         ? x + col.width / 2
