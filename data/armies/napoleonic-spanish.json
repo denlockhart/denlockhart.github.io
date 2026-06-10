@@ -1,0 +1,291 @@
+{
+  "id": "napoleonic-spanish",
+  "name": "Spanish",
+  "era": "Napoleonic",
+  "period": "1807-1814",
+  "sheetVersion": "v3.1",
+  "sourceUrl": "https://www.perry-miniatures.com/valour-fortitude/vf-army-sheets/",
+  "defaultPointsLimit": 800,
+  "units": [
+    {
+      "id": "1st-line-infantry",
+      "name": "1st Line Infantry",
+      "type": "infantry",
+      "figuresMin": 24,
+      "figuresMax": 36,
+      "weapon": "Musket",
+      "rangeInches": 12,
+      "fire": 3,
+      "melee": 4,
+      "tenacity": 3,
+      "specialRules": [
+        "Skirmishers",
+        "Square"
+      ],
+      "points": 18
+    },
+    {
+      "id": "2nd-line-infantry",
+      "name": "2nd Line Infantry",
+      "type": "infantry",
+      "figuresMin": 24,
+      "figuresMax": 36,
+      "weapon": "Musket",
+      "rangeInches": 12,
+      "fire": 2,
+      "melee": 3,
+      "tenacity": 3,
+      "specialRules": [
+        "Skirmishers",
+        "Square",
+        "Unpredictable"
+      ],
+      "points": 13
+    },
+    {
+      "id": "walloon-guard",
+      "name": "Walloon Guard",
+      "type": "infantry",
+      "figuresMin": 24,
+      "figuresMax": 36,
+      "weapon": "Musket",
+      "rangeInches": 12,
+      "fire": 3,
+      "melee": 4,
+      "tenacity": 4,
+      "specialRules": [
+        "Skirmishers",
+        "Square"
+      ],
+      "points": 22
+    },
+    {
+      "id": "cazadores",
+      "name": "Cazadores",
+      "type": "infantry",
+      "figuresMin": 24,
+      "figuresMax": 36,
+      "weapon": "Musket",
+      "rangeInches": 12,
+      "fire": 3,
+      "melee": 3,
+      "tenacity": 3,
+      "specialRules": [
+        "Light Infantry",
+        "Square"
+      ],
+      "points": 19
+    },
+    {
+      "id": "militia",
+      "name": "Militia",
+      "type": "infantry",
+      "figuresMin": 24,
+      "figuresMax": 36,
+      "weapon": "Musket",
+      "rangeInches": 12,
+      "fire": 2,
+      "melee": 3,
+      "tenacity": 2,
+      "specialRules": [
+        "Militia",
+        "Square"
+      ],
+      "points": 9
+    },
+    {
+      "id": "infantry-detachment",
+      "name": "Infantry Detachment",
+      "type": "infantry",
+      "figuresMin": 6,
+      "figuresMax": 8,
+      "weapon": "Musket",
+      "rangeInches": 12,
+      "fire": 2,
+      "melee": 2,
+      "tenacity": 2,
+      "specialRules": [
+        "Light Infantry"
+      ],
+      "points": 12
+    },
+    {
+      "id": "guerrilla-detachment",
+      "name": "Guerrilla Detachment",
+      "type": "infantry",
+      "figuresMin": 6,
+      "figuresMax": 8,
+      "weapon": "Musket",
+      "rangeInches": 12,
+      "fire": 2,
+      "melee": 2,
+      "tenacity": 2,
+      "specialRules": [
+        "Light Infantry",
+        "Unpredictable"
+      ],
+      "points": 12
+    },
+    {
+      "id": "line-cavalry",
+      "name": "Line Cavalry",
+      "type": "cavalry",
+      "figuresMin": 9,
+      "figuresMax": 14,
+      "weapon": "Sabre",
+      "rangeInches": null,
+      "fire": null,
+      "melee": 4,
+      "tenacity": 3,
+      "specialRules": [
+        "Carbines",
+        "Unpredictable"
+      ],
+      "points": 19
+    },
+    {
+      "id": "hussars",
+      "name": "Hussars",
+      "type": "cavalry",
+      "figuresMin": 9,
+      "figuresMax": 14,
+      "weapon": "Sabre",
+      "rangeInches": null,
+      "fire": null,
+      "melee": 3,
+      "tenacity": 3,
+      "specialRules": [
+        "Carbines",
+        "Light Cavalry",
+        "Unpredictable"
+      ],
+      "points": 20
+    },
+    {
+      "id": "lancers",
+      "name": "Lancers",
+      "type": "cavalry",
+      "figuresMin": 9,
+      "figuresMax": 14,
+      "weapon": "Lance",
+      "rangeInches": null,
+      "fire": null,
+      "melee": 3,
+      "tenacity": 3,
+      "specialRules": [
+        "Carbines",
+        "Light Cavalry",
+        "Unpredictable"
+      ],
+      "points": 20
+    },
+    {
+      "id": "horse-cazadores",
+      "name": "Horse Cazadores",
+      "type": "cavalry",
+      "figuresMin": 9,
+      "figuresMax": 14,
+      "weapon": "Sabre or Lance",
+      "rangeInches": null,
+      "fire": null,
+      "melee": 3,
+      "tenacity": 3,
+      "specialRules": [
+        "Carbines",
+        "Light Cavalry",
+        "Unpredictable"
+      ],
+      "points": 20
+    },
+    {
+      "id": "mounted-guerrillas",
+      "name": "Mounted Guerrillas",
+      "type": "cavalry",
+      "figuresMin": 5,
+      "figuresMax": 7,
+      "weapon": "Lance",
+      "rangeInches": null,
+      "fire": null,
+      "melee": 2,
+      "tenacity": 2,
+      "specialRules": [
+        "Hit & Run",
+        "Light Cavalry",
+        "Swift"
+      ],
+      "points": 17
+    },
+    {
+      "id": "cavalry-detachment",
+      "name": "Cavalry Detachment",
+      "type": "cavalry",
+      "figuresMin": 3,
+      "figuresMax": 3,
+      "weapon": "Sabre",
+      "rangeInches": null,
+      "fire": null,
+      "melee": 2,
+      "tenacity": 1,
+      "specialRules": [
+        "Carbines",
+        "Light Cavalry"
+      ],
+      "points": 13
+    },
+    {
+      "id": "field-artillery",
+      "name": "Field Artillery",
+      "type": "artillery",
+      "figuresMin": 1,
+      "figuresMax": 1,
+      "weapon": "Cannon",
+      "rangeInches": 48,
+      "fire": 1,
+      "melee": 2,
+      "tenacity": 2,
+      "specialRules": [
+        "Cannister"
+      ],
+      "points": 20
+    },
+    {
+      "id": "heavy-artillery",
+      "name": "Heavy Artillery",
+      "type": "artillery",
+      "figuresMin": 1,
+      "figuresMax": 1,
+      "weapon": "Cannon",
+      "rangeInches": 54,
+      "fire": 2,
+      "melee": 2,
+      "tenacity": 2,
+      "specialRules": [
+        "Cannister",
+        "Slow"
+      ],
+      "points": 28
+    },
+    {
+      "id": "horse-artillery",
+      "name": "Horse Artillery",
+      "type": "artillery",
+      "figuresMin": 1,
+      "figuresMax": 1,
+      "weapon": "Cannon",
+      "rangeInches": 36,
+      "fire": 1,
+      "melee": 2,
+      "tenacity": 2,
+      "specialRules": [
+        "Cannister",
+        "Horse Artillery"
+      ],
+      "points": 26
+    }
+  ],
+  "eliteOptions": {
+    "fire": 3,
+    "melee": 2,
+    "tenacity": 4
+  }
+}

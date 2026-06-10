@@ -16,6 +16,11 @@
           "id": "napoleonic-french",
           "name": "French",
           "file": "napoleonic-french.json"
+        },
+        {
+          "id": "napoleonic-spanish",
+          "name": "Spanish",
+          "file": "napoleonic-spanish.json"
         }
       ]
     }
