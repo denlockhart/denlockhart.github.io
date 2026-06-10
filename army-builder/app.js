@@ -553,7 +553,7 @@ function pdfSafeText(text) {
     .replace(/\u2022/g, "-");
 }
 
-function pdfUnitRowData(entry) {
+function pdfUnitMainRowData(entry) {
   const fire = entry.fire == null ? "-" : entry.fire;
   const opts = entryOptionsLabel(entry).replace(/^\s*\(/, "").replace(/\)\s*$/, "");
   let unit = entryLabel(entry);
@@ -588,15 +588,16 @@ function buildArmyPdfDoc() {
   };
 
   const tableCols = [
-    { key: "unit", label: "Unit", width: 44, align: "left" },
+    { key: "unit", label: "Unit", width: 84, align: "left" },
     { key: "figs", label: "Figs", width: 12, align: "center" },
-    { key: "weapon", label: "Weapon (Range)", width: 36, align: "left" },
-    { key: "stats", label: "F / M / T", width: 18, align: "center" },
+    { key: "weapon", label: "Weapon (Range)", width: 58, align: "left" },
+    { key: "stats", label: "F / M / T", width: 20, align: "center" },
     { key: "pts", label: "Pts", width: 12, align: "right" },
-    { key: "rules", label: "Special Rules", width: contentW - 122, align: "left" },
   ];
   const tableW = contentW;
   const tableX = margin;
+  const tableSize = 9;
+  const rulesSize = 8;
 
   function newPageIf(need) {
     if (y + need > pageH - margin) {
@@ -669,16 +670,16 @@ function buildArmyPdfDoc() {
     y += rowH;
   }
 
-  function drawTableRow(rowData, alt) {
+  function drawTableRow(rowData, alt, size) {
     const pad = cellPadding();
-    const size = 9;
+    const fontSize = size || tableSize;
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(size);
+    doc.setFontSize(fontSize);
     const cellLines = tableCols.map((col) => {
       const innerW = col.width - pad * 2;
-      return splitLines(rowData[col.key] || "", innerW, size);
+      return splitLines(rowData[col.key] || "", innerW, fontSize);
     });
-    const lineH = 4;
+    const lineH = fontSize * 0.44 + 0.6;
     const rowH = Math.max(...cellLines.map((lines) => lines.length)) * lineH + pad * 2;
     newPageIf(rowH + 1);
     if (alt) {
@@ -702,12 +703,36 @@ function buildArmyPdfDoc() {
         : col.align === "right"
           ? x + col.width - pad
           : x + pad;
-      let ty = y + pad + 3.2;
+      let ty = y + pad + fontSize * 0.35;
       for (const line of lines) {
         doc.text(line, tx, ty, { align: col.align });
         ty += lineH;
       }
       x += col.width;
+    }
+    y += rowH;
+  }
+
+  function drawRulesSubRow(rulesText, alt) {
+    if (!rulesText) return;
+    const pad = cellPadding();
+    const prefix = "Special Rules: ";
+    const lines = splitLines(prefix + rulesText, tableW - pad * 2, rulesSize);
+    const lineH = rulesSize * 0.44 + 0.55;
+    const rowH = lines.length * lineH + pad * 2;
+    newPageIf(rowH + 1);
+    doc.setFillColor(...(alt ? colors.rowAlt : [255, 255, 255]));
+    doc.rect(tableX, y, tableW, rowH, "F");
+    doc.setDrawColor(...colors.border);
+    doc.setLineWidth(0.15);
+    doc.rect(tableX, y, tableW, rowH);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(rulesSize);
+    doc.setTextColor(...colors.muted);
+    let ty = y + pad + rulesSize * 0.35;
+    for (const line of lines) {
+      doc.text(line, tableX + pad, ty);
+      ty += lineH;
     }
     y += rowH;
   }
@@ -720,7 +745,13 @@ function buildArmyPdfDoc() {
     }
     const tableTop = y;
     drawTableHeader();
-    units.forEach((entry, idx) => drawTableRow(pdfUnitRowData(entry), idx % 2 === 1));
+    units.forEach((entry, idx) => {
+      const rowData = pdfUnitMainRowData(entry);
+      const rules = rowData.rules;
+      const alt = idx % 2 === 1;
+      drawTableRow(rowData, alt, tableSize);
+      drawRulesSubRow(rules, alt);
+    });
     doc.setDrawColor(...colors.border);
     doc.setLineWidth(0.35);
     doc.rect(tableX, tableTop, tableW, y - tableTop);
