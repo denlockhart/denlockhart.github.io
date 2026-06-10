@@ -11,6 +11,16 @@
   to = "/data/armies/:id.json"
   status = 200
 
+[[headers]]
+  for = "/army-builder/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 [[redirects]]
   from = "/army-builder"
   to = "/army-builder/"

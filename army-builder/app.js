@@ -180,6 +180,7 @@ async function startBuilder() {
   const res = await fetch("/api/army/" + armyId);
   if (!res.ok) { showError("Could not load army sheet."); return; }
   state.sheet = await res.json();
+  ensureFateCards(state.sheet);
   state.entries = [];
   state.brigades = [{ id: 1, name: "1st Brigade", leader: "Brigadier", unitIds: [] }];
   state.activeBrigadeId = 1;
@@ -400,11 +401,26 @@ function renderAll() {
   updateActiveBrigadeLabel();
 }
 
+function getFateCards(sheet) {
+  sheet = sheet || state.sheet;
+  if (!sheet) return [];
+  if (sheet.fateCards && sheet.fateCards.length) return sheet.fateCards;
+  const embedded = window.VF_FATE_CARDS && window.VF_FATE_CARDS[sheet.id];
+  return embedded || [];
+}
+
+function ensureFateCards(sheet) {
+  if (!sheet) return;
+  if (!sheet.fateCards || !sheet.fateCards.length) {
+    sheet.fateCards = getFateCards(sheet);
+  }
+}
+
 function renderFateCards() {
   const panel = $("fate-cards-panel");
   const list = $("fate-cards-list");
   if (!panel || !list) return;
-  const cards = state.sheet && state.sheet.fateCards;
+  const cards = getFateCards();
   if (!cards || !cards.length) {
     panel.classList.add("hidden");
     list.innerHTML = "";
@@ -838,8 +854,8 @@ function buildArmyPdfDoc() {
   }
 
   function drawFateCardsAppendix() {
-    const cards = state.sheet && state.sheet.fateCards;
-    if (!cards || !cards.length) return;
+    const cards = getFateCards();
+    if (!cards.length) return;
 
     drawHRule();
     drawSectionTitle("Fate Cards");
@@ -1080,7 +1096,7 @@ function savePdfFromPreview() {
   showError("");
 }
 
-function exportPdf() {
+async function exportPdf() {
   if (!state.sheet) {
     showError("Load an army sheet first.");
     return;
@@ -1095,6 +1111,13 @@ function exportPdf() {
   }
 
   try {
+    const res = await fetch("/api/army/" + state.sheet.id, { cache: "no-store" });
+    if (res.ok) {
+      const fresh = await res.json();
+      state.sheet.fateCards = fresh.fateCards || state.sheet.fateCards;
+      state.sheet.specialRuleText = fresh.specialRuleText || state.sheet.specialRuleText;
+    }
+    ensureFateCards(state.sheet);
     closePdfPreview();
     const built = buildArmyPdfDoc();
     state.pendingPdfDoc = built.doc;
