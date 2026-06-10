@@ -62,10 +62,24 @@ function eliteFireCost(profile) {
   return profile.type === "artillery" ? c.artilleryFire : c.fire;
 }
 
+function getUnenthusiasticOption() {
+  return (state.sheet && state.sheet.unitOptions && state.sheet.unitOptions.unenthusiastic) || null;
+}
+
+function canUseUnenthusiastic(profile) {
+  const opt = getUnenthusiasticOption();
+  if (!opt) return false;
+  const excluded = opt.excludeSpecialRules || [];
+  return !profile.specialRules.some((r) => excluded.includes(r));
+}
+
 function calcCost(profile, opts) {
   const elite = getEliteCosts();
   let cost = profile.points;
   if (opts.understrength && !isDetachment(profile)) cost -= 5;
+  if (opts.unenthusiastic && canUseUnenthusiastic(profile)) {
+    cost -= getUnenthusiasticOption().pointsDiscount || 6;
+  }
   if (opts.eliteFire) cost += eliteFireCost(profile);
   if (opts.eliteMelee) cost += elite.melee;
   if (opts.eliteTenacity) cost += elite.tenacity;
@@ -79,6 +93,11 @@ function calcStats(profile, opts) {
   if (opts.understrength && !isDetachment(profile) && !profile.specialRules.includes("Militia")) {
     melee = Math.max(1, melee - 1);
     ten = Math.max(1, ten - 1);
+  }
+  if (opts.unenthusiastic && canUseUnenthusiastic(profile)) {
+    const u = getUnenthusiasticOption();
+    melee = Math.max(1, melee + (u.meleeModifier || -1));
+    ten = Math.max(1, ten + (u.tenacityModifier || -1));
   }
   if (opts.eliteFire && fire != null) fire += 1;
   if (opts.eliteMelee) melee += 1;
@@ -383,6 +402,18 @@ function openAddDialog(profile) {
   $("opt-elite-tenacity").checked = false;
   $("opt-elite-fire").disabled = profile.fire == null;
   updateEliteOptionLabels(profile);
+  const unenthusiasticWrap = $("opt-unenthusiastic-wrap");
+  const unenthusiasticOpt = getUnenthusiasticOption();
+  if (unenthusiasticOpt && canUseUnenthusiastic(profile)) {
+    unenthusiasticWrap.classList.remove("hidden");
+    $("label-unenthusiastic").textContent = unenthusiasticOpt.label ||
+      "Unenthusiastic (-" + (unenthusiasticOpt.pointsDiscount || 6) + " pts, -1 melee & tenacity)";
+    $("opt-unenthusiastic").checked = false;
+    $("opt-unenthusiastic").disabled = false;
+  } else {
+    unenthusiasticWrap.classList.add("hidden");
+    $("opt-unenthusiastic").checked = false;
+  }
   $("add-custom-name").value = "";
   updateAddDialog();
   $("add-dialog").showModal();
@@ -391,6 +422,7 @@ function openAddDialog(profile) {
 function getAddOptions() {
   return {
     understrength: $("opt-understrength").checked,
+    unenthusiastic: $("opt-unenthusiastic").checked,
     eliteFire: $("opt-elite-fire").checked,
     eliteMelee: $("opt-elite-melee").checked,
     eliteTenacity: $("opt-elite-tenacity").checked,
@@ -462,6 +494,7 @@ function addBrigade() {
 function entryOptionsLabel(e) {
   const opts = [];
   if (e.options.understrength) opts.push("understrength");
+  if (e.options.unenthusiastic) opts.push("unenthusiastic");
   if (e.options.eliteFire) opts.push("+1 fire");
   if (e.options.eliteMelee) opts.push("+1 melee");
   if (e.options.eliteTenacity) opts.push("+1 tenacity");
@@ -647,7 +680,7 @@ function bindEvents() {
   $("btn-back").onclick = backToSetup;
   $("add-form").onsubmit = addEntryFromDialog;
   $("add-cancel").onclick = () => $("add-dialog").close();
-  for (const el of ["opt-understrength","opt-elite-fire","opt-elite-melee","opt-elite-tenacity","add-figures"]) {
+  for (const el of ["opt-understrength","opt-unenthusiastic","opt-elite-fire","opt-elite-melee","opt-elite-tenacity","add-figures"]) {
     $(el).addEventListener("input", updateAddDialog);
     $(el).addEventListener("change", updateAddDialog);
   }

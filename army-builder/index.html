@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valour &amp; Fortitude - Army Builder</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <header>
@@ -60,7 +60,7 @@
           <div class="panel">
             <h2>Brigades</h2>
             <p class="hint">Each brigade needs 1 leader and 2-8 units (V&amp;F rule 1.4).</p>
-            <div id="brigade-list"></div>
+<div id="brigade-list"></div>
             <button type="button" id="btn-add-brigade">+ Add Brigade</button>
           </div>
           <div class="panel actions-panel">
@@ -86,6 +86,7 @@
         <label><input type="checkbox" id="opt-elite-fire"> <span id="label-elite-fire">Elite +1 Fire (+2 pts)</span></label>
         <label><input type="checkbox" id="opt-elite-melee"> <span id="label-elite-melee">Elite +1 Melee (+2 pts)</span></label>
         <label><input type="checkbox" id="opt-elite-tenacity"> <span id="label-elite-tenacity">Elite +1 Tenacity (+3 pts)</span></label>
+        <label id="opt-unenthusiastic-wrap" class="hidden"><input type="checkbox" id="opt-unenthusiastic"> <span id="label-unenthusiastic">Unenthusiastic (-6 pts, -1 melee &amp; tenacity)</span></label>
       </fieldset>
       <p class="cost-line">Cost: <strong id="add-cost">0</strong> pts</p>
       <div class="actions">
@@ -103,9 +104,9 @@
     </div>
   </dialog>
   <footer>
-    <a href="/">denlockhart.com</a> · Based on <a href="https://www.perry-miniatures.com/valour-fortitude/vf-army-sheets/" target="_blank">official V&amp;F army sheets</a>
+    Based on <a href="https://www.perry-miniatures.com/valour-fortitude/vf-army-sheets/" target="_blank">official V&amp;F army sheets</a>
   </footer>
-  <script src="jspdf.umd.min.js"></script>
-  <script src="app.js"></script>
+  <script src="/jspdf.umd.min.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>

@@ -287,5 +287,14 @@
     "fire": 3,
     "melee": 2,
     "tenacity": 4
+  },
+  "unitOptions": {
+    "unenthusiastic": {
+      "label": "Unenthusiastic (-6 pts, -1 melee & tenacity)",
+      "pointsDiscount": 6,
+      "meleeModifier": -1,
+      "tenacityModifier": -1,
+      "excludeSpecialRules": ["Militia"]
+    }
   }
 }
