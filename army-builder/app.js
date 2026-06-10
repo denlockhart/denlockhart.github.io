@@ -562,11 +562,8 @@ function pdfUnitRowData(entry) {
     unit,
     figs: String(entry.figures),
     weapon: fmtWeapon(entry),
-    fire: String(fire),
-    melee: String(entry.melee),
-    tenacity: String(entry.tenacity),
+    stats: fire + " / " + entry.melee + " / " + entry.tenacity,
     pts: String(entryPointsCost(entry)),
-    rules: (entry.specialRules || []).join(", "),
   };
 }
 
@@ -590,15 +587,14 @@ function buildArmyPdfDoc() {
   };
 
   const tableCols = [
-    { key: "unit", label: "Unit", width: 36, align: "left" },
-    { key: "figs", label: "Figs", width: 11, align: "center" },
-    { key: "weapon", label: "Weapon", width: 26, align: "left" },
-    { key: "fire", label: "F", width: 8, align: "center" },
-    { key: "melee", label: "M", width: 8, align: "center" },
-    { key: "tenacity", label: "T", width: 8, align: "center" },
-    { key: "pts", label: "Pts", width: 11, align: "right" },
-    { key: "rules", label: "Special Rules", width: contentW - 108, align: "left" },
+    { key: "unit", label: "Unit", width: 68, align: "left" },
+    { key: "figs", label: "Figs", width: 14, align: "center" },
+    { key: "weapon", label: "Weapon (Range)", width: 52, align: "left" },
+    { key: "stats", label: "F / M / T", width: 22, align: "center" },
+    { key: "pts", label: "Pts", width: 14, align: "right" },
   ];
+  const tableW = tableCols.reduce((s, c) => s + c.width, 0);
+  const tableX = margin + (contentW - tableW) / 2;
 
   function newPageIf(need) {
     if (y + need > pageH - margin) {
@@ -636,25 +632,26 @@ function buildArmyPdfDoc() {
   }
 
   function drawSectionTitle(title) {
-    newPageIf(11);
+    newPageIf(14);
+    const barH = 8;
     doc.setFillColor(...colors.dark);
-    doc.rect(margin, y - 4, contentW, 8, "F");
+    doc.rect(margin, y, contentW, barH, "F");
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.setTextColor(...colors.gold);
-    doc.text(pdfSafeText(title), margin + 2, y + 0.5);
-    y += 7;
+    doc.text(pdfSafeText(title), margin + 2, y + 5.5);
+    y += barH + 4;
   }
 
-  function cellPadding() { return 2; }
+  function cellPadding() { return 2.2; }
 
   function drawTableHeader() {
     const pad = cellPadding();
     const rowH = 8.5;
     newPageIf(rowH + 2);
-    let x = margin;
+    let x = tableX;
     doc.setFillColor(...colors.dark);
-    doc.rect(margin, y, contentW, rowH, "F");
+    doc.rect(tableX, y, tableW, rowH, "F");
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
     doc.setTextColor(...colors.gold);
@@ -684,17 +681,17 @@ function buildArmyPdfDoc() {
     newPageIf(rowH + 1);
     if (alt) {
       doc.setFillColor(...colors.rowAlt);
-      doc.rect(margin, y, contentW, rowH, "F");
+      doc.rect(tableX, y, tableW, rowH, "F");
     }
     doc.setDrawColor(...colors.border);
     doc.setLineWidth(0.15);
-    let x = margin;
+    let x = tableX;
     for (let i = 0; i < tableCols.length; i++) {
       doc.rect(x, y, tableCols[i].width, rowH);
       x += tableCols[i].width;
     }
     doc.setTextColor(20, 16, 12);
-    x = margin;
+    x = tableX;
     for (let i = 0; i < tableCols.length; i++) {
       const col = tableCols[i];
       const lines = cellLines[i];
@@ -716,11 +713,16 @@ function buildArmyPdfDoc() {
   function drawUnitsTable(units) {
     if (!units.length) {
       writeParagraph("(no units assigned)", 9, "italic", contentW);
+      y += 2;
       return;
     }
+    const tableTop = y;
     drawTableHeader();
     units.forEach((entry, idx) => drawTableRow(pdfUnitRowData(entry), idx % 2 === 1));
-    y += 2;
+    doc.setDrawColor(...colors.border);
+    doc.setLineWidth(0.35);
+    doc.rect(tableX, tableTop, tableW, y - tableTop);
+    y += 4;
   }
 
   function formatRuleBody(text) {
@@ -820,18 +822,18 @@ function buildArmyPdfDoc() {
   y += 2;
   drawHRule();
 
-  for (const b of state.brigades) {
+  state.brigades.forEach((b, idx) => {
+    if (idx > 0) y += 8;
     drawSectionTitle(b.name + "  |  Leader: " + b.leader);
-    y += 1;
     drawUnitsTable(state.entries.filter((e) => b.unitIds.includes(e.id)));
-  }
+  });
 
   const unassigned = state.entries.filter(
     (e) => !state.brigades.some((br) => br.unitIds.includes(e.id))
   );
   if (unassigned.length) {
+    y += 8;
     drawSectionTitle("Unassigned Units");
-    y += 1;
     drawUnitsTable(unassigned);
   }
 
