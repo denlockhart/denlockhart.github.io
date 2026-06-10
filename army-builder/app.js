@@ -636,27 +636,27 @@ function buildArmyPdfDoc() {
   }
 
   function drawSectionTitle(title) {
-    newPageIf(10);
+    newPageIf(11);
     doc.setFillColor(...colors.dark);
-    doc.rect(margin, y - 4, contentW, 7, "F");
+    doc.rect(margin, y - 4, contentW, 8, "F");
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(10);
+    doc.setFontSize(11);
     doc.setTextColor(...colors.gold);
-    doc.text(pdfSafeText(title), margin + 2, y);
-    y += 6;
+    doc.text(pdfSafeText(title), margin + 2, y + 0.5);
+    y += 7;
   }
 
-  function cellPadding() { return 1.8; }
+  function cellPadding() { return 2; }
 
   function drawTableHeader() {
     const pad = cellPadding();
-    const rowH = 7;
+    const rowH = 8.5;
     newPageIf(rowH + 2);
     let x = margin;
     doc.setFillColor(...colors.dark);
     doc.rect(margin, y, contentW, rowH, "F");
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(7.5);
+    doc.setFontSize(9);
     doc.setTextColor(...colors.gold);
     for (const col of tableCols) {
       const tx = col.align === "center"
@@ -664,7 +664,7 @@ function buildArmyPdfDoc() {
         : col.align === "right"
           ? x + col.width - pad
           : x + pad;
-      doc.text(col.label, tx, y + 4.6, { align: col.align });
+      doc.text(col.label, tx, y + 5.5, { align: col.align });
       x += col.width;
     }
     y += rowH;
@@ -672,14 +672,14 @@ function buildArmyPdfDoc() {
 
   function drawTableRow(rowData, alt) {
     const pad = cellPadding();
-    const size = 7.5;
+    const size = 9;
     doc.setFont("helvetica", "normal");
     doc.setFontSize(size);
     const cellLines = tableCols.map((col) => {
       const innerW = col.width - pad * 2;
       return splitLines(rowData[col.key] || "", innerW, size);
     });
-    const lineH = 3.4;
+    const lineH = 4;
     const rowH = Math.max(...cellLines.map((lines) => lines.length)) * lineH + pad * 2;
     newPageIf(rowH + 1);
     if (alt) {
@@ -703,7 +703,7 @@ function buildArmyPdfDoc() {
         : col.align === "right"
           ? x + col.width - pad
           : x + pad;
-      let ty = y + pad + 2.8;
+      let ty = y + pad + 3.2;
       for (const line of lines) {
         doc.text(line, tx, ty, { align: col.align });
         ty += lineH;
@@ -715,7 +715,7 @@ function buildArmyPdfDoc() {
 
   function drawUnitsTable(units) {
     if (!units.length) {
-      writeParagraph("(no units assigned)", 8, "italic", contentW);
+      writeParagraph("(no units assigned)", 9, "italic", contentW);
       return;
     }
     drawTableHeader();
@@ -755,12 +755,12 @@ function buildArmyPdfDoc() {
       if (!text) continue;
 
       const body = formatRuleBody(text);
-      const titleSize = 9;
-      const bodySize = 8;
+      const titleSize = 10.5;
+      const bodySize = 9.5;
       const boxPad = 3;
       const titleLines = splitLines(name, contentW - boxPad * 2, titleSize);
       const bodyLines = splitLines(body, contentW - boxPad * 2, bodySize);
-      const boxH = boxPad * 2 + titleLines.length * 4.2 + 1.5 + bodyLines.length * 3.6;
+      const boxH = boxPad * 2 + titleLines.length * 4.8 + 1.5 + bodyLines.length * 4.2;
 
       newPageIf(boxH + 3);
       doc.setFillColor(...colors.ruleBg);
@@ -774,7 +774,7 @@ function buildArmyPdfDoc() {
       doc.setTextColor(...colors.dark);
       for (const line of titleLines) {
         doc.text(line, margin + boxPad, ty);
-        ty += 4.2;
+        ty += 4.8;
       }
 
       ty += 1;
@@ -784,7 +784,7 @@ function buildArmyPdfDoc() {
       for (const line of bodyLines) {
         const isBullet = line.trimStart().startsWith("-");
         doc.text(line, margin + boxPad + (isBullet ? 2 : 0), ty);
-        ty += 3.6;
+        ty += 4.2;
       }
 
       y += boxH + 3;
@@ -793,30 +793,30 @@ function buildArmyPdfDoc() {
 
   // Header block
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(16);
+  doc.setFontSize(17);
   doc.setTextColor(...colors.dark);
   doc.text("Valour & Fortitude Army List", margin, y);
-  y += 8;
+  y += 9;
 
   const armyName = getArmyName();
   if (armyName) {
-    doc.setFontSize(13);
+    doc.setFontSize(14);
     doc.setTextColor(...colors.gold);
     doc.text(pdfSafeText(armyName), margin, y);
-    y += 7;
+    y += 8;
   }
 
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
+  doc.setFontSize(10);
   doc.setTextColor(...colors.muted);
   writeParagraph(
     "Sheet: " + state.sheet.name + " " + state.sheet.period + " (" + state.sheet.sheetVersion + ")",
-    9,
+    10,
     "normal",
     contentW
   );
-  writeParagraph("Army leader: " + (getArmyLeader() || "(unnamed)"), 9, "normal", contentW);
-  writeParagraph("Points: " + totalPoints() + " / " + $("points-limit").value, 9, "bold", contentW);
+  writeParagraph("Army leader: " + (getArmyLeader() || "(unnamed)"), 10, "normal", contentW);
+  writeParagraph("Points: " + totalPoints() + " / " + $("points-limit").value, 10, "bold", contentW);
   y += 2;
   drawHRule();
 
@@ -840,10 +840,10 @@ function buildArmyPdfDoc() {
   y += 2;
   drawHRule();
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(7.5);
+  doc.setFontSize(8.5);
   doc.setTextColor(...colors.muted);
-  writeParagraph("Based on Perry Miniatures V&F army sheets v3.1", 7.5, "normal", contentW);
-  writeParagraph(state.sheet.sourceUrl, 7.5, "normal", contentW);
+  writeParagraph("Based on Perry Miniatures V&F army sheets v3.1", 8.5, "normal", contentW);
+  writeParagraph(state.sheet.sourceUrl, 8.5, "normal", contentW);
 
   const filename = sanitizeFilename(armyName || "army-list") + ".pdf";
   return { doc, filename };
