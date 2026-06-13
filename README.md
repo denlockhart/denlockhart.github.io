@@ -10,7 +10,8 @@ Hosted on [Netlify](https://www.netlify.com/) (also compatible with [GitHub Page
 |------|-----|
 | Home | https://denlockhart.com/ |
 | Valour & Fortitude Army Builder | https://denlockhart.com/projects/army-builder/ |
-| Source | https://github.com/denlockhart/vf-army-builder |
+| Source | https://github.com/denlockhart/denlockhart-projects |
+| GitHub Pages | https://denlockhart.github.io/denlockhart-projects/ |
 
 ## Purpose
 
@@ -49,7 +50,7 @@ denlockhart.com/
 |---------|--------|------------|-------------|
 | Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` | Build napoleonic army lists and export PDFs |
 
-On Netlify, `/army-builder/` also works via rewrite (legacy short URL).
+On Netlify, `/army-builder/` also works via rewrite (legacy short URL). On GitHub Pages, use the project site URL or rename the repo to `denlockhart.github.io` for a root URL.
 
 See each project's `README.md` for project-specific details.
 
@@ -89,7 +90,13 @@ On Netlify, `/army-builder/` is rewritten to the same app. Use relative asset pa
 
 - **Production branch:** `main`
 - **Netlify:** pushes to `main` trigger production deploys. Only push when you intend to deploy.
-- **GitHub Pages:** enable in repo **Settings → Pages**, source **main** branch, folder **/ (root)**. The `.nojekyll` file is already in place. To use a custom domain, add it under Pages settings and point DNS at GitHub (remove Netlify DNS first if switching).
+- **GitHub Pages:** enable in repo **Settings → Pages**, source **main** branch, folder **/ (root)**. The `.nojekyll` file is already in place.
+
+  **Project site URL:** `https://denlockhart.github.io/denlockhart-projects/` (repo name is in the path). Links use relative paths so they work here and on Netlify.
+
+  **User site URL:** To serve at `https://denlockhart.github.io/` (no repo prefix), rename the repo to `denlockhart.github.io` on GitHub. Then absolute paths like `/projects/...` also work at the root.
+
+  To use custom domain `denlockhart.com` on GitHub Pages, add it under Pages settings and point DNS at GitHub (remove Netlify DNS first if switching).
 
 Projects load assets with **relative paths** so the same repo works on both hosts without a build step.
 

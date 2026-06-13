@@ -11,7 +11,7 @@ Static site hosting Dennis Lockhart's side projects. Not a single-app repo.
 
 - **Site shell:** `index.html`, `site.css` at repo root
 - **Projects:** `projects/<slug>/` — each app is self-contained
-- **Hosting:** `netlify.toml` (optional Netlify rewrites) + `.nojekyll` (GitHub Pages)
+- **Hosting:** `netlify.toml` (optional Netlify rewrites) + `.nojekyll` (GitHub Pages). Use relative HTML links — GitHub project sites are served under `/repo-name/`.
 
 ## Current projects
 
