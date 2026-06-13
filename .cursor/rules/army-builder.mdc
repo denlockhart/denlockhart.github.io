@@ -22,9 +22,9 @@ Valour & Fortitude napoleonic army list builder. Vanilla HTML/CSS/JS.
 - Use existing patterns: `fmtWeapon()`, `fmtStats()`, `figureBounds()`, etc.
 - CSS in `style.css` — keep class names consistent with `index.html`
 
-## API paths
+## Data paths
 
-App fetches `/api/catalog` and `/api/army/:id` — mapped to `data/` via `netlify.toml`.
+App loads `data/catalog.json` and `data/armies/<id>.json` via relative URLs (works on GitHub Pages and Netlify).
 
 ## Edit below — app-specific rules
 

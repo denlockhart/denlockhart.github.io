@@ -27,7 +27,8 @@ Static reference data shipped with the site. **Not** user saves — those belong
 
 - Stats and points must match official Perry Valour & Fortitude army sheets
 - Keep `sheetVersion` and `sourceUrl` accurate on army JSON files
-- `netlify.toml` serves data at `/api/catalog` and `/api/army/:id`
+- App loads JSON via relative paths: `data/catalog.json`, `data/armies/<id>.json`
+- Netlify still maps legacy `/api/catalog` and `/api/army/:id` in `netlify.toml` if needed
 
 ## Edit below — data rules
 

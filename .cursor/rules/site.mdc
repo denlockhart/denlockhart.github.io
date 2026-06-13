@@ -11,13 +11,13 @@ Static site hosting Dennis Lockhart's side projects. Not a single-app repo.
 
 - **Site shell:** `index.html`, `site.css` at repo root
 - **Projects:** `projects/<slug>/` — each app is self-contained
-- **Hosting:** `netlify.toml` — rewrites short URLs (e.g. `/army-builder/`) to project folders
+- **Hosting:** `netlify.toml` (optional Netlify rewrites) + `.nojekyll` (GitHub Pages)
 
 ## Current projects
 
 | Slug | Folder | URL |
 |------|--------|-----|
-| army-builder | `projects/army-builder/` | `/army-builder/` |
+| army-builder | `projects/army-builder/` | `/projects/army-builder/` (Netlify: also `/army-builder/`) |
 
 ## Defaults for agents
 

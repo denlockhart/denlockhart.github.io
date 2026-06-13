@@ -16,7 +16,7 @@ This is **not** a single-application repository. Think of it as a small project 
 
 - **Home:** https://denlockhart.com/
 - **Repo:** https://github.com/denlockhart/vf-army-builder
-- **Hosting:** Netlify (`netlify.toml` at repo root)
+- **Hosting:** Netlify (`netlify.toml`) and GitHub Pages (`.nojekyll`, serve from repo root)
 
 ## Repository layout
 
@@ -24,7 +24,8 @@ This is **not** a single-application repository. Think of it as a small project 
 denlockhart.com/
   index.html              # Home page — project index
   site.css                # Home page styles only
-  netlify.toml            # Publish dir, URL rewrites, headers
+  netlify.toml            # Optional Netlify rewrites + headers
+  .nojekyll               # GitHub Pages — skip Jekyll
   projects/
     army-builder/         # VF Army Builder (only project so far)
       README.md
@@ -53,14 +54,15 @@ denlockhart.com/
 npx serve .
 # Home:        http://localhost:3000/
 # Army builder: http://localhost:3000/projects/army-builder/
-#               (or /army-builder/ if your server applies netlify.toml rewrites)
 ```
 
-## Deployment (Netlify)
+Projects use **relative asset paths** so the same code works on GitHub Pages and Netlify. Netlify may also expose short URLs via `netlify.toml` rewrites (e.g. `/army-builder/`).
+
+## Deployment
 
 - Production branch: `main`
-- Pushes to `main` trigger production deploys (15 credits each on Netlify free tier).
-- Only push to GitHub when asked to deploy.
+- **Netlify:** pushes to `main` trigger production deploys (15 credits each on free tier). Only push when asked to deploy.
+- **GitHub Pages:** Settings → Pages → deploy `main` / root. `.nojekyll` is in place. Use relative paths in projects (already done for army-builder).
 
 ## Coding conventions (repo-wide)
 

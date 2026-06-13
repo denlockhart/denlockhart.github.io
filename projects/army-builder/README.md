@@ -2,7 +2,7 @@
 
 Build napoleonic army lists for [Perry Miniatures' Valour & Fortitude](https://www.perry-miniatures.com/valour-fortitude/) rules. Pick an era and army sheet, add units and brigades, and export a PDF army list.
 
-- **Live:** https://denlockhart.com/army-builder/
+- **Live:** https://denlockhart.com/projects/army-builder/ (Netlify also serves `/army-builder/`)
 - **Folder:** `projects/army-builder/`
 - **Rules source:** https://www.perry-miniatures.com/valour-fortitude/vf-army-sheets/
 
@@ -27,7 +27,7 @@ projects/army-builder/
 | **Game reference data** | `data/*.json` in this folder | Unit catalogs, stats, points — same for all users |
 | **User army lists** | Browser `localStorage` | Per-user drafts and saved lists (not in the repo) |
 
-The `data/` folder is **not** for saving user armies. It ships the official unit database with the site. `netlify.toml` maps `/api/catalog` and `/api/army/:id` to these JSON files.
+The `data/` folder is **not** for saving user armies. It ships the official unit database with the site. The app loads it via relative paths (`data/catalog.json`, `data/armies/<id>.json`).
 
 ## Adding a new army sheet
 
@@ -39,7 +39,7 @@ Verify stats and points against official Perry army sheets before changing them.
 
 ## Local development
 
-Serve the **repo root** (not this folder alone) so API redirects work on Netlify, or open `/projects/army-builder/` directly:
+Serve the **repo root** and open `/projects/army-builder/`:
 
 ```bash
 npx serve .   # from repo root

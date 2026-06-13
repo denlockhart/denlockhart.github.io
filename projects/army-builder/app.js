@@ -133,8 +133,12 @@ function totalPoints() {
   return state.entries.reduce((s, e) => s + e.cost, 0);
 }
 
+// Relative paths work on GitHub Pages and Netlify (including /army-builder/ rewrites).
+function catalogUrl() { return "data/catalog.json"; }
+function armyUrl(id) { return "data/armies/" + id + ".json"; }
+
 async function loadCatalog() {
-  const res = await fetch("/api/catalog");
+  const res = await fetch(catalogUrl());
   if (!res.ok) throw new Error("Could not load catalog.");
   state.catalog = await res.json();
   const eraSel = $("era-select");
@@ -166,7 +170,7 @@ function populateArmies() {
 
 async function updateSheetInfo() {
   const armyId = $("army-select").value;
-  const res = await fetch("/api/army/" + armyId);
+  const res = await fetch(armyUrl(armyId));
   if (!res.ok) return;
   const sheet = await res.json();
   $("sheet-info").textContent =
@@ -177,7 +181,7 @@ async function updateSheetInfo() {
 
 async function startBuilder() {
   const armyId = $("army-select").value;
-  const res = await fetch("/api/army/" + armyId);
+  const res = await fetch(armyUrl(armyId));
   if (!res.ok) { showError("Could not load army sheet."); return; }
   state.sheet = await res.json();
   ensureFateCards(state.sheet);
@@ -1087,7 +1091,7 @@ async function exportPdf() {
   }
 
   try {
-    const res = await fetch("/api/army/" + state.sheet.id, { cache: "no-store" });
+    const res = await fetch(armyUrl(state.sheet.id), { cache: "no-store" });
     if (res.ok) {
       const fresh = await res.json();
       state.sheet.fateCards = fresh.fateCards || state.sheet.fateCards;
