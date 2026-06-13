@@ -14,9 +14,9 @@ This is **not** a single-application repository. Think of it as a small project 
 
 ## Live site
 
-- **Home:** https://denlockhart.github.io/
+- **Home:** https://www.denlockhart.com/
 - **Repo:** https://github.com/denlockhart/denlockhart.github.io
-- **Hosting:** Netlify (`netlify.toml`) and GitHub Pages (`.nojekyll`, serve from repo root)
+- **Hosting:** GitHub Pages (`.nojekyll`, `CNAME` for custom domain)
 
 ## Repository layout
 
@@ -56,13 +56,11 @@ npx serve .
 # Army builder: http://localhost:3000/projects/army-builder/
 ```
 
-Projects use **relative asset paths** so the same code works on GitHub Pages and Netlify. Netlify may also expose short URLs via `netlify.toml` rewrites (e.g. `/army-builder/`).
-
 ## Deployment
 
-- Production branch: `main`
-- **Netlify:** pushes to `main` trigger production deploys (15 credits each on free tier). Only push when asked to deploy.
-- **GitHub Pages:** repo name `denlockhart.github.io` → home page at `https://denlockhart.github.io/`. Deploy `main` / root.
+- Production branch: `main` — push to deploy on GitHub Pages automatically.
+- Custom domain: `www.denlockhart.com` via `CNAME` file and GoDaddy DNS.
+- Only push when asked to deploy.
 
 ## Coding conventions (repo-wide)
 

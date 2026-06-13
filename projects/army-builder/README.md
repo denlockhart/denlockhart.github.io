@@ -2,7 +2,7 @@
 
 Build napoleonic army lists for [Perry Miniatures' Valour & Fortitude](https://www.perry-miniatures.com/valour-fortitude/) rules. Pick an era and army sheet, add units and brigades, and export a PDF army list.
 
-- **Live:** https://denlockhart.com/projects/army-builder/ (Netlify also serves `/army-builder/`)
+- **Live:** https://www.denlockhart.com/projects/army-builder/
 - **Folder:** `projects/army-builder/`
 - **Rules source:** https://www.perry-miniatures.com/valour-fortitude/vf-army-sheets/
 

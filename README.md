@@ -1,15 +1,16 @@
 # denlockhart.com
 
-Source for [denlockhart.com](https://denlockhart.com/) — a static site that hosts **Dennis Lockhart's side projects**. Each project is a self-contained app under `projects/`, listed on the home page.
+Source for [www.denlockhart.com](https://www.denlockhart.com/) — a static site that hosts **Dennis Lockhart's side projects**. Each project is a self-contained app under `projects/`, listed on the home page.
 
-Hosted on [Netlify](https://www.netlify.com/) (also compatible with [GitHub Pages](https://pages.github.com/)). Domain registered with [GoDaddy](https://www.godaddy.com/).
+Deployed with [GitHub Pages](https://pages.github.com/) from this repository. Domain registered with [GoDaddy](https://www.godaddy.com/).
 
 ## Live URLs
 
 | Page | URL |
 |------|-----|
-| Home | https://denlockhart.github.io/ (also https://denlockhart.com/ when DNS points here) |
-| Valour & Fortitude Army Builder | `/projects/army-builder/` on either host |
+| Home | https://www.denlockhart.com/ |
+| GitHub Pages default | https://denlockhart.github.io/ |
+| Valour & Fortitude Army Builder | https://www.denlockhart.com/projects/army-builder/ |
 | Source | https://github.com/denlockhart/denlockhart.github.io |
 
 ## Purpose
@@ -18,82 +19,65 @@ This repository is **not** a single-app repo. It is the monorepo for Dennis Lock
 
 - **Site root** (`index.html`, `site.css`) — home page that links to each project
 - **`projects/`** — one folder per project; each project owns its own code and assets
-- **`netlify.toml`** — optional Netlify URL rewrites and cache headers
-- **`.nojekyll`** — disables Jekyll on GitHub Pages so static files are served as-is
-
-When you add a new project, you add a folder under `projects/`, link it from the home page, and add any Netlify redirects it needs.
+- **`CNAME`** — custom domain for GitHub Pages (`www.denlockhart.com`)
+- **`.nojekyll`** — disables Jekyll so static files are served as-is
+- **`netlify.toml`** — optional; only needed if you also deploy on Netlify
 
 ## Repository layout
 
 ```
-denlockhart.com/
+denlockhart.github.io/
   index.html              # Home page — lists all projects
   site.css                # Home page styles
-  netlify.toml            # Optional Netlify rewrites + headers
-  .nojekyll               # Required for GitHub Pages (skip Jekyll)
-  AGENTS.md               # Instructions for AI coding assistants
-  .cursor/rules/          # Cursor project rules
+  CNAME                   # www.denlockhart.com (managed by GitHub Pages)
+  .nojekyll               # Required for GitHub Pages
   projects/
     army-builder/         # Valour & Fortitude army list builder
-      README.md           # Project-specific docs
-      index.html
-      app.js
-      data/               # Game reference data (unit catalogs)
-        catalog.json
-        armies/*.json
+      README.md
+      index.html, app.js, style.css, data/...
 ```
 
 ## Projects
 
-| Project | Folder | Public URL | Description |
-|---------|--------|------------|-------------|
-| Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` | Build napoleonic army lists and export PDFs |
-
-On Netlify, `/army-builder/` also works via rewrite (legacy short URL).
-
-See each project's `README.md` for project-specific details.
+| Project | Folder | URL path |
+|---------|--------|----------|
+| Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` |
 
 ## Local development
 
-No build step. Serve the repo root with any static file server:
+No build step. Serve the repo root:
 
 ```bash
 npx serve .
 ```
 
-Then open:
-
 - Home: http://localhost:3000/
 - Army Builder: http://localhost:3000/projects/army-builder/
 
-On Netlify, `/army-builder/` is rewritten to the same app. Use relative asset paths inside projects so both hosts work without a build step.
+## Deploy with GitHub Pages
+
+Deployment is automatic — push to `main` and GitHub Pages publishes the repo root.
+
+1. **Repo name:** `denlockhart.github.io` (user site → served at `https://denlockhart.github.io/`)
+2. **Settings → Pages:** source = `main` branch, folder = `/ (root)`
+3. **Custom domain:** `www.denlockhart.com` (creates/updates the `CNAME` file)
+4. **DNS (GoDaddy):** CNAME record — Name `www`, Value `denlockhart.github.io`
+5. **Enforce HTTPS** in Pages settings once DNS is verified
+
+```bash
+git add .
+git commit -m "Your change"
+git push origin main
+```
+
+The site updates within a minute or two. No build pipeline required.
 
 ## Adding a new project
 
 1. Create `projects/<slug>/` with the app's `index.html` and assets.
-2. Add a project card to `index.html` on the home page.
-3. Add a `projects/<slug>/README.md` describing the project.
-4. Link from the home page using `/projects/<slug>/` (site is served from the domain root).
-5. On Netlify only: optionally add a short-URL rewrite in `netlify.toml`:
-
-   ```toml
-   [[redirects]]
-     from = "/my-tool/*"
-     to = "/projects/my-tool/:splat"
-     status = 200
-   ```
-
-6. Optionally add a scoped Cursor rule in `.cursor/rules/`.
-
-## Deployment
-
-- **Production branch:** `main`
-- **Netlify:** pushes to `main` trigger production deploys. Only push when you intend to deploy.
-- **GitHub Pages:** repo is named `denlockhart.github.io`, so the home page is served at **https://denlockhart.github.io/** (repo root → domain root). Settings → Pages → `main` / root; `.nojekyll` is in place.
-
-- **Custom domain (`denlockhart.com`):** currently shows a Netlify placeholder. To serve this repo at the root of `denlockhart.com`, either connect the domain to this GitHub Pages site (Pages settings → Custom domain, then point GoDaddy DNS at GitHub) or deploy this repo on Netlify and attach `denlockhart.com` there.
-
-Projects load assets with **relative paths** so the same repo works on both hosts without a build step.
+2. Add a project card to root `index.html` linking to `/projects/<slug>/`.
+3. Add `projects/<slug>/README.md`.
+4. Push to `main`.
 
 ## AI assistant docs
 
