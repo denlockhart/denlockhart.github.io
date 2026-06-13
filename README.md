@@ -8,10 +8,9 @@ Hosted on [Netlify](https://www.netlify.com/) (also compatible with [GitHub Page
 
 | Page | URL |
 |------|-----|
-| Home | https://denlockhart.com/ |
-| Valour & Fortitude Army Builder | https://denlockhart.com/projects/army-builder/ |
-| Source | https://github.com/denlockhart/denlockhart-projects |
-| GitHub Pages | https://denlockhart.github.io/denlockhart-projects/ |
+| Home | https://denlockhart.github.io/ (also https://denlockhart.com/ when DNS points here) |
+| Valour & Fortitude Army Builder | `/projects/army-builder/` on either host |
+| Source | https://github.com/denlockhart/denlockhart.github.io |
 
 ## Purpose
 
@@ -50,7 +49,7 @@ denlockhart.com/
 |---------|--------|------------|-------------|
 | Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` | Build napoleonic army lists and export PDFs |
 
-On Netlify, `/army-builder/` also works via rewrite (legacy short URL). On GitHub Pages, use the project site URL or rename the repo to `denlockhart.github.io` for a root URL.
+On Netlify, `/army-builder/` also works via rewrite (legacy short URL).
 
 See each project's `README.md` for project-specific details.
 
@@ -74,7 +73,7 @@ On Netlify, `/army-builder/` is rewritten to the same app. Use relative asset pa
 1. Create `projects/<slug>/` with the app's `index.html` and assets.
 2. Add a project card to `index.html` on the home page.
 3. Add a `projects/<slug>/README.md` describing the project.
-4. Link from the home page using the real path: `/projects/<slug>/`.
+4. Link from the home page using `/projects/<slug>/` (site is served from the domain root).
 5. On Netlify only: optionally add a short-URL rewrite in `netlify.toml`:
 
    ```toml
@@ -90,13 +89,9 @@ On Netlify, `/army-builder/` is rewritten to the same app. Use relative asset pa
 
 - **Production branch:** `main`
 - **Netlify:** pushes to `main` trigger production deploys. Only push when you intend to deploy.
-- **GitHub Pages:** enable in repo **Settings → Pages**, source **main** branch, folder **/ (root)**. The `.nojekyll` file is already in place.
+- **GitHub Pages:** repo is named `denlockhart.github.io`, so the home page is served at **https://denlockhart.github.io/** (repo root → domain root). Settings → Pages → `main` / root; `.nojekyll` is in place.
 
-  **Project site URL:** `https://denlockhart.github.io/denlockhart-projects/` (repo name is in the path). Links use relative paths so they work here and on Netlify.
-
-  **User site URL:** To serve at `https://denlockhart.github.io/` (no repo prefix), rename the repo to `denlockhart.github.io` on GitHub. Then absolute paths like `/projects/...` also work at the root.
-
-  To use custom domain `denlockhart.com` on GitHub Pages, add it under Pages settings and point DNS at GitHub (remove Netlify DNS first if switching).
+- **Custom domain (`denlockhart.com`):** currently shows a Netlify placeholder. To serve this repo at the root of `denlockhart.com`, either connect the domain to this GitHub Pages site (Pages settings → Custom domain, then point GoDaddy DNS at GitHub) or deploy this repo on Netlify and attach `denlockhart.com` there.
 
 Projects load assets with **relative paths** so the same repo works on both hosts without a build step.
 

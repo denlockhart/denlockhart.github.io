@@ -14,8 +14,8 @@ This is **not** a single-application repository. Think of it as a small project 
 
 ## Live site
 
-- **Home:** https://denlockhart.com/
-- **Repo:** https://github.com/denlockhart/denlockhart-projects
+- **Home:** https://denlockhart.github.io/
+- **Repo:** https://github.com/denlockhart/denlockhart.github.io
 - **Hosting:** Netlify (`netlify.toml`) and GitHub Pages (`.nojekyll`, serve from repo root)
 
 ## Repository layout
@@ -62,7 +62,7 @@ Projects use **relative asset paths** so the same code works on GitHub Pages and
 
 - Production branch: `main`
 - **Netlify:** pushes to `main` trigger production deploys (15 credits each on free tier). Only push when asked to deploy.
-- **GitHub Pages:** Settings → Pages → deploy `main` / root. Site URL is `https://denlockhart.github.io/denlockhart-projects/` unless the repo is renamed to `denlockhart.github.io`. Use relative links in HTML (not root-absolute `/...` paths).
+- **GitHub Pages:** repo name `denlockhart.github.io` → home page at `https://denlockhart.github.io/`. Deploy `main` / root.
 
 ## Coding conventions (repo-wide)
 
