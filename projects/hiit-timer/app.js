@@ -42,10 +42,10 @@ function beepTone(freq) {
   gain.connect(audioCtx.destination);
   const t = audioCtx.currentTime;
   gain.gain.setValueAtTime(0.0001, t);
-  gain.gain.exponentialRampToValueAtTime(0.75, t + 0.02);
-  gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
+  gain.gain.exponentialRampToValueAtTime(1.0, t + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
   osc.start(t);
-  osc.stop(t + 0.42);
+  osc.stop(t + 0.48);
 }
 
 function beep() {
