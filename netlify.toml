@@ -22,6 +22,16 @@
   to = "/hiit-timer/"
   status = 301
 
+[[redirects]]
+  from = "/hiit-timer-30-40/*"
+  to = "/projects/hiit-timer-30-40/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/hiit-timer-30-40"
+  to = "/hiit-timer-30-40/"
+  status = 301
+
 # Army builder API — legacy paths (app now uses relative data/ URLs)
 [[redirects]]
   from = "/api/catalog"
