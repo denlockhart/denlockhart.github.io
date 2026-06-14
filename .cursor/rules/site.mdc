@@ -17,7 +17,8 @@ Static site hosting Dennis Lockhart's side projects. Not a single-app repo.
 
 | Slug | Folder | URL |
 |------|--------|-----|
-| army-builder | `projects/army-builder/` | `/projects/army-builder/` (Netlify: also `/army-builder/`) |
+| army-builder | `projects/army-builder/` | `/projects/army-builder/` |
+| hiit-timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
 
 ## Defaults for agents
 

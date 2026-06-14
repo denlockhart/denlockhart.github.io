@@ -11,6 +11,7 @@ Deployed with [GitHub Pages](https://pages.github.com/) from this repository. Do
 | Home | https://www.denlockhart.com/ |
 | GitHub Pages default | https://denlockhart.github.io/ |
 | Valour & Fortitude Army Builder | https://www.denlockhart.com/projects/army-builder/ |
+| HIIT Timer 30/30 | https://www.denlockhart.com/projects/hiit-timer/ |
 | Source | https://github.com/denlockhart/denlockhart.github.io |
 
 ## Purpose
@@ -33,6 +34,7 @@ denlockhart.github.io/
   .nojekyll               # Required for GitHub Pages
   projects/
     army-builder/         # Valour & Fortitude army list builder
+    hiit-timer/           # 30/30 HIIT interval timer
       README.md
       index.html, app.js, style.css, data/...
 ```
@@ -42,6 +44,7 @@ denlockhart.github.io/
 | Project | Folder | URL path |
 |---------|--------|----------|
 | Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` |
+| HIIT Timer 30/30 | `projects/hiit-timer/` | `/projects/hiit-timer/` |
 
 ## Local development
 
@@ -53,6 +56,7 @@ npx serve .
 
 - Home: http://localhost:3000/
 - Army Builder: http://localhost:3000/projects/army-builder/
+- HIIT Timer: http://localhost:3000/projects/hiit-timer/
 
 ## Deploy with GitHub Pages
 
