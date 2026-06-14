@@ -1,7 +1,7 @@
 :root{--bg:#14110e;--panel:#231d17;--border:#5c4a32;--gold:#c9a227;--cream:#e8dcc8;--muted:#9a8b72;--danger:#c45c5c;--ok:#6b8f71;--header-bg:#dcdcdc;--header-text:#000}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:"Segoe UI",Georgia,serif;background:var(--bg);color:var(--cream)}
-header{text-align:center;padding:1.2rem 1rem;border-bottom:2px solid var(--border)}header h1{margin:0;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:1.3rem}
-header p{margin:.35rem 0 0;color:var(--muted)}.tag{color:var(--gold)}main{max-width:1100px;margin:0 auto;padding:1rem 1rem 3rem}
+header{text-align:left;padding:1.2rem 1.5rem;border-bottom:2px solid var(--border)}header h1{margin:0;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:1.3rem}
+header p{margin:.35rem 0 0;color:var(--muted)}.tag{color:var(--gold)}main{max-width:1100px;margin:0;padding:1rem 1.5rem 3rem}
 .panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1rem;margin-bottom:1rem}
 .panel h2{margin:-1rem -1rem .75rem;padding:.55rem .75rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--header-text);background:var(--header-bg);border-bottom:1px solid #000;border-radius:6px 6px 0 0}
 .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem}
@@ -19,7 +19,7 @@ button.danger{border-color:var(--danger);color:var(--danger);background:transpar
 .catalog-header,.brigade-units-header{display:grid;grid-template-columns:1fr auto;gap:.5rem;background:var(--header-bg);color:var(--header-text);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.45rem .6rem;border-bottom:1px solid #000;margin-bottom:.25rem}
 .catalog-header span:last-child,.brigade-units-header span:last-child{text-align:right;padding-right:.25rem}
 #brigade-list{max-height:420px;overflow-y:auto;padding-right:.25rem}
-.army-summary{text-align:center;padding:.5rem 0}
+.army-summary{text-align:left;padding:.5rem 0}
 .points-total{font-size:1.5rem;font-weight:600;color:var(--gold)}
 .catalog-item,.army-item{border-bottom:1px solid var(--border);padding:.55rem 0;display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:start}
 .catalog-item h4,.army-item h4{margin:0;font-size:.95rem}.meta{font-size:.78rem;color:var(--muted)}
@@ -29,12 +29,12 @@ button.danger{border-color:var(--danger);color:var(--danger);background:transpar
 .brigade-card-body{padding:.6rem}
 .brigade-card input{width:100%;margin:.35rem 0}.brigade-units{font-size:.8rem;color:var(--muted)}
 #export-output{background:#1a1612;border:1px solid var(--border);padding:.75rem;white-space:pre-wrap;font-size:.8rem;margin-top:.75rem;max-height:240px;overflow:auto}
-#error-box{color:var(--danger);text-align:center;margin-bottom:1rem}.hidden{display:none!important}
+#error-box{color:var(--danger);text-align:left;margin-bottom:1rem}.hidden{display:none!important}
 dialog{border:1px solid var(--border);background:var(--panel);color:var(--cream);border-radius:8px;padding:1rem;max-width:420px;width:92%}
 dialog::backdrop{background:rgba(0,0,0,.6)}fieldset{border:1px solid var(--border);margin:.5rem 0;padding:.5rem .75rem}
 fieldset label{flex-direction:row;align-items:center;gap:.5rem;margin:.25rem 0}
 .cost-line{font-size:1rem}.profile-line{font-size:.85rem;color:var(--muted)}
-footer{text-align:center;padding:.75rem;font-size:.75rem;color:var(--muted);border-top:1px solid var(--border)}
+footer{text-align:left;padding:.75rem 1.5rem;font-size:.75rem;color:var(--muted);border-top:1px solid var(--border)}
 footer a{color:var(--gold)}
 .army-name-row{display:flex;flex-direction:column;gap:.25rem;flex:1;min-width:200px}
 .army-name-row input{width:100%}
