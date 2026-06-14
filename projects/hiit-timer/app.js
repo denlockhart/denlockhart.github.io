@@ -1,4 +1,4 @@
-const WORK_SEC = 30;
+const WORK_SEC = 20;
 const REST_SEC = 30;
 
 const state = {
@@ -42,10 +42,10 @@ function beepTone(freq) {
   gain.connect(audioCtx.destination);
   const t = audioCtx.currentTime;
   gain.gain.setValueAtTime(0.0001, t);
-  gain.gain.exponentialRampToValueAtTime(0.35, t + 0.02);
-  gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+  gain.gain.exponentialRampToValueAtTime(0.75, t + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
   osc.start(t);
-  osc.stop(t + 0.32);
+  osc.stop(t + 0.42);
 }
 
 function beep() {

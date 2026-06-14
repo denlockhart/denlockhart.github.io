@@ -1,13 +1,13 @@
-# HIIT Timer 30/30
+# HIIT Timer 20/30
 
-Simple interval timer: **30 seconds work**, **30 seconds rest**, repeat for a set number of rounds.
+Simple interval timer: **20 seconds work**, **30 seconds rest**, repeat for a set number of rounds.
 
 - **Live:** https://www.denlockhart.com/projects/hiit-timer/
 - **Folder:** `projects/hiit-timer/`
 
 ## Features
 
-- Fixed 30s / 30s intervals
+- Fixed 20s / 30s intervals
 - Configurable round count (saved in `localStorage`)
 - Optional beep on phase changes
 - Pause / resume / reset
