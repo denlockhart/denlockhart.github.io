@@ -23,13 +23,33 @@ const btnPause = document.getElementById("btn-pause");
 const btnReset = document.getElementById("btn-reset");
 
 let audioCtx = null;
+let keepAliveOsc = null;
+let beepUrls = { work: null, rest: null, done: null };
 
 function unlockAudio() {
   const Ctx = window.AudioContext || window.webkitAudioContext;
   if (!Ctx) return Promise.resolve();
   if (!audioCtx) audioCtx = new Ctx();
-  if (audioCtx.state === "suspended") return audioCtx.resume();
-  return Promise.resolve();
+  return audioCtx.state === "suspended" ? audioCtx.resume() : Promise.resolve();
+}
+
+function startAudioKeepAlive() {
+  stopAudioKeepAlive();
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  gain.gain.value = 0.00001;
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  keepAliveOsc = osc;
+}
+
+function stopAudioKeepAlive() {
+  if (keepAliveOsc) {
+    try { keepAliveOsc.stop(); } catch (_) {}
+    keepAliveOsc = null;
+  }
 }
 
 function beepTone(freq) {
@@ -48,14 +68,55 @@ function beepTone(freq) {
   osc.stop(t + 0.48);
 }
 
-function beep() {
-  if (!state.sound) return;
-  let freq = 660;
-  if (state.phase === "work") freq = 880;
-  else if (state.phase === "rest") freq = 440;
-  else if (state.phase === "done") freq = 523;
+function makeBeepUrl(freq) {
+  const sampleRate = 8000;
+  const duration = 0.45;
+  const samples = Math.floor(sampleRate * duration);
+  const bytes = new ArrayBuffer(44 + samples * 2);
+  const view = new DataView(bytes);
+  const writeStr = (o, s) => { for (let i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); };
+  writeStr(0, "RIFF");
+  view.setUint32(4, 36 + samples * 2, true);
+  writeStr(8, "WAVE");
+  writeStr(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeStr(36, "data");
+  view.setUint32(40, samples * 2, true);
+  for (let i = 0; i < samples; i++) {
+    const t = i / sampleRate;
+    const env = t < 0.02 ? t / 0.02 : Math.max(0, 1 - (t - 0.02) / 0.4);
+    const sample = Math.sin(2 * Math.PI * freq * t) * env * 0.9;
+    view.setInt16(44 + i * 2, sample * 32767, true);
+  }
+  return URL.createObjectURL(new Blob([bytes], { type: "audio/wav" }));
+}
 
-  unlockAudio().then(() => beepTone(freq)).catch(() => {});
+function initBeepFallbacks() {
+  if (beepUrls.work) return;
+  beepUrls.work = makeBeepUrl(880);
+  beepUrls.rest = makeBeepUrl(440);
+  beepUrls.done = makeBeepUrl(523);
+}
+
+function playBeepFallback(kind) {
+  initBeepFallbacks();
+  const url = beepUrls[kind];
+  if (!url) return;
+  const audio = new Audio(url);
+  audio.volume = 1;
+  audio.play().catch(() => {});
+}
+
+function beep(kind) {
+  if (!state.sound) return;
+  unlockAudio().then(() => startAudioKeepAlive());
+  playBeepFallback(kind);
 }
 
 function loadSettings() {
@@ -142,11 +203,13 @@ function stopInterval() {
     state.intervalId = null;
   }
   state.running = false;
+  stopAudioKeepAlive();
 }
 
 function startInterval() {
   stopInterval();
   state.running = true;
+  unlockAudio().then(() => startAudioKeepAlive());
   state.intervalId = setInterval(tick, 1000);
 }
 
@@ -159,35 +222,37 @@ function tick() {
 
   if (state.phase === "work") {
     if (state.round >= state.totalRounds) {
+      beep("done");
       state.phase = "done";
       stopInterval();
-      beep();
       updateUI();
       return;
     }
+    beep("work");
     state.phase = "rest";
     state.secondsLeft = REST_SEC;
-    beep();
     updateUI();
     return;
   }
 
   if (state.phase === "rest") {
+    beep("rest");
     state.round++;
     state.phase = "work";
     state.secondsLeft = WORK_SEC;
-    beep();
     updateUI();
   }
 }
 
 function start() {
-  unlockAudio();
+  unlockAudio().then(() => {
+    initBeepFallbacks();
+    startAudioKeepAlive();
+  });
   if (state.phase === "idle" || state.phase === "done") {
     state.phase = "work";
     state.round = 1;
     state.secondsLeft = WORK_SEC;
-    beep();
   }
   startInterval();
   updateUI();
@@ -222,7 +287,11 @@ soundToggle.addEventListener("change", () => {
   state.sound = soundToggle.checked;
   saveSettings();
   if (state.sound) {
-    unlockAudio().then(() => beepTone(660)).catch(() => {});
+    unlockAudio().then(() => {
+      initBeepFallbacks();
+      beepTone(660);
+    });
+    playBeepFallback("done");
   }
 });
 
