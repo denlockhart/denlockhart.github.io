@@ -22,60 +22,65 @@ const btnStart = document.getElementById("btn-start");
 const btnPause = document.getElementById("btn-pause");
 const btnReset = document.getElementById("btn-reset");
 
-const COMPUTER_VOICE_PATTERNS = [
-  /zira/i,
-  /samantha/i,
-  /karen/i,
-  /victoria/i,
-  /hazel/i,
-  /susan/i,
-  /serena/i,
-  /google.*english.*female/i,
-  /microsoft.*female/i,
-  /female/i,
-];
+const CUE_PATH = "../hiit-timer/audio/";
+const cueFiles = {
+  work: CUE_PATH + "work.wav",
+  rest: CUE_PATH + "rest.wav",
+  done: CUE_PATH + "complete.wav",
+};
 
-const MALE_VOICE_PATTERNS = [/male/i, /david/i, /mark\b/i, /james/i, /daniel/i, /fred/i, /george/i, /richard/i];
+let audioCtx = null;
+let keepAliveOsc = null;
+const cueClips = {};
 
-function preferredVoice() {
-  if (!("speechSynthesis" in window)) return null;
-  const voices = speechSynthesis.getVoices();
-  const english = voices.filter((v) => v.lang.startsWith("en"));
-  const pool = english.length ? english : voices;
-
-  for (const pattern of COMPUTER_VOICE_PATTERNS) {
-    const match = pool.find((v) => pattern.test(v.name));
-    if (match) return match;
-  }
-
-  const notMale = pool.find((v) => !MALE_VOICE_PATTERNS.some((pattern) => pattern.test(v.name)));
-  return notMale || pool[0] || null;
+function unlockAudio() {
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) return Promise.resolve();
+  if (!audioCtx) audioCtx = new Ctx();
+  return audioCtx.state === "suspended" ? audioCtx.resume() : Promise.resolve();
 }
 
-function speak(text) {
-  if (!state.sound || !("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  utterance.rate = 0.88;
-  utterance.pitch = 0.92;
-  utterance.volume = 1;
-  const voice = preferredVoice();
-  if (voice) {
-    utterance.voice = voice;
-    utterance.lang = voice.lang;
+function startAudioKeepAlive() {
+  stopAudioKeepAlive();
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  gain.gain.value = 0.00001;
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  keepAliveOsc = osc;
+}
+
+function stopAudioKeepAlive() {
+  if (keepAliveOsc) {
+    try { keepAliveOsc.stop(); } catch (_) {}
+    keepAliveOsc = null;
   }
-  speechSynthesis.speak(utterance);
+}
+
+function preloadCues() {
+  for (const [kind, url] of Object.entries(cueFiles)) {
+    if (cueClips[kind]) continue;
+    const audio = new Audio(url);
+    audio.preload = "auto";
+    cueClips[kind] = audio;
+  }
+}
+
+function playCue(kind) {
+  if (!state.sound) return;
+  preloadCues();
+  unlockAudio().then(() => startAudioKeepAlive());
+  const clip = cueClips[kind];
+  if (!clip) return;
+  clip.currentTime = 0;
+  clip.volume = 1;
+  clip.play().catch(() => {});
 }
 
 function announce(phase) {
-  if (phase === "work") speak("Work");
-  else if (phase === "rest") speak("Rest");
-  else if (phase === "done") speak("Complete");
-}
-
-function primeSpeech() {
-  if ("speechSynthesis" in window) speechSynthesis.getVoices();
+  playCue(phase);
 }
 
 function loadSettings() {
@@ -162,11 +167,13 @@ function stopInterval() {
     state.intervalId = null;
   }
   state.running = false;
+  stopAudioKeepAlive();
 }
 
 function startInterval() {
   stopInterval();
   state.running = true;
+  unlockAudio().then(() => startAudioKeepAlive());
   state.intervalId = setInterval(tick, 1000);
 }
 
@@ -202,7 +209,8 @@ function tick() {
 }
 
 function start() {
-  primeSpeech();
+  preloadCues();
+  unlockAudio().then(() => startAudioKeepAlive());
   const fresh = state.phase === "idle" || state.phase === "done";
   if (fresh) {
     state.phase = "work";
@@ -241,20 +249,13 @@ roundsInput.addEventListener("change", () => {
 soundToggle.addEventListener("change", () => {
   state.sound = soundToggle.checked;
   saveSettings();
-  if (state.sound) {
-    primeSpeech();
-    speak("Work");
-  }
+  if (state.sound) playCue("work");
 });
 
 btnStart.onclick = start;
 btnPause.onclick = pause;
 btnReset.onclick = reset;
 
-if ("speechSynthesis" in window) {
-  speechSynthesis.addEventListener("voiceschanged", primeSpeech);
-  primeSpeech();
-}
-
+preloadCues();
 loadSettings();
 updateUI();
