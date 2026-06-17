@@ -22,101 +22,32 @@ const btnStart = document.getElementById("btn-start");
 const btnPause = document.getElementById("btn-pause");
 const btnReset = document.getElementById("btn-reset");
 
-let audioCtx = null;
-let keepAliveOsc = null;
-let beepUrls = { work: null, rest: null, done: null };
-
-function unlockAudio() {
-  const Ctx = window.AudioContext || window.webkitAudioContext;
-  if (!Ctx) return Promise.resolve();
-  if (!audioCtx) audioCtx = new Ctx();
-  return audioCtx.state === "suspended" ? audioCtx.resume() : Promise.resolve();
+function preferredVoice() {
+  if (!("speechSynthesis" in window)) return null;
+  const voices = speechSynthesis.getVoices();
+  return voices.find((v) => v.lang.startsWith("en")) || voices[0] || null;
 }
 
-function startAudioKeepAlive() {
-  stopAudioKeepAlive();
-  if (!audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  gain.gain.value = 0.00001;
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.start();
-  keepAliveOsc = osc;
+function speak(text) {
+  if (!state.sound || !("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+  const voice = preferredVoice();
+  if (voice) utterance.voice = voice;
+  speechSynthesis.speak(utterance);
 }
 
-function stopAudioKeepAlive() {
-  if (keepAliveOsc) {
-    try { keepAliveOsc.stop(); } catch (_) {}
-    keepAliveOsc = null;
-  }
+function announce(phase) {
+  if (phase === "work") speak("Work");
+  else if (phase === "rest") speak("Rest");
+  else if (phase === "done") speak("Complete");
 }
 
-function beepTone(freq) {
-  if (!audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = "sine";
-  osc.frequency.value = freq;
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  const t = audioCtx.currentTime;
-  gain.gain.setValueAtTime(0.0001, t);
-  gain.gain.exponentialRampToValueAtTime(1.0, t + 0.02);
-  gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.45);
-  osc.start(t);
-  osc.stop(t + 0.48);
-}
-
-function makeBeepUrl(freq) {
-  const sampleRate = 8000;
-  const duration = 0.45;
-  const samples = Math.floor(sampleRate * duration);
-  const bytes = new ArrayBuffer(44 + samples * 2);
-  const view = new DataView(bytes);
-  const writeStr = (o, s) => { for (let i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); };
-  writeStr(0, "RIFF");
-  view.setUint32(4, 36 + samples * 2, true);
-  writeStr(8, "WAVE");
-  writeStr(12, "fmt ");
-  view.setUint32(16, 16, true);
-  view.setUint16(20, 1, true);
-  view.setUint16(22, 1, true);
-  view.setUint32(24, sampleRate, true);
-  view.setUint32(28, sampleRate * 2, true);
-  view.setUint16(32, 2, true);
-  view.setUint16(34, 16, true);
-  writeStr(36, "data");
-  view.setUint32(40, samples * 2, true);
-  for (let i = 0; i < samples; i++) {
-    const t = i / sampleRate;
-    const env = t < 0.02 ? t / 0.02 : Math.max(0, 1 - (t - 0.02) / 0.4);
-    const sample = Math.sin(2 * Math.PI * freq * t) * env * 0.9;
-    view.setInt16(44 + i * 2, sample * 32767, true);
-  }
-  return URL.createObjectURL(new Blob([bytes], { type: "audio/wav" }));
-}
-
-function initBeepFallbacks() {
-  if (beepUrls.work) return;
-  beepUrls.work = makeBeepUrl(880);
-  beepUrls.rest = makeBeepUrl(440);
-  beepUrls.done = makeBeepUrl(523);
-}
-
-function playBeepFallback(kind) {
-  initBeepFallbacks();
-  const url = beepUrls[kind];
-  if (!url) return;
-  const audio = new Audio(url);
-  audio.volume = 1;
-  audio.play().catch(() => {});
-}
-
-function beep(kind) {
-  if (!state.sound) return;
-  unlockAudio().then(() => startAudioKeepAlive());
-  playBeepFallback(kind);
+function primeSpeech() {
+  if ("speechSynthesis" in window) speechSynthesis.getVoices();
 }
 
 function loadSettings() {
@@ -203,13 +134,11 @@ function stopInterval() {
     state.intervalId = null;
   }
   state.running = false;
-  stopAudioKeepAlive();
 }
 
 function startInterval() {
   stopInterval();
   state.running = true;
-  unlockAudio().then(() => startAudioKeepAlive());
   state.intervalId = setInterval(tick, 1000);
 }
 
@@ -222,13 +151,13 @@ function tick() {
 
   if (state.phase === "work") {
     if (state.round >= state.totalRounds) {
-      beep("done");
+      announce("done");
       state.phase = "done";
       stopInterval();
       updateUI();
       return;
     }
-    beep("work");
+    announce("rest");
     state.phase = "rest";
     state.secondsLeft = REST_SEC;
     updateUI();
@@ -236,7 +165,7 @@ function tick() {
   }
 
   if (state.phase === "rest") {
-    beep("rest");
+    announce("work");
     state.round++;
     state.phase = "work";
     state.secondsLeft = WORK_SEC;
@@ -245,21 +174,19 @@ function tick() {
 }
 
 function start() {
-  unlockAudio().then(() => {
-    initBeepFallbacks();
-    startAudioKeepAlive();
-  });
-  if (state.phase === "idle" || state.phase === "done") {
+  primeSpeech();
+  const fresh = state.phase === "idle" || state.phase === "done";
+  if (fresh) {
     state.phase = "work";
     state.round = 1;
     state.secondsLeft = WORK_SEC;
+    announce("work");
   }
   startInterval();
   updateUI();
 }
 
 function pause() {
-  unlockAudio();
   if (state.running) {
     stopInterval();
   } else if (state.phase === "work" || state.phase === "rest") {
@@ -287,17 +214,19 @@ soundToggle.addEventListener("change", () => {
   state.sound = soundToggle.checked;
   saveSettings();
   if (state.sound) {
-    unlockAudio().then(() => {
-      initBeepFallbacks();
-      beepTone(660);
-    });
-    playBeepFallback("done");
+    primeSpeech();
+    speak("Work");
   }
 });
 
 btnStart.onclick = start;
 btnPause.onclick = pause;
 btnReset.onclick = reset;
+
+if ("speechSynthesis" in window) {
+  speechSynthesis.addEventListener("voiceschanged", primeSpeech);
+  primeSpeech();
+}
 
 loadSettings();
 updateUI();
