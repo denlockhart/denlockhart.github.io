@@ -22,21 +22,49 @@ const btnStart = document.getElementById("btn-start");
 const btnPause = document.getElementById("btn-pause");
 const btnReset = document.getElementById("btn-reset");
 
+const COMPUTER_VOICE_PATTERNS = [
+  /zira/i,
+  /samantha/i,
+  /karen/i,
+  /victoria/i,
+  /hazel/i,
+  /susan/i,
+  /serena/i,
+  /google.*english.*female/i,
+  /microsoft.*female/i,
+  /female/i,
+];
+
+const MALE_VOICE_PATTERNS = [/male/i, /david/i, /mark\b/i, /james/i, /daniel/i, /fred/i, /george/i, /richard/i];
+
 function preferredVoice() {
   if (!("speechSynthesis" in window)) return null;
   const voices = speechSynthesis.getVoices();
-  return voices.find((v) => v.lang.startsWith("en")) || voices[0] || null;
+  const english = voices.filter((v) => v.lang.startsWith("en"));
+  const pool = english.length ? english : voices;
+
+  for (const pattern of COMPUTER_VOICE_PATTERNS) {
+    const match = pool.find((v) => pattern.test(v.name));
+    if (match) return match;
+  }
+
+  const notMale = pool.find((v) => !MALE_VOICE_PATTERNS.some((pattern) => pattern.test(v.name)));
+  return notMale || pool[0] || null;
 }
 
 function speak(text) {
   if (!state.sound || !("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 1;
-  utterance.pitch = 1;
+  utterance.lang = "en-US";
+  utterance.rate = 0.88;
+  utterance.pitch = 0.92;
   utterance.volume = 1;
   const voice = preferredVoice();
-  if (voice) utterance.voice = voice;
+  if (voice) {
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
+  }
   speechSynthesis.speak(utterance);
 }
 
