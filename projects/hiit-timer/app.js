@@ -1,11 +1,15 @@
-const WORK_SEC = 20;
-const REST_SEC = 30;
+const DEFAULT_WORK_SEC = 20;
+const DEFAULT_REST_SEC = 30;
+const MIN_INTERVAL_SEC = 5;
+const MAX_INTERVAL_SEC = 600;
 
 const state = {
   phase: "idle",
   round: 1,
-  secondsLeft: WORK_SEC,
+  secondsLeft: DEFAULT_WORK_SEC,
   running: false,
+  workSec: DEFAULT_WORK_SEC,
+  restSec: DEFAULT_REST_SEC,
   totalRounds: 8,
   sound: true,
   intervalId: null,
@@ -16,6 +20,9 @@ const phaseLabel = document.getElementById("phase-label");
 const timerDisplay = document.getElementById("timer-display");
 const roundLabel = document.getElementById("round-label");
 const progressFill = document.getElementById("progress-fill");
+const intervalSummary = document.getElementById("interval-summary");
+const workInput = document.getElementById("work-input");
+const restInput = document.getElementById("rest-input");
 const roundsInput = document.getElementById("rounds-input");
 const soundToggle = document.getElementById("sound-toggle");
 const btnStart = document.getElementById("btn-start");
@@ -83,9 +90,53 @@ function announce(phase) {
   playCue(phase);
 }
 
+function clampInterval(value, fallback) {
+  return Math.max(MIN_INTERVAL_SEC, Math.min(MAX_INTERVAL_SEC, parseInt(value, 10) || fallback));
+}
+
+function readIntervalSettings() {
+  state.workSec = clampInterval(workInput.value, DEFAULT_WORK_SEC);
+  state.restSec = clampInterval(restInput.value, DEFAULT_REST_SEC);
+  workInput.value = state.workSec;
+  restInput.value = state.restSec;
+}
+
+function updateIntervalSummary() {
+  intervalSummary.textContent = state.workSec + " seconds on · " + state.restSec + " seconds off";
+}
+
+function settingsLocked() {
+  return state.phase === "work" || state.phase === "rest";
+}
+
+function setSettingsEnabled(enabled) {
+  workInput.disabled = !enabled;
+  restInput.disabled = !enabled;
+  roundsInput.disabled = !enabled;
+}
+
+function loadUrlParams() {
+  const params = new URLSearchParams(location.search);
+  if (params.has("work")) workInput.value = params.get("work");
+  if (params.has("rest")) restInput.value = params.get("rest");
+}
+
 function loadSettings() {
+  loadUrlParams();
+
+  const work = localStorage.getItem("hiit-work");
+  const rest = localStorage.getItem("hiit-rest");
   const rounds = localStorage.getItem("hiit-rounds");
   const sound = localStorage.getItem("hiit-sound");
+  const params = new URLSearchParams(location.search);
+
+  if (work && !params.has("work")) {
+    workInput.value = work;
+  }
+  if (rest && !params.has("rest")) {
+    restInput.value = rest;
+  }
+
   if (rounds) {
     state.totalRounds = Math.max(1, Math.min(99, parseInt(rounds, 10) || 8));
     roundsInput.value = state.totalRounds;
@@ -94,17 +145,26 @@ function loadSettings() {
     state.sound = sound === "true";
     soundToggle.checked = state.sound;
   }
+
+  readIntervalSettings();
+  updateIntervalSummary();
+
+  if (params.has("work") || params.has("rest")) {
+    saveSettings();
+  }
 }
 
 function saveSettings() {
+  localStorage.setItem("hiit-work", String(state.workSec));
+  localStorage.setItem("hiit-rest", String(state.restSec));
   localStorage.setItem("hiit-rounds", String(state.totalRounds));
   localStorage.setItem("hiit-sound", String(state.sound));
 }
 
 function phaseDuration(phase) {
-  if (phase === "work") return WORK_SEC;
-  if (phase === "rest") return REST_SEC;
-  return WORK_SEC;
+  if (phase === "work") return state.workSec;
+  if (phase === "rest") return state.restSec;
+  return state.workSec;
 }
 
 function fmtTime(sec) {
@@ -122,10 +182,11 @@ function setPhaseClass() {
 
 function updateUI() {
   setPhaseClass();
+  setSettingsEnabled(!settingsLocked());
 
   if (state.phase === "idle") {
     phaseLabel.textContent = "Ready";
-    timerDisplay.textContent = fmtTime(WORK_SEC);
+    timerDisplay.textContent = fmtTime(state.workSec);
     roundLabel.textContent = "Round 1 of " + state.totalRounds;
     progressFill.style.width = "0%";
     btnStart.textContent = "Start";
@@ -194,7 +255,7 @@ function tick() {
     }
     announce("rest");
     state.phase = "rest";
-    state.secondsLeft = REST_SEC;
+    state.secondsLeft = state.restSec;
     updateUI();
     return;
   }
@@ -203,7 +264,7 @@ function tick() {
     announce("work");
     state.round++;
     state.phase = "work";
-    state.secondsLeft = WORK_SEC;
+    state.secondsLeft = state.workSec;
     updateUI();
   }
 }
@@ -215,7 +276,7 @@ function start() {
   if (fresh) {
     state.phase = "work";
     state.round = 1;
-    state.secondsLeft = WORK_SEC;
+    state.secondsLeft = state.workSec;
     announce("work");
   }
   startInterval();
@@ -235,9 +296,21 @@ function reset() {
   stopInterval();
   state.phase = "idle";
   state.round = 1;
-  state.secondsLeft = WORK_SEC;
+  state.secondsLeft = state.workSec;
   updateUI();
 }
+
+function onIntervalChange() {
+  if (settingsLocked()) return;
+  readIntervalSettings();
+  updateIntervalSummary();
+  saveSettings();
+  state.secondsLeft = state.workSec;
+  updateUI();
+}
+
+workInput.addEventListener("change", onIntervalChange);
+restInput.addEventListener("change", onIntervalChange);
 
 roundsInput.addEventListener("change", () => {
   state.totalRounds = Math.max(1, Math.min(99, parseInt(roundsInput.value, 10) || 8));

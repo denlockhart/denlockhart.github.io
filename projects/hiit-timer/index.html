@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HIIT Timer 20/30</title>
-  <link rel="stylesheet" href="style.css?v=1">
+  <title>HIIT Timer</title>
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
   <header>
     <h1>HIIT Timer</h1>
-    <p>20 seconds on · 30 seconds off</p>
+    <p id="interval-summary">20 seconds on · 30 seconds off</p>
   </header>
 
   <main>
@@ -32,6 +32,16 @@
 
     <section class="panel settings-panel">
       <h2>Settings</h2>
+      <div class="interval-row">
+        <label>
+          Work (seconds)
+          <input id="work-input" type="number" min="5" max="600" value="20">
+        </label>
+        <label>
+          Rest (seconds)
+          <input id="rest-input" type="number" min="5" max="600" value="30">
+        </label>
+      </div>
       <label>
         Rounds
         <input id="rounds-input" type="number" min="1" max="99" value="8">
@@ -44,9 +54,9 @@
   </main>
 
   <footer>
-    <p><a href="/">denlockhart.com</a> · <a href="/projects/hiit-timer-30-40/">30/40 timer</a></p>
+    <p><a href="/">denlockhart.com</a></p>
   </footer>
 
-  <script src="app.js?v=12"></script>
+  <script src="app.js?v=13"></script>
 </body>
 </html>

@@ -3,50 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HIIT Timer 30/40</title>
-  <link rel="stylesheet" href="style.css?v=1">
+  <title>HIIT Timer</title>
+  <meta http-equiv="refresh" content="0;url=/projects/hiit-timer/?work=30&rest=40">
+  <script>location.replace("/projects/hiit-timer/?work=30&rest=40");</script>
 </head>
 <body>
-  <header>
-    <h1>HIIT Timer</h1>
-    <p>30 seconds on · 40 seconds off</p>
-  </header>
-
-  <main>
-    <section class="panel timer-panel" aria-live="polite">
-      <p class="phase-label" id="phase-label">Ready</p>
-      <p class="timer-display" id="timer-display">00:30</p>
-      <p class="round-label" id="round-label">Round 1 of 8</p>
-      <div class="progress-track" aria-hidden="true">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
-    </section>
-
-    <section class="panel controls-panel">
-      <div class="actions">
-        <button type="button" class="primary" id="btn-start">Start</button>
-        <button type="button" id="btn-pause" disabled>Pause</button>
-        <button type="button" id="btn-reset">Reset</button>
-      </div>
-    </section>
-
-    <section class="panel settings-panel">
-      <h2>Settings</h2>
-      <label>
-        Rounds
-        <input id="rounds-input" type="number" min="1" max="99" value="8">
-      </label>
-      <label class="checkbox-row">
-        <input id="sound-toggle" type="checkbox" checked>
-        Announce work and rest
-      </label>
-    </section>
-  </main>
-
-  <footer>
-    <p><a href="/">denlockhart.com</a> · <a href="/projects/hiit-timer/">20/30 timer</a></p>
-  </footer>
-
-  <script src="app.js?v=4"></script>
+  <p><a href="/projects/hiit-timer/?work=30&rest=40">Continue to HIIT Timer (30/40)</a></p>
 </body>
 </html>

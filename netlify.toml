@@ -24,13 +24,13 @@
 
 [[redirects]]
   from = "/hiit-timer-30-40/*"
-  to = "/projects/hiit-timer-30-40/:splat"
-  status = 200
+  to = "/projects/hiit-timer/?work=30&rest=40"
+  status = 302
 
 [[redirects]]
   from = "/hiit-timer-30-40"
-  to = "/hiit-timer-30-40/"
-  status = 301
+  to = "/projects/hiit-timer/?work=30&rest=40"
+  status = 302
 
 # Army builder API — legacy paths (app now uses relative data/ URLs)
 [[redirects]]
