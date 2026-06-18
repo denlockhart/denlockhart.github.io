@@ -6,13 +6,13 @@ alwaysApply: false
 
 # HIIT Timer (`projects/hiit-timer/`)
 
-20/30 interval timer. Vanilla HTML/CSS/JS.
+Configurable interval timer. Vanilla HTML/CSS/JS.
 
 ## Defaults
 
 - Work: 20 seconds
 - Rest: 30 seconds
-- Rounds: 8 (user-configurable, saved in `localStorage`)
+- Rounds: 8 (user-configurable, saved in `localStorage` keys `hiit-work`, `hiit-rest`, `hiit-rounds`, `hiit-sound`)
 
 ## Style
 
