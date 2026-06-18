@@ -133,6 +133,13 @@ function setPreset(work, rest) {
   applyIntervalChange();
 }
 
+function adjustInterval(target, delta) {
+  const input = target === "work" ? workInput : restInput;
+  const fallback = target === "work" ? DEFAULT_WORK_SEC : DEFAULT_REST_SEC;
+  input.value = clampInterval(parseInt(input.value, 10) + delta, fallback);
+  applyIntervalChange();
+}
+
 function loadUrlParams() {
   const params = new URLSearchParams(location.search);
   if (params.has("work")) workInput.value = params.get("work");
@@ -326,6 +333,12 @@ restInput.addEventListener("input", onIntervalChange);
 document.querySelectorAll(".preset-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
     setPreset(btn.dataset.work, btn.dataset.rest);
+  });
+});
+
+document.querySelectorAll(".step-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    adjustInterval(btn.dataset.target, parseInt(btn.dataset.delta, 10));
   });
 });
 

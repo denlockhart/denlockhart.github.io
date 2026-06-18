@@ -213,6 +213,33 @@ input[type="number"]:disabled {
   margin-bottom: 0;
 }
 
+.interval-field > span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.stepper input[type="number"] {
+  flex: 1;
+  min-width: 0;
+  max-width: none;
+  text-align: center;
+}
+
+.step-btn {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
 footer {
   text-align: left;
   padding: 0.75rem 1.5rem;

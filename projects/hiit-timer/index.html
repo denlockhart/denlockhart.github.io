@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>HIIT Timer</title>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <header>
@@ -19,13 +19,21 @@
     <section class="panel intervals-panel">
       <h2>Intervals</h2>
       <div class="interval-row">
-        <label>
-          Work (seconds)
-          <input id="work-input" type="number" min="5" max="600" value="20" inputmode="numeric">
+        <label class="interval-field">
+          <span>Work (seconds)</span>
+          <div class="stepper">
+            <button type="button" class="step-btn" data-target="work" data-delta="-5" aria-label="Decrease work time">−</button>
+            <input id="work-input" type="number" min="5" max="600" value="20" inputmode="numeric">
+            <button type="button" class="step-btn" data-target="work" data-delta="5" aria-label="Increase work time">+</button>
+          </div>
         </label>
-        <label>
-          Rest (seconds)
-          <input id="rest-input" type="number" min="5" max="600" value="30" inputmode="numeric">
+        <label class="interval-field">
+          <span>Rest (seconds)</span>
+          <div class="stepper">
+            <button type="button" class="step-btn" data-target="rest" data-delta="-5" aria-label="Decrease rest time">−</button>
+            <input id="rest-input" type="number" min="5" max="600" value="30" inputmode="numeric">
+            <button type="button" class="step-btn" data-target="rest" data-delta="5" aria-label="Increase rest time">+</button>
+          </div>
         </label>
       </div>
       <div class="preset-row" aria-label="Quick presets">
@@ -69,6 +77,6 @@
     <p><a href="/">denlockhart.com</a></p>
   </footer>
 
-  <script src="app.js?v=15"></script>
+  <script src="app.js?v=16"></script>
 </body>
 </html>
