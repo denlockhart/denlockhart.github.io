@@ -169,7 +169,10 @@ input[type="number"] {
   background: #1a1612;
   color: var(--cream);
   font: inherit;
-  max-width: 6rem;
+  width: 100%;
+  max-width: 8rem;
+  min-height: 2.5rem;
+  font-size: 1rem;
 }
 
 input[type="number"]:disabled {
@@ -186,6 +189,13 @@ input[type="number"]:disabled {
 
 .interval-row label {
   margin-bottom: 0;
+}
+
+.settings-hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 footer {

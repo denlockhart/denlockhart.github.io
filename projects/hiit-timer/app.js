@@ -106,7 +106,7 @@ function updateIntervalSummary() {
 }
 
 function settingsLocked() {
-  return state.phase === "work" || state.phase === "rest";
+  return state.running;
 }
 
 function setSettingsEnabled(enabled) {
@@ -305,12 +305,20 @@ function onIntervalChange() {
   readIntervalSettings();
   updateIntervalSummary();
   saveSettings();
-  state.secondsLeft = state.workSec;
+  if (state.phase === "idle" || state.phase === "done") {
+    state.secondsLeft = state.workSec;
+  } else if (state.phase === "work") {
+    state.secondsLeft = Math.min(state.secondsLeft, state.workSec);
+  } else if (state.phase === "rest") {
+    state.secondsLeft = Math.min(state.secondsLeft, state.restSec);
+  }
   updateUI();
 }
 
 workInput.addEventListener("change", onIntervalChange);
+workInput.addEventListener("input", onIntervalChange);
 restInput.addEventListener("change", onIntervalChange);
+restInput.addEventListener("input", onIntervalChange);
 
 roundsInput.addEventListener("change", () => {
   state.totalRounds = Math.max(1, Math.min(99, parseInt(roundsInput.value, 10) || 8));
