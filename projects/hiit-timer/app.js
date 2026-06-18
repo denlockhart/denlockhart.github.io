@@ -105,14 +105,32 @@ function updateIntervalSummary() {
   intervalSummary.textContent = state.workSec + " seconds on · " + state.restSec + " seconds off";
 }
 
-function settingsLocked() {
-  return state.running;
+function setSettingsEnabled(enabled) {
+  roundsInput.disabled = !enabled;
 }
 
-function setSettingsEnabled(enabled) {
-  workInput.disabled = !enabled;
-  restInput.disabled = !enabled;
-  roundsInput.disabled = !enabled;
+function applyIntervalChange() {
+  readIntervalSettings();
+  updateIntervalSummary();
+  saveSettings();
+  if (state.phase === "idle" || state.phase === "done") {
+    state.secondsLeft = state.workSec;
+  } else if (state.phase === "work" && state.secondsLeft > state.workSec) {
+    state.secondsLeft = state.workSec;
+  } else if (state.phase === "rest" && state.secondsLeft > state.restSec) {
+    state.secondsLeft = state.restSec;
+  }
+  updateUI();
+}
+
+function onIntervalChange() {
+  applyIntervalChange();
+}
+
+function setPreset(work, rest) {
+  workInput.value = work;
+  restInput.value = rest;
+  applyIntervalChange();
 }
 
 function loadUrlParams() {
@@ -182,7 +200,7 @@ function setPhaseClass() {
 
 function updateUI() {
   setPhaseClass();
-  setSettingsEnabled(!settingsLocked());
+  setSettingsEnabled(!state.running);
 
   if (state.phase === "idle") {
     phaseLabel.textContent = "Ready";
@@ -300,25 +318,16 @@ function reset() {
   updateUI();
 }
 
-function onIntervalChange() {
-  if (settingsLocked()) return;
-  readIntervalSettings();
-  updateIntervalSummary();
-  saveSettings();
-  if (state.phase === "idle" || state.phase === "done") {
-    state.secondsLeft = state.workSec;
-  } else if (state.phase === "work") {
-    state.secondsLeft = Math.min(state.secondsLeft, state.workSec);
-  } else if (state.phase === "rest") {
-    state.secondsLeft = Math.min(state.secondsLeft, state.restSec);
-  }
-  updateUI();
-}
-
 workInput.addEventListener("change", onIntervalChange);
 workInput.addEventListener("input", onIntervalChange);
 restInput.addEventListener("change", onIntervalChange);
 restInput.addEventListener("input", onIntervalChange);
+
+document.querySelectorAll(".preset-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    setPreset(btn.dataset.work, btn.dataset.rest);
+  });
+});
 
 roundsInput.addEventListener("change", () => {
   state.totalRounds = Math.max(1, Math.min(99, parseInt(roundsInput.value, 10) || 8));

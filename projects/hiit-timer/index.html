@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>HIIT Timer</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <header>
@@ -16,6 +16,25 @@
   </header>
 
   <main>
+    <section class="panel intervals-panel">
+      <h2>Intervals</h2>
+      <div class="interval-row">
+        <label>
+          Work (seconds)
+          <input id="work-input" type="number" min="5" max="600" value="20" inputmode="numeric">
+        </label>
+        <label>
+          Rest (seconds)
+          <input id="rest-input" type="number" min="5" max="600" value="30" inputmode="numeric">
+        </label>
+      </div>
+      <div class="preset-row" aria-label="Quick presets">
+        <button type="button" class="preset-btn" data-work="20" data-rest="30">20 / 30</button>
+        <button type="button" class="preset-btn" data-work="30" data-rest="40">30 / 40</button>
+        <button type="button" class="preset-btn" data-work="40" data-rest="60">40 / 60</button>
+      </div>
+    </section>
+
     <section class="panel timer-panel" aria-live="polite">
       <p class="phase-label" id="phase-label">Ready</p>
       <p class="timer-display" id="timer-display">00:20</p>
@@ -35,20 +54,9 @@
 
     <section class="panel settings-panel">
       <h2>Settings</h2>
-      <p class="settings-hint">Set work and rest below. Pause or reset to change intervals during a workout.</p>
-      <div class="interval-row">
-        <label>
-          Work (seconds)
-          <input id="work-input" type="number" min="5" max="600" value="20">
-        </label>
-        <label>
-          Rest (seconds)
-          <input id="rest-input" type="number" min="5" max="600" value="30">
-        </label>
-      </div>
       <label>
         Rounds
-        <input id="rounds-input" type="number" min="1" max="99" value="8">
+        <input id="rounds-input" type="number" min="1" max="99" value="8" inputmode="numeric">
       </label>
       <label class="checkbox-row">
         <input id="sound-toggle" type="checkbox" checked>
@@ -61,6 +69,6 @@
     <p><a href="/">denlockhart.com</a></p>
   </footer>
 
-  <script src="app.js?v=14"></script>
+  <script src="app.js?v=15"></script>
 </body>
 </html>

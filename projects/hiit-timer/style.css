@@ -180,6 +180,28 @@ input[type="number"]:disabled {
   cursor: not-allowed;
 }
 
+.intervals-panel {
+  border-color: var(--gold);
+}
+
+.preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.preset-btn {
+  font-size: 0.8rem;
+  padding: 0.45rem 0.75rem;
+  background: #1a1612;
+  border-color: var(--border);
+}
+
+.preset-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
 .interval-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -189,13 +211,6 @@ input[type="number"]:disabled {
 
 .interval-row label {
   margin-bottom: 0;
-}
-
-.settings-hint {
-  margin: 0 0 0.75rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-  line-height: 1.4;
 }
 
 footer {
