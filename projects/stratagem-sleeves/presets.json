@@ -1,0 +1,86 @@
+[
+  {
+    "id": "tyranids-invasion-fleet",
+    "faction": "Tyranids",
+    "detachmentName": "Invasion Fleet",
+    "filterValue": "IF",
+    "outputSlug": "invasion-fleet"
+  },
+  {
+    "id": "tyranids-crusher-stampede",
+    "faction": "Tyranids",
+    "detachmentName": "Crusher Stampede",
+    "filterValue": "CS",
+    "outputSlug": "crusher-stampede"
+  },
+  {
+    "id": "tyranids-unending-swarm",
+    "faction": "Tyranids",
+    "detachmentName": "Unending Swarm",
+    "filterValue": "US",
+    "outputSlug": "unending-swarm"
+  },
+  {
+    "id": "tyranids-assimilation-swarm",
+    "faction": "Tyranids",
+    "detachmentName": "Assimilation Swarm",
+    "filterValue": "AS",
+    "outputSlug": "assimilation-swarm"
+  },
+  {
+    "id": "tyranids-vanguard-onslaught",
+    "faction": "Tyranids",
+    "detachmentName": "Vanguard Onslaught",
+    "filterValue": "VO",
+    "outputSlug": "vanguard-onslaught"
+  },
+  {
+    "id": "tyranids-synaptic-nexus",
+    "faction": "Tyranids",
+    "detachmentName": "Synaptic Nexus",
+    "filterValue": "SN",
+    "outputSlug": "synaptic-nexus"
+  },
+  {
+    "id": "tyranids-warrior-bioform-onslaught",
+    "faction": "Tyranids",
+    "detachmentName": "Warrior Bioform Onslaught",
+    "filterValue": "WB",
+    "outputSlug": "warrior-bioform-onslaught"
+  },
+  {
+    "id": "tyranids-subterranean-assault",
+    "faction": "Tyranids",
+    "detachmentName": "Subterranean Assault",
+    "filterValue": "SA",
+    "outputSlug": "subterranean-assault"
+  },
+  {
+    "id": "tyranids-tyranid-attack",
+    "faction": "Tyranids",
+    "detachmentName": "Tyranid Attack",
+    "filterValue": "TA",
+    "outputSlug": "tyranid-attack"
+  },
+  {
+    "id": "tyranids-boarding-swarm",
+    "faction": "Tyranids",
+    "detachmentName": "Boarding Swarm",
+    "filterValue": "BS",
+    "outputSlug": "boarding-swarm"
+  },
+  {
+    "id": "tyranids-biotide",
+    "faction": "Tyranids",
+    "detachmentName": "Biotide",
+    "filterValue": "BT",
+    "outputSlug": "biotide"
+  },
+  {
+    "id": "tyranids-infestation-swarm",
+    "faction": "Tyranids",
+    "detachmentName": "Infestation Swarm",
+    "filterValue": "IS",
+    "outputSlug": "infestation-swarm"
+  }
+]

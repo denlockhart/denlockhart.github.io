@@ -1,0 +1,52 @@
+{
+  "detachmentName": "Assimilation Swarm",
+  "outputSlug": "assimilation-swarm",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "AS",
+  "anchorHash": "Assimilation-Swarm",
+  "capturedAt": "2026-06-26T17:50:26.523Z",
+  "cards": [
+    {
+      "name": "BROODGUARD IMPULSE",
+      "file": "broodguard-impulse.png",
+      "namePx": 42,
+      "bodyPx": 33
+    },
+    {
+      "name": "RECLAIM BIOMASS",
+      "file": "reclaim-biomass.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "TYRANNOFORMED",
+      "file": "tyrannoformed.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "ABLATIVE CARAPACE",
+      "file": "ablative-carapace.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "SECURE BIOMASS",
+      "file": "secure-biomass.png",
+      "namePx": 42,
+      "bodyPx": 33
+    },
+    {
+      "name": "RAPACIOUS HUNGER",
+      "file": "rapacious-hunger.png",
+      "namePx": 42,
+      "bodyPx": 38
+    },
+    {
+      "name": "RECLAIM BIOMASS",
+      "file": "reclaim-biomass.png",
+      "namePx": 42,
+      "bodyPx": 36
+    }
+  ]
+}

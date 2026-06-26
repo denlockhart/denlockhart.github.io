@@ -1,0 +1,52 @@
+{
+  "detachmentName": "Vanguard Onslaught",
+  "outputSlug": "vanguard-onslaught",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "VO",
+  "anchorHash": "Vanguard-Onslaught",
+  "capturedAt": "2026-06-26T17:50:52.743Z",
+  "cards": [
+    {
+      "name": "SURPRISE ASSAULT",
+      "file": "surprise-assault.png",
+      "namePx": 42,
+      "bodyPx": 29
+    },
+    {
+      "name": "ASSASSIN BEASTS",
+      "file": "assassin-beasts.png",
+      "namePx": 42,
+      "bodyPx": 37
+    },
+    {
+      "name": "SEEDED BROODS",
+      "file": "seeded-broods.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "HYPERSENSORY SCILLIA",
+      "file": "hypersensory-scillia.png",
+      "namePx": 42,
+      "bodyPx": 30
+    },
+    {
+      "name": "UNSEEN LURKERS",
+      "file": "unseen-lurkers.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "INVISIBLE HUNTER",
+      "file": "invisible-hunter.png",
+      "namePx": 42,
+      "bodyPx": 33
+    },
+    {
+      "name": "UNSEEN LURKERS",
+      "file": "unseen-lurkers.png",
+      "namePx": 42,
+      "bodyPx": 31
+    }
+  ]
+}

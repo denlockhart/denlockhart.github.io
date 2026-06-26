@@ -1,0 +1,8 @@
+{
+  "name": "Infestation Swarm",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "IS",
+  "detachmentName": "Infestation Swarm",
+  "anchorHash": "Infestation-Swarm",
+  "outputSlug": "infestation-swarm"
+}

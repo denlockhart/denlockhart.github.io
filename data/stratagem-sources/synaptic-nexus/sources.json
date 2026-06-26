@@ -1,0 +1,46 @@
+{
+  "detachmentName": "Synaptic Nexus",
+  "outputSlug": "synaptic-nexus",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "SN",
+  "anchorHash": "Synaptic-Nexus",
+  "capturedAt": "2026-06-26T17:51:15.992Z",
+  "cards": [
+    {
+      "name": "THE SMOTHERING SHADOW",
+      "file": "the-smothering-shadow.png",
+      "namePx": 42,
+      "bodyPx": 43
+    },
+    {
+      "name": "SYNAPTIC CHANNELLING",
+      "file": "synaptic-channelling.png",
+      "namePx": 42,
+      "bodyPx": 43
+    },
+    {
+      "name": "IRRESISTIBLE WILL",
+      "file": "irresistible-will.png",
+      "namePx": 42,
+      "bodyPx": 29
+    },
+    {
+      "name": "REINFORCED HIVE NODE",
+      "file": "reinforced-hive-node.png",
+      "namePx": 42,
+      "bodyPx": 34
+    },
+    {
+      "name": "IMPERATIVE DOMINANCE",
+      "file": "imperative-dominance.png",
+      "namePx": 42,
+      "bodyPx": 32
+    },
+    {
+      "name": "OVERRIDE INSTINCTS",
+      "file": "override-instincts.png",
+      "namePx": 42,
+      "bodyPx": 38
+    }
+  ]
+}

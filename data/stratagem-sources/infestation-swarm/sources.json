@@ -1,0 +1,34 @@
+{
+  "detachmentName": "Infestation Swarm",
+  "outputSlug": "infestation-swarm",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "IS",
+  "anchorHash": "Infestation-Swarm",
+  "capturedAt": "2026-06-26T17:55:12.751Z",
+  "cards": [
+    {
+      "name": "HYPERADRENAL REFLEXES",
+      "file": "hyperadrenal-reflexes.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "PERVASIVE DREAD",
+      "file": "pervasive-dread.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "HUNTING GROUNDS",
+      "file": "hunting-grounds.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "OUTFLANK",
+      "file": "outflank.png",
+      "namePx": 42,
+      "bodyPx": 27
+    }
+  ]
+}

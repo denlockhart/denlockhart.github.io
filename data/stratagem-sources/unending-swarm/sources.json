@@ -1,0 +1,52 @@
+{
+  "detachmentName": "Unending Swarm",
+  "outputSlug": "unending-swarm",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "US",
+  "anchorHash": "Unending-Swarm",
+  "capturedAt": "2026-06-26T17:50:00.940Z",
+  "cards": [
+    {
+      "name": "SYNAPTIC GOADING",
+      "file": "synaptic-goading.png",
+      "namePx": 42,
+      "bodyPx": 29
+    },
+    {
+      "name": "UNENDING WAVES",
+      "file": "unending-waves.png",
+      "namePx": 42,
+      "bodyPx": 30
+    },
+    {
+      "name": "TEEMING MASSES",
+      "file": "teeming-masses.png",
+      "namePx": 42,
+      "bodyPx": 34
+    },
+    {
+      "name": "SWARMING MASSES",
+      "file": "swarming-masses.png",
+      "namePx": 42,
+      "bodyPx": 32
+    },
+    {
+      "name": "BOUNDING ADVANCE",
+      "file": "bounding-advance.png",
+      "namePx": 42,
+      "bodyPx": 38
+    },
+    {
+      "name": "PRESERVATION IMPERATIVE",
+      "file": "preservation-imperative.png",
+      "namePx": 42,
+      "bodyPx": 29
+    },
+    {
+      "name": "SYNAPTIC GOADING",
+      "file": "synaptic-goading.png",
+      "namePx": 42,
+      "bodyPx": 29
+    }
+  ]
+}

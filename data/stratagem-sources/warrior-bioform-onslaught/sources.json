@@ -1,0 +1,46 @@
+{
+  "detachmentName": "Warrior Bioform Onslaught",
+  "outputSlug": "warrior-bioform-onslaught",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "WB",
+  "anchorHash": "Warrior-Bioform-Onslaught",
+  "capturedAt": "2026-06-26T17:55:55.654Z",
+  "cards": [
+    {
+      "name": "SYNAPTIC AMPLIFICATION",
+      "file": "synaptic-amplification.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "SPONTANEOUS HYPERCORROSION",
+      "file": "spontaneous-hypercorrosion.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "RESTORATIVE IMPULSE",
+      "file": "restorative-impulse.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "SYNAPTIC MICRONODES",
+      "file": "synaptic-micronodes.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "PARASITIC PAYLOAD",
+      "file": "parasitic-payload.png",
+      "namePx": 42,
+      "bodyPx": 29
+    },
+    {
+      "name": "SYNAPTIC SHIELD",
+      "file": "synaptic-shield.png",
+      "namePx": 42,
+      "bodyPx": 28
+    }
+  ]
+}

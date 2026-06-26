@@ -1,0 +1,46 @@
+{
+  "detachmentName": "Crusher Stampede",
+  "outputSlug": "crusher-stampede",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "CS",
+  "anchorHash": "Crusher-Stampede",
+  "capturedAt": "2026-06-26T17:43:18.311Z",
+  "cards": [
+    {
+      "name": "CORROSIVE VISCERA",
+      "file": "corrosive-viscera.png",
+      "namePx": 42,
+      "bodyPx": 32
+    },
+    {
+      "name": "RAMPAGING MONSTROSITIES",
+      "file": "rampaging-monstrosities.png",
+      "namePx": 42,
+      "bodyPx": 41
+    },
+    {
+      "name": "SAVAGE ROAR",
+      "file": "savage-roar.png",
+      "namePx": 42,
+      "bodyPx": 32
+    },
+    {
+      "name": "UNTRAMMELLED FEROCITY",
+      "file": "untrammelled-ferocity.png",
+      "namePx": 42,
+      "bodyPx": 27
+    },
+    {
+      "name": "SWARM-GUIDED SALVOES",
+      "file": "swarm-guided-salvoes.png",
+      "namePx": 42,
+      "bodyPx": 33
+    },
+    {
+      "name": "MASSIVE IMPACT",
+      "file": "massive-impact.png",
+      "namePx": 42,
+      "bodyPx": 36
+    }
+  ]
+}

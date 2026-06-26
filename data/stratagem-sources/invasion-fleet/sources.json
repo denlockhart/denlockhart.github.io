@@ -1,0 +1,52 @@
+{
+  "detachmentName": "Invasion Fleet",
+  "outputSlug": "invasion-fleet",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "IF",
+  "anchorHash": "Invasion-Fleet",
+  "capturedAt": "2026-06-26T17:49:32.493Z",
+  "cards": [
+    {
+      "name": "RAPID REGENERATION",
+      "file": "rapid-regeneration.png",
+      "namePx": 42,
+      "bodyPx": 33
+    },
+    {
+      "name": "ADRENAL SURGE",
+      "file": "adrenal-surge.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "DEATH FRENZY",
+      "file": "death-frenzy.png",
+      "namePx": 42,
+      "bodyPx": 32
+    },
+    {
+      "name": "OVERRUN",
+      "file": "overrun.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "PREDATORY IMPERATIVE",
+      "file": "predatory-imperative.png",
+      "namePx": 42,
+      "bodyPx": 30
+    },
+    {
+      "name": "ENDLESS SWARM",
+      "file": "endless-swarm.png",
+      "namePx": 42,
+      "bodyPx": 39
+    },
+    {
+      "name": "RAPID REGENERATION",
+      "file": "rapid-regeneration.png",
+      "namePx": 42,
+      "bodyPx": 33
+    }
+  ]
+}

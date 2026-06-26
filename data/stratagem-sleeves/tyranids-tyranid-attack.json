@@ -1,0 +1,8 @@
+{
+  "name": "Tyranid Attack",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "TA",
+  "detachmentName": "Tyranid Attack",
+  "anchorHash": "Tyranid-Attack",
+  "outputSlug": "tyranid-attack"
+}

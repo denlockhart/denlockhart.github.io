@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>40K Scoreboard</title>
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <div id="view-setup-error" class="view hidden">
+    <header>
+      <h1>40K Scoreboard</h1>
+      <p>Firebase is not configured yet.</p>
+    </header>
+    <main>
+      <section class="panel">
+        <p>Copy <code>firebase-config.example.js</code> to <code>firebase-config.js</code> and add your Firebase web app settings. See <code>README.md</code> in this folder.</p>
+      </section>
+    </main>
+  </div>
+
+  <div id="view-home" class="view hidden">
+    <header>
+      <h1>40K Scoreboard</h1>
+      <p>Warhammer 40,000 — live scoring for two players</p>
+    </header>
+    <main>
+      <section class="panel">
+        <h2>Choose mode</h2>
+        <div class="mode-actions">
+          <a class="mode-btn primary" href="?view=display">TV Display</a>
+          <a class="mode-btn" href="?view=control">Phone Control</a>
+        </div>
+        <p class="hint">Open <strong>TV Display</strong> on the smart TV. Each player opens <strong>Phone Control</strong> and joins with the room code and PIN shown on the TV.</p>
+      </section>
+    </main>
+    <footer><p><a href="/">denlockhart.com</a></p></footer>
+  </div>
+
+  <div id="view-display" class="view hidden display-layout">
+    <header class="display-header">
+      <p class="eyebrow">Warhammer 40,000</p>
+      <h1 id="display-round-label">Battle Round 1</h1>
+    </header>
+    <main class="display-main">
+      <div class="scoreboard">
+        <article class="player-card player-1">
+          <p class="player-name" id="display-p1-name">Player 1</p>
+          <div class="stat-block">
+            <span class="stat-label">Victory Points</span>
+            <span class="stat-value vp" id="display-p1-vp">0</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-label">Command Points</span>
+            <span class="stat-value cp" id="display-p1-cp">0</span>
+          </div>
+        </article>
+        <article class="player-card player-2">
+          <p class="player-name" id="display-p2-name">Player 2</p>
+          <div class="stat-block">
+            <span class="stat-label">Victory Points</span>
+            <span class="stat-value vp" id="display-p2-vp">0</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-label">Command Points</span>
+            <span class="stat-value cp" id="display-p2-cp">0</span>
+          </div>
+        </article>
+      </div>
+
+      <section class="panel join-panel">
+        <h2>Join on phone</h2>
+        <p class="room-code">Room <strong id="display-room-code">----</strong></p>
+        <p class="room-pin">PIN <strong id="display-room-pin">----</strong></p>
+        <img id="display-qr" class="qr-code" alt="QR code to open phone control" width="180" height="180">
+        <p class="join-url" id="display-join-url"></p>
+      </section>
+
+      <section class="panel display-actions">
+        <button type="button" id="btn-new-game" class="danger">New game</button>
+      </section>
+    </main>
+  </div>
+
+  <div id="view-control-join" class="view hidden">
+    <header>
+      <h1>Phone Control</h1>
+      <p>Join the game shown on the TV</p>
+    </header>
+    <main>
+      <section class="panel">
+        <label>
+          Room code
+          <input id="join-room" type="text" maxlength="6" autocapitalize="characters" autocomplete="off" placeholder="ABC123">
+        </label>
+        <label>
+          PIN
+          <input id="join-pin" type="tel" maxlength="4" inputmode="numeric" autocomplete="off" placeholder="1234">
+        </label>
+        <button type="button" class="primary full-width" id="btn-join">Join game</button>
+        <p class="error hidden" id="join-error"></p>
+      </section>
+    </main>
+    <footer><p><a href="/">denlockhart.com</a> · <a href="?">Home</a></p></footer>
+  </div>
+
+  <div id="view-control" class="view hidden">
+    <header>
+      <h1>Phone Control</h1>
+      <p>Room <span id="control-room-code"></span> · Round <span id="control-round">1</span></p>
+    </header>
+    <main>
+      <section class="panel control-player">
+        <h2 id="control-p1-heading">Player 1</h2>
+        <label>
+          Name
+          <input id="control-p1-name" type="text" maxlength="32">
+        </label>
+        <div class="score-row">
+          <span>Victory Points</span>
+          <div class="stepper">
+            <button type="button" class="step-btn" data-player="0" data-field="vp" data-delta="-5">−</button>
+            <span class="score-readout" id="control-p1-vp">0</span>
+            <button type="button" class="step-btn" data-player="0" data-field="vp" data-delta="5">+</button>
+          </div>
+        </div>
+        <div class="score-row">
+          <span>Command Points</span>
+          <div class="stepper">
+            <button type="button" class="step-btn" data-player="0" data-field="cp" data-delta="-1">−</button>
+            <span class="score-readout" id="control-p1-cp">0</span>
+            <button type="button" class="step-btn" data-player="0" data-field="cp" data-delta="1">+</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel control-player">
+        <h2 id="control-p2-heading">Player 2</h2>
+        <label>
+          Name
+          <input id="control-p2-name" type="text" maxlength="32">
+        </label>
+        <div class="score-row">
+          <span>Victory Points</span>
+          <div class="stepper">
+            <button type="button" class="step-btn" data-player="1" data-field="vp" data-delta="-5">−</button>
+            <span class="score-readout" id="control-p2-vp">0</span>
+            <button type="button" class="step-btn" data-player="1" data-field="vp" data-delta="5">+</button>
+          </div>
+        </div>
+        <div class="score-row">
+          <span>Command Points</span>
+          <div class="stepper">
+            <button type="button" class="step-btn" data-player="1" data-field="cp" data-delta="-1">−</button>
+            <span class="score-readout" id="control-p2-cp">0</span>
+            <button type="button" class="step-btn" data-player="1" data-field="cp" data-delta="1">+</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Battle Round</h2>
+        <div class="round-controls">
+          <button type="button" class="step-btn wide" id="btn-round-down">−</button>
+          <span class="round-readout" id="control-round-big">1</span>
+          <button type="button" class="step-btn wide" id="btn-round-up">+</button>
+        </div>
+      </section>
+
+      <section class="panel actions-panel">
+        <button type="button" id="btn-undo">Undo</button>
+        <button type="button" id="btn-leave">Leave</button>
+      </section>
+    </main>
+    <footer><p><a href="?view=control">Leave game</a></p></footer>
+  </div>
+
+  <script src="firebase-config.js?v=1"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>

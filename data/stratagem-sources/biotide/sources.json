@@ -1,0 +1,34 @@
+{
+  "detachmentName": "Biotide",
+  "outputSlug": "biotide",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "BT",
+  "anchorHash": "Biotide",
+  "capturedAt": "2026-06-26T17:54:50.383Z",
+  "cards": [
+    {
+      "name": "LIVING AVALANCHE",
+      "file": "living-avalanche.png",
+      "namePx": 42,
+      "bodyPx": 31
+    },
+    {
+      "name": "SQUIRMING MASSES",
+      "file": "squirming-masses.png",
+      "namePx": 42,
+      "bodyPx": 28
+    },
+    {
+      "name": "SWARM HUNTERS",
+      "file": "swarm-hunters.png",
+      "namePx": 42,
+      "bodyPx": 32
+    },
+    {
+      "name": "ONRUSHING HORDE",
+      "file": "onrushing-horde.png",
+      "namePx": 42,
+      "bodyPx": 34
+    }
+  ]
+}

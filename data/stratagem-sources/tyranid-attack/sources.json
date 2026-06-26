@@ -1,0 +1,34 @@
+{
+  "detachmentName": "Tyranid Attack",
+  "outputSlug": "tyranid-attack",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "TA",
+  "anchorHash": "Tyranid-Attack",
+  "capturedAt": "2026-06-26T17:54:04.371Z",
+  "cards": [
+    {
+      "name": "BIO-ACID SURGE",
+      "file": "bio-acid-surge.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "PHAGIC SPORES",
+      "file": "phagic-spores.png",
+      "namePx": 42,
+      "bodyPx": 26
+    },
+    {
+      "name": "EXPENDABLE BIOMASS",
+      "file": "expendable-biomass.png",
+      "namePx": 42,
+      "bodyPx": 26
+    },
+    {
+      "name": "HIVE SIGHT",
+      "file": "hive-sight.png",
+      "namePx": 42,
+      "bodyPx": 33
+    }
+  ]
+}

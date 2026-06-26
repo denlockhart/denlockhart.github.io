@@ -32,6 +32,26 @@
   to = "/projects/hiit-timer/"
   status = 302
 
+[[redirects]]
+  from = "/40k-score/*"
+  to = "/projects/40k-score/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/40k-score"
+  to = "/40k-score/"
+  status = 301
+
+[[redirects]]
+  from = "/stratagem-sleeves/*"
+  to = "/projects/stratagem-sleeves/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/stratagem-sleeves"
+  to = "/stratagem-sleeves/"
+  status = 301
+
 # Army builder API — legacy paths (app now uses relative data/ URLs)
 [[redirects]]
   from = "/api/catalog"

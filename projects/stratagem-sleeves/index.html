@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>40K Stratagem Sleeves — denlockhart.com</title>
+  <meta name="description" content="Build MTG sleeve-sized Warhammer 40,000 stratagem print sheets from saved card sources.">
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+  <header>
+    <p class="eyebrow"><a href="/">denlockhart.com</a></p>
+    <h1>Stratagem Sleeves</h1>
+    <p>Two-step workflow: save each stratagem as a card image once, then build a letter-size print PDF anytime.</p>
+  </header>
+
+  <main>
+    <div id="status-banner" class="status-banner hidden" role="status"></div>
+
+    <section class="panel" aria-labelledby="generate-heading">
+      <h2 id="generate-heading">Build print PDF</h2>
+
+      <div class="form-grid">
+        <label>
+          Faction
+          <select id="faction-select">
+            <option value="">All factions</option>
+          </select>
+        </label>
+        <label>
+          Detachment
+          <select id="preset-select">
+            <option value="">Choose a detachment…</option>
+          </select>
+        </label>
+      </div>
+
+      <p class="hint" id="preset-meta"></p>
+
+      <div class="actions">
+        <button type="button" class="primary" id="btn-generate" disabled>Build &amp; Download PDF</button>
+      </div>
+
+      <p class="hint local-only hidden" id="local-hint">
+        Detachments without saved sources need a one-time capture from Wahapedia via the CLI, or run
+        <code>npm run stratagem-sleeves:ui</code> for live capture.
+      </p>
+    </section>
+
+    <section class="panel" aria-labelledby="workflow-heading">
+      <h2 id="workflow-heading">How it works</h2>
+      <ol class="workflow-steps">
+        <li><strong>Capture</strong> — fetch stratagems from Wahapedia once; saves card PNGs to <code>data/stratagem-sources/&lt;slug&gt;/</code></li>
+        <li><strong>Build</strong> — assemble those saved cards into one US Letter PDF (2×N grid, 2.5″ × 3.5″ per card)</li>
+      </ol>
+      <p class="hint">After capture, the web app builds PDFs instantly with no Wahapedia access. Commit the source folder to share with others.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="custom-heading">
+      <h2 id="custom-heading">Custom detachment</h2>
+      <p class="hint">Requires the local dev server (<code>npm run stratagem-sleeves:ui</code>) for Wahapedia capture.</p>
+      <div class="form-grid custom-grid">
+        <label class="wide">
+          Faction URL
+          <input id="custom-faction-url" type="url" placeholder="https://wahapedia.ru/wh40k10ed/factions/tyranids/">
+        </label>
+        <label>
+          Detachment name
+          <input id="custom-detachment" type="text" placeholder="Crusher Stampede">
+        </label>
+        <label>
+          Filter code
+          <input id="custom-filter" type="text" placeholder="CS" maxlength="4">
+        </label>
+        <label>
+          URL hash (optional)
+          <input id="custom-hash" type="text" placeholder="Crusher-Stampede">
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="btn-custom" disabled>Capture &amp; Download PDF</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="print-heading">
+      <h2 id="print-heading">Print settings</h2>
+      <ul class="print-tips">
+        <li>Paper: US Letter</li>
+        <li>Scale: 100% / Actual size (not “Fit to page”)</li>
+        <li>Enable background graphics</li>
+        <li>Cut along the gaps between cards, then sleeve</li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="cli-heading">
+      <h2 id="cli-heading">Command line</h2>
+      <p class="hint">One-time capture from Wahapedia:</p>
+      <pre id="cli-capture" class="cli-block">npm run stratagem-sleeves -- --preset tyranids-crusher-stampede --capture</pre>
+      <p class="hint">Rebuild print PDF from saved cards (fast, offline):</p>
+      <pre id="cli-example" class="cli-block">npm run stratagem-sleeves -- --preset tyranids-crusher-stampede --build</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Data from <a href="https://wahapedia.ru" target="_blank" rel="noopener">Wahapedia</a> · Not affiliated with Games Workshop</p>
+  </footer>
+
+  <script type="module" src="app.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "Invasion Fleet",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "IF",
+  "detachmentName": "Invasion Fleet",
+  "anchorHash": "Invasion-Fleet",
+  "outputSlug": "invasion-fleet"
+}

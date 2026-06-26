@@ -38,7 +38,9 @@ const cueFiles = {
 
 let audioCtx = null;
 let keepAliveOsc = null;
-const cueClips = {};
+let audioPingId = null;
+const cueBuffers = {};
+let cuesReady = null;
 
 function unlockAudio() {
   const Ctx = window.AudioContext || window.webkitAudioContext;
@@ -66,24 +68,58 @@ function stopAudioKeepAlive() {
   }
 }
 
-function preloadCues() {
-  for (const [kind, url] of Object.entries(cueFiles)) {
-    if (cueClips[kind]) continue;
-    const audio = new Audio(url);
-    audio.preload = "auto";
-    cueClips[kind] = audio;
+function startAudioPing() {
+  stopAudioPing();
+  audioPingId = setInterval(() => {
+    if (!state.running) return;
+    unlockAudio().then(() => startAudioKeepAlive());
+  }, 8000);
+}
+
+function stopAudioPing() {
+  if (audioPingId) {
+    clearInterval(audioPingId);
+    audioPingId = null;
   }
+}
+
+function loadCueBuffers() {
+  if (cuesReady) return cuesReady;
+  cuesReady = unlockAudio().then(async () => {
+    if (!audioCtx) return;
+    for (const [kind, url] of Object.entries(cueFiles)) {
+      if (cueBuffers[kind]) continue;
+      const res = await fetch(url);
+      const data = await res.arrayBuffer();
+      cueBuffers[kind] = await audioCtx.decodeAudioData(data);
+    }
+  }).catch(() => {});
+  return cuesReady;
+}
+
+function playCueFallback(kind) {
+  const clip = new Audio(cueFiles[kind]);
+  clip.volume = 1;
+  clip.play().catch(() => {});
 }
 
 function playCue(kind) {
   if (!state.sound) return;
-  preloadCues();
-  unlockAudio().then(() => startAudioKeepAlive());
-  const clip = cueClips[kind];
-  if (!clip) return;
-  clip.currentTime = 0;
-  clip.volume = 1;
-  clip.play().catch(() => {});
+  loadCueBuffers().then(() => unlockAudio()).then(() => {
+    startAudioKeepAlive();
+    const buffer = cueBuffers[kind];
+    if (!audioCtx || !buffer) {
+      playCueFallback(kind);
+      return;
+    }
+    const source = audioCtx.createBufferSource();
+    const gain = audioCtx.createGain();
+    gain.gain.value = 1;
+    source.buffer = buffer;
+    source.connect(gain);
+    gain.connect(audioCtx.destination);
+    source.start(0);
+  }).catch(() => playCueFallback(kind));
 }
 
 function announce(phase) {
@@ -254,12 +290,16 @@ function stopInterval() {
   }
   state.running = false;
   stopAudioKeepAlive();
+  stopAudioPing();
 }
 
 function startInterval() {
   stopInterval();
   state.running = true;
-  unlockAudio().then(() => startAudioKeepAlive());
+  unlockAudio().then(() => {
+    startAudioKeepAlive();
+    startAudioPing();
+  });
   state.intervalId = setInterval(tick, 1000);
 }
 
@@ -295,7 +335,7 @@ function tick() {
 }
 
 function start() {
-  preloadCues();
+  loadCueBuffers();
   unlockAudio().then(() => startAudioKeepAlive());
   const fresh = state.phase === "idle" || state.phase === "done";
   if (fresh) {
@@ -359,6 +399,6 @@ btnStart.onclick = start;
 btnPause.onclick = pause;
 btnReset.onclick = reset;
 
-preloadCues();
+loadCueBuffers();
 loadSettings();
 updateUI();

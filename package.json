@@ -4,10 +4,17 @@
   "description": "denlockhart.com — static site hosting Dennis Lockhart's side projects",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "npx serve . -l 3000",
+    "stratagem-sleeves": "node scripts/generate-stratagem-sleeves.mjs",
+    "stratagem-sleeves:list": "node scripts/generate-stratagem-sleeves.mjs --list-presets",
+    "stratagem-sleeves:ui": "node scripts/stratagem-sleeves-server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^24.36.1"
   }
 }

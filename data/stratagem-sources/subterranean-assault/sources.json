@@ -1,0 +1,46 @@
+{
+  "detachmentName": "Subterranean Assault",
+  "outputSlug": "subterranean-assault",
+  "factionUrl": "https://wahapedia.ru/wh40k10ed/factions/tyranids/",
+  "filterValue": "SA",
+  "anchorHash": "Subterranean-Assault",
+  "capturedAt": "2026-06-26T17:53:43.192Z",
+  "cards": [
+    {
+      "name": "ADAPTIVE OPTIMISATION",
+      "file": "adaptive-optimisation.png",
+      "namePx": 42,
+      "bodyPx": 39
+    },
+    {
+      "name": "REPLENISHING SWARMS",
+      "file": "replenishing-swarms.png",
+      "namePx": 42,
+      "bodyPx": 33
+    },
+    {
+      "name": "ENFILADING EMERGENCE",
+      "file": "enfilading-emergence.png",
+      "namePx": 42,
+      "bodyPx": 36
+    },
+    {
+      "name": "TUNNEL NETWORK",
+      "file": "tunnel-network.png",
+      "namePx": 42,
+      "bodyPx": 32
+    },
+    {
+      "name": "SWARMING ASSAULT",
+      "file": "swarming-assault.png",
+      "namePx": 42,
+      "bodyPx": 38
+    },
+    {
+      "name": "RETREAT BELOW",
+      "file": "retreat-below.png",
+      "namePx": 42,
+      "bodyPx": 38
+    }
+  ]
+}
