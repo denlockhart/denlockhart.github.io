@@ -33,16 +33,6 @@
   status = 302
 
 [[redirects]]
-  from = "/40k-score/*"
-  to = "/projects/40k-score/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/40k-score"
-  to = "/40k-score/"
-  status = 301
-
-[[redirects]]
   from = "/stratagem-sleeves/*"
   to = "/projects/stratagem-sleeves/:splat"
   status = 200

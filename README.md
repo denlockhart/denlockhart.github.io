@@ -12,7 +12,7 @@ Deployed with [GitHub Pages](https://pages.github.com/) from this repository. Do
 | GitHub Pages default | https://denlockhart.github.io/ |
 | Valour & Fortitude Army Builder | https://www.denlockhart.com/projects/army-builder/ |
 | HIIT Timer | https://www.denlockhart.com/projects/hiit-timer/ |
-| 40K Scoreboard | https://www.denlockhart.com/projects/40k-score/ |
+| Stratagem Sleeves | https://www.denlockhart.com/projects/stratagem-sleeves/ |
 | Source | https://github.com/denlockhart/denlockhart.github.io |
 
 ## Purpose
@@ -36,7 +36,7 @@ denlockhart.github.io/
   projects/
     army-builder/         # Valour & Fortitude army list builder
     hiit-timer/           # Configurable HIIT interval timer
-    40k-score/            # Warhammer 40K live scoreboard (Firebase)
+    stratagem-sleeves/    # 40K stratagem sleeve PDF builder
       README.md
       index.html, app.js, style.css, data/...
 ```
@@ -47,7 +47,7 @@ denlockhart.github.io/
 |---------|--------|----------|
 | Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` |
 | HIIT Timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
-| 40K Scoreboard | `projects/40k-score/` | `/projects/40k-score/` |
+| Stratagem Sleeves | `projects/stratagem-sleeves/` | `/projects/stratagem-sleeves/` |
 
 ## Local development
 
@@ -60,7 +60,7 @@ npx serve .
 - Home: http://localhost:3000/
 - Army Builder: http://localhost:3000/projects/army-builder/
 - HIIT Timer: http://localhost:3000/projects/hiit-timer/
-- 40K Scoreboard: http://localhost:3000/projects/40k-score/
+- Stratagem Sleeves: http://localhost:3000/projects/stratagem-sleeves/
 
 ## Deploy with GitHub Pages
 
