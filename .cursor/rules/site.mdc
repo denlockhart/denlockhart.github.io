@@ -45,14 +45,24 @@ npm start
 
 Short paths (`/army-builder/`, etc.) only work on Netlify — use `/projects/<slug>/` locally.
 
+## Deploy gate (mandatory)
+
+**Never push or deploy until the user has reviewed on the local server.**
+
+1. Ensure the daemon is up (`npm run serve:daemon` / `npm run serve:status`) or tell them to run `npm start`
+2. Give the relevant **http://localhost:3000/...** link(s)
+3. Wait for them to check (or explicitly waive) before `git push` / deploy
+
+Do not skip this even if they say “GO”, “deploy”, or “push” in the same breath — still point them at localhost first unless they clearly say they already checked locally.
+
 ## Defaults for agents
 
 - Scope changes to the relevant project folder unless editing the home page or Netlify config
 - User-specific saved data goes in browser localStorage, not the repo
-- **Before deploy or push:** tell the user to run `npm start` and include the relevant **http://localhost:3000/...** link(s) so they can check first
+- Create commits when completing work; push only when asked (and only after the deploy gate above)
 - See `AGENTS.md` for full instructions; see `projects/<slug>/README.md` for project details
-- Create commits when completing work; push only when asked
 
 ## Edit below — site-wide preferences
 
 <!-- Examples: deploy branch, local server, how to add new projects -->
+- **Always use local server (localhost:3000) before deploying to the web.**

@@ -7,14 +7,29 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "npx serve . -l 3000",
+    "start": "serve . -l 3000",
+    "serve:daemon": "pm2 start ecosystem.config.cjs",
+    "serve:stop": "pm2 stop denlockhart-site",
+    "serve:restart": "pm2 restart denlockhart-site",
+    "serve:status": "pm2 status denlockhart-site",
+    "serve:logs": "pm2 logs denlockhart-site --lines 50",
+    "serve:save": "pm2 save",
+    "serve:autostart": "node scripts/install-serve-autostart.mjs",
+    "serve:autostart:remove": "node scripts/install-serve-autostart.mjs --remove",
+    "stock-game:tickers": "node scripts/build-stock-tickers.mjs",
     "stratagem-sleeves": "node scripts/generate-stratagem-sleeves.mjs",
     "stratagem-sleeves:list": "node scripts/generate-stratagem-sleeves.mjs --list-presets",
     "stratagem-sleeves:ui": "node scripts/stratagem-sleeves-server.mjs",
+    "stratagem-sleeves:from-pdf": "node scripts/build-sleeves-from-pdf.mjs",
+    "stratagem-sleeves:import-da-more": "node scripts/import-dark-angels-more.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "^1.0.1",
     "pdf-lib": "^1.17.1",
-    "puppeteer": "^24.36.1"
+    "pdfjs-dist": "^6.1.200",
+    "pm2": "^6.0.14",
+    "puppeteer": "^24.36.1",
+    "serve": "^14.2.4"
   }
 }

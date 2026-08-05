@@ -138,16 +138,28 @@ function formatCountdown(ms) {
 }
 
 async function ensurePrices(force = false) {
-  setStatus(priceStatus, "Loading prices…");
-  market = await window.MarketDayPrices.getMarketPrices({ force });
-  const note =
-    market.source === "live-eod"
-      ? `Live quotes · ${market.date}`
-      : market.source === "mixed"
-        ? `Mixed live/fallback (${market.liveCount}/${window.MarketDayPrices.TICKERS.length}) · ${market.date}`
-        : `Fallback demo prices · ${market.date}`;
-  setStatus(priceStatus, note, market.source === "fallback" ? "warn" : "");
+  setStatus(priceStatus, "Loading prior-close prices…");
+  market = await window.MarketDayPrices.getMarketPrices({
+    force,
+    onProgress: (payload) => {
+      market = payload;
+      const note = priceNote(payload);
+      setStatus(priceStatus, note, payload.source === "prior-close-seed" ? "" : "");
+      renderPortfolio();
+      renderLeaderboard();
+      renderMarket();
+    },
+  });
+  setStatus(priceStatus, priceNote(market));
   return market;
+}
+
+function priceNote(payload) {
+  const asOf = payload.asOf ? ` · holdings as of ${payload.asOf}` : "";
+  if (payload.source === "prior-close-seed") {
+    return `Trading at last available close (${payload.total} names)${asOf}. Refreshing Yahoo prior closes in background…`;
+  }
+  return `Prior closes: ${payload.liveCount || 0}/${payload.total || "?"} refreshed${asOf}`;
 }
 
 async function settleIfNeeded(force = false) {
@@ -368,12 +380,19 @@ function renderMarket() {
   const body = $("#market-body");
   body.innerHTML = "";
   if (!market) return;
-  for (const t of window.MarketDayPrices.TICKERS) {
+  const q = ($("#market-search")?.value || "").trim();
+  const rows = window.MarketDayPrices.searchTickers(q, 50);
+  $("#market-count").textContent = q
+    ? `${rows.length} matches`
+    : `Showing top ${rows.length} of ${market.total || window.MarketDayPrices.TICKERS.length}`;
+
+  for (const t of rows) {
     const px = market.prices[t.symbol];
+    if (!(px > 0)) continue;
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td><strong>${t.symbol}</strong></td>
-      <td>${t.name}</td>
+      <td>${escapeHtml(t.name)}</td>
       <td>${money(px)}</td>
       <td><input type="number" min="1" step="1" value="500" data-buy="${t.symbol}" aria-label="Dollars to buy ${t.symbol}"></td>
       <td><button type="button" class="cta small" data-buy-btn="${t.symbol}">Buy</button></td>`;
@@ -574,6 +593,7 @@ $("#btn-refresh-prices").addEventListener("click", async () => {
   await ensurePrices(true);
   render();
 });
+$("#market-search")?.addEventListener("input", () => renderMarket());
 $("#btn-copy").addEventListener("click", async () => {
   if (!state) return;
   try {

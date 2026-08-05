@@ -13,7 +13,8 @@ Multiplayer paper-trading game on denlockhart.com.
 - Start: **$10,000** per player
 - Buy by **dollar amount** anytime during the day
 - At **local midnight**: fetch EOD prices and recalculate each player’s equity (cash + holdings); shares stay open
-- Prices: Yahoo Finance via CORS proxy, cached daily; fallback demo prices if fetch fails
+- Prices: **prior close** (last night). Seeded from iShares Russell 1000 holdings; Yahoo refresh in background
+- Universe: top **1000** tickers in `tickers.json` (rebuild: `npm run stock-game:tickers`)
 - Multiplayer: PeerJS room code (`marketday-XXXXXX`); host tab must stay open for live sync
 
 ## Local URL

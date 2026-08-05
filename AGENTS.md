@@ -97,7 +97,7 @@ That drops a Startup shortcut so PM2 resurrects the site after reboot. Undo with
 - Production branch: `main` — push to deploy on GitHub Pages automatically.
 - Custom domain: `www.denlockhart.com` via `CNAME` file and GoDaddy DNS.
 - Only push when asked to deploy.
-- **Do not push without reminding the user to check locally first** (see Local development URLs).
+- **Mandatory:** Before any push/deploy, have the user check the local server first (`npm run serve:daemon` or `npm start`) and give them the relevant **http://localhost:3000/...** URL(s). Do not push until they have reviewed locally (or explicitly say they already did).
 
 ## Coding conventions (repo-wide)
 
