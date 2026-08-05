@@ -123,7 +123,7 @@ function applyRemoteState(next) {
   render();
 }
 
-function msUntilMidnight(from = new Date()) {
+function msUntilNextSettle(from = new Date()) {
   return window.MarketDayPrices.msUntilNextSettle(from);
 }
 
