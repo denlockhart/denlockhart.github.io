@@ -6,7 +6,7 @@ Multiplayer paper-trading game for denlockhart.com.
 
 - Each player starts with **$10,000**
 - Buy a **dollar amount** of shares anytime during the day
-- At **local midnight**, holdings are marked to end-of-day prices for each player’s balance (shares stay open)
+- At **6:00 PM Eastern** (weekdays), holdings are marked to prior-close prices for each player’s balance (shares stay open)
 
 ## Universe & prices
 

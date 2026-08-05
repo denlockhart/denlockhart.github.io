@@ -124,9 +124,7 @@ function applyRemoteState(next) {
 }
 
 function msUntilMidnight(from = new Date()) {
-  const next = new Date(from);
-  next.setHours(24, 0, 0, 0);
-  return next - from;
+  return window.MarketDayPrices.msUntilNextSettle(from);
 }
 
 function formatCountdown(ms) {
@@ -135,6 +133,18 @@ function formatCountdown(ms) {
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
   return `${h}h ${String(m).padStart(2, "0")}m ${String(sec).padStart(2, "0")}s`;
+}
+
+function settleLabel() {
+  const next = window.MarketDayPrices.nextSettleAt(new Date(), { after: true });
+  const when = next.toLocaleString(undefined, {
+    timeZone: window.MarketDayPrices.ET,
+    weekday: "short",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  });
+  return `${formatCountdown(window.MarketDayPrices.msUntilNextSettle())} · ${when}`;
 }
 
 async function ensurePrices(force = false) {
@@ -164,8 +174,8 @@ function priceNote(payload) {
 
 async function settleIfNeeded(force = false) {
   if (!state || !market) return;
-  const today = window.MarketDayPrices.todayKey();
-  if (!force && state.lastSettledDate === today) return;
+  const session = window.MarketDayPrices.lastSettleKey();
+  if (!force && state.lastSettledDate === session) return;
 
   const prices = market.prices;
   const snapshot = state.players.map((p) => ({
@@ -175,14 +185,13 @@ async function settleIfNeeded(force = false) {
     holdingsValue: holdingValue(p, prices),
     equity: equity(p, prices),
   }));
-  state.lastSettledDate = today;
-  state.lastSettlement = { date: today, at: new Date().toISOString(), snapshot };
+  state.lastSettledDate = session;
+  state.lastSettlement = { date: session, at: new Date().toISOString(), snapshot };
   state.log.unshift({
     at: new Date().toISOString(),
-    text: `EOD settle ${today}: balances marked to closing prices.`,
+    text: `6 PM ET settle ${session}: balances marked to prior closes.`,
   });
   state.log = state.log.slice(0, 20);
-  // Clear "buys today" markers for the new session day; holdings stay open.
   for (const p of state.players) p.buysToday = [];
   if (you.isHost) broadcastState();
   else saveRoomLocal(state);
@@ -479,15 +488,15 @@ function render() {
 }
 
 function tickCountdown() {
-  $("#next-settle").textContent = formatCountdown(msUntilMidnight());
+  $("#next-settle").textContent = settleLabel();
 }
 
 function scheduleSettleWatch() {
   clearInterval(settleTimer);
   settleTimer = setInterval(async () => {
     tickCountdown();
-    const today = window.MarketDayPrices.todayKey();
-    if (state && state.lastSettledDate !== today) {
+    const session = window.MarketDayPrices.lastSettleKey();
+    if (state && state.lastSettledDate !== session) {
       await ensurePrices(true);
       if (you.isHost || !state.hostPeerId) await settleIfNeeded(true);
     }

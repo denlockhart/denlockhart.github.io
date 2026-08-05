@@ -1,13 +1,118 @@
 /** EOD / prior-close helpers for Market Day (top ~1000 names). */
 
-const PRICE_CACHE_KEY = "market-day-prices-v2";
+const PRICE_CACHE_KEY = "market-day-prices-v3";
+const ET = "America/New_York";
+const SETTLE_HOUR_ET = 18; // 6:00 PM Eastern (after 4 PM market close)
 
 let TICKERS = [];
 let tickerBySymbol = new Map();
 let catalogMeta = { source: "", asOf: "", count: 0 };
 
+function etParts(d = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: ET,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+    weekday: "short",
+  }).formatToParts(d);
+  const get = (type) => parts.find((p) => p.type === type)?.value;
+  return {
+    year: Number(get("year")),
+    month: Number(get("month")),
+    day: Number(get("day")),
+    hour: Number(get("hour")),
+    minute: Number(get("minute")),
+    second: Number(get("second")),
+    weekday: get("weekday"), // Sun, Mon, ...
+  };
+}
+
+function etDateKeyFromParts(p) {
+  return `${p.year}-${String(p.month).padStart(2, "0")}-${String(p.day).padStart(2, "0")}`;
+}
+
+function etDateKey(d = new Date()) {
+  return etDateKeyFromParts(etParts(d));
+}
+
+function isEtWeekendParts(p) {
+  return p.weekday === "Sat" || p.weekday === "Sun";
+}
+
+function isEtWeekend(d = new Date()) {
+  return isEtWeekendParts(etParts(d));
+}
+
+/** UTC Date for y-m-d hour:minute in America/New_York. */
+function etWallTimeToUtc(year, month, day, hour, minute = 0) {
+  let guess = Date.UTC(year, month - 1, day, hour + 5, minute, 0); // EST-ish seed
+  for (let i = 0; i < 6; i++) {
+    const p = etParts(new Date(guess));
+    const want = Date.UTC(year, month - 1, day, hour, minute, 0);
+    const got = Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second);
+    const delta = want - got;
+    if (delta === 0) break;
+    guess += delta;
+  }
+  return new Date(guess);
+}
+
+function shiftEtCalendarDays(year, month, day, deltaDays) {
+  const utc = Date.UTC(year, month - 1, day + deltaDays, 12, 0, 0);
+  const p = etParts(new Date(utc));
+  // Midday UTC can still be previous ET day near boundaries; use the UTC date parts instead
+  const dt = new Date(Date.UTC(year, month - 1, day));
+  dt.setUTCDate(dt.getUTCDate() + deltaDays);
+  return {
+    year: dt.getUTCFullYear(),
+    month: dt.getUTCMonth() + 1,
+    day: dt.getUTCDate(),
+  };
+}
+
+/** 6:00 PM Eastern on the Eastern calendar date of `d`. */
+function etSettleInstantOnDate(d = new Date()) {
+  const p = etParts(d);
+  return etWallTimeToUtc(p.year, p.month, p.day, SETTLE_HOUR_ET, 0);
+}
+
+/** Next Mon–Fri 6:00 PM Eastern strictly after `from` when after=true; else at or after. */
+function nextSettleAt(from = new Date(), { after = false } = {}) {
+  let ymd = etParts(from);
+  for (let i = 0; i < 12; i++) {
+    const settle = etWallTimeToUtc(ymd.year, ymd.month, ymd.day, SETTLE_HOUR_ET, 0);
+    const weekdayOk = !isEtWeekend(settle);
+    const timeOk = after ? settle.getTime() > from.getTime() : settle.getTime() >= from.getTime();
+    if (weekdayOk && timeOk) return settle;
+    ymd = shiftEtCalendarDays(ymd.year, ymd.month, ymd.day, 1);
+  }
+  return etSettleInstantOnDate(from);
+}
+
+/**
+ * Most recent Mon–Fri 6:00 PM Eastern that has already occurred.
+ * Settle session key = that Eastern calendar date (YYYY-MM-DD).
+ */
+function lastSettleKey(from = new Date()) {
+  let ymd = etParts(from);
+  for (let i = 0; i < 12; i++) {
+    const settle = etWallTimeToUtc(ymd.year, ymd.month, ymd.day, SETTLE_HOUR_ET, 0);
+    if (!isEtWeekend(settle) && settle.getTime() <= from.getTime()) {
+      return etDateKeyFromParts(etParts(settle));
+    }
+    ymd = shiftEtCalendarDays(ymd.year, ymd.month, ymd.day, -1);
+  }
+  return etDateKey(from);
+}
+
+/** Alias used by price cache / settle checks = last completed 6 PM ET session. */
 function todayKey(d = new Date()) {
-  return d.toLocaleDateString("en-CA"); // YYYY-MM-DD local
+  return lastSettleKey(d);
 }
 
 function loadPriceCache() {
@@ -171,7 +276,15 @@ window.MarketDayPrices = {
   get catalogMeta() {
     return catalogMeta;
   },
+  ET,
+  SETTLE_HOUR_ET,
   todayKey,
+  etDateKey,
+  lastSettleKey,
+  nextSettleAt,
+  msUntilNextSettle(from = new Date()) {
+    return Math.max(0, nextSettleAt(from, { after: true }) - from);
+  },
   loadTickerCatalog,
   getMarketPrices,
   searchTickers,

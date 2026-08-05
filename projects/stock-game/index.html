@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Market Day — denlockhart.com</title>
-  <meta name="description" content="Multiplayer end-of-day stock trading game. Start with $10,000, buy anytime, settle at midnight.">
+  <meta name="description" content="Multiplayer end-of-day stock trading game. Start with $10,000, buy anytime, settle at 6 PM Eastern.">
   <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
   <header class="top">
     <p class="eyebrow"><a href="/">denlockhart.com</a></p>
     <h1>Market Day</h1>
-    <p class="tagline">Multiplayer paper trading — $10,000 to start, buy anytime, settle at midnight.</p>
+    <p class="tagline">Multiplayer paper trading — $10,000 to start, buy anytime, settle at 6 PM Eastern.</p>
   </header>
 
   <main>
@@ -46,7 +46,7 @@
           <strong id="you-name">—</strong>
         </div>
         <div>
-          <span class="label">Next settle</span>
+          <span class="label">Next settle (6 PM ET)</span>
           <strong id="next-settle">Midnight</strong>
         </div>
         <button type="button" id="btn-leave" class="cta secondary">Leave</button>
@@ -104,7 +104,7 @@
           <li>Each player begins with <strong>$10,000</strong>.</li>
           <li>Buy a <strong>dollar amount</strong> of shares anytime during the day (fractional shares allowed).</li>
           <li>Buy/sell prices are the stock’s <strong>prior close</strong> (last night’s end-of-day value).</li>
-          <li>At <strong>local midnight</strong>, the app refreshes prior closes and recalculates every player’s balance (cash + holdings). Shares stay open overnight.</li>
+          <li>At <strong>6:00 PM Eastern</strong> on weekdays (after the 4 PM market close), the app refreshes prior closes and recalculates every player’s balance (cash + holdings). Shares stay open overnight.</li>
           <li>You can sell holdings back to cash at the current prior-close mark.</li>
         </ul>
       </section>
@@ -112,7 +112,7 @@
   </main>
 
   <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
-  <script src="prices.js?v=2"></script>
-  <script src="app.js?v=2"></script>
+  <script src="prices.js?v=3"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
