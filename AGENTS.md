@@ -50,17 +50,54 @@ denlockhart.com/
 
 ## Local development
 
+**One-off (foreground):**
+
 ```bash
-npx serve .
-# Home:        http://localhost:3000/
-# Army builder: http://localhost:3000/projects/army-builder/
+npm start
 ```
+
+**Always on (background, restarts if it crashes):**
+
+```bash
+npm install
+npm run serve:daemon    # start in background
+npm run serve:status    # check it's running
+npm run serve:stop      # stop when you want
+```
+
+Site URL: **http://localhost:3000/**
+
+| Page | Local URL |
+|------|-----------|
+| Home | http://localhost:3000/ |
+| Army Builder | http://localhost:3000/projects/army-builder/ |
+| HIIT Timer | http://localhost:3000/projects/hiit-timer/ |
+| Stratagem Sleeves | http://localhost:3000/projects/stratagem-sleeves/ |
+| Tyranids QRS | http://localhost:3000/projects/tyranid-qrs/ |
+| Market Day | http://localhost:3000/projects/stock-game/ |
+
+Use `/projects/<slug>/` paths locally (Netlify short URLs may not work with `serve`).
+
+**Start automatically when Windows logs in (once):**
+
+```powershell
+npm run serve:daemon
+npm run serve:save
+npm run serve:autostart
+```
+
+That drops a Startup shortcut so PM2 resurrects the site after reboot. Undo with `npm run serve:autostart:remove`.
+
+(`pm2 startup` does not work on Windows — use `serve:autostart` instead.)
+
+**Agent rule:** Before any deploy or push, remind the user to check **http://localhost:3000/** (or the relevant project URL) if the daemon is running.
 
 ## Deployment
 
 - Production branch: `main` — push to deploy on GitHub Pages automatically.
 - Custom domain: `www.denlockhart.com` via `CNAME` file and GoDaddy DNS.
 - Only push when asked to deploy.
+- **Do not push without reminding the user to check locally first** (see Local development URLs).
 
 ## Coding conventions (repo-wide)
 

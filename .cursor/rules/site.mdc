@@ -20,11 +20,36 @@ Static site hosting Dennis Lockhart's side projects. Not a single-app repo.
 | army-builder | `projects/army-builder/` | `/projects/army-builder/` |
 | hiit-timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
 | stratagem-sleeves | `projects/stratagem-sleeves/` | `/projects/stratagem-sleeves/` |
+| tyranid-qrs | `projects/tyranid-qrs/` | `/projects/tyranid-qrs/` |
+| stock-game | `projects/stock-game/` | `/projects/stock-game/` |
+
+## Local development
+
+Start the site from the repo root:
+
+```bash
+npm start
+# or: npx serve . -l 3000
+```
+
+**Always give the user these local URLs to review before any deploy or push.**
+
+| Page | Local URL |
+|------|-----------|
+| Home | http://localhost:3000/ |
+| Army Builder | http://localhost:3000/projects/army-builder/ |
+| HIIT Timer | http://localhost:3000/projects/hiit-timer/ |
+| Stratagem Sleeves | http://localhost:3000/projects/stratagem-sleeves/ |
+| Tyranids QRS | http://localhost:3000/projects/tyranid-qrs/ |
+| Market Day | http://localhost:3000/projects/stock-game/ |
+
+Short paths (`/army-builder/`, etc.) only work on Netlify — use `/projects/<slug>/` locally.
 
 ## Defaults for agents
 
 - Scope changes to the relevant project folder unless editing the home page or Netlify config
 - User-specific saved data goes in browser localStorage, not the repo
+- **Before deploy or push:** tell the user to run `npm start` and include the relevant **http://localhost:3000/...** link(s) so they can check first
 - See `AGENTS.md` for full instructions; see `projects/<slug>/README.md` for project details
 - Create commits when completing work; push only when asked
 

@@ -1,0 +1,230 @@
+:root {
+  --ink: #1a1612;
+  --muted: #4a4035;
+  --accent: #2d5a3a;
+  --line: #b8a88a;
+  --bg: #f4efe4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #2a2219;
+  color: var(--ink);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.26;
+}
+
+.no-print.toolbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #1c1712;
+  color: #e8dcc8;
+}
+
+.no-print.toolbar a { color: #c9a227; }
+
+.no-print button {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid #5c4a32;
+  background: #c9a227;
+  color: #1a1612;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sheet {
+  max-width: 8.5in;
+  margin: 1rem auto;
+  background: var(--bg);
+  padding: 0.28in 0.32in;
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 0.14in;
+  padding-bottom: 0.06in;
+}
+
+.sheet-header h1 {
+  margin: 0;
+  font-size: 17pt;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.sheet-header p {
+  margin: 0;
+  font-size: 8pt;
+  color: var(--muted);
+  text-align: right;
+}
+
+.army-rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.1in;
+  margin-bottom: 0.14in;
+}
+
+.rule-box {
+  border: 1px solid var(--line);
+  padding: 0.06in 0.08in;
+  background: #fff;
+}
+
+.rule-box h2 {
+  margin: 0 0 0.03in;
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.rule-box p {
+  margin: 0 0 0.03in;
+  font-size: 8.5pt;
+}
+
+.rule-box ul {
+  margin: 0;
+  padding-left: 1em;
+  font-size: 8.5pt;
+}
+
+.detachment {
+  break-inside: avoid;
+  margin-bottom: 0.12in;
+}
+
+.detachment.page-break {
+  break-before: page;
+  page-break-before: always;
+  margin-top: 0;
+}
+
+.detachment h2 {
+  margin: 0 0 0.05in;
+  font-size: 11.5pt;
+  color: var(--accent);
+  border-left: 4px solid var(--accent);
+  padding-left: 0.08in;
+}
+
+.source-tag {
+  margin: -0.02in 0 0.05in;
+  font-size: 7.5pt;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.1in;
+}
+
+.section {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0.06in 0.08in;
+}
+
+.section h3 {
+  margin: 0 0 0.04in;
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.section p, .section li {
+  font-size: 8.3pt;
+}
+
+.section ul {
+  margin: 0;
+  padding-left: 1em;
+}
+
+.enh-row, .strat {
+  margin-bottom: 0.05in;
+  padding-bottom: 0.04in;
+  border-bottom: 1px dotted var(--line);
+}
+
+.enh-row:last-child, .strat:last-child { border-bottom: none; margin-bottom: 0; }
+
+.enh-name, .strat-name {
+  font-weight: 700;
+  font-size: 8.5pt;
+}
+
+.cp {
+  display: inline-block;
+  min-width: 1.6em;
+  text-align: center;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.strat-wte {
+  color: var(--muted);
+  font-size: 8pt;
+}
+
+.ref-box {
+  margin-top: 0.06in;
+  padding: 0.05in 0.07in;
+  background: #eef5ef;
+  border: 1px dashed var(--accent);
+  font-size: 8.3pt;
+}
+
+.spore-mines,
+.terrain-rules {
+  margin-top: 0.12in;
+}
+
+.spore-mines p,
+.terrain-rules p {
+  margin: 0.03in 0;
+}
+
+.spore-mines .note-heading,
+.terrain-rules .note-heading {
+  margin: 0.05in 0 0.02in;
+  font-weight: 700;
+}
+
+.spore-mines ul,
+.terrain-rules ul {
+  margin: 0;
+  padding-left: 1em;
+}
+
+@media print {
+  body { background: white; }
+  .no-print { display: none !important; }
+  .sheet {
+    margin: 0;
+    max-width: none;
+    padding: 0.16in 0.2in;
+  }
+  .detachment.page-break {
+    padding-top: 0.16in;
+  }
+  @page { size: letter; margin: 0.18in; }
+}
+
+@media screen and (max-width: 720px) {
+  .army-rules, .grid-two { grid-template-columns: 1fr; }
+}

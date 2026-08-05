@@ -1,0 +1,26 @@
+---
+description: Tyranids QRS printable quick reference
+globs: projects/tyranid-qrs/**
+alwaysApply: false
+---
+
+# Tyranids QRS
+
+`projects/tyranid-qrs/` — printable quick reference sheet.
+
+## Scope
+
+Crusher Stampede + Talons of the Norn Queen only (from Tyranid 1.pdf / Tyranid 2.pdf), plus army rules and Spore Mines. Two-page printable QRS.
+
+## Do
+
+- Edit `rules.json`, styles, and layout in place
+- Local URL: **http://localhost:3000/projects/tyranid-qrs/**
+- Keep content condensed for table use
+
+## URLs
+
+| | |
+|--|--|
+| Local | http://localhost:3000/projects/tyranid-qrs/ |
+| Live | https://www.denlockhart.com/projects/tyranid-qrs/ |

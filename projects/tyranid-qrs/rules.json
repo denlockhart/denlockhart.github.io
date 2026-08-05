@@ -1,0 +1,208 @@
+{
+  "faction": "Tyranids",
+  "sources": [
+    "Tyranid 1.pdf — Crusher Stampede (codex export)",
+    "Tyranid 2.pdf p3 — Talons of the Norn Queen",
+    "Tyranid 2.pdf p19 — Rules updates (Synapse, Shadow, Crusher clarifications)"
+  ],
+  "armyRules": {
+    "synapse": {
+      "title": "Synapse",
+      "summary": "Within 6\" of friendly SYNAPSE models = within Synapse Range.",
+      "effects": [
+        "Battle-shock tests on 3D6 instead of 2D6.",
+        "Melee attacks: +1 Strength."
+      ]
+    },
+    "shadowInTheWarp": {
+      "title": "Shadow in the Warp",
+      "summary": "Once per battle, either player's Command phase (Tyranids units with this ability on the board).",
+      "effects": [
+        "Each enemy unit on the battlefield takes a Battle-shock test.",
+        "If within 6\" of your SYNAPSE units: -1 to that test."
+      ]
+    }
+  },
+  "detachments": [
+    {
+      "id": "crusher-stampede",
+      "name": "Crusher Stampede",
+      "source": "Tyranid 1.pdf",
+      "detachmentRule": {
+        "name": "Enraged Behemoths",
+        "text": "Each time a TYRANIDS MONSTER model from your army makes an attack:",
+        "bullets": [
+          "+1 to Hit if its unit is below Starting Strength.",
+          "+1 to Wound as well if its unit is Below Half-strength.",
+          "While a TYRANIDS MONSTER unit (not Battle-shocked) is at Starting Strength: +2 OC to models in that unit."
+        ]
+      },
+      "enhancements": [
+        {
+          "name": "Ominous Presence",
+          "pts": 15,
+          "restriction": "TYRANIDS MONSTER",
+          "effect": "+3 OC to bearer."
+        },
+        {
+          "name": "Enraged Reserves",
+          "pts": 20,
+          "restriction": "TYRANIDS MONSTER",
+          "effect": "If destroyed by a melee attack before fighting: on 3+, fight after attackers then remove."
+        },
+        {
+          "name": "Null Nodules",
+          "pts": 10,
+          "restriction": "TYRANIDS MONSTER",
+          "effect": "Once/battle when allocated a Psychic Attack: FNP 5+ vs Psychic Attacks until end of phase."
+        },
+        {
+          "name": "Monstrous Nemesis",
+          "pts": 25,
+          "restriction": "TYRANIDS MONSTER",
+          "effect": "Melee vs MONSTER/VEHICLE: +1 to Wound."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "Corrosive Viscera",
+          "cp": 1,
+          "when": "Opp. Shooting or Fight, after a non-FLY TYRANIDS MONSTER with Deadly Demise is destroyed.",
+          "target": "That model (even though destroyed).",
+          "effect": "Deadly Demise auto-inflicts (no D6 roll)."
+        },
+        {
+          "name": "Rampaging Monstrosities",
+          "cp": 1,
+          "when": "Fight phase.",
+          "target": "One TYRANIDS MONSTER unit not yet fought.",
+          "effect": "Re-roll Hit rolls."
+        },
+        {
+          "name": "Savage Roar",
+          "cp": 1,
+          "when": "Fight, after enemy selects targets vs your MONSTER.",
+          "target": "Your MONSTER unit targeted.",
+          "effect": "Enemy Battle-shock test; until end of phase -1 Hit vs your unit (-1 Wound too if failed)."
+        },
+        {
+          "name": "Untrammelled Ferocity",
+          "cp": 1,
+          "when": "Your Movement phase.",
+          "target": "One TYRANIDS MONSTER unit not yet moved.",
+          "effect": "Move through non-TITANIC models & terrain ≤4\"; may cross taller terrain (after move, D6: 1 = Battle-shocked). Cannot end in Engagement Range."
+        },
+        {
+          "name": "Swarm-Guided Salvoes",
+          "cp": 1,
+          "when": "Your Shooting phase.",
+          "target": "One TYRANIDS MONSTER unit not yet shot.",
+          "effect": "Ranged [IGNORES COVER]; ignore BS and Hit roll modifiers."
+        },
+        {
+          "name": "Massive Impact",
+          "cp": 1,
+          "when": "Your Charge phase, after MONSTER ends Charge.",
+          "target": "That MONSTER.",
+          "effect": "One enemy in Engagement Range: roll 6D6, each 4+ = 1 MW."
+        }
+      ],
+      "notes": [
+        "Rules update confirms Enraged Behemoths and Untrammelled Ferocity wording (Tyranid 2.pdf p19)."
+      ]
+    },
+    {
+      "id": "talons-of-the-norn-queen",
+      "name": "Talons of the Norn Queen",
+      "source": "Tyranid 2.pdf p3",
+      "detachmentRule": {
+        "name": "Higher Imperatives",
+        "text": "Friendly NORN EMISSARY and NORN ASSIMILATOR units:",
+        "bullets": [
+          "Protean Purpose (once per battle, per unit): In your Command phase, re-select Singular Purpose (replaces previous choice)."
+        ]
+      },
+      "enhancements": [
+        {
+          "name": "Destabilising Predation",
+          "pts": 15,
+          "restriction": "NORN EMISSARY",
+          "effect": "Ranged attacks have [ANTI-CHARACTER 2+]."
+        },
+        {
+          "name": "Synatoprescience",
+          "pts": 15,
+          "restriction": "NORN ASSIMILATOR",
+          "effect": "4+ invulnerable save."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "Catalytic Biofortification",
+          "cp": 1,
+          "when": "Any phase, when a NORN ASSIMILATOR suffers a mortal wound.",
+          "target": "That unit.",
+          "effect": "FNP 4+ vs mortal wounds."
+        },
+        {
+          "name": "Lesser Prey",
+          "cp": 1,
+          "when": "Fight phase, when NORN ASSIMILATOR or NORN EMISSARY selected to fight.",
+          "target": "That unit.",
+          "effect": "Melee attacks: +2 Strength."
+        },
+        {
+          "name": "Tanglestrike Rounds",
+          "cp": 1,
+          "when": "Your Shooting phase, after NORN ASSIMILATOR has shot.",
+          "target": "That unit.",
+          "effect": "One enemy unit hit is Tethered until start of your next Command phase (-2\" Move)."
+        }
+      ],
+      "reference": {
+        "title": "Singular Purpose (Norn Emissary / Assimilator)",
+        "bullets": [
+          "Command phase: select one objective marker or one enemy unit.",
+          "Objective: while in range, FNP 4+ and OC 15.",
+          "Enemy unit: re-roll Hit and Wound vs that unit until your next Command phase."
+        ]
+      }
+    }
+  ],
+  "sporeMines": {
+    "title": "Spore Mines (11th Edition)",
+    "summary": "Destroyed immediately when an enemy unit ends a move within 3\". Triggered by proximity — not by damage.",
+    "bullets": [
+      "Movement: Enemy ends a move within 3\" → mine explodes and is removed.",
+      "Shooting: Cannot shoot Spore Mines; can shoot units in contact with them.",
+      "Explosion (per mine): D6 — 1 = nothing; 2–5 = 1 MW; 6 = D3 MW to nearest enemy unit.",
+      "OC 0 — cannot hold objectives or complete secondaries themselves.",
+      "Use for area denial / force MWs on approach; Behind Enemy Lines via Biovore or Sporocyst into opponent DZ."
+    ]
+  },
+  "terrainRules": {
+    "title": "Terrain Rules",
+    "summary": "To count as being within terrain: A model must be at least partially in the terrain.",
+    "sections": [
+      {
+        "heading": "Movement in terrain:",
+        "bullets": [
+          "Exposed/Light terrain can be moved through freely, but you cannot end on top of the terrain.",
+          "Dense terrain can be moved though only by inf, beasts, and swarm models.",
+          "Flying models pay a 2\" penalty for moving over any terrain.",
+          "Mobile\" keyword allows units to ignore terrain."
+        ]
+      },
+      {
+        "heading": "Shooting and terrain:",
+        "bullets": [
+          "Obscuring: If every line of sight is drawn completely through both light or dense terrain then the models are not visible to each other.",
+          "Model within the terrain can have line of sight, but not through dense terrain.",
+          "Hidden: Infantry, beast, or swarm is within terrain, they are unable to be targeted outside of 15 inches, as long as the unit did not fire a range weapon this turn or last turn.",
+          "Cover: If all infantry, beast, or swarm unit models are within the terrain, they gain cover. -1 BS.",
+          "Cover: Enemy units that are not fully visible also gain cover, -1 BS."
+        ]
+      }
+    ]
+  }
+}
