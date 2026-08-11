@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Market Day — denlockhart.com</title>
   <meta name="description" content="Multiplayer end-of-day stock trading game. Start with $10,000, buy anytime, settle at 6 PM Eastern.">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <header class="top">
@@ -46,6 +46,10 @@
           <strong id="you-name">—</strong>
         </div>
         <div>
+          <span class="label">Trading hours</span>
+          <strong id="trade-hours-status">9:30–4:30 ET</strong>
+        </div>
+        <div>
           <span class="label">Next settle (6 PM ET)</span>
           <strong id="next-settle">6 PM ET</strong>
         </div>
@@ -66,19 +70,19 @@
         <section class="panel">
           <h2>Leaderboard</h2>
           <ol id="leaderboard" class="leaderboard"></ol>
-          <p class="hint small">Equity = cash + holdings marked at last known EOD price.</p>
+          <p class="hint small">Equity = cash + holdings at latest marked price.</p>
         </section>
       </div>
 
       <section class="panel">
         <div class="panel-head">
           <h2>Market</h2>
-          <button type="button" id="btn-refresh-prices" class="linkish">Refresh prior closes</button>
+          <button type="button" id="btn-refresh-prices" class="linkish">Refresh prices now</button>
         </div>
-        <p class="hint small">Top 1,000 U.S. companies (Russell 1000). Trades use <strong>last night’s closing price</strong> (prior close).</p>
+        <p class="hint small">40 companies across 8 sectors. Quotes auto-refresh every <strong>15 minutes</strong>.</p>
         <label class="search-label">
-          Search ticker or name
-          <input id="market-search" type="search" placeholder="e.g. AAPL or NVIDIA" autocomplete="off">
+          Search ticker, name, or sector
+          <input id="market-search" type="search" placeholder="e.g. AAPL, Energy, Retail" autocomplete="off">
         </label>
         <p id="market-count" class="hint small"></p>
         <p id="price-status" class="status small" role="status"></p>
@@ -88,7 +92,8 @@
               <tr>
                 <th>Ticker</th>
                 <th>Name</th>
-                <th>Prior close</th>
+                <th>Sector</th>
+                <th>Price</th>
                 <th>Buy ($)</th>
                 <th></th>
               </tr>
@@ -103,16 +108,17 @@
         <ul>
           <li>Each player begins with <strong>$10,000</strong>.</li>
           <li>Buy a <strong>dollar amount</strong> of shares anytime during the day (fractional shares allowed).</li>
-          <li>Buy/sell prices are the stock’s <strong>prior close</strong> (last night’s end-of-day value).</li>
-          <li>At <strong>6:00 PM Eastern</strong> on weekdays (after the 4 PM market close), the app refreshes prior closes and recalculates every player’s balance (cash + holdings). Shares stay open overnight.</li>
-          <li>You can sell holdings back to cash at the current prior-close mark.</li>
+          <li>Trading is allowed <strong>weekdays 9:30 AM–4:30 PM Eastern</strong> only.</li>
+          <li>Market prices refresh about every <strong>15 minutes</strong> (Yahoo last/mark).</li>
+          <li>At <strong>6:00 PM Eastern</strong> on weekdays, the app recalculates every player’s balance (cash + holdings). Shares stay open overnight.</li>
+          <li>You can sell holdings back to cash at the current marked price.</li>
         </ul>
       </section>
     </section>
   </main>
 
   <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
-  <script src="prices.js?v=3"></script>
-  <script src="app.js?v=4"></script>
+  <script src="prices.js?v=6"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

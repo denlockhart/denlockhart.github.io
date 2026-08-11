@@ -3,82 +3,87 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, "..");
-const OUT = path.join(ROOT, "projects", "stock-game", "tickers.json");
-const URL =
-  "https://www.blackrock.com/us/individual/products/239707/ishares-russell-1000-etf/latest-holdings.csv";
+const OUT = path.join(__dirname, "..", "projects", "stock-game", "tickers.json");
 
-function parseCsvLine(line) {
-  const out = [];
-  let cur = "";
-  let inQ = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') {
-      inQ = !inQ;
-      continue;
-    }
-    if (c === "," && !inQ) {
-      out.push(cur);
-      cur = "";
-      continue;
-    }
-    cur += c;
-  }
-  out.push(cur);
-  return out;
+const TICKERS = [
+  { symbol: "XOM", name: "Exxon Mobil", sector: "Energy" },
+  { symbol: "CVX", name: "Chevron", sector: "Energy" },
+  { symbol: "COP", name: "ConocoPhillips", sector: "Energy" },
+  { symbol: "SLB", name: "Schlumberger", sector: "Energy" },
+  { symbol: "EOG", name: "EOG Resources", sector: "Energy" },
+  { symbol: "WMT", name: "Walmart", sector: "Retail" },
+  { symbol: "TGT", name: "Target", sector: "Retail" },
+  { symbol: "COST", name: "Costco", sector: "Retail" },
+  { symbol: "HD", name: "Home Depot", sector: "Retail" },
+  { symbol: "LOW", name: "Lowes", sector: "Retail" },
+  { symbol: "AAPL", name: "Apple", sector: "Technology" },
+  { symbol: "MSFT", name: "Microsoft", sector: "Technology" },
+  { symbol: "NVDA", name: "NVIDIA", sector: "Technology" },
+  { symbol: "AVGO", name: "Broadcom", sector: "Technology" },
+  { symbol: "ORCL", name: "Oracle", sector: "Technology" },
+  { symbol: "UNH", name: "UnitedHealth", sector: "Healthcare" },
+  { symbol: "JNJ", name: "Johnson and Johnson", sector: "Healthcare" },
+  { symbol: "LLY", name: "Eli Lilly", sector: "Healthcare" },
+  { symbol: "ABBV", name: "AbbVie", sector: "Healthcare" },
+  { symbol: "PFE", name: "Pfizer", sector: "Healthcare" },
+  { symbol: "JPM", name: "JPMorgan Chase", sector: "Financials" },
+  { symbol: "BAC", name: "Bank of America", sector: "Financials" },
+  { symbol: "GS", name: "Goldman Sachs", sector: "Financials" },
+  { symbol: "V", name: "Visa", sector: "Financials" },
+  { symbol: "MA", name: "Mastercard", sector: "Financials" },
+  { symbol: "KO", name: "Coca-Cola", sector: "Consumer" },
+  { symbol: "PEP", name: "PepsiCo", sector: "Consumer" },
+  { symbol: "MCD", name: "McDonalds", sector: "Consumer" },
+  { symbol: "NKE", name: "Nike", sector: "Consumer" },
+  { symbol: "SBUX", name: "Starbucks", sector: "Consumer" },
+  { symbol: "CAT", name: "Caterpillar", sector: "Industrials" },
+  { symbol: "GE", name: "GE Aerospace", sector: "Industrials" },
+  { symbol: "HON", name: "Honeywell", sector: "Industrials" },
+  { symbol: "UPS", name: "UPS", sector: "Industrials" },
+  { symbol: "BA", name: "Boeing", sector: "Industrials" },
+  { symbol: "GOOGL", name: "Alphabet", sector: "Communications" },
+  { symbol: "META", name: "Meta", sector: "Communications" },
+  { symbol: "NFLX", name: "Netflix", sector: "Communications" },
+  { symbol: "DIS", name: "Disney", sector: "Communications" },
+  { symbol: "T", name: "AT&T", sector: "Communications" },
+];
+
+async function quote(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=5d&interval=1d`;
+  const res = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0" } });
+  if (!res.ok) throw new Error(`${symbol} HTTP ${res.status}`);
+  const meta = (await res.json())?.chart?.result?.[0]?.meta || {};
+  const prev = meta.chartPreviousClose || meta.previousClose;
+  const last = meta.regularMarketPrice || prev;
+  return {
+    previousClose: Math.round((prev || last) * 100) / 100,
+    last: Math.round((last || prev) * 100) / 100,
+  };
 }
-
-const res = await fetch(URL, { headers: { "User-Agent": "Mozilla/5.0" } });
-if (!res.ok) throw new Error(`HTTP ${res.status}`);
-const text = await res.text();
-const lines = text.split(/\r?\n/);
-const headerIdx = lines.findIndex((l) => l.includes("Ticker") && l.includes("Name") && l.includes("Price"));
-if (headerIdx < 0) throw new Error("CSV header not found");
-
-const asOfLine = lines.find((l) => /Fund Holdings as of/i.test(l)) || "";
-const asOf = asOfLine.replace(/^[^,]*,/, "").replace(/"/g, "").trim();
-
-const header = parseCsvLine(lines[headerIdx]);
-const ti = header.indexOf("Ticker");
-const ni = header.indexOf("Name");
-const ai = header.indexOf("Asset Class");
-const pi = header.indexOf("Price");
 
 const tickers = [];
-for (let i = headerIdx + 1; i < lines.length; i++) {
-  if (!lines[i].trim()) continue;
-  const cols = parseCsvLine(lines[i]);
-  const symbol = (cols[ti] || "").trim();
-  const name = (cols[ni] || "").trim();
-  const asset = (cols[ai] || "").trim();
-  const price = Number(String(cols[pi] || "").replace(/,/g, ""));
-  if (!symbol || asset !== "Equity") continue;
-  if (!/^[A-Z][A-Z0-9.\-]{0,6}$/.test(symbol)) continue;
-  if (!(price > 0)) continue;
-  tickers.push({
-    symbol,
-    name,
-    previousClose: Math.round(price * 100) / 100,
-  });
+for (let i = 0; i < TICKERS.length; i += 8) {
+  const batch = TICKERS.slice(i, i + 8);
+  const part = await Promise.all(
+    batch.map(async (t) => {
+      try {
+        const q = await quote(t.symbol);
+        return { ...t, previousClose: q.previousClose, last: q.last };
+      } catch {
+        return { ...t, previousClose: 100, last: 100 };
+      }
+    })
+  );
+  tickers.push(...part);
 }
 
-const seen = new Set();
-const unique = [];
-for (const t of tickers) {
-  if (seen.has(t.symbol)) continue;
-  seen.add(t.symbol);
-  unique.push(t);
-}
-
-const top = unique.slice(0, 1000);
 const payload = {
-  source: "iShares Russell 1000 ETF (IWB) holdings",
-  asOf,
-  count: top.length,
-  tickers: top,
+  source: "Curated cross-sector list (5 per sector)",
+  asOf: new Date().toISOString().slice(0, 10),
+  count: tickers.length,
+  refreshMinutes: 15,
+  tickers,
 };
 
-fs.writeFileSync(OUT, JSON.stringify(payload));
-console.log(`Wrote ${top.length} tickers → ${OUT}`);
-console.log("Sample:", top.slice(0, 5));
+fs.writeFileSync(OUT, JSON.stringify(payload, null, 2));
+console.log(`Wrote ${tickers.length} tickers → ${OUT}`);

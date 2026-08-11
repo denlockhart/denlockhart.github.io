@@ -16,6 +16,7 @@ let hostConn = null; // guest → host
 const guestConns = new Map(); // host: peerId → conn
 let market = null; // price payload
 let settleTimer = null;
+let priceTimer = null;
 
 function money(n) {
   return n.toLocaleString(undefined, { style: "currency", currency: "USD" });
@@ -165,11 +166,14 @@ async function ensurePrices(force = false) {
 }
 
 function priceNote(payload) {
-  const asOf = payload.asOf ? ` · holdings as of ${payload.asOf}` : "";
-  if (payload.source === "prior-close-seed") {
-    return `Trading at last available close (${payload.total} names)${asOf}. Refreshing Yahoo prior closes in background…`;
+  const when = payload.fetchedAt
+    ? new Date(payload.fetchedAt).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
+    : "";
+  const mins = payload.refreshMinutes || window.MarketDayPrices.catalogMeta.refreshMinutes || 15;
+  if (payload.source === "seed") {
+    return `Seed prices loaded (${payload.total} names). Fetching Yahoo quotes…`;
   }
-  return `Prior closes: ${payload.liveCount || 0}/${payload.total || "?"} refreshed${asOf}`;
+  return `Prices updated ${when || "just now"} · ${payload.liveCount || 0}/${payload.total || "?"} live · auto-refresh every ${mins} min`;
 }
 
 async function settleIfNeeded(force = false) {
@@ -189,7 +193,7 @@ async function settleIfNeeded(force = false) {
   state.lastSettlement = { date: session, at: new Date().toISOString(), snapshot };
   state.log.unshift({
     at: new Date().toISOString(),
-    text: `6 PM ET settle ${session}: balances marked to prior closes.`,
+    text: `6 PM ET settle ${session}: balances marked to latest prices.`,
   });
   state.log = state.log.slice(0, 20);
   for (const p of state.players) p.buysToday = [];
@@ -198,7 +202,15 @@ async function settleIfNeeded(force = false) {
   render();
 }
 
+function assertTradingOpen() {
+  const status = window.MarketDayPrices.tradingStatus();
+  if (status.open) return true;
+  setStatus(priceStatus, `Trading closed — ${status.detail}`, "warn");
+  return false;
+}
+
 function buy(symbol, dollars) {
+  if (!assertTradingOpen()) return;
   const player = me();
   if (!player || !market) return;
   const px = market.prices[symbol];
@@ -222,6 +234,7 @@ function buy(symbol, dollars) {
 }
 
 function sellAll(symbol) {
+  if (!assertTradingOpen()) return;
   const player = me();
   if (!player || !market) return;
   const shares = player.holdings[symbol] || 0;
@@ -261,6 +274,10 @@ function handleHostMessage(conn, raw) {
   }
   const player = state.players.find((p) => p.id === msg.playerId);
   if (!player || !market) return;
+  if ((msg.type === "buy" || msg.type === "sell") && !window.MarketDayPrices.isTradingOpen()) {
+    broadcastState();
+    return;
+  }
 
   if (msg.type === "buy") {
     const px = market.prices[msg.symbol];
@@ -393,7 +410,7 @@ function renderMarket() {
   const rows = window.MarketDayPrices.searchTickers(q, 50);
   $("#market-count").textContent = q
     ? `${rows.length} matches`
-    : `Showing top ${rows.length} of ${market.total || window.MarketDayPrices.TICKERS.length}`;
+    : `${rows.length} companies · 8 sectors`;
 
   for (const t of rows) {
     const px = market.prices[t.symbol];
@@ -402,12 +419,16 @@ function renderMarket() {
     tr.innerHTML = `
       <td><strong>${t.symbol}</strong></td>
       <td>${escapeHtml(t.name)}</td>
+      <td>${escapeHtml(t.sector || "—")}</td>
       <td>${money(px)}</td>
       <td><input type="number" min="1" step="1" value="500" data-buy="${t.symbol}" aria-label="Dollars to buy ${t.symbol}"></td>
       <td><button type="button" class="cta small" data-buy-btn="${t.symbol}">Buy</button></td>`;
     body.appendChild(tr);
   }
   body.querySelectorAll("[data-buy-btn]").forEach((btn) => {
+    const open = window.MarketDayPrices.isTradingOpen();
+    btn.disabled = !open;
+    btn.title = open ? "Buy" : "Trading closed (9:30 AM–4:30 PM Eastern weekdays)";
     btn.addEventListener("click", () => {
       const sym = btn.getAttribute("data-buy-btn");
       const input = body.querySelector(`input[data-buy="${sym}"]`);
@@ -443,7 +464,7 @@ function renderPortfolio() {
         <div><strong>${sym}</strong> · ${shares.toFixed(4)} sh @ ${money(px)}</div>
         <div class="holding-right">
           <span>${money(val)}</span>
-          <button type="button" class="linkish" data-sell="${sym}">Sell</button>
+          <button type="button" class="linkish" data-sell="${sym}" ${window.MarketDayPrices.isTradingOpen() ? "" : "disabled"}>Sell</button>
         </div>
       </div>`;
     })
@@ -489,6 +510,15 @@ function render() {
 
 function tickCountdown() {
   $("#next-settle").textContent = settleLabel();
+  const status = window.MarketDayPrices.tradingStatus();
+  const el = $("#trade-hours-status");
+  if (el) {
+    el.textContent = status.open
+      ? `Open · ${status.detail}`
+      : `Closed · ${status.detail}`;
+    el.dataset.open = status.open ? "1" : "0";
+  }
+  document.body.classList.toggle("market-closed", !status.open);
 }
 
 function scheduleSettleWatch() {
@@ -503,6 +533,16 @@ function scheduleSettleWatch() {
   }, 1000);
 }
 
+function schedulePriceRefresh() {
+  clearInterval(priceTimer);
+  const ms = window.MarketDayPrices.REFRESH_MS || 15 * 60 * 1000;
+  priceTimer = setInterval(async () => {
+    if (!state) return;
+    await ensurePrices(true);
+    render();
+  }, ms);
+}
+
 async function enterRoom(room, playerId, name, isHost) {
   state = room;
   you = { id: playerId, name, isHost };
@@ -513,6 +553,7 @@ async function enterRoom(room, playerId, name, isHost) {
   await settleIfNeeded();
   render();
   scheduleSettleWatch();
+  schedulePriceRefresh();
 }
 
 async function createGame() {
@@ -549,6 +590,7 @@ async function joinGame() {
       await ensurePrices();
       await joinHostPeer(peerId, name);
       scheduleSettleWatch();
+      schedulePriceRefresh();
       setStatus(lobbyStatus, "");
       return;
     } catch {
@@ -589,6 +631,7 @@ function leaveGame() {
   hostConn = null;
   guestConns.clear();
   clearInterval(settleTimer);
+  clearInterval(priceTimer);
   state = null;
   clearSession();
   showLobby();
@@ -630,6 +673,7 @@ $("#btn-copy").addEventListener("click", async () => {
       await ensurePrices();
       await joinHostPeer(room.hostPeerId, session.name);
       scheduleSettleWatch();
+      schedulePriceRefresh();
       render();
     } else {
       await enterRoom(room, session.playerId, session.name, false);

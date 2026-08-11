@@ -134,7 +134,15 @@ input[type="text"], input[type="number"] {
   color: var(--ink);
   border-color: var(--line);
 }
-.cta.small { padding: 0.35rem 0.7rem; font-size: 0.9rem; }
+.cta.small:disabled,
+.linkish:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+body.market-closed #trade-hours-status {
+  color: var(--warn);
+}
 
 .linkish {
   appearance: none;

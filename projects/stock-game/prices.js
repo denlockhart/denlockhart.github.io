@@ -1,12 +1,15 @@
-/** EOD / prior-close helpers for Market Day (top ~1000 names). */
+/** Market Day price helpers — curated cross-sector list, 15-minute refresh. */
 
-const PRICE_CACHE_KEY = "market-day-prices-v3";
+const PRICE_CACHE_KEY = "market-day-prices-v4";
 const ET = "America/New_York";
-const SETTLE_HOUR_ET = 18; // 6:00 PM Eastern (after 4 PM market close)
+const SETTLE_HOUR_ET = 18; // 6:00 PM Eastern
+const REFRESH_MS = 15 * 60 * 1000;
+const TRADE_OPEN = { hour: 9, minute: 30 }; // 9:30 AM ET
+const TRADE_CLOSE = { hour: 16, minute: 30 }; // 4:30 PM ET
 
 let TICKERS = [];
 let tickerBySymbol = new Map();
-let catalogMeta = { source: "", asOf: "", count: 0 };
+let catalogMeta = { source: "", asOf: "", count: 0, refreshMinutes: 15 };
 
 function etParts(d = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -28,7 +31,7 @@ function etParts(d = new Date()) {
     hour: Number(get("hour")),
     minute: Number(get("minute")),
     second: Number(get("second")),
-    weekday: get("weekday"), // Sun, Mon, ...
+    weekday: get("weekday"),
   };
 }
 
@@ -40,17 +43,13 @@ function etDateKey(d = new Date()) {
   return etDateKeyFromParts(etParts(d));
 }
 
-function isEtWeekendParts(p) {
-  return p.weekday === "Sat" || p.weekday === "Sun";
-}
-
 function isEtWeekend(d = new Date()) {
-  return isEtWeekendParts(etParts(d));
+  const wd = etParts(d).weekday;
+  return wd === "Sat" || wd === "Sun";
 }
 
-/** UTC Date for y-m-d hour:minute in America/New_York. */
 function etWallTimeToUtc(year, month, day, hour, minute = 0) {
-  let guess = Date.UTC(year, month - 1, day, hour + 5, minute, 0); // EST-ish seed
+  let guess = Date.UTC(year, month - 1, day, hour + 5, minute, 0);
   for (let i = 0; i < 6; i++) {
     const p = etParts(new Date(guess));
     const want = Date.UTC(year, month - 1, day, hour, minute, 0);
@@ -63,9 +62,6 @@ function etWallTimeToUtc(year, month, day, hour, minute = 0) {
 }
 
 function shiftEtCalendarDays(year, month, day, deltaDays) {
-  const utc = Date.UTC(year, month - 1, day + deltaDays, 12, 0, 0);
-  const p = etParts(new Date(utc));
-  // Midday UTC can still be previous ET day near boundaries; use the UTC date parts instead
   const dt = new Date(Date.UTC(year, month - 1, day));
   dt.setUTCDate(dt.getUTCDate() + deltaDays);
   return {
@@ -75,13 +71,11 @@ function shiftEtCalendarDays(year, month, day, deltaDays) {
   };
 }
 
-/** 6:00 PM Eastern on the Eastern calendar date of `d`. */
 function etSettleInstantOnDate(d = new Date()) {
   const p = etParts(d);
   return etWallTimeToUtc(p.year, p.month, p.day, SETTLE_HOUR_ET, 0);
 }
 
-/** Next Mon–Fri 6:00 PM Eastern strictly after `from` when after=true; else at or after. */
 function nextSettleAt(from = new Date(), { after = false } = {}) {
   let ymd = etParts(from);
   for (let i = 0; i < 12; i++) {
@@ -94,10 +88,66 @@ function nextSettleAt(from = new Date(), { after = false } = {}) {
   return etSettleInstantOnDate(from);
 }
 
-/**
- * Most recent Mon–Fri 6:00 PM Eastern that has already occurred.
- * Settle session key = that Eastern calendar date (YYYY-MM-DD).
- */
+function etSessionBounds(from = new Date()) {
+  const p = etParts(from);
+  const open = etWallTimeToUtc(p.year, p.month, p.day, TRADE_OPEN.hour, TRADE_OPEN.minute);
+  const close = etWallTimeToUtc(p.year, p.month, p.day, TRADE_CLOSE.hour, TRADE_CLOSE.minute);
+  return { open, close, parts: p };
+}
+
+/** Regular trading session: Mon–Fri 9:30 AM–4:30 PM Eastern. */
+function isTradingOpen(from = new Date()) {
+  if (isEtWeekend(from)) return false;
+  const { open, close } = etSessionBounds(from);
+  const t = from.getTime();
+  return t >= open.getTime() && t < close.getTime();
+}
+
+function nextTradeOpenAt(from = new Date()) {
+  let cursor = new Date(from);
+  for (let i = 0; i < 10; i++) {
+    const { open, close, parts } = etSessionBounds(cursor);
+    if (!isEtWeekend(cursor) && from.getTime() < open.getTime()) return open;
+    if (!isEtWeekend(cursor) && from.getTime() >= open.getTime() && from.getTime() < close.getTime()) {
+      return open; // already open — "next open" for display of today's open
+    }
+    const ymd = shiftEtCalendarDays(parts.year, parts.month, parts.day, 1);
+    cursor = etWallTimeToUtc(ymd.year, ymd.month, ymd.day, 12, 0);
+  }
+  return from;
+}
+
+function tradingStatus(from = new Date()) {
+  if (isTradingOpen(from)) {
+    const { close } = etSessionBounds(from);
+    return {
+      open: true,
+      label: "Market open",
+      detail: `Closes ${close.toLocaleTimeString(undefined, { timeZone: ET, hour: "numeric", minute: "2-digit", timeZoneName: "short" })}`,
+      until: close,
+    };
+  }
+  // Find next open strictly in the future
+  let cursor = new Date(from);
+  for (let i = 0; i < 10; i++) {
+    const { open, close, parts } = etSessionBounds(cursor);
+    if (!isEtWeekend(open) && open.getTime() > from.getTime()) {
+      return {
+        open: false,
+        label: "Market closed",
+        detail: `Opens ${open.toLocaleString(undefined, { timeZone: ET, weekday: "short", hour: "numeric", minute: "2-digit", timeZoneName: "short" })}`,
+        until: open,
+      };
+    }
+    if (!isEtWeekend(open) && from.getTime() < close.getTime() && from.getTime() >= open.getTime()) {
+      // shouldn't happen if isTradingOpen false
+    }
+    const ymd = shiftEtCalendarDays(parts.year, parts.month, parts.day, 1);
+    cursor = etWallTimeToUtc(ymd.year, ymd.month, ymd.day, 12, 0);
+  }
+  return { open: false, label: "Market closed", detail: "Weekday 9:30 AM–4:30 PM Eastern", until: null };
+}
+
 function lastSettleKey(from = new Date()) {
   let ymd = etParts(from);
   for (let i = 0; i < 12; i++) {
@@ -110,7 +160,6 @@ function lastSettleKey(from = new Date()) {
   return etDateKey(from);
 }
 
-/** Alias used by price cache / settle checks = last completed 6 PM ET session. */
 function todayKey(d = new Date()) {
   return lastSettleKey(d);
 }
@@ -127,6 +176,12 @@ function savePriceCache(payload) {
   localStorage.setItem(PRICE_CACHE_KEY, JSON.stringify(payload));
 }
 
+function cacheIsFresh(cached) {
+  if (!cached?.fetchedAt || !cached.prices) return false;
+  const age = Date.now() - new Date(cached.fetchedAt).getTime();
+  return age >= 0 && age < REFRESH_MS && Object.keys(cached.prices).length >= TICKERS.length * 0.8;
+}
+
 async function loadTickerCatalog() {
   if (TICKERS.length) return TICKERS;
   const res = await fetch("tickers.json");
@@ -137,6 +192,7 @@ async function loadTickerCatalog() {
     source: data.source || "ticker catalog",
     asOf: data.asOf || "",
     count: data.count || TICKERS.length,
+    refreshMinutes: data.refreshMinutes || 15,
   };
   tickerBySymbol = new Map(TICKERS.map((t) => [t.symbol, t]));
   return TICKERS;
@@ -145,16 +201,15 @@ async function loadTickerCatalog() {
 function seedPricesFromCatalog() {
   const prices = {};
   for (const t of TICKERS) {
-    if (typeof t.previousClose === "number" && t.previousClose > 0) {
-      prices[t.symbol] = t.previousClose;
-    }
+    const px = t.last || t.previousClose;
+    if (typeof px === "number" && px > 0) prices[t.symbol] = px;
   }
   return prices;
 }
 
-/** Prefer prior close (last night), not live intraday. */
-async function fetchYahooPreviousClose(symbol) {
-  const target = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5d&interval=1d`;
+/** Latest trade / mark: prefer regularMarketPrice, else prior close. */
+async function fetchYahooLastPrice(symbol) {
+  const target = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=5m`;
   const proxies = [
     (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
     (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
@@ -169,13 +224,13 @@ async function fetchYahooPreviousClose(symbol) {
       const meta = data?.chart?.result?.[0]?.meta;
       const quote = data?.chart?.result?.[0]?.indicators?.quote?.[0];
       const closes = (quote?.close || []).filter((n) => typeof n === "number");
-      const priorClose =
+      const price =
+        (typeof meta?.regularMarketPrice === "number" && meta.regularMarketPrice) ||
+        closes[closes.length - 1] ||
         (typeof meta?.chartPreviousClose === "number" && meta.chartPreviousClose) ||
-        (typeof meta?.previousClose === "number" && meta.previousClose) ||
-        (closes.length >= 2 ? closes[closes.length - 2] : null) ||
-        closes[closes.length - 1];
-      if (typeof priorClose !== "number" || !(priorClose > 0)) throw new Error("No prior close");
-      return Math.round(priorClose * 100) / 100;
+        (typeof meta?.previousClose === "number" && meta.previousClose);
+      if (typeof price !== "number" || !(price > 0)) throw new Error("No price");
+      return Math.round(price * 100) / 100;
     } catch (err) {
       lastErr = err;
     }
@@ -190,47 +245,43 @@ function chunk(arr, size) {
 }
 
 /**
- * Returns { date, source, prices, asOf, catalogSource, liveCount, total }
- * Starts from catalog prior closes (last available IWB holdings prices),
- * then optionally refreshes from Yahoo previousClose in the background.
+ * Returns price payload. Uses 15-minute cache; refreshes all curated names from Yahoo.
  */
 async function getMarketPrices({ force = false, onProgress = null } = {}) {
   await loadTickerCatalog();
-  const date = todayKey();
   const cached = loadPriceCache();
-  if (!force && cached?.date === date && cached.prices && Object.keys(cached.prices).length >= 500) {
+  if (!force && cacheIsFresh(cached)) {
     return { ...cached, catalogSource: catalogMeta.source, asOf: cached.asOf || catalogMeta.asOf };
   }
 
   const prices = seedPricesFromCatalog();
-  const payload = {
-    date,
-    source: "prior-close-seed",
+  let payload = {
+    date: todayKey(),
+    source: "seed",
     asOf: catalogMeta.asOf,
     catalogSource: catalogMeta.source,
     liveCount: 0,
     total: TICKERS.length,
+    refreshMinutes: catalogMeta.refreshMinutes || 15,
     prices,
     fetchedAt: new Date().toISOString(),
   };
   savePriceCache(payload);
   if (onProgress) onProgress(payload);
 
-  // Background refresh: prior close from Yahoo for as many names as proxies allow.
-  refreshPriorClosesInBackground(payload, onProgress);
+  payload = await refreshAllPrices(payload, onProgress);
   return payload;
 }
 
-async function refreshPriorClosesInBackground(basePayload, onProgress) {
-  const symbols = TICKERS.map((t) => t.symbol);
-  let live = 0;
+async function refreshAllPrices(basePayload, onProgress) {
   const prices = { ...basePayload.prices };
+  let live = 0;
 
-  for (const batch of chunk(symbols, 8)) {
+  for (const batch of chunk(TICKERS.map((t) => t.symbol), 8)) {
     await Promise.all(
       batch.map(async (symbol) => {
         try {
-          prices[symbol] = await fetchYahooPreviousClose(symbol);
+          prices[symbol] = await fetchYahooLastPrice(symbol);
           live += 1;
         } catch {
           /* keep seed */
@@ -239,18 +290,20 @@ async function refreshPriorClosesInBackground(basePayload, onProgress) {
     );
     const next = {
       ...basePayload,
-      source: live > 0 ? "prior-close-refresh" : basePayload.source,
+      source: live > 0 ? "yahoo-15m" : basePayload.source,
       liveCount: live,
       prices: { ...prices },
       fetchedAt: new Date().toISOString(),
     };
     savePriceCache(next);
     if (onProgress) onProgress(next);
-    await new Promise((r) => setTimeout(r, 150));
+    basePayload = next;
+    await new Promise((r) => setTimeout(r, 100));
   }
+  return basePayload;
 }
 
-function searchTickers(query, limit = 40) {
+function searchTickers(query, limit = 50) {
   const q = String(query || "").trim().toUpperCase();
   if (!q) return TICKERS.slice(0, limit);
   const starts = [];
@@ -258,9 +311,9 @@ function searchTickers(query, limit = 40) {
   for (const t of TICKERS) {
     const sym = t.symbol.toUpperCase();
     const name = t.name.toUpperCase();
+    const sector = (t.sector || "").toUpperCase();
     if (sym.startsWith(q)) starts.push(t);
-    else if (sym.includes(q) || name.includes(q)) contains.push(t);
-    if (starts.length >= limit) break;
+    else if (sym.includes(q) || name.includes(q) || sector.includes(q)) contains.push(t);
   }
   return [...starts, ...contains].slice(0, limit);
 }
@@ -276,12 +329,17 @@ window.MarketDayPrices = {
   get catalogMeta() {
     return catalogMeta;
   },
+  REFRESH_MS,
   ET,
   SETTLE_HOUR_ET,
+  TRADE_OPEN,
+  TRADE_CLOSE,
   todayKey,
   etDateKey,
   lastSettleKey,
   nextSettleAt,
+  isTradingOpen,
+  tradingStatus,
   msUntilNextSettle(from = new Date()) {
     return Math.max(0, nextSettleAt(from, { after: true }) - from);
   },

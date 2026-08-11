@@ -6,13 +6,15 @@ Multiplayer paper-trading game for denlockhart.com.
 
 - Each player starts with **$10,000**
 - Buy a **dollar amount** of shares anytime during the day
-- At **6:00 PM Eastern** (weekdays), holdings are marked to prior-close prices for each player’s balance (shares stay open)
+- Trading window: **weekdays 9:30 AM–4:30 PM Eastern**
+- **40 curated tickers** across Energy, Retail, Technology, Healthcare, Financials, Consumer, Industrials, Communications
+- Quotes **auto-refresh every 15 minutes**
+- At **6:00 PM Eastern** (weekdays), holdings are marked for each player’s balance (shares stay open)
 
 ## Universe & prices
 
-- `tickers.json` — top 1000 equities from iShares Russell 1000 (IWB) holdings, each with a seeded **prior close**
-- Rebuild catalog: `npm run stock-game:tickers`
-- Trades use prior close (last night). Yahoo prior closes refresh in the background after load.
+- `tickers.json` — curated cross-sector list (rebuild: `npm run stock-game:tickers`)
+- Browser fetches Yahoo last/mark via CORS proxies; 15-minute localStorage cache
 
 ## Local URL
 
