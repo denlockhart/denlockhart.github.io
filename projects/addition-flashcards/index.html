@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plus Practice — denlockhart.com</title>
+  <meta name="description" content="Kids addition flash cards — practice adding numbers from 1 to 10.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=15">
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+  <canvas class="fireworks" id="fireworks" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <header class="top">
+      <p class="eyebrow"><a href="/">denlockhart.com</a></p>
+      <div class="title-row">
+        <h1>Plus Practice</h1>
+        <p class="tagline" id="tagline">Addition flash cards — numbers 1 to 10</p>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="lesson" aria-labelledby="lesson-heading">
+        <div class="lesson-head">
+          <h2 id="lesson-heading">Lesson review</h2>
+          <p class="setup-hint">Marked by the <strong>first</strong> answer.</p>
+        </div>
+        <p class="lesson-summary" id="lesson-summary">No cards yet this lesson.</p>
+        <div class="lesson-actions">
+          <button type="button" class="cta secondary" id="btn-review-missed" disabled>Review missed</button>
+          <button type="button" class="linkish" id="btn-clear-lesson">Clear lesson</button>
+        </div>
+        <div class="lesson-lists">
+          <div>
+            <h3>Missed first try</h3>
+            <ul id="list-wrong" class="card-log"></ul>
+          </div>
+          <div>
+            <h3>Right first try</h3>
+            <ul id="list-right" class="card-log"></ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="main-col">
+        <section class="setup" aria-labelledby="setup-heading">
+          <div class="setup-head">
+            <h2 id="setup-heading">Numbers to practice</h2>
+            <p class="setup-hint">One side uses your picks; the other is random 1–10.</p>
+          </div>
+
+          <div class="groups" role="group" aria-label="Number groups">
+            <button type="button" class="group-btn" data-group="all">All 1–10</button>
+            <button type="button" class="group-btn" data-group="small">1–5</button>
+            <button type="button" class="group-btn" data-group="big">6–10</button>
+          </div>
+
+          <div class="number-picks" id="number-picks" role="group" aria-label="Choose numbers 1 to 10"></div>
+          <div class="setup-row">
+            <label class="apple-toggle">
+              <input type="checkbox" id="show-apples" checked>
+              <span>Show apples</span>
+            </label>
+            <div class="lesson-size" role="group" aria-label="Cards this lesson">
+              <span class="lesson-size-label">Cards</span>
+              <button type="button" class="size-btn" data-size="10">10</button>
+              <button type="button" class="size-btn" data-size="20">20</button>
+              <button type="button" class="size-btn" data-size="30">30</button>
+            </div>
+          </div>
+          <p class="setup-status" id="setup-status" role="status"></p>
+        </section>
+
+        <section class="play" aria-label="Practice">
+          <div class="play-bar">
+            <p class="lesson-progress" id="lesson-progress" aria-live="polite">Lesson: 0 of 10</p>
+            <section class="stats" aria-live="polite">
+              <div>
+                <span class="label">Streak</span>
+                <strong id="streak">0</strong>
+              </div>
+              <div>
+                <span class="label">First right</span>
+                <strong id="first-right">0</strong>
+              </div>
+              <div>
+                <span class="label">First wrong</span>
+                <strong id="first-wrong">0</strong>
+              </div>
+            </section>
+          </div>
+
+          <section class="card" id="flash-card" aria-live="polite">
+            <div class="equation" id="equation" aria-label="3 plus 4 equals ?">
+              <div class="term">
+                <span class="num" id="num-a">3</span>
+                <span class="apples" id="apples-a" aria-hidden="true"></span>
+              </div>
+              <span class="op" aria-hidden="true">+</span>
+              <div class="term">
+                <span class="num" id="num-b">4</span>
+                <span class="apples" id="apples-b" aria-hidden="true"></span>
+              </div>
+              <span class="op" aria-hidden="true">=</span>
+              <span class="num result" id="num-sum">?</span>
+            </div>
+            <p class="feedback" id="feedback" role="status"></p>
+          </section>
+
+          <section class="choices" aria-label="Answer choices">
+            <button type="button" class="choice" data-choice></button>
+            <button type="button" class="choice" data-choice></button>
+            <button type="button" class="choice" data-choice></button>
+            <button type="button" class="choice" data-choice></button>
+          </section>
+
+          <div class="actions">
+            <button type="button" class="cta new-card" id="btn-next">Next card</button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js?v=15"></script>
+</body>
+</html>

@@ -75,6 +75,7 @@ Site URL: **http://localhost:3000/**
 | Stratagem Sleeves | http://localhost:3000/projects/stratagem-sleeves/ |
 | Tyranids QRS | http://localhost:3000/projects/tyranid-qrs/ |
 | Market Day | http://localhost:3000/projects/stock-game/ |
+| Plus Practice | http://localhost:3000/projects/addition-flashcards/ |
 
 Use `/projects/<slug>/` paths locally (Netlify short URLs may not work with `serve`).
 

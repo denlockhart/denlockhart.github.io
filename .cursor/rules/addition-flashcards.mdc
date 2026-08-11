@@ -1,0 +1,22 @@
+---
+description: Plus Practice kids addition flash cards
+globs: projects/addition-flashcards/**
+alwaysApply: false
+---
+
+# Plus Practice (`projects/addition-flashcards/`)
+
+Kids addition flash-card game.
+
+## Rules
+
+- One addend from the selected set; the other is random **1–10**
+- Groups: All, 1–5, 6–10 (saved in localStorage)
+- Lesson log by **first answer**; review missed cards after practice
+- Four multiple-choice answers per card
+- Each addend shows matching little apples to count (optional)
+- Stats: streak, first-right, first-wrong
+
+## Local URL
+
+http://localhost:3000/projects/addition-flashcards/
