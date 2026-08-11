@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Market Day — denlockhart.com</title>
-  <meta name="description" content="Multiplayer stock trading game. Start with $10,000, trade 9:30–4:30 Eastern, settle at 6 PM ET.">
-  <link rel="stylesheet" href="style.css?v=3">
+  <meta name="description" content="Multiplayer stock trading game. Start with $10,000, trade weekdays 9:30–4:00 Eastern.">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <header class="top">
     <p class="eyebrow"><a href="/">denlockhart.com</a></p>
     <h1>Market Day</h1>
-    <p class="tagline">Multiplayer paper trading — $10,000 to start, trade 9:30–4:30 Eastern, settle at 6 PM ET.</p>
+    <p class="tagline">Multiplayer paper trading — $10,000 to start, trade weekdays 9:30–4:00 Eastern.</p>
   </header>
 
   <main>
@@ -46,12 +46,8 @@
           <strong id="you-name">—</strong>
         </div>
         <div>
-          <span class="label">Trading hours</span>
-          <strong id="trade-hours-status">9:30–4:30 ET</strong>
-        </div>
-        <div>
-          <span class="label">Next settle (6 PM ET)</span>
-          <strong id="next-settle">6 PM ET</strong>
+          <span class="label">Next quote refresh</span>
+          <strong id="next-quote-refresh">—</strong>
         </div>
         <button type="button" id="btn-leave" class="cta secondary">Leave</button>
       </div>
@@ -79,7 +75,7 @@
           <h2>Market</h2>
           <button type="button" id="btn-refresh-prices" class="linkish">Refresh prices now</button>
         </div>
-        <p class="hint small">40 companies across 8 sectors. Quotes auto-refresh every <strong>15 minutes</strong>.</p>
+        <p class="hint small">40 companies across 8 sectors. One price per ticker: regular 9:30–4:00 ET, after-hours 4:00–4:00 AM, pre-market 4:00–9:30 AM. Quotes refresh on the <strong>Eastern quarter-hour</strong> from <strong>4:00 AM–8:15 PM</strong> (paused 8:20 PM–3:45 AM).</p>
         <label class="search-label">
           Search ticker, name, or sector
           <input id="market-search" type="search" placeholder="e.g. AAPL, Energy, Retail" autocomplete="off">
@@ -108,9 +104,9 @@
         <ul>
           <li>Each player begins with <strong>$10,000</strong>.</li>
           <li>Buy a <strong>dollar amount</strong> of shares during market hours (fractional shares allowed).</li>
-          <li>Trading is allowed <strong>weekdays 9:30 AM–4:30 PM Eastern</strong> only.</li>
-          <li>Market prices refresh about every <strong>15 minutes</strong> (Yahoo last/mark).</li>
-          <li>At <strong>6:00 PM Eastern</strong> on weekdays, the app recalculates every player’s balance (cash + holdings). Shares stay open overnight.</li>
+          <li>Trading is allowed <strong>weekdays 9:30 AM–4:00 PM Eastern</strong> only.</li>
+          <li>Quotes refresh on the <strong>Eastern quarter-hour</strong> from <strong>4:00 AM–8:15 PM</strong> (no updates 8:20 PM–3:45 AM). Each ticker shows one price for the current Eastern session: regular (9:30–4:00), after hours (4:00–4:00 AM), or pre-market (4:00–9:30 AM).</li>
+          <li>Equity is always cash + holdings at the latest marked price. Shares stay open overnight.</li>
           <li>You can sell holdings back to cash at the current marked price.</li>
         </ul>
       </section>
@@ -118,7 +114,7 @@
   </main>
 
   <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
-  <script src="prices.js?v=7"></script>
-  <script src="app.js?v=7"></script>
+  <script src="prices.js?v=18"></script>
+  <script src="app.js?v=18"></script>
 </body>
 </html>

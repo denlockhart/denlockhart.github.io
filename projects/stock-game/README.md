@@ -6,15 +6,18 @@ Multiplayer paper-trading game for denlockhart.com.
 
 - Each player starts with **$10,000**
 - Buy a **dollar amount** of shares anytime during the day
-- Trading window: **weekdays 9:30 AM–4:30 PM Eastern**
+- Trading window: **weekdays 9:30 AM–4:00 PM Eastern**
 - **40 curated tickers** across Energy, Retail, Technology, Healthcare, Financials, Consumer, Industrials, Communications
-- Quotes **auto-refresh every 15 minutes**
-- At **6:00 PM Eastern** (weekdays), holdings are marked for each player’s balance (shares stay open)
+- Quotes refresh on the **Eastern quarter-hour** from **4:00 AM–8:15 PM** only (paused 8:20 PM–3:45 AM); the app loads them automatically
+- Each ticker shows **one price** for the current Eastern session: regular (9:30–4:00), after hours (4:00–4:00 AM), or pre-market (4:00–9:30 AM)
+- Equity is always cash + holdings at the latest marked price (shares stay open overnight)
 
 ## Universe & prices
 
 - `tickers.json` — curated cross-sector list (rebuild: `npm run stock-game:tickers`)
-- Browser fetches Yahoo last/mark via CORS proxies; 15-minute localStorage cache
+- `prices-live.json` — live quotes (refresh: `npm run stock-game:prices`)
+- GitHub Action `.github/workflows/market-day-prices.yml` updates the sheet on weekday quarter-hours covering ~4:00 AM–8:15 PM Eastern
+- In-app **Refresh prices now** reloads the published sheet (browser Yahoo CORS proxies were too unreliable)
 
 ## Local URL
 

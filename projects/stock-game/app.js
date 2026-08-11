@@ -15,8 +15,10 @@ let peer = null;
 let hostConn = null; // guest → host
 const guestConns = new Map(); // host: peerId → conn
 let market = null; // price payload
-let settleTimer = null;
+let clockTimer = null;
 let priceTimer = null;
+let quoteRefreshInFlight = false;
+let lastPolledQuarterKey = null;
 
 function money(n) {
   return n.toLocaleString(undefined, { style: "currency", currency: "USD" });
@@ -49,7 +51,6 @@ function newRoom(hostName) {
   return {
     code: roomCode(),
     createdAt: new Date().toISOString(),
-    lastSettledDate: null,
     players: [host],
     hostPlayerId: host.id,
     log: [],
@@ -124,82 +125,79 @@ function applyRemoteState(next) {
   render();
 }
 
-function msUntilNextSettle(from = new Date()) {
-  return window.MarketDayPrices.msUntilNextSettle(from);
-}
-
 function formatCountdown(ms) {
   const s = Math.max(0, Math.floor(ms / 1000));
   const h = Math.floor(s / 3600);
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
-  return `${h}h ${String(m).padStart(2, "0")}m ${String(sec).padStart(2, "0")}s`;
+  if (h > 0) return `${h}h ${String(m).padStart(2, "0")}m ${String(sec).padStart(2, "0")}s`;
+  return `${m}m ${String(sec).padStart(2, "0")}s`;
 }
 
-function settleLabel() {
-  const next = window.MarketDayPrices.nextSettleAt(new Date(), { after: true });
-  const when = next.toLocaleString(undefined, {
-    timeZone: window.MarketDayPrices.ET,
-    weekday: "short",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short",
-  });
-  return `${formatCountdown(window.MarketDayPrices.msUntilNextSettle())} · ${when}`;
+function quoteRefreshLabel() {
+  if (quoteRefreshInFlight) return "Refreshing…";
+  if (!window.MarketDayPrices.isQuoteRefreshHours()) {
+    const next = window.MarketDayPrices.nextQuoteRefreshAt();
+    const when = next.toLocaleTimeString(undefined, {
+      timeZone: window.MarketDayPrices.ET,
+      hour: "numeric",
+      minute: "2-digit",
+      timeZoneName: "short",
+    });
+    return `Paused · resumes ${when}`;
+  }
+  const ms = window.MarketDayPrices.msUntilNextQuoteRefresh();
+  if (ms <= 0) return "Refreshing…";
+  return formatCountdown(ms);
 }
 
-async function ensurePrices(force = false) {
-  setStatus(priceStatus, "Loading prior-close prices…");
-  market = await window.MarketDayPrices.getMarketPrices({
-    force,
-    onProgress: (payload) => {
-      market = payload;
-      const note = priceNote(payload);
-      setStatus(priceStatus, note, payload.source === "prior-close-seed" ? "" : "");
-      renderPortfolio();
-      renderLeaderboard();
-      renderMarket();
-    },
-  });
-  setStatus(priceStatus, priceNote(market));
-  return market;
+async function ensurePrices(force = false, { quiet = false } = {}) {
+  if (!quiet) setStatus(priceStatus, force ? "Refreshing prices…" : "Loading prices…");
+  try {
+    market = await window.MarketDayPrices.getMarketPrices({
+      force,
+      onProgress: (payload) => {
+        market = payload;
+        setStatus(priceStatus, priceNote(payload), payload.source?.includes("fallback") ? "warn" : "");
+        renderPortfolio();
+        renderLeaderboard();
+        renderMarket();
+      },
+    });
+    setStatus(priceStatus, priceNote(market), market.source?.includes("fallback") ? "warn" : "");
+    lastPolledQuarterKey = window.MarketDayPrices.etQuarterKey();
+    return market;
+  } catch (err) {
+    setStatus(priceStatus, `Price refresh failed: ${err.message || err}`, "warn");
+    throw err;
+  }
+}
+
+async function refreshPricesFromSheet({ quiet = true } = {}) {
+  if (!state || quoteRefreshInFlight) return;
+  quoteRefreshInFlight = true;
+  try {
+    await ensurePrices(true, { quiet });
+    render();
+  } catch {
+    /* status already set */
+  } finally {
+    quoteRefreshInFlight = false;
+  }
 }
 
 function priceNote(payload) {
   const when = payload.fetchedAt
     ? new Date(payload.fetchedAt).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
     : "";
-  const mins = payload.refreshMinutes || window.MarketDayPrices.catalogMeta.refreshMinutes || 15;
-  if (payload.source === "seed") {
-    return `Seed prices loaded (${payload.total} names). Fetching Yahoo quotes…`;
+  const sessionBit = payload.sessionLabel ? ` · ${payload.sessionLabel}` : "";
+  if (payload.source === "seed" || payload.source === "seed-fallback") {
+    return `Using seed prices${sessionBit}${payload.error ? ` (${payload.error})` : ""}. Published live sheet unavailable.`;
   }
-  return `Prices updated ${when || "just now"} · ${payload.liveCount || 0}/${payload.total || "?"} live · auto-refresh every ${mins} min`;
-}
-
-async function settleIfNeeded(force = false) {
-  if (!state || !market) return;
-  const session = window.MarketDayPrices.lastSettleKey();
-  if (!force && state.lastSettledDate === session) return;
-
-  const prices = market.prices;
-  const snapshot = state.players.map((p) => ({
-    id: p.id,
-    name: p.name,
-    cash: p.cash,
-    holdingsValue: holdingValue(p, prices),
-    equity: equity(p, prices),
-  }));
-  state.lastSettledDate = session;
-  state.lastSettlement = { date: session, at: new Date().toISOString(), snapshot };
-  state.log.unshift({
-    at: new Date().toISOString(),
-    text: `6 PM ET settle ${session}: balances marked to latest prices.`,
-  });
-  state.log = state.log.slice(0, 20);
-  for (const p of state.players) p.buysToday = [];
-  if (you.isHost) broadcastState();
-  else saveRoomLocal(state);
-  render();
+  const ageMin =
+    typeof payload.sheetAgeMs === "number" ? Math.max(0, Math.round(payload.sheetAgeMs / 60000)) : null;
+  const ageBit = ageMin != null ? ` · sheet age ${ageMin}m` : "";
+  return `Prices from ${when || "just now"}${sessionBit} · ${payload.liveCount || 0}/${payload.total || "?"} quotes${ageBit} · quarter-hour 4:00 AM–8:15 PM ET`;
 }
 
 function assertTradingOpen() {
@@ -428,7 +426,7 @@ function renderMarket() {
   body.querySelectorAll("[data-buy-btn]").forEach((btn) => {
     const open = window.MarketDayPrices.isTradingOpen();
     btn.disabled = !open;
-    btn.title = open ? "Buy" : "Trading closed (9:30 AM–4:30 PM Eastern weekdays)";
+    btn.title = open ? "Buy" : "Trading closed (9:30 AM–4:00 PM Eastern weekdays)";
     btn.addEventListener("click", () => {
       const sym = btn.getAttribute("data-buy-btn");
       const input = body.querySelector(`input[data-buy="${sym}"]`);
@@ -509,38 +507,53 @@ function render() {
 }
 
 function tickCountdown() {
-  $("#next-settle").textContent = settleLabel();
-  const status = window.MarketDayPrices.tradingStatus();
-  const el = $("#trade-hours-status");
-  if (el) {
-    el.textContent = status.open
-      ? `Open · ${status.detail}`
-      : `Closed · ${status.detail}`;
-    el.dataset.open = status.open ? "1" : "0";
+  const quoteEl = $("#next-quote-refresh");
+  if (quoteEl) quoteEl.textContent = quoteRefreshLabel();
+
+  if (market?.quotes) {
+    const prevSession = market.session;
+    market = window.MarketDayPrices.applyCurrentSession(market);
+    if (market.session !== prevSession) {
+      setStatus(priceStatus, priceNote(market), market.source?.includes("fallback") ? "warn" : "");
+      if (state) {
+        renderMarket();
+        renderPortfolio();
+        renderLeaderboard();
+      }
+    }
   }
-  document.body.classList.toggle("market-closed", !status.open);
+
+  // Pull at each Eastern quarter-hour during 4:00 AM–8:15 PM ET.
+  const quarterKey = window.MarketDayPrices.etQuarterKey();
+  if (
+    state &&
+    market &&
+    lastPolledQuarterKey &&
+    quarterKey !== lastPolledQuarterKey &&
+    window.MarketDayPrices.isQuoteRefreshHours()
+  ) {
+    refreshPricesFromSheet({ quiet: true });
+  } else if (state && market && quarterKey !== lastPolledQuarterKey && !window.MarketDayPrices.isQuoteRefreshHours()) {
+    // Advance the marker overnight so we don't burst-refresh at 4:00 for every skipped quarter.
+    lastPolledQuarterKey = quarterKey;
+  }
 }
 
-function scheduleSettleWatch() {
-  clearInterval(settleTimer);
-  settleTimer = setInterval(async () => {
-    tickCountdown();
-    const session = window.MarketDayPrices.lastSettleKey();
-    if (state && state.lastSettledDate !== session) {
-      await ensurePrices(true);
-      if (you.isHost || !state.hostPeerId) await settleIfNeeded(true);
-    }
-  }, 1000);
+function scheduleClocks() {
+  clearInterval(clockTimer);
+  clockTimer = setInterval(() => tickCountdown(), 1000);
 }
 
 function schedulePriceRefresh() {
   clearInterval(priceTimer);
-  const ms = window.MarketDayPrices.REFRESH_MS || 15 * 60 * 1000;
-  priceTimer = setInterval(async () => {
-    if (!state) return;
-    await ensurePrices(true);
-    render();
-  }, ms);
+  // Backup: if the tab slept across a quarter-hour, catch up within a minute.
+  priceTimer = setInterval(() => {
+    if (!state || !market || !window.MarketDayPrices.isQuoteRefreshHours()) return;
+    const quarterKey = window.MarketDayPrices.etQuarterKey();
+    if (lastPolledQuarterKey && quarterKey !== lastPolledQuarterKey) {
+      refreshPricesFromSheet({ quiet: true });
+    }
+  }, 60 * 1000);
 }
 
 async function enterRoom(room, playerId, name, isHost) {
@@ -549,10 +562,9 @@ async function enterRoom(room, playerId, name, isHost) {
   saveRoomLocal(room);
   saveSession();
   showGame();
-  await ensurePrices();
-  await settleIfNeeded();
+  await ensurePrices(true);
   render();
-  scheduleSettleWatch();
+  scheduleClocks();
   schedulePriceRefresh();
 }
 
@@ -589,7 +601,7 @@ async function joinGame() {
       showGame();
       await ensurePrices();
       await joinHostPeer(peerId, name);
-      scheduleSettleWatch();
+      scheduleClocks();
       schedulePriceRefresh();
       setStatus(lobbyStatus, "");
       return;
@@ -630,7 +642,7 @@ function leaveGame() {
   peer = null;
   hostConn = null;
   guestConns.clear();
-  clearInterval(settleTimer);
+  clearInterval(clockTimer);
   clearInterval(priceTimer);
   state = null;
   clearSession();
@@ -642,8 +654,19 @@ $("#btn-create").addEventListener("click", () => createGame());
 $("#btn-join").addEventListener("click", () => joinGame());
 $("#btn-leave").addEventListener("click", () => leaveGame());
 $("#btn-refresh-prices").addEventListener("click", async () => {
-  await ensurePrices(true);
-  render();
+  const btn = $("#btn-refresh-prices");
+  if (btn) btn.disabled = true;
+  try {
+    await refreshPricesFromSheet({ quiet: false });
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && state && window.MarketDayPrices.isQuoteRefreshHours()) {
+    refreshPricesFromSheet({ quiet: true });
+  }
 });
 $("#market-search")?.addEventListener("input", () => renderMarket());
 $("#btn-copy").addEventListener("click", async () => {
@@ -670,9 +693,9 @@ $("#btn-copy").addEventListener("click", async () => {
       you = { id: session.playerId, name: session.name, isHost: false };
       state = room;
       showGame();
-      await ensurePrices();
+      await ensurePrices(true);
       await joinHostPeer(room.hostPeerId, session.name);
-      scheduleSettleWatch();
+      scheduleClocks();
       schedulePriceRefresh();
       render();
     } else {

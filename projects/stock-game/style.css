@@ -140,10 +140,6 @@ input[type="text"], input[type="number"] {
   cursor: not-allowed;
 }
 
-body.market-closed #trade-hours-status {
-  color: var(--warn);
-}
-
 .linkish {
   appearance: none;
   border: 0;

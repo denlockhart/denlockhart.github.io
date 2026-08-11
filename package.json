@@ -17,6 +17,7 @@
     "serve:autostart": "node scripts/install-serve-autostart.mjs",
     "serve:autostart:remove": "node scripts/install-serve-autostart.mjs --remove",
     "stock-game:tickers": "node scripts/build-stock-tickers.mjs",
+    "stock-game:prices": "node scripts/refresh-stock-prices.mjs",
     "stratagem-sleeves": "node scripts/generate-stratagem-sleeves.mjs",
     "stratagem-sleeves:list": "node scripts/generate-stratagem-sleeves.mjs --list-presets",
     "stratagem-sleeves:ui": "node scripts/stratagem-sleeves-server.mjs",

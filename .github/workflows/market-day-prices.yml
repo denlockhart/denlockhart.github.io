@@ -1,0 +1,34 @@
+name: market-day-prices
+on:
+  schedule:
+    # Weekday quarter-hours covering ~4:00 AM–8:15 PM Eastern
+    # EDT (UTC-4): 4 AM–8:15 PM ET = 08:00–00:15 UTC
+    # EST (UTC-5): 4 AM–8:15 PM ET = 09:00–01:15 UTC
+    - cron: "*/15 8-23 * * 1-5"
+    - cron: "0,15 0-1 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Refresh Yahoo prices
+        run: node scripts/refresh-stock-prices.mjs
+      - name: Commit price sheet if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects/stock-game/prices-live.json
+          if git diff --staged --quiet; then
+            echo "No price changes"
+          else
+            git commit -m "Update Market Day live prices"
+            git push
+          fi
