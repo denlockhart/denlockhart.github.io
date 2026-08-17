@@ -76,6 +76,7 @@ main {
 .timer-panel.phase-work { border-color: var(--work); }
 .timer-panel.phase-rest { border-color: var(--rest); }
 .timer-panel.phase-done { border-color: var(--gold); }
+.timer-panel.phase-countdown { border-color: var(--gold); }
 
 .phase-label {
   margin: 0 0 0.5rem;
@@ -89,6 +90,7 @@ main {
 .phase-work .phase-label { color: var(--work); }
 .phase-rest .phase-label { color: var(--rest); }
 .phase-done .phase-label { color: var(--gold); }
+.phase-countdown .phase-label { color: var(--gold); }
 
 .timer-display {
   margin: 0;
@@ -121,6 +123,7 @@ main {
 
 .phase-work .progress-fill { background: var(--work); }
 .phase-rest .progress-fill { background: var(--rest); }
+.phase-countdown .progress-fill { background: var(--gold); }
 
 .actions {
   display: flex;
@@ -252,3 +255,22 @@ footer {
 
 footer a { color: var(--gold); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
+
+.install-hint {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.install-hint strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.install-status {
+  margin: 0.65rem 0 0;
+  min-height: 1.2rem;
+  color: var(--gold);
+  font-size: 0.85rem;
+}

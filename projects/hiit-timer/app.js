@@ -235,10 +235,11 @@ function fmtTime(sec) {
 }
 
 function setPhaseClass() {
-  panel.classList.remove("phase-work", "phase-rest", "phase-done");
+  panel.classList.remove("phase-work", "phase-rest", "phase-done", "phase-countdown");
   if (state.phase === "work") panel.classList.add("phase-work");
   else if (state.phase === "rest") panel.classList.add("phase-rest");
   else if (state.phase === "done") panel.classList.add("phase-done");
+  else if (state.phase === "countdown") panel.classList.add("phase-countdown");
 }
 
 function updateUI() {
@@ -264,6 +265,18 @@ function updateUI() {
     btnStart.textContent = "Start";
     btnStart.disabled = false;
     btnPause.disabled = true;
+    return;
+  }
+
+  if (state.phase === "countdown") {
+    phaseLabel.textContent = "Get ready";
+    timerDisplay.textContent = String(state.secondsLeft);
+    roundLabel.textContent = "Starting Round 1 of " + state.totalRounds;
+    const elapsed = 3 - state.secondsLeft;
+    progressFill.style.width = (elapsed / 3) * 100 + "%";
+    btnStart.disabled = true;
+    btnPause.disabled = false;
+    btnPause.textContent = state.running ? "Pause" : "Resume";
     return;
   }
 
@@ -306,6 +319,16 @@ function startInterval() {
 function tick() {
   if (state.secondsLeft > 0) {
     state.secondsLeft--;
+    if (!(state.phase === "countdown" && state.secondsLeft === 0)) {
+      updateUI();
+      return;
+    }
+  }
+
+  if (state.phase === "countdown") {
+    announce("work");
+    state.phase = "work";
+    state.secondsLeft = state.workSec;
     updateUI();
     return;
   }
@@ -339,10 +362,9 @@ function start() {
   unlockAudio().then(() => startAudioKeepAlive());
   const fresh = state.phase === "idle" || state.phase === "done";
   if (fresh) {
-    state.phase = "work";
+    state.phase = "countdown";
     state.round = 1;
-    state.secondsLeft = state.workSec;
-    announce("work");
+    state.secondsLeft = 3;
   }
   startInterval();
   updateUI();
@@ -351,7 +373,7 @@ function start() {
 function pause() {
   if (state.running) {
     stopInterval();
-  } else if (state.phase === "work" || state.phase === "rest") {
+  } else if (state.phase === "work" || state.phase === "rest" || state.phase === "countdown") {
     startInterval();
   }
   updateUI();
@@ -398,6 +420,50 @@ soundToggle.addEventListener("change", () => {
 btnStart.onclick = start;
 btnPause.onclick = pause;
 btnReset.onclick = reset;
+
+const SHARE_URL = "https://www.denlockhart.com/projects/hiit-timer/";
+const btnShare = document.getElementById("btn-share");
+const btnCopyLink = document.getElementById("btn-copy-link");
+const installStatus = document.getElementById("install-status");
+
+function setInstallStatus(msg) {
+  if (installStatus) installStatus.textContent = msg || "";
+}
+
+async function shareTimerLink() {
+  setInstallStatus("");
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "HIIT Timer",
+        text: "HIIT Timer — work/rest interval timer",
+        url: SHARE_URL,
+      });
+      setInstallStatus("Shared.");
+      return;
+    } catch (err) {
+      if (err && err.name === "AbortError") return;
+    }
+  }
+  await copyTimerLink();
+}
+
+async function copyTimerLink() {
+  setInstallStatus("");
+  try {
+    await navigator.clipboard.writeText(SHARE_URL);
+    setInstallStatus("Copied: " + SHARE_URL);
+  } catch (_) {
+    setInstallStatus(SHARE_URL);
+  }
+}
+
+btnShare?.addEventListener("click", () => {
+  shareTimerLink();
+});
+btnCopyLink?.addEventListener("click", () => {
+  copyTimerLink();
+});
 
 loadCueBuffers();
 loadSettings();
