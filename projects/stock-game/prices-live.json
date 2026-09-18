@@ -1,293 +1,293 @@
 {
-  "fetchedAt": "2026-09-18T01:53:55.117Z",
+  "fetchedAt": "2026-09-18T12:46:28.435Z",
   "source": "yahoo-direct",
-  "session": "post",
+  "session": "pre",
   "liveCount": 40,
   "total": 40,
   "refreshMinutes": 15,
   "quotes": {
-    "COP": {
-      "regular": 133.19,
-      "pre": 130.85,
-      "post": 133.3,
-      "previousClose": 132.54
-    },
-    "TGT": {
-      "regular": 159.83,
-      "pre": 155.55,
-      "post": 159.73,
-      "previousClose": 154.68
+    "WMT": {
+      "regular": 106.79,
+      "pre": 106.57,
+      "post": null,
+      "previousClose": 107.5
     },
     "EOG": {
       "regular": 145.47,
-      "pre": 143,
-      "post": 145.66,
+      "pre": 144.65,
+      "post": null,
       "previousClose": 144.93
     },
-    "WMT": {
-      "regular": 106.79,
-      "pre": 107.75,
-      "post": 106.74,
-      "previousClose": 107.5
+    "TGT": {
+      "regular": 159.83,
+      "pre": 159.27,
+      "post": null,
+      "previousClose": 154.68
     },
-    "XOM": {
-      "regular": 163.27,
-      "pre": 161.93,
-      "post": 163.47,
-      "previousClose": 163.32
-    },
-    "CVX": {
-      "regular": 211.57,
-      "pre": 209.78,
-      "post": 212.02,
-      "previousClose": 211.54
+    "COP": {
+      "regular": 133.19,
+      "pre": 133.33,
+      "post": null,
+      "previousClose": 132.54
     },
     "SLB": {
       "regular": 52.08,
-      "pre": 52.21,
-      "post": 52.15,
+      "pre": 51.86,
+      "post": null,
       "previousClose": 52.3
     },
     "COST": {
       "regular": 893.93,
-      "pre": 894.47,
-      "post": 894,
+      "pre": 891.85,
+      "post": null,
       "previousClose": 893.74
     },
-    "UNH": {
-      "regular": 375.21,
-      "pre": 377.72,
-      "post": 375.95,
-      "previousClose": 375.26
+    "CVX": {
+      "regular": 211.57,
+      "pre": 210.39,
+      "post": null,
+      "previousClose": 211.54
     },
-    "NVDA": {
-      "regular": 219.34,
-      "pre": 218.4,
-      "post": 219.23,
-      "previousClose": 213.9
-    },
-    "MSFT": {
-      "regular": 497.75,
-      "pre": 497.56,
-      "post": 496.9,
-      "previousClose": 490.3
-    },
-    "LOW": {
-      "regular": 194.19,
-      "pre": 197.01,
-      "post": 194.25,
-      "previousClose": 194.1
+    "XOM": {
+      "regular": 163.27,
+      "pre": 162.56,
+      "post": null,
+      "previousClose": 163.32
     },
     "AVGO": {
       "regular": 347.3,
-      "pre": 346.67,
-      "post": 348.04,
+      "pre": 348.75,
+      "post": null,
       "previousClose": 339.51
     },
     "ORCL": {
       "regular": 150.59,
-      "pre": 146.85,
-      "post": 150.25,
+      "pre": 149.83,
+      "post": null,
       "previousClose": 143.16
     },
-    "HD": {
-      "regular": 302.51,
-      "pre": 308.2,
-      "post": 303,
-      "previousClose": 302.47
+    "LOW": {
+      "regular": 194.19,
+      "pre": 193.72,
+      "post": null,
+      "previousClose": 194.1
+    },
+    "MSFT": {
+      "regular": 497.75,
+      "pre": 497,
+      "post": null,
+      "previousClose": 490.3
     },
     "AAPL": {
       "regular": 337,
-      "pre": 334.79,
-      "post": 336.13,
+      "pre": 337,
+      "post": null,
       "previousClose": 332.41
     },
-    "LLY": {
-      "regular": 1152.44,
-      "pre": 1147.06,
-      "post": 1151.55,
-      "previousClose": 1137.82
+    "NVDA": {
+      "regular": 219.34,
+      "pre": 219.37,
+      "post": null,
+      "previousClose": 213.9
     },
-    "ABBV": {
-      "regular": 264.02,
-      "pre": 263.28,
-      "post": 263.8,
-      "previousClose": 262.51
+    "UNH": {
+      "regular": 375.21,
+      "pre": 375.5,
+      "post": null,
+      "previousClose": 375.26
     },
-    "JPM": {
-      "regular": 349.31,
-      "pre": 352.37,
-      "post": 349.3,
-      "previousClose": 348.92
-    },
-    "BAC": {
-      "regular": 58.18,
-      "pre": 58.43,
-      "post": 58.21,
-      "previousClose": 57.9
-    },
-    "V": {
-      "regular": 369.93,
-      "pre": 371.64,
-      "post": 369.37,
-      "previousClose": 370.93
+    "HD": {
+      "regular": 302.51,
+      "pre": 301.2,
+      "post": null,
+      "previousClose": 302.47
     },
     "GS": {
       "regular": 951.47,
-      "pre": 948.01,
-      "post": 950.6,
+      "pre": 947,
+      "post": null,
       "previousClose": 937.98
+    },
+    "LLY": {
+      "regular": 1152.44,
+      "pre": 1148.44,
+      "post": null,
+      "previousClose": 1137.82
+    },
+    "BAC": {
+      "regular": 58.18,
+      "pre": 57.94,
+      "post": null,
+      "previousClose": 57.9
+    },
+    "JPM": {
+      "regular": 349.31,
+      "pre": 347.66,
+      "post": null,
+      "previousClose": 348.92
+    },
+    "ABBV": {
+      "regular": 264.02,
+      "pre": 262.79,
+      "post": null,
+      "previousClose": 262.51
     },
     "PFE": {
       "regular": 27.64,
-      "pre": 27.58,
-      "post": 27.68,
+      "pre": 27.63,
+      "post": null,
       "previousClose": 27.46
+    },
+    "V": {
+      "regular": 369.93,
+      "pre": 367.98,
+      "post": null,
+      "previousClose": 370.93
     },
     "JNJ": {
       "regular": 270.22,
-      "pre": 268.37,
-      "post": 271,
+      "pre": 268.49,
+      "post": null,
       "previousClose": 267.28
-    },
-    "SBUX": {
-      "regular": 96.67,
-      "pre": 98.03,
-      "post": 96.56,
-      "previousClose": 97.34
-    },
-    "NKE": {
-      "regular": 36.36,
-      "pre": 36.69,
-      "post": 36.39,
-      "previousClose": 35.78
-    },
-    "KO": {
-      "regular": 88.06,
-      "pre": 88.07,
-      "post": 88.08,
-      "previousClose": 87.87
     },
     "GE": {
       "regular": 313.47,
-      "pre": 319.76,
-      "post": 313.7,
+      "pre": 313.57,
+      "post": null,
       "previousClose": 312.9
     },
     "CAT": {
       "regular": 798.57,
-      "pre": 813.3,
-      "post": 798.4,
+      "pre": 801.45,
+      "post": null,
       "previousClose": 782.72
+    },
+    "SBUX": {
+      "regular": 96.67,
+      "pre": 96.39,
+      "post": null,
+      "previousClose": 97.34
     },
     "PEP": {
       "regular": 133.66,
-      "pre": 134.77,
-      "post": 133.84,
+      "pre": 132.76,
+      "post": null,
       "previousClose": 134.34
     },
-    "MA": {
-      "regular": 565.73,
-      "pre": 572.33,
-      "post": 565.26,
-      "previousClose": 567.75
+    "KO": {
+      "regular": 88.06,
+      "pre": 87.65,
+      "post": null,
+      "previousClose": 87.87
+    },
+    "NKE": {
+      "regular": 36.36,
+      "pre": 36.04,
+      "post": null,
+      "previousClose": 35.78
     },
     "MCD": {
       "regular": 248.48,
-      "pre": 249.8,
-      "post": 249.15,
+      "pre": 248.61,
+      "post": null,
       "previousClose": 248.56
     },
-    "GOOGL": {
-      "regular": 347.33,
-      "pre": 348.56,
-      "post": 346.5,
-      "previousClose": 342.87
-    },
-    "HON": {
-      "regular": 206.49,
-      "pre": 209.35,
-      "post": 206.06,
-      "previousClose": 207.66
-    },
-    "DIS": {
-      "regular": 105.35,
-      "pre": 108.12,
-      "post": 105.46,
-      "previousClose": 106.99
-    },
-    "T": {
-      "regular": 25.39,
-      "pre": 25.85,
-      "post": 25.45,
-      "previousClose": 25.86
-    },
-    "UPS": {
-      "regular": 100.17,
-      "pre": 100.05,
-      "post": 100.22,
-      "previousClose": 98.77
-    },
-    "META": {
-      "regular": 682.31,
-      "pre": 682.02,
-      "post": 681.58,
-      "previousClose": 673.31
+    "MA": {
+      "regular": 565.73,
+      "pre": 564.25,
+      "post": null,
+      "previousClose": 567.75
     },
     "NFLX": {
       "regular": 75.31,
-      "pre": 76.85,
-      "post": 75.48,
+      "pre": 72.43,
+      "post": null,
       "previousClose": 76.41
     },
     "BA": {
       "regular": 197,
-      "pre": 204.76,
-      "post": 197.49,
+      "pre": 197.2,
+      "post": null,
       "previousClose": 201.96
+    },
+    "UPS": {
+      "regular": 100.17,
+      "pre": 100.1,
+      "post": null,
+      "previousClose": 98.77
+    },
+    "GOOGL": {
+      "regular": 347.33,
+      "pre": 356.04,
+      "post": null,
+      "previousClose": 342.87
+    },
+    "HON": {
+      "regular": 206.49,
+      "pre": 206,
+      "post": null,
+      "previousClose": 207.66
+    },
+    "META": {
+      "regular": 682.31,
+      "pre": 690.53,
+      "post": null,
+      "previousClose": 673.31
+    },
+    "DIS": {
+      "regular": 105.35,
+      "pre": 105.15,
+      "post": null,
+      "previousClose": 106.99
+    },
+    "T": {
+      "regular": 25.39,
+      "pre": 25.2,
+      "post": null,
+      "previousClose": 25.86
     }
   },
   "prices": {
-    "COP": 133.3,
-    "TGT": 159.73,
-    "EOG": 145.66,
-    "WMT": 106.74,
-    "XOM": 163.47,
-    "CVX": 212.02,
-    "SLB": 52.15,
-    "COST": 894,
-    "UNH": 375.95,
-    "NVDA": 219.23,
-    "MSFT": 496.9,
-    "LOW": 194.25,
-    "AVGO": 348.04,
-    "ORCL": 150.25,
-    "HD": 303,
-    "AAPL": 336.13,
-    "LLY": 1151.55,
-    "ABBV": 263.8,
-    "JPM": 349.3,
-    "BAC": 58.21,
-    "V": 369.37,
-    "GS": 950.6,
-    "PFE": 27.68,
-    "JNJ": 271,
-    "SBUX": 96.56,
-    "NKE": 36.39,
-    "KO": 88.08,
-    "GE": 313.7,
-    "CAT": 798.4,
-    "PEP": 133.84,
-    "MA": 565.26,
-    "MCD": 249.15,
-    "GOOGL": 346.5,
-    "HON": 206.06,
-    "DIS": 105.46,
-    "T": 25.45,
-    "UPS": 100.22,
-    "META": 681.58,
-    "NFLX": 75.48,
-    "BA": 197.49
+    "WMT": 106.57,
+    "EOG": 144.65,
+    "TGT": 159.27,
+    "COP": 133.33,
+    "SLB": 51.86,
+    "COST": 891.85,
+    "CVX": 210.39,
+    "XOM": 162.56,
+    "AVGO": 348.75,
+    "ORCL": 149.83,
+    "LOW": 193.72,
+    "MSFT": 497,
+    "AAPL": 337,
+    "NVDA": 219.37,
+    "UNH": 375.5,
+    "HD": 301.2,
+    "GS": 947,
+    "LLY": 1148.44,
+    "BAC": 57.94,
+    "JPM": 347.66,
+    "ABBV": 262.79,
+    "PFE": 27.63,
+    "V": 367.98,
+    "JNJ": 268.49,
+    "GE": 313.57,
+    "CAT": 801.45,
+    "SBUX": 96.39,
+    "PEP": 132.76,
+    "KO": 87.65,
+    "NKE": 36.04,
+    "MCD": 248.61,
+    "MA": 564.25,
+    "NFLX": 72.43,
+    "BA": 197.2,
+    "UPS": 100.1,
+    "GOOGL": 356.04,
+    "HON": 206,
+    "META": 690.53,
+    "DIS": 105.15,
+    "T": 25.2
   },
   "errors": []
 }
