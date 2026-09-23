@@ -1,0 +1,1231 @@
+{
+  "id": "forces-of-the-abyss-2026",
+  "name": "Forces of the Abyss 2026",
+  "sourceNote": "Full Forces of the Abyss 2026 roster from the Mantic Companion list builder (September 2026). Arcane Library spells that Companion hides behind a subscription are not listed. Command orders are not included in Companion's unit list.",
+  "commandOrders": [],
+  "units": [
+    {
+      "id": "abyssal-warlord",
+      "name": "Abyssal Warlord",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Individual",
+        "Inspiring",
+        "Regeneration (5+)",
+        "Vicious (Combat)",
+        "Demonic Will"
+      ],
+      "makeCore": [
+        {
+          "unit": "abyssal-guard",
+          "sizes": [
+            "regiment",
+            "horde"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 5,
+          "ne": "16+",
+          "ht": 2,
+          "points": 180
+        }
+      ]
+    },
+    {
+      "id": "ba-su-su-the-vile",
+      "name": "Ba'su'su the Vile",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Fly",
+        "Individual",
+        "Inspiring",
+        "Regeneration (5+)"
+      ],
+      "makeOne": [
+        {
+          "unit": "gargoyles",
+          "sizes": [
+            "troop"
+          ],
+          "category": "core"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 7,
+          "ne": "16+",
+          "ht": 2,
+          "points": 235
+        }
+      ]
+    },
+    {
+      "id": "mau-ti-bu-su",
+      "name": "Mau'ti-bu-su",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Brutal (D3)",
+        "Crushing Strength (1)",
+        "Duellist (D3)",
+        "Ensnare",
+        "Fly",
+        "Individual",
+        "Inspiring",
+        "Regeneration (5+)",
+        "Stealthy"
+      ],
+      "makeCore": [
+        {
+          "unit": "tortured-souls",
+          "sizes": [
+            "regiment"
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "whispers-of-wickedness-3",
+          "name": "Whispers of Wickedness (3) [1]",
+          "points": 15
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 7,
+          "ne": "15+",
+          "ht": 2,
+          "points": 240
+        }
+      ]
+    },
+    {
+      "id": "teynne",
+      "name": "Teynne",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Fly",
+        "Individual",
+        "Inspiring",
+        "Regeneration (5+)",
+        "Vicious (Combat)",
+        "Searing Pain"
+      ],
+      "options": [
+        {
+          "id": "fireball-4",
+          "name": "Fireball (4)",
+          "points": 0
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 6,
+          "ne": "16+",
+          "ht": 2,
+          "points": 250
+        }
+      ]
+    },
+    {
+      "id": "archfiend",
+      "name": "Archfiend",
+      "type": "hero-titan",
+      "typeLabel": "Hero (Ti)",
+      "role": "warlord",
+      "traits": [],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (3)",
+        "Fly",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Regeneration (5+)",
+        "Vicious (Combat)"
+      ],
+      "makeCategory": [
+        {
+          "unit": "molochs",
+          "sizes": [
+            "troop",
+            "regiment"
+          ],
+          "category": "specialist"
+        }
+      ],
+      "options": [
+        {
+          "id": "gruesome-host",
+          "name": "Gruesome Host — Moloch Troops and Regiments in this battalion are Specialist",
+          "points": 0,
+          "makeCategory": [
+            {
+              "unit": "molochs",
+              "sizes": [
+                "troop",
+                "regiment"
+              ],
+              "category": "specialist"
+            }
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 9,
+          "ne": "19+",
+          "ht": 5,
+          "points": 315
+        }
+      ]
+    },
+    {
+      "id": "lord-of-lies",
+      "name": "Lord of Lies",
+      "type": "hero-titan",
+      "typeLabel": "Hero (Ti)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (3)",
+        "Fly",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Regeneration (5+)",
+        "Slayer (3)",
+        "Vicious (Combat)",
+        "Seeds of Distrust"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 9,
+          "ne": "19+",
+          "ht": 5,
+          "points": 350
+        }
+      ]
+    },
+    {
+      "id": "harbinger",
+      "name": "Harbinger",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Individual",
+        "Regeneration (5+)",
+        "Very Inspiring",
+        "Yielding"
+      ],
+      "ranged": [
+        {
+          "name": "Firebolt",
+          "range": "18\"",
+          "text": "Piercing (1)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "5+",
+          "sh": "5+",
+          "de": "4+",
+          "us": 1,
+          "att": 2,
+          "ne": "12+",
+          "ht": 2,
+          "points": 100
+        }
+      ]
+    },
+    {
+      "id": "efreet",
+      "name": "Efreet",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [
+        "Spellcaster"
+      ],
+      "special": [
+        "Individual",
+        "Yielding"
+      ],
+      "options": [
+        {
+          "id": "fireball-7",
+          "name": "Fireball (7)",
+          "points": 0
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 7,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 1,
+          "ne": "11+",
+          "ht": 2,
+          "points": 110
+        }
+      ]
+    },
+    {
+      "id": "seductress",
+      "name": "Seductress",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Crushing Strength (1)",
+        "Duellist (D3)",
+        "Ensnare",
+        "Fly",
+        "Individual",
+        "Inspiring",
+        "Regeneration (5+)",
+        "Stealthy"
+      ],
+      "options": [
+        {
+          "id": "enthral-6",
+          "name": "Enthral (6)",
+          "points": 20
+        },
+        {
+          "id": "wind-blast-6",
+          "name": "Wind Blast (6)",
+          "points": 20
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 5,
+          "ne": "14+",
+          "ht": 2,
+          "points": 195
+        }
+      ]
+    },
+    {
+      "id": "warlock",
+      "name": "Warlock",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [
+        "Spellcaster"
+      ],
+      "special": [
+        "Inspiring",
+        "Regeneration (5+)"
+      ],
+      "ranged": [
+        {
+          "name": "Firebolt",
+          "range": "18\"",
+          "text": "Piercing (1)"
+        }
+      ],
+      "options": [
+        {
+          "id": "bane-chant-2",
+          "name": "Bane Chant (2)",
+          "points": 20
+        },
+        {
+          "id": "drain-life-6",
+          "name": "Drain Life (6)",
+          "points": 30
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 6,
+          "me": "4+",
+          "sh": "5+",
+          "de": "4+",
+          "us": 1,
+          "att": 5,
+          "ne": "13+",
+          "ht": 3,
+          "points": 135
+        }
+      ]
+    },
+    {
+      "id": "the-bloody-cardinal",
+      "name": "The Bloody Cardinal",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "champion",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Dread",
+        "Inspiring",
+        "Lifeleech (3)",
+        "Base (50mm)"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 6,
+          "ne": "14+",
+          "ht": 3,
+          "points": 145
+        }
+      ]
+    },
+    {
+      "id": "despoiler",
+      "name": "Despoiler",
+      "type": "hero-monstrous-infantry",
+      "typeLabel": "Hero (Mon Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (2)",
+        "Inspiring",
+        "Regeneration (5+)",
+        "Retaliate!",
+        "Vicious (Combat)"
+      ],
+      "makeOne": [
+        {
+          "unit": "molochs",
+          "sizes": [
+            "regiment"
+          ],
+          "category": "specialist"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 6,
+          "ne": "14+",
+          "ht": 3,
+          "points": 160
+        }
+      ]
+    },
+    {
+      "id": "hellequin-blood-masque",
+      "name": "Hellequin Blood-Masque",
+      "type": "hero-cavalry",
+      "typeLabel": "Hero (Cav)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Crushing Strength (1)",
+        "Duellist (2)",
+        "Individual",
+        "Regeneration (5+)",
+        "Thunderous Charge (1)",
+        "Bloodseeker"
+      ],
+      "makeOne": [
+        {
+          "unit": "abyssal-horsemen",
+          "sizes": [
+            "regiment"
+          ],
+          "category": "core"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 5,
+          "ne": "13+",
+          "ht": 3,
+          "points": 150
+        }
+      ]
+    },
+    {
+      "id": "lower-abyssals",
+      "name": "Lower Abyssals",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Regeneration (5+)"
+      ],
+      "options": [
+        {
+          "id": "two-handed",
+          "name": "Two-handed weapons — De 3+, Crushing Strength (1)",
+          "points": 0,
+          "de": "3+",
+          "addSpecial": [
+            "Crushing Strength (1)"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 10,
+          "ne": "11+",
+          "ht": 2,
+          "points": 75
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 12,
+          "ne": "15+",
+          "ht": 2,
+          "points": 100
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 4,
+          "att": 25,
+          "ne": "22+",
+          "ht": 2,
+          "points": 155
+        }
+      ]
+    },
+    {
+      "id": "flame-bearers",
+      "name": "Flame Bearers",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Middle Circle"
+      ],
+      "special": [
+        "Regeneration (5+)"
+      ],
+      "ranged": [
+        {
+          "name": "Firebolts",
+          "range": "18\"",
+          "text": "Piercing (1)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "5+",
+          "sh": "5+",
+          "de": "3+",
+          "us": 1,
+          "att": 8,
+          "ne": "11+",
+          "ht": 2,
+          "points": 90
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "5+",
+          "sh": "5+",
+          "de": "3+",
+          "us": 2,
+          "att": 10,
+          "ne": "15+",
+          "ht": 2,
+          "points": 120
+        }
+      ]
+    },
+    {
+      "id": "succubi",
+      "name": "Succubi",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Ensnare",
+        "Regeneration (6+)",
+        "Stealthy"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "3+",
+          "us": 1,
+          "att": 15,
+          "ne": "13+",
+          "ht": 2,
+          "points": 120
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "3+",
+          "us": 2,
+          "att": 20,
+          "ne": "17+",
+          "ht": 2,
+          "points": 160
+        }
+      ]
+    },
+    {
+      "id": "gargoyles",
+      "name": "Gargoyles",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Fly",
+        "Regeneration (4+)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 10,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 1,
+          "att": 10,
+          "ne": "10+",
+          "ht": 2,
+          "points": 105
+        }
+      ]
+    },
+    {
+      "id": "imps",
+      "name": "Imps",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Height (1)",
+        "Vicious (Combat)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "3+",
+          "us": 1,
+          "att": 12,
+          "ne": "12+",
+          "ht": 1,
+          "points": 65
+        }
+      ]
+    },
+    {
+      "id": "hellhounds",
+      "name": "Hellhounds",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Nimble",
+        "Thunderous Charge (1)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 9,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 12,
+          "ne": "12+",
+          "ht": 3,
+          "points": 110
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 9,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 24,
+          "ne": "16+",
+          "ht": 3,
+          "points": 175
+        }
+      ]
+    },
+    {
+      "id": "abyssal-guard",
+      "name": "Abyssal Guard",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Crushing Strength (1)",
+        "Fearless",
+        "Regeneration (5+)"
+      ],
+      "options": [
+        {
+          "id": "two-handed",
+          "name": "Two-handed weapons — De 4+, Crushing Strength (2)",
+          "points": 0,
+          "de": "4+",
+          "addSpecial": [
+            "Crushing Strength (2)"
+          ],
+          "dropSpecial": [
+            "Crushing Strength (1)"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 12,
+          "ne": "12+",
+          "ht": 2,
+          "points": 140
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 15,
+          "ne": "16+",
+          "ht": 2,
+          "points": 180
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "specialist",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 4,
+          "att": 25,
+          "ne": "24+",
+          "ht": 2,
+          "points": 280
+        }
+      ]
+    },
+    {
+      "id": "tortured-souls",
+      "name": "Tortured Souls",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Headstrong",
+        "Height (2)",
+        "Lifeleech (2)",
+        "Pathfinder",
+        "Strider",
+        "Thunderous Charge (2)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 7,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 8,
+          "ne": "14+",
+          "ht": 2,
+          "points": 125
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 7,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 16,
+          "ne": "17+",
+          "ht": 2,
+          "points": 180
+        }
+      ]
+    },
+    {
+      "id": "berserkers",
+      "name": "Berserkers",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [
+        "Middle Circle"
+      ],
+      "special": [
+        "Crushing Strength (1)",
+        "Fearless",
+        "Regeneration (5+)",
+        "Wild Charge (1)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 7,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 15,
+          "ne": "15+",
+          "ht": 3,
+          "points": 155
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 7,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 30,
+          "ne": "18+",
+          "ht": 3,
+          "points": 225
+        }
+      ]
+    },
+    {
+      "id": "abyssal-horsemen",
+      "name": "Abyssal Horsemen",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Headstrong",
+        "Regeneration (5+)",
+        "Thunderous Charge (3)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 9,
+          "ne": "13+",
+          "ht": 3,
+          "points": 155
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 18,
+          "ne": "16+",
+          "ht": 3,
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "molochs",
+      "name": "Molochs",
+      "type": "monstrous-infantry",
+      "typeLabel": "Mon Inf",
+      "role": "unit",
+      "traits": [
+        "Lower Circle"
+      ],
+      "special": [
+        "Crushing Strength (2)",
+        "Regeneration (5+)",
+        "Retaliate!"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "support",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 10,
+          "ne": "16+",
+          "ht": 3,
+          "points": 150
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "support",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 20,
+          "ne": "19+",
+          "ht": 3,
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "nagarri",
+      "name": "Nagarri",
+      "type": "chariot",
+      "typeLabel": "Cht",
+      "role": "unit",
+      "traits": [
+        "Lower Circle"
+      ],
+      "special": [
+        "Crushing Strength (2)",
+        "Pathfinder",
+        "Rallying",
+        "Retaliate!",
+        "Thunderous Charge (1)"
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "support",
+          "sp": 7,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 12,
+          "ne": "15+",
+          "ht": 4,
+          "points": 175
+        }
+      ]
+    },
+    {
+      "id": "chroneas",
+      "name": "Chroneas",
+      "type": "monster",
+      "typeLabel": "Mon",
+      "role": "unit",
+      "traits": [
+        "Upper Circle"
+      ],
+      "special": [
+        "Cloak of Death",
+        "Crushing Strength (3)",
+        "Fearless",
+        "Strider",
+        "Temporal Ruptures"
+      ],
+      "sizes": [
+        {
+          "id": "monster",
+          "name": "Monster",
+          "category": "support",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": "D6+6",
+          "ne": "18+",
+          "ht": 5,
+          "points": 235
+        }
+      ]
+    },
+    {
+      "id": "the-well-of-souls",
+      "name": "The Well of Souls",
+      "type": "monster",
+      "typeLabel": "Mon",
+      "role": "unit",
+      "unique": true,
+      "traits": [
+        "Lower Circle"
+      ],
+      "special": [
+        "Crushing Strength (2)",
+        "Fearless",
+        "Fly",
+        "Lifeleech (5)",
+        "Demonic Life-force"
+      ],
+      "sizes": [
+        {
+          "id": "monster",
+          "name": "Monster",
+          "category": "support",
+          "sp": 8,
+          "me": "4+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 10,
+          "ne": "20+",
+          "ht": 5,
+          "points": 275
+        }
+      ]
+    },
+    {
+      "id": "abyssal-fiend",
+      "name": "Abyssal Fiend",
+      "type": "titan",
+      "typeLabel": "Ti",
+      "role": "unit",
+      "traits": [
+        "Lower Circle"
+      ],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (2)",
+        "Rallying (Upper Circle Trait only)",
+        "Retaliate!",
+        "Vicious (Combat)"
+      ],
+      "options": [
+        {
+          "id": "fireball-5",
+          "name": "Fireball (5)",
+          "points": 0
+        }
+      ],
+      "sizes": [
+        {
+          "id": "titan",
+          "name": "Titan",
+          "category": "support",
+          "sp": 7,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 7,
+          "ne": "17+",
+          "ht": 5,
+          "points": 205
+        }
+      ]
+    }
+  ]
+}

@@ -24,6 +24,11 @@
       "id": "basilea",
       "name": "Basilea",
       "file": "basilea.json"
+    },
+    {
+      "id": "forces-of-the-abyss-2026",
+      "name": "Forces of the Abyss 2026",
+      "file": "forces-of-the-abyss-2026.json"
     }
   ]
 }

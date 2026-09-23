@@ -7,7 +7,7 @@ Build Kings of War **4th Edition** army lists by battalion. Pick a faction, add 
 - **Rules:** [Mantic — Building Armies](https://www.manticgames.com/news/kings-of-war-4th-edition-building-armies/)
 - **Official builder:** [Mantic Companion](https://companion.manticgames.com/kings-of-war-4th-edition-list-builder/)
 
-This is an **unofficial fan tool**. Orcs and Ratkin catalogs are the full Companion rosters. Kingdoms of Men and Basilea are still starter lists from published exports. Verify profiles and points against the Core Rulebook or Companion before play.
+This is an **unofficial fan tool**. Orcs, Ratkin, Basilea, Kingdoms of Men, and Forces of the Abyss 2026 catalogs are the full Companion rosters (Basilea is Basileans 2026). Verify profiles and points against the Core Rulebook or Companion before play.
 
 ## Layout
 

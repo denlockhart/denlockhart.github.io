@@ -1,7 +1,7 @@
 {
   "id": "kingdoms-of-men",
   "name": "Kingdoms of Men",
-  "sourceNote": "Starter catalog from published 4th-edition Companion lists (including a 2500pt kowmasters export). Not the full 64-entry army.",
+  "sourceNote": "Full Kingdoms of Men roster from the Mantic Companion list builder (September 2026). Arcane Library spells that Companion hides behind a subscription are not listed. Mount options set Speed as printed.",
   "commandOrders": [
     {
       "name": "Indomitable Will",
@@ -16,39 +16,72 @@
   ],
   "units": [
     {
-      "id": "baron-on-winged-beast",
-      "name": "Baron on Winged Beast",
-      "type": "hero-large-cavalry",
-      "typeLabel": "Hero (Lrg Cav)",
+      "id": "prince",
+      "name": "Prince",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
       "role": "warlord",
       "traits": [],
-      "special": ["Crushing Strength (2)", "Fly", "Very Inspiring"],
+      "special": [
+        "Crushing Strength (1)",
+        "Duellist (D3)",
+        "Individual",
+        "Very Inspiring",
+        "Symbol of the People"
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Hero (Cav)",
+          "points": 25,
+          "sp": 8
+        }
+      ],
       "sizes": [
         {
           "id": "hero",
           "name": "Warlord",
           "category": "commander",
-          "sp": 9,
+          "sp": 5,
           "me": "3+",
           "sh": "-",
           "de": "5+",
           "us": 2,
-          "att": 8,
-          "ne": "14",
-          "ht": 4,
-          "points": 190
+          "att": 4,
+          "ne": "13+",
+          "ht": 2,
+          "points": 125
         }
       ]
     },
     {
-      "id": "the-captain",
-      "name": "The Captain",
+      "id": "baron",
+      "name": "Baron",
       "type": "hero-infantry",
       "typeLabel": "Hero (Inf)",
       "role": "warlord",
-      "unique": true,
       "traits": [],
-      "special": ["Crushing Strength (1)", "Rallying (Mercenary Trait only)", "Individual", "Very Inspiring", "Master Tactician"],
+      "special": [
+        "Crushing Strength (1)",
+        "Individual",
+        "Very Inspiring"
+      ],
+      "makeCore": [
+        {
+          "unit": "foot-guard",
+          "sizes": [
+            "regiment"
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Hero (Cav)",
+          "points": 25,
+          "sp": 8
+        }
+      ],
       "sizes": [
         {
           "id": "hero",
@@ -60,9 +93,142 @@
           "de": "5+",
           "us": 2,
           "att": 5,
-          "ne": "15",
+          "ne": "14+",
+          "ht": 2,
+          "points": 130
+        }
+      ]
+    },
+    {
+      "id": "duke",
+      "name": "Duke",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Aura (Iron Resolve (+1) - Noble Trait only)",
+        "Crushing Strength (1)",
+        "Elite (Combat)",
+        "Individual",
+        "Very Inspiring"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 6,
+          "ne": "14+",
+          "ht": 2,
+          "points": 160
+        }
+      ]
+    },
+    {
+      "id": "the-captain",
+      "name": "The Captain",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Crushing Strength (1)",
+        "Rallying (Mercenary Trait only)",
+        "Individual",
+        "Very Inspiring",
+        "Master Tactician"
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Hero (Cav)",
+          "points": 25,
+          "sp": 8
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 5,
+          "ne": "15+",
           "ht": 2,
           "points": 165
+        }
+      ]
+    },
+    {
+      "id": "baron-on-winged-beast",
+      "name": "Baron on Winged Beast",
+      "type": "hero-large-cavalry",
+      "typeLabel": "Hero (Lrg Cav)",
+      "role": "warlord",
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Fly",
+        "Very Inspiring"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 9,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 8,
+          "ne": "14+",
+          "ht": 4,
+          "points": 190
+        }
+      ]
+    },
+    {
+      "id": "duke-on-great-winged-beast",
+      "name": "Duke (on Great Winged Beast)",
+      "type": "hero-monster",
+      "typeLabel": "Hero (Mon)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Aura (Iron Resolve (+1))",
+        "Crushing Strength (3)",
+        "Elite (Combat)",
+        "Fly",
+        "Very Inspiring"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 9,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 10,
+          "ne": "17+",
+          "ht": 5,
+          "points": 280
         }
       ]
     },
@@ -73,8 +239,46 @@
       "typeLabel": "Hero (Inf)",
       "role": "champion",
       "limit": 2,
-      "traits": ["Spellcaster"],
-      "special": ["Individual", "Yielding"],
+      "traits": [
+        "Spellcaster"
+      ],
+      "special": [
+        "Individual",
+        "Yielding"
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Hero (Cav)",
+          "points": 15,
+          "sp": 8
+        },
+        {
+          "id": "fireball-3",
+          "name": "Fireball (3)",
+          "points": 20
+        },
+        {
+          "id": "bane-chant-2",
+          "name": "Bane Chant (2)",
+          "points": 20
+        },
+        {
+          "id": "heal-3",
+          "name": "Heal (3)",
+          "points": 15
+        },
+        {
+          "id": "lightning-bolt-3",
+          "name": "Lightning Bolt (3)",
+          "points": 20
+        },
+        {
+          "id": "wind-blast-5",
+          "name": "Wind Blast (5)",
+          "points": 20
+        }
+      ],
       "sizes": [
         {
           "id": "hero",
@@ -86,9 +290,240 @@
           "de": "4+",
           "us": 1,
           "att": 1,
-          "ne": "12",
+          "ne": "12+",
           "ht": 2,
           "points": 60
+        }
+      ]
+    },
+    {
+      "id": "army-standard-bearer",
+      "name": "Army Standard Bearer",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Individual",
+        "Very Inspiring",
+        "Yielding"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 1,
+          "ne": "11+",
+          "ht": 2,
+          "points": 70
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Crushing Strength (1)",
+        "Individual",
+        "Inspiring",
+        "Rallying (Stoic or Noble Traits only)",
+        "Bob or Amanda"
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Hero (Cav)",
+          "points": 15,
+          "sp": 8
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 3,
+          "ne": "12+",
+          "ht": 2,
+          "points": 115
+        }
+      ]
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 1,
+      "traits": [],
+      "special": [
+        "Crushing Strength (1)",
+        "Duellist (D3+1)",
+        "Individual",
+        "Feint",
+        "Stealthy",
+        "Vicious"
+      ],
+      "ranged": [
+        {
+          "name": "Throwing Dagger",
+          "range": "12\"",
+          "text": "Piercing (1)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 6,
+          "me": "3+",
+          "sh": "4+",
+          "de": "4+",
+          "us": 1,
+          "att": 4,
+          "ne": "12+",
+          "ht": 2,
+          "points": 135
+        }
+      ]
+    },
+    {
+      "id": "halberdiers",
+      "name": "Halberdiers",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Mercenary",
+        "Stoic"
+      ],
+      "special": [
+        "Crushing Strength (1)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 1,
+          "att": 10,
+          "ne": "11+",
+          "ht": 2,
+          "points": 70
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 2,
+          "att": 12,
+          "ne": "15+",
+          "ht": 2,
+          "points": 90
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 4,
+          "att": 25,
+          "ne": "24+",
+          "ht": 2,
+          "points": 160
+        }
+      ]
+    },
+    {
+      "id": "militia-mob",
+      "name": "Militia Mob",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Mercenary"
+      ],
+      "special": [],
+      "options": [
+        {
+          "id": "legion",
+          "name": "Legion — 30 Att, Ne 27+. Requires The Captain",
+          "pointsBySize": {
+            "horde": 30
+          },
+          "attBySize": {
+            "horde": 30
+          },
+          "neBySize": {
+            "horde": "27+"
+          },
+          "nameBySize": {
+            "horde": "Legion"
+          },
+          "onlySizes": [
+            "horde"
+          ],
+          "requiresUnit": "the-captain"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "3+",
+          "us": 2,
+          "att": 12,
+          "ne": "14+",
+          "ht": 2,
+          "points": 70
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "3+",
+          "us": 4,
+          "att": 25,
+          "ne": "21+",
+          "ht": 2,
+          "points": 115
         }
       ]
     },
@@ -98,18 +533,44 @@
       "type": "infantry",
       "typeLabel": "Inf",
       "role": "unit",
-      "traits": ["Stoic"],
+      "traits": [
+        "Stoic"
+      ],
       "special": [],
       "options": [
         {
           "id": "spears",
-          "name": "Spears",
-          "pointsBySize": { "regiment": 20, "horde": 25 },
-          "attBySize": { "regiment": 15 },
-          "addSpecial": ["Phalanx"]
+          "name": "Spears — +2/+3/+5 attacks and Phalanx",
+          "pointsBySize": {
+            "troop": 15,
+            "regiment": 20,
+            "horde": 25
+          },
+          "attModBySize": {
+            "troop": 2,
+            "regiment": 3,
+            "horde": 5
+          },
+          "addSpecial": [
+            "Phalanx"
+          ]
         }
       ],
       "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 10,
+          "ne": "11+",
+          "ht": 2,
+          "points": 70
+        },
         {
           "id": "regiment",
           "name": "Regiment",
@@ -120,7 +581,7 @@
           "de": "4+",
           "us": 2,
           "att": 12,
-          "ne": "15",
+          "ne": "15+",
           "ht": 2,
           "points": 90
         },
@@ -133,10 +594,142 @@
           "sh": "-",
           "de": "4+",
           "us": 4,
-          "att": 30,
-          "ne": "24",
+          "att": 25,
+          "ne": "24+",
           "ht": 2,
           "points": 155
+        }
+      ]
+    },
+    {
+      "id": "bowmen",
+      "name": "Bowmen",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Stoic"
+      ],
+      "special": [],
+      "ranged": [
+        {
+          "name": "Bows",
+          "range": "24\""
+        }
+      ],
+      "options": [
+        {
+          "id": "crossbows",
+          "name": "Crossbows — 24\", Piercing (1)",
+          "pointsBySize": {
+            "troop": 5,
+            "regiment": 5,
+            "horde": 15
+          },
+          "ranged": [
+            {
+              "name": "Crossbows",
+              "range": "24\"",
+              "text": "Piercing (1)"
+            }
+          ],
+          "excludes": [
+            "black-powder"
+          ]
+        },
+        {
+          "id": "black-powder",
+          "name": "Black Powder Weapons — 24\", Piercing (2), Reload",
+          "pointsBySize": {
+            "troop": 5,
+            "regiment": 5,
+            "horde": 15
+          },
+          "ranged": [
+            {
+              "name": "Black Powder Weapons",
+              "range": "24\"",
+              "text": "Piercing (2), Reload"
+            }
+          ],
+          "excludes": [
+            "crossbows"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "5+",
+          "sh": "6+",
+          "de": "3+",
+          "us": 1,
+          "att": 8,
+          "ne": "11+",
+          "ht": 2,
+          "points": 75
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "5+",
+          "sh": "6+",
+          "de": "3+",
+          "us": 2,
+          "att": 10,
+          "ne": "15+",
+          "ht": 2,
+          "points": 95
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "5+",
+          "sh": "6+",
+          "de": "3+",
+          "us": 4,
+          "att": 20,
+          "ne": "22+",
+          "ht": 2,
+          "points": 155
+        }
+      ]
+    },
+    {
+      "id": "frenzied-rabble",
+      "name": "Frenzied Rabble",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Fearless",
+        "Iron Resolve (1)",
+        "Retaliate!",
+        "Wild Charge (D3)"
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "3+",
+          "us": 2,
+          "att": 20,
+          "ne": "15+",
+          "ht": 2,
+          "points": 140
         }
       ]
     },
@@ -146,9 +739,28 @@
       "type": "cavalry",
       "typeLabel": "Cav",
       "role": "unit",
-      "traits": ["Noble"],
-      "special": ["Headstrong", "Thunderous Charge (3)"],
+      "traits": [
+        "Noble"
+      ],
+      "special": [
+        "Headstrong",
+        "Thunderous Charge (3)"
+      ],
       "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 9,
+          "ne": "13+",
+          "ht": 3,
+          "points": 135
+        },
         {
           "id": "regiment",
           "name": "Regiment",
@@ -159,8 +771,201 @@
           "de": "5+",
           "us": 2,
           "att": 18,
-          "ne": "16",
+          "ne": "16+",
           "ht": 3,
+          "points": 200
+        }
+      ]
+    },
+    {
+      "id": "halfling-braves",
+      "name": "Halfling Braves",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "limit": 2,
+      "traits": [
+        "Mercenary"
+      ],
+      "special": [
+        "Spellward"
+      ],
+      "options": [
+        {
+          "id": "spears",
+          "name": "Spears — +3 attacks and Phalanx",
+          "points": 10,
+          "attModBySize": {
+            "regiment": 3
+          },
+          "addSpecial": [
+            "Phalanx"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 12,
+          "ne": "14+",
+          "ht": 2,
+          "points": 90
+        }
+      ]
+    },
+    {
+      "id": "foot-guard",
+      "name": "Foot Guard",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Noble"
+      ],
+      "special": [
+        "Elite (Combat)"
+      ],
+      "options": [
+        {
+          "id": "two-handed",
+          "name": "Two-handed weapons — De 4+, Crushing Strength (1)",
+          "points": 0,
+          "de": "4+",
+          "addSpecial": [
+            "Crushing Strength (1)"
+          ],
+          "excludes": [
+            "pikes"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 12,
+          "ne": "12+",
+          "ht": 2,
+          "points": 105
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 15,
+          "ne": "16+",
+          "ht": 2,
+          "points": 135
+        }
+      ]
+    },
+    {
+      "id": "halfling-poachers",
+      "name": "Halfling Poachers",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "limit": 2,
+      "traits": [
+        "Mercenary"
+      ],
+      "special": [
+        "Pathfinder",
+        "Scout",
+        "Spellward",
+        "Stealthy"
+      ],
+      "ranged": [
+        {
+          "name": "Bows",
+          "range": "24\""
+        }
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 5,
+          "me": "4+",
+          "sh": "5+",
+          "de": "3+",
+          "us": 2,
+          "att": 12,
+          "ne": "15+",
+          "ht": 2,
+          "points": 145
+        }
+      ]
+    },
+    {
+      "id": "dogs-of-war",
+      "name": "Dogs of War",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Mercenary"
+      ],
+      "special": [],
+      "options": [
+        {
+          "id": "two-handed",
+          "name": "Two-handed weapons — De 4+, Crushing Strength (1)",
+          "points": 0,
+          "de": "4+",
+          "addSpecial": [
+            "Crushing Strength (1)"
+          ],
+          "excludes": [
+            "pikes"
+          ]
+        },
+        {
+          "id": "pikes",
+          "name": "Pikes — Me 4+, Ensnare, Phalanx",
+          "points": 70,
+          "me": "4+",
+          "addSpecial": [
+            "Ensnare",
+            "Phalanx"
+          ],
+          "excludes": [
+            "two-handed"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "specialist",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 4,
+          "att": 25,
+          "ne": "24+",
+          "ht": 2,
           "points": 200
         }
       ]
@@ -172,7 +977,55 @@
       "typeLabel": "Cav",
       "role": "unit",
       "traits": [],
-      "special": ["Feint", "Thunderous Charge (1)"],
+      "special": [
+        "Feint",
+        "Thunderous Charge (1)"
+      ],
+      "options": [
+        {
+          "id": "shortbows",
+          "name": "Shortbows — 18\", Sh 5+, lose Thunderous Charge",
+          "pointsBySize": {
+            "troop": 15,
+            "regiment": 30
+          },
+          "sh": "5+",
+          "dropSpecial": [
+            "Thunderous Charge (1)"
+          ],
+          "ranged": [
+            {
+              "name": "Shortbows",
+              "range": "18\""
+            }
+          ],
+          "excludes": [
+            "carbines"
+          ]
+        },
+        {
+          "id": "carbines",
+          "name": "Carbines — 18\", Sh 5+, Piercing (1), lose Thunderous Charge",
+          "pointsBySize": {
+            "troop": 20,
+            "regiment": 40
+          },
+          "sh": "5+",
+          "dropSpecial": [
+            "Thunderous Charge (1)"
+          ],
+          "ranged": [
+            {
+              "name": "Carbines",
+              "range": "18\"",
+              "text": "Piercing (1)"
+            }
+          ],
+          "excludes": [
+            "shortbows"
+          ]
+        }
+      ],
       "sizes": [
         {
           "id": "troop",
@@ -184,9 +1037,60 @@
           "de": "4+",
           "us": 1,
           "att": 7,
-          "ne": "12",
+          "ne": "12+",
           "ht": 3,
           "points": 95
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 9,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 14,
+          "ne": "15+",
+          "ht": 3,
+          "points": 130
+        }
+      ]
+    },
+    {
+      "id": "chariots",
+      "name": "Chariots",
+      "type": "chariot",
+      "typeLabel": "Cht",
+      "role": "unit",
+      "traits": [
+        "Noble"
+      ],
+      "special": [
+        "Brutal (1)",
+        "Thunderous Charge (2)"
+      ],
+      "ranged": [
+        {
+          "name": "Shortbows",
+          "range": "18\"",
+          "text": "Att: 6"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 8,
+          "me": "4+",
+          "sh": "6+",
+          "de": "4+",
+          "us": 2,
+          "att": 12,
+          "ne": "15+",
+          "ht": 4,
+          "points": 140
         }
       ]
     },
@@ -196,31 +1100,289 @@
       "type": "large-cavalry",
       "typeLabel": "Lrg Cav",
       "role": "unit",
-      "traits": ["Noble"],
-      "special": ["Crushing Strength (2)", "Thunderous Charge (1)"],
+      "traits": [
+        "Noble"
+      ],
+      "special": [
+        "Crushing Strength (2)",
+        "Thunderous Charge (1)"
+      ],
       "options": [
         {
           "id": "fly",
-          "name": "Change Sp to 9 and Gain Fly",
-          "points": 50,
+          "name": "Fly — Sp 9",
+          "pointsBySize": {
+            "troop": 30,
+            "regiment": 50
+          },
           "sp": 9,
-          "addSpecial": ["Fly"]
+          "addSpecial": [
+            "Fly"
+          ]
         }
       ],
       "sizes": [
         {
+          "id": "troop",
+          "name": "Troop",
+          "category": "support",
+          "sp": 7,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 10,
+          "ne": "14+",
+          "ht": 4,
+          "points": 150
+        },
+        {
           "id": "regiment",
           "name": "Regiment",
           "category": "support",
-          "sp": 8,
+          "sp": 7,
           "me": "3+",
           "sh": "-",
           "de": "5+",
           "us": 2,
           "att": 20,
-          "ne": "17",
+          "ne": "17+",
           "ht": 4,
           "points": 230
+        }
+      ]
+    },
+    {
+      "id": "shrine",
+      "name": "Shrine",
+      "type": "monster-chariot",
+      "typeLabel": "Mon (Cht)",
+      "role": "unit",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Fearless",
+        "Rallying",
+        "Faith in Humanity"
+      ],
+      "options": [
+        {
+          "id": "lightning-bolt-6",
+          "name": "Lightning Bolt (6)",
+          "points": 0
+        }
+      ],
+      "sizes": [
+        {
+          "id": "monster",
+          "name": "Monster",
+          "category": "support",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 5,
+          "ne": "15+",
+          "ht": 5,
+          "points": 165
+        }
+      ]
+    },
+    {
+      "id": "mammoth",
+      "name": "Mammoth",
+      "type": "monster-chariot",
+      "typeLabel": "Mon (Cht)",
+      "role": "unit",
+      "traits": [],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (2)",
+        "Fearless",
+        "Rampage (D6 - Combat)",
+        "Strider",
+        "Thunderous Charge (2)",
+        "Wild Charge (1)"
+      ],
+      "sizes": [
+        {
+          "id": "monster",
+          "name": "Monster",
+          "category": "support",
+          "sp": 8,
+          "me": "4+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 12,
+          "ne": "18+",
+          "ht": 5,
+          "points": 250
+        }
+      ]
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "type": "titan",
+      "typeLabel": "Ti",
+      "role": "unit",
+      "traits": [],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (4)",
+        "Height (6)",
+        "Strider"
+      ],
+      "options": [
+        {
+          "id": "club",
+          "name": "Giant Club — Rampage (D6 - Combat)",
+          "points": 0,
+          "addSpecial": [
+            "Rampage (D6 - Combat)"
+          ],
+          "excludes": [
+            "cleaver"
+          ]
+        },
+        {
+          "id": "cleaver",
+          "name": "Giant Cleaver — Slayer (D6 - Combat)",
+          "points": 0,
+          "addSpecial": [
+            "Slayer (D6 - Combat)"
+          ],
+          "excludes": [
+            "club"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "titan",
+          "name": "Titan",
+          "category": "support",
+          "sp": 7,
+          "me": "4+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": "D6+8",
+          "ne": "20+",
+          "ht": 6,
+          "points": 225
+        }
+      ]
+    },
+    {
+      "id": "ballista",
+      "name": "Ballista",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Blast (D3)",
+        "Piercing (2)",
+        "Reload"
+      ],
+      "ranged": [
+        {
+          "name": "Ballista",
+          "range": "48\"",
+          "text": "Blast (D3), Piercing (2), Reload"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "war-engine",
+          "name": "War Engine",
+          "category": "support",
+          "sp": 5,
+          "me": "-",
+          "sh": "5+",
+          "de": "4+",
+          "us": 1,
+          "att": 2,
+          "ne": "11+",
+          "ht": 2,
+          "points": 65
+        }
+      ]
+    },
+    {
+      "id": "halfling-volley-gun",
+      "name": "Halfling Volley Gun",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 1,
+      "traits": [
+        "Mercenary"
+      ],
+      "special": [],
+      "ranged": [
+        {
+          "name": "Volley Gun",
+          "range": "24\"",
+          "text": "Piercing (2), Reload"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "war-engine",
+          "name": "War Engine",
+          "category": "support",
+          "sp": 5,
+          "me": "-",
+          "sh": "6+",
+          "de": "4+",
+          "us": 1,
+          "att": 12,
+          "ne": "11+",
+          "ht": 2,
+          "points": 75
+        }
+      ]
+    },
+    {
+      "id": "siege-artillery",
+      "name": "Siege Artillery",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Blast (D3+1)",
+        "Indirect",
+        "Piercing (3)",
+        "Reload"
+      ],
+      "ranged": [
+        {
+          "name": "Artillery Strike",
+          "range": "48\"",
+          "text": "Blast (D3+1), Indirect, Piercing (3), Reload"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "war-engine",
+          "name": "War Engine",
+          "category": "support",
+          "sp": 5,
+          "me": "-",
+          "sh": "6+",
+          "de": "4+",
+          "us": 1,
+          "att": 2,
+          "ne": "11+",
+          "ht": 2,
+          "points": 75
         }
       ]
     },
@@ -232,7 +1394,9 @@
       "role": "unit",
       "limit": 2,
       "traits": [],
-      "special": ["Grapeshot"],
+      "special": [
+        "Grapeshot"
+      ],
       "ranged": [
         {
           "name": "Cannon",
@@ -247,7 +1411,7 @@
       ],
       "sizes": [
         {
-          "id": "engine",
+          "id": "war-engine",
           "name": "War Engine",
           "category": "support",
           "sp": 5,
@@ -256,7 +1420,7 @@
           "de": "4+",
           "us": 1,
           "att": 2,
-          "ne": "11",
+          "ne": "11+",
           "ht": 2,
           "points": 95
         }

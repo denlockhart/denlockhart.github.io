@@ -94,14 +94,34 @@ function allEntries() {
 
 function categoryOverrides(battalion) {
   const map = new Map();
-  for (const e of battalion.units) {
-    const unit = unitById(e.unitId);
+  const oneClaimed = new Set();
+  for (const source of battalion.units) {
+    const unit = unitById(source.unitId);
     if (!unit) continue;
+    const selected = new Set(source.optionIds || []);
     const rules = [];
-    for (const rule of unit.makeCore || []) rules.push({ ...rule, category: "core" });
-    for (const rule of unit.makeCategory || []) rules.push(rule);
+    for (const rule of unit.makeCore || []) rules.push({ ...rule, category: "core", one: false });
+    for (const rule of unit.makeCategory || []) rules.push({ ...rule, one: false });
+    for (const rule of unit.makeOne || []) rules.push({ ...rule, one: true });
+    for (const opt of unit.options || []) {
+      if (!selected.has(opt.id)) continue;
+      for (const rule of opt.makeCore || []) rules.push({ ...rule, category: "core", one: false });
+      for (const rule of opt.makeCategory || []) rules.push({ ...rule, one: false });
+      for (const rule of opt.makeOne || []) rules.push({ ...rule, one: true });
+    }
     for (const rule of rules) {
-      for (const sz of rule.sizes || ["*"]) map.set(rule.unit + ":" + sz, rule.category);
+      const sizes = rule.sizes || ["*"];
+      const claim = source.id + ":" + rule.unit + ":" + rule.category;
+      for (const target of battalion.units) {
+        if (target.unitId !== rule.unit) continue;
+        if (!sizes.includes("*") && !sizes.includes(target.sizeId)) continue;
+        if (rule.one) {
+          if (oneClaimed.has(claim)) break;
+          oneClaimed.add(claim);
+        }
+        map.set(target.id, rule.category);
+        if (rule.one) break;
+      }
     }
   }
   return map;
@@ -112,7 +132,7 @@ function effectiveCategory(entry, battalion) {
   if (!unit) return "core";
   const size = sizeById(unit, entry.sizeId);
   const map = categoryOverrides(battalion);
-  return map.get(unit.id + ":" + size.id) || map.get(unit.id + ":*") || size.category;
+  return map.get(entry.id) || size.category;
 }
 
 function resolveEntry(entry, battalion) {
@@ -123,7 +143,7 @@ function resolveEntry(entry, battalion) {
       unit: { id: entry.unitId, name: "Unknown unit", typeLabel: "", special: [], traits: [] },
       size: { id: "", name: "", category: "core", sp: "—", me: "—", sh: "—", de: "—", us: 0, att: "—", ne: "—", points: 0 },
       options: [], artefact: null, spells: [], special: [],
-      att: "—", sp: "—", ne: "—", de: "—", points: 0, category: "core", us: 0, sizeName: "", dropRanged: false,
+      att: "—", sp: "—", me: "—", sh: "—", ne: "—", de: "—", points: 0, category: "core", us: 0, sizeName: "", ranged: [], dropRanged: false,
     };
   }
   const size = sizeById(unit, entry.sizeId);
@@ -133,11 +153,13 @@ function resolveEntry(entry, battalion) {
   const special = [...(unit.special || [])];
   let att = size.att;
   let sp = size.sp;
+  let me = size.me;
+  let sh = size.sh;
   let ne = size.ne;
   let de = size.de;
   let sizeName = size.name;
   let points = size.points;
-  let dropRanged = false;
+  let ranged = unit.ranged || [];
   for (const opt of options) {
     const extra = opt.pointsBySize ? opt.pointsBySize[size.id] : opt.points;
     if (extra) points += extra;
@@ -146,6 +168,8 @@ function resolveEntry(entry, battalion) {
     if (opt.neBySize && opt.neBySize[size.id] != null) ne = opt.neBySize[size.id];
     if (opt.nameBySize && opt.nameBySize[size.id]) sizeName = opt.nameBySize[size.id];
     if (opt.sp != null) sp = opt.sp;
+    if (opt.me != null) me = opt.me;
+    if (opt.sh != null) sh = opt.sh;
     if (opt.de != null) de = opt.de;
     if (opt.dropSpecial) {
       for (const name of opt.dropSpecial) {
@@ -154,7 +178,8 @@ function resolveEntry(entry, battalion) {
       }
     }
     if (opt.addSpecial) special.push(...opt.addSpecial);
-    if (opt.dropRanged) dropRanged = true;
+    if (opt.ranged) ranged = opt.ranged;
+    if (opt.dropRanged) ranged = [];
   }
   if (artefact) {
     points += artefact.points;
@@ -172,10 +197,13 @@ function resolveEntry(entry, battalion) {
     special,
     att,
     sp,
+    me,
+    sh,
     ne,
     de,
     sizeName,
-    dropRanged,
+    ranged,
+    dropRanged: ranged.length === 0,
     points,
     category: effectiveCategory(entry, battalion),
     us: size.us,
@@ -369,13 +397,13 @@ function updateAddCost() {
   if (!state.pendingUnit) return;
   const r = resolveEntry(pendingAsEntry(), currentAddBattalion());
   $("add-cost").textContent = String(r.points);
-  const ranged = r.dropRanged ? "" : (r.unit.ranged || []).map((rng) => rng.name + " (" + rng.range + (rng.text ? ", " + rng.text : "") + ")").join("; ");
+  const rangedText = (r.ranged || []).map((rng) => rng.name + " (" + rng.range + (rng.text ? ", " + rng.text : "") + ")").join("; ");
   $("add-profile").textContent = [
     catLabel(r.size.category) + " " + r.unit.typeLabel + " " + (r.sizeName || r.size.name),
-    fmtProfile(r.unit, { ...r.size, att: r.att, sp: r.sp, ne: r.ne, de: r.de }),
+    fmtProfile(r.unit, { ...r.size, att: r.att, sp: r.sp, me: r.me, sh: r.sh, ne: r.ne, de: r.de }),
     r.special.join(", "),
     (r.unit.traits || []).length ? "Traits: " + r.unit.traits.join(", ") : "",
-    ranged,
+    rangedText,
   ].filter(Boolean).join(" · ");
 }
 
@@ -498,7 +526,7 @@ function renderBattalions() {
         return "<div class=\"unit-row\" data-id=\"" + e.id + "\">" +
           "<div><strong>" + entryTitle(r) + "</strong> " +
           "<span class=\"cat-pill " + r.category + (wasCore ? " was-core" : "") + "\">" + catLabel(r.category) + "</span>" +
-          "<div class=\"stats\">" + fmtProfile(r.unit, { ...r.size, att: r.att, sp: r.sp, ne: r.ne, de: r.de }) + "</div>" +
+          "<div class=\"stats\">" + fmtProfile(r.unit, { ...r.size, att: r.att, sp: r.sp, me: r.me, sh: r.sh, ne: r.ne, de: r.de }) + "</div>" +
           (extras.length ? "<div class=\"meta\">" + extras.join(" · ") + "</div>" : "") +
           "</div><div><div class=\"meta\" style=\"text-align:right\">" + r.points + " pts</div>" +
           "<div class=\"actions\" style=\"margin-top:.25rem;justify-content:flex-end\">" +
@@ -560,7 +588,7 @@ function renderOrders() {
   const orders = state.army.commandOrders || [];
   $("orders-list").innerHTML = orders.length
     ? orders.map((o) => "<div class=\"order-item\"><strong>" + o.name + "</strong> <span class=\"meta\">" + o.target + "</span><div>" + o.text + "</div></div>").join("")
-    : "<p class=\"empty-hint\">No command orders in this starter catalog.</p>";
+    : "<p class=\"empty-hint\">No command orders listed for this army.</p>";
 }
 
 function renderAll() {
@@ -635,7 +663,7 @@ function listAsText() {
         .concat(r.artefact ? [r.artefact.name] : [])
         .concat(r.spells.map((s) => s.name + "(" + s.level + ")"));
       lines.push("  " + entryTitle(r) + " [" + catLabel(r.category) + "]  " +
-        fmtProfile(r.unit, { ...r.size, att: r.att, sp: r.sp, ne: r.ne, de: r.de }) + "  " + r.points + " pts");
+        fmtProfile(r.unit, { ...r.size, att: r.att, sp: r.sp, me: r.me, sh: r.sh, ne: r.ne, de: r.de }) + "  " + r.points + " pts");
       if (extras.length) lines.push("    " + extras.join(", "));
       if (r.special.length) lines.push("    " + r.special.join(", "));
     }
@@ -667,7 +695,7 @@ function renderPrint() {
       html += "<tr><td><strong>" + entryTitle(r) + "</strong> <span class=\"fine\">" + catLabel(r.category) + " " + r.unit.typeLabel + "</span>";
       if (extras.length) html += "<div class=\"fine\">" + extras.join(" · ") + "</div>";
       if (r.special.length) html += "<div class=\"fine\">" + r.special.join(", ") + "</div>";
-      html += "</td><td>" + r.sp + "</td><td>" + r.size.me + "</td><td>" + r.size.sh + "</td><td>" + r.de +
+      html += "</td><td>" + r.sp + "</td><td>" + r.me + "</td><td>" + r.sh + "</td><td>" + r.de +
         "</td><td>" + r.att + "</td><td>" + r.ne + "</td><td>" + r.us + "</td><td class=\"pts\">" + r.points + "</td></tr>";
     }
     html += "</tbody></table>";
@@ -699,7 +727,7 @@ function startFromFaction(factionId, restore) {
   const item = state.catalog.armies.find((a) => a.id === factionId);
   if (!item) return;
   showError("");
-  fetch("data/armies/" + item.file)
+  fetch("data/armies/" + item.file + "?v=10")
     .then((r) => {
       if (!r.ok) throw new Error("Could not load " + item.name);
       return r.json();
@@ -858,7 +886,7 @@ function bindUi() {
 function init() {
   bindUi();
   Promise.all([
-    fetch("data/catalog.json").then((r) => r.json()),
+    fetch("data/catalog.json?v=10").then((r) => r.json()),
     fetch("data/artefacts.json").then((r) => r.json()),
     fetch("data/spells.json").then((r) => r.json()),
   ]).then(([catalog, artefacts, spells]) => {

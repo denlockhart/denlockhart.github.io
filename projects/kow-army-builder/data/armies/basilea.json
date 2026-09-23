@@ -1,7 +1,7 @@
 {
   "id": "basilea",
   "name": "Basilea",
-  "sourceNote": "Starter catalog from a published 4th-edition Companion list (Basileans 2026, 2300pts). Not the full 43-entry army. Paladin Knights default to Specialist; High Paladin on Dragon makes their Regiments Core in that battalion.",
+  "sourceNote": "Full Basileans 2026 roster from the Mantic Companion list builder (September 2026). Arcane Library spells that Companion hides behind a subscription are not listed. Mount options set Speed as printed.",
   "commandOrders": [
     {
       "name": "Tenacity!",
@@ -41,19 +41,282 @@
   ],
   "units": [
     {
+      "id": "abbess",
+      "name": "Abbess",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "traits": [],
+      "special": [
+        "Aura (Brutal (+1 Sisterhood only))",
+        "Crushing Strength (1)",
+        "Individual",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Vicious (Combat)",
+        "Wild Charge (D3)"
+      ],
+      "makeCore": [
+        {
+          "unit": "sisterhood-panther-lancers",
+          "sizes": [
+            "regiment"
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "gur-panther",
+          "name": "Mount on a Gur Panther — Sp 9, Pathfinder, lose Wild Charge, Hero (Cav)",
+          "points": 35,
+          "sp": 9,
+          "dropSpecial": [
+            "Wild Charge (D3)"
+          ],
+          "addSpecial": [
+            "Pathfinder"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 6,
+          "ne": "14+",
+          "ht": 2,
+          "points": 130
+        }
+      ]
+    },
+    {
+      "id": "high-paladin",
+      "name": "High Paladin",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "traits": [],
+      "special": [
+        "Crushing Strength (1)",
+        "Headstrong",
+        "Individual",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Holy Edict"
+      ],
+      "makeCore": [
+        {
+          "unit": "paladin-knights",
+          "sizes": [
+            "regiment"
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Thunderous Charge (2), Hero (Cav)",
+          "points": 30,
+          "sp": 8,
+          "addSpecial": [
+            "Thunderous Charge (2)"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 6,
+          "ne": "15+",
+          "ht": 2,
+          "points": 160
+        }
+      ]
+    },
+    {
+      "id": "samacris-mother-of-phoenixes",
+      "name": "Samacris Mother of Phoenixes",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [
+        "Spellcaster"
+      ],
+      "special": [
+        "Crushing Strength (1)",
+        "Fearless",
+        "Fly",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Radiance of Life",
+        "Regeneration (5+)"
+      ],
+      "options": [
+        {
+          "id": "heal-6",
+          "name": "Heal (6)",
+          "points": 0
+        },
+        {
+          "id": "fireball-5",
+          "name": "Fireball (5)",
+          "points": 0
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 3,
+          "ne": "16+",
+          "ht": 3,
+          "points": 265
+        }
+      ]
+    },
+    {
+      "id": "jullius-dragon-of-heaven",
+      "name": "Jullius, Dragon of Heaven",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [
+        "Spellcaster"
+      ],
+      "special": [
+        "Crushing Strength (3)",
+        "Dread",
+        "Elite (Combat)",
+        "Fearless",
+        "Fly",
+        "Iron Resolve (1)",
+        "Very Inspiring"
+      ],
+      "makeCategory": [
+        {
+          "unit": "elohi",
+          "sizes": ["troop", "regiment"],
+          "category": "specialist"
+        }
+      ],
+      "options": [
+        {
+          "id": "divine-host",
+          "name": "Divine Host — Elohi Troops and Regiments in this battalion are Specialist",
+          "points": 0,
+          "makeCategory": [
+            {
+              "unit": "elohi",
+              "sizes": [
+                "troop",
+                "regiment"
+              ],
+              "category": "specialist"
+            }
+          ]
+        },
+        {
+          "id": "fireball-4",
+          "name": "Fireball (4)",
+          "points": 0
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "6+",
+          "us": 2,
+          "att": 7,
+          "ne": "17+",
+          "ht": 3,
+          "points": 320
+        }
+      ]
+    },
+    {
+      "id": "gnaeus-sallustis",
+      "name": "Gnaeus Sallustis",
+      "type": "hero-large-cavalry",
+      "typeLabel": "Hero (Lrg Cav)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Fearless",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Master of the Field"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 9,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 7,
+          "ne": "17+",
+          "ht": 4,
+          "points": 240
+        }
+      ]
+    },
+    {
       "id": "high-paladin-on-dragon",
       "name": "High Paladin on Dragon",
       "type": "hero-titan",
       "typeLabel": "Hero (Ti)",
       "role": "warlord",
       "traits": [],
-      "special": ["Crushing Strength (3)", "Fly", "Headstrong", "Inspiring", "Iron Resolve (1)"],
-      "makeCore": [{ "unit": "paladin-knights", "sizes": ["regiment"] }],
+      "special": [
+        "Crushing Strength (3)",
+        "Fly",
+        "Headstrong",
+        "Inspiring",
+        "Iron Resolve (1)"
+      ],
       "ranged": [
         {
           "name": "Dragon's Breath",
-          "range": "12\"",
-          "text": ""
+          "range": "12\""
+        }
+      ],
+      "makeCore": [
+        {
+          "unit": "paladin-knights",
+          "sizes": [
+            "regiment"
+          ]
         }
       ],
       "sizes": [
@@ -74,14 +337,84 @@
       ]
     },
     {
+      "id": "bearer-of-the-holy-icon",
+      "name": "Bearer of the Holy Icon",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Individual",
+        "Iron Resolve (1)",
+        "Very Inspiring",
+        "Yielding"
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Hero (Cav)",
+          "points": 15,
+          "sp": 8
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 1,
+          "ne": "12+",
+          "ht": 2,
+          "points": 85
+        }
+      ]
+    },
+    {
       "id": "war-priest",
       "name": "War Priest",
       "type": "hero-infantry",
       "typeLabel": "Hero (Inf)",
       "role": "champion",
       "limit": 2,
-      "traits": ["Spellcaster"],
-      "special": ["Crushing Strength (1)", "Individual", "Inspiring", "Iron Resolve (1)", "Yielding"],
+      "traits": [
+        "Spellcaster"
+      ],
+      "special": [
+        "Crushing Strength (1)",
+        "Individual",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Yielding"
+      ],
+      "options": [
+        {
+          "id": "horse",
+          "name": "Mount on a horse — Sp 8, Hero (Cav)",
+          "points": 15,
+          "sp": 8
+        },
+        {
+          "id": "fireball-4",
+          "name": "Fireball (4)",
+          "points": 25
+        },
+        {
+          "id": "heal-3",
+          "name": "Heal (3)",
+          "points": 15
+        },
+        {
+          "id": "bane-chant-2",
+          "name": "Bane Chant (2)",
+          "points": 20
+        }
+      ],
       "sizes": [
         {
           "id": "hero",
@@ -100,14 +433,514 @@
       ]
     },
     {
+      "id": "alanis-sallustis",
+      "name": "Alanis Sallustis",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Crushing Strength (1)",
+        "Headstrong",
+        "Individual",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Holy Strike"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 5,
+          "ne": "15+",
+          "ht": 2,
+          "points": 130
+        }
+      ]
+    },
+    {
+      "id": "aestelle",
+      "name": "Aestelle",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Aura (Iron Resolve (+1))",
+        "Crushing Strength (1)",
+        "Elite (Combat)",
+        "Individual",
+        "Vicious (Combat)"
+      ],
+      "ranged": [
+        {
+          "name": "Bows",
+          "range": "24\""
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "4+",
+          "de": "4+",
+          "us": 1,
+          "att": 5,
+          "ne": "14+",
+          "ht": 2,
+          "points": 145
+        }
+      ]
+    },
+    {
+      "id": "dictator",
+      "name": "Dictator",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Duellist (D3)",
+        "Headstrong",
+        "Individual",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Rallying (Faithful Trait only)"
+      ],
+      "options": [
+        {
+          "id": "exemplar-hunter",
+          "name": "Exemplar Hunter — Slayer (D3 - Combat)",
+          "points": 10,
+          "addSpecial": [
+            "Slayer (D3 - Combat)"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 5,
+          "ne": "14+",
+          "ht": 2,
+          "points": 160
+        }
+      ]
+    },
+    {
+      "id": "ogre-palace-guard-captain",
+      "name": "Ogre Palace Guard Captain",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (2)",
+        "Inspiring",
+        "Iron Resolve (1)"
+      ],
+      "makeOne": [
+        {
+          "unit": "ogre-palace-guard",
+          "sizes": [
+            "troop",
+            "regiment"
+          ],
+          "category": "core"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 5,
+          "ne": "15+",
+          "ht": 3,
+          "points": 160
+        }
+      ]
+    },
+    {
+      "id": "ur-elohi",
+      "name": "Ur-Elohi",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "champion",
+      "limit": 1,
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Dread",
+        "Fearless",
+        "Fly",
+        "Inspiring",
+        "Iron Resolve (1)"
+      ],
+      "makeOne": [
+        {
+          "unit": "elohi",
+          "sizes": [
+            "troop",
+            "regiment"
+          ],
+          "category": "specialist"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 6,
+          "ne": "16+",
+          "ht": 3,
+          "points": 230
+        }
+      ]
+    },
+    {
+      "id": "orion",
+      "name": "Orion",
+      "type": "hero-cavalry",
+      "typeLabel": "Hero (Cav)",
+      "role": "champion",
+      "unique": true,
+      "traits": [],
+      "special": [
+        "Crushing Strength (2)",
+        "Duellist (D3+2)",
+        "Elite (Combat)",
+        "Individual",
+        "Inspiring",
+        "Iron Resolve (1)",
+        "Disarm"
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 5,
+          "ne": "15+",
+          "ht": 3,
+          "points": 195
+        }
+      ]
+    },
+    {
+      "id": "men-at-arms",
+      "name": "Men-at-arms",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Iron Resolve (1)"
+      ],
+      "options": [
+        {
+          "id": "spears",
+          "name": "Spears — +2/+3/+5 attacks and Phalanx",
+          "pointsBySize": {
+            "troop": 10,
+            "regiment": 15,
+            "horde": 20
+          },
+          "attModBySize": {
+            "troop": 2,
+            "regiment": 3,
+            "horde": 5
+          },
+          "addSpecial": [
+            "Phalanx"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 10,
+          "ne": "11+",
+          "ht": 2,
+          "points": 75
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 12,
+          "ne": "15+",
+          "ht": 2,
+          "points": 95
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 4,
+          "att": 25,
+          "ne": "24+",
+          "ht": 2,
+          "points": 165
+        }
+      ]
+    },
+    {
+      "id": "men-at-arms-crossbows",
+      "name": "Men-at-arms Crossbows",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Iron Resolve (1)"
+      ],
+      "ranged": [
+        {
+          "name": "Crossbows",
+          "range": "24\"",
+          "text": "Piercing (1)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "5+",
+          "sh": "6+",
+          "de": "4+",
+          "us": 1,
+          "att": 8,
+          "ne": "11+",
+          "ht": 2,
+          "points": 90
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "5+",
+          "sh": "6+",
+          "de": "4+",
+          "us": 2,
+          "att": 10,
+          "ne": "15+",
+          "ht": 2,
+          "points": 115
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "5+",
+          "sh": "6+",
+          "de": "4+",
+          "us": 4,
+          "att": 20,
+          "ne": "22+",
+          "ht": 2,
+          "points": 190
+        }
+      ]
+    },
+    {
+      "id": "sisterhood-infantry",
+      "name": "Sisterhood Infantry",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Faithful",
+        "Sisterhood"
+      ],
+      "special": [
+        "Crushing Strength (1)",
+        "Iron Resolve (1)",
+        "Vicious (Combat)",
+        "Wild Charge (D3)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 1,
+          "att": 12,
+          "ne": "12+",
+          "ht": 2,
+          "points": 100
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 2,
+          "att": 15,
+          "ne": "16+",
+          "ht": 2,
+          "points": 125
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 4,
+          "att": 30,
+          "ne": "25+",
+          "ht": 2,
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "paladin-foot-knights",
+      "name": "Paladin Foot Knights",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Crushing Strength (1)",
+        "Headstrong",
+        "Iron Resolve (1)"
+      ],
+      "options": [
+        {
+          "id": "two-handed",
+          "name": "Two-handed weapons — De 4+, Crushing Strength (2)",
+          "points": 0,
+          "de": "4+",
+          "dropSpecial": [
+            "Crushing Strength (1)"
+          ],
+          "addSpecial": [
+            "Crushing Strength (2)"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 12,
+          "ne": "13+",
+          "ht": 2,
+          "points": 130
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 15,
+          "ne": "17+",
+          "ht": 2,
+          "points": 170
+        }
+      ]
+    },
+    {
       "id": "paladin-monster-slayers",
       "name": "Paladin Monster Slayers",
       "type": "infantry",
       "typeLabel": "Inf",
       "role": "unit",
       "unique": true,
-      "traits": ["Faithful"],
-      "special": ["Crushing Strength (2)", "Headstrong", "Iron Resolve (1)", "Slayer (D6 - Combat)"],
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Crushing Strength (2)",
+        "Headstrong",
+        "Iron Resolve (1)",
+        "Slayer (D6 - Combat)"
+      ],
       "sizes": [
         {
           "id": "horde",
@@ -132,7 +965,12 @@
       "typeLabel": "Cav",
       "role": "unit",
       "traits": [],
-      "special": ["Height (2)", "Nimble", "Pathfinder", "Vicious (Combat)"],
+      "special": [
+        "Height (2)",
+        "Nimble",
+        "Pathfinder",
+        "Vicious (Combat)"
+      ],
       "sizes": [
         {
           "id": "troop",
@@ -156,13 +994,19 @@
       "type": "infantry",
       "typeLabel": "Inf",
       "role": "unit",
-      "traits": ["Faithful", "Sisterhood"],
-      "special": ["Iron Resolve (1)", "Scout"],
+      "traits": [
+        "Faithful",
+        "Sisterhood"
+      ],
+      "special": [
+        "Iron Resolve (1)",
+        "Scout"
+      ],
       "ranged": [
         {
           "name": "Bows",
           "range": "24\"",
-          "text": "Vicious (Ranged)"
+          "text": "Vicious(Ranged)"
         }
       ],
       "sizes": [
@@ -179,6 +1023,20 @@
           "ne": "12+",
           "ht": 2,
           "points": 115
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 5,
+          "me": "4+",
+          "sh": "5+",
+          "de": "3+",
+          "us": 2,
+          "att": 12,
+          "ne": "16+",
+          "ht": 2,
+          "points": 145
         }
       ]
     },
@@ -189,8 +1047,26 @@
       "typeLabel": "Lrg Inf",
       "role": "unit",
       "traits": [],
-      "special": ["Brutal (1)", "Crushing Strength (2)", "Iron Resolve (1)"],
+      "special": [
+        "Brutal (1)",
+        "Crushing Strength (2)",
+        "Iron Resolve (1)"
+      ],
       "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 9,
+          "ne": "14+",
+          "ht": 3,
+          "points": 150
+        },
         {
           "id": "regiment",
           "name": "Regiment",
@@ -208,14 +1084,82 @@
       ]
     },
     {
+      "id": "sisterhood-panther-lancers",
+      "name": "Sisterhood Panther Lancers",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": [
+        "Faithful",
+        "Sisterhood"
+      ],
+      "special": [
+        "Iron Resolve (1)",
+        "Nimble",
+        "Pathfinder",
+        "Thunderous Charge (1)",
+        "Vicious (Combat)"
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 9,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 9,
+          "ne": "13+",
+          "ht": 3,
+          "points": 125
+        },
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 9,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 18,
+          "ne": "16+",
+          "ht": 3,
+          "points": 180
+        }
+      ]
+    },
+    {
       "id": "paladin-knights",
       "name": "Paladin Knights",
       "type": "cavalry",
       "typeLabel": "Cav",
       "role": "unit",
-      "traits": ["Faithful"],
-      "special": ["Headstrong", "Iron Resolve (1)", "Thunderous Charge (3)"],
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Headstrong",
+        "Iron Resolve (1)",
+        "Thunderous Charge (3)"
+      ],
       "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 9,
+          "ne": "14+",
+          "ht": 3,
+          "points": 150
+        },
         {
           "id": "regiment",
           "name": "Regiment",
@@ -233,14 +1177,68 @@
       ]
     },
     {
+      "id": "order-of-the-abyssal-hunt",
+      "name": "Order of the Abyssal Hunt",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "unique": true,
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Crushing Strength (1)",
+        "Headstrong",
+        "Iron Resolve (1)",
+        "Slayer (D6 - Combat)",
+        "Thunderous Charge (2)"
+      ],
+      "sizes": [
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "specialist",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 4,
+          "att": 30,
+          "ne": "23+",
+          "ht": 3,
+          "points": 360
+        }
+      ]
+    },
+    {
       "id": "elohi",
       "name": "Elohi",
       "type": "large-infantry",
       "typeLabel": "Lrg Inf",
       "role": "unit",
       "traits": [],
-      "special": ["Crushing Strength (2)", "Fearless", "Fly", "Inspiring", "Iron Resolve (1)"],
+      "special": [
+        "Crushing Strength (1)",
+        "Fearless",
+        "Fly",
+        "Inspiring",
+        "Iron Resolve (1)"
+      ],
       "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "support",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 1,
+          "att": 10,
+          "ne": "15+",
+          "ht": 3,
+          "points": 205
+        },
         {
           "id": "regiment",
           "name": "Regiment",
@@ -265,12 +1263,28 @@
       "role": "unit",
       "limit": 2,
       "traits": [],
-      "special": ["Crushing Strength (1)", "Fly", "Radiance of Life", "Regeneration (4+)"],
+      "special": [
+        "Crushing Strength (1)",
+        "Fly",
+        "Radiance of Life",
+        "Regeneration (4+)"
+      ],
       "ranged": [
         {
           "name": "Firesparks",
           "range": "18\"",
           "text": "Att: 10"
+        }
+      ],
+      "options": [
+        {
+          "id": "ancient-phoenix",
+          "name": "Ancient Phoenix — Martyrs Prayer (5). Requires Samacris",
+          "points": 15,
+          "addSpecial": [
+            "Martyrs Prayer (5)"
+          ],
+          "requiresUnit": "samacris-mother-of-phoenixes"
         }
       ],
       "sizes": [
@@ -287,6 +1301,86 @@
           "ne": "17+",
           "ht": 5,
           "points": 180
+        }
+      ]
+    },
+    {
+      "id": "heavy-arbalest",
+      "name": "Heavy Arbalest",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 2,
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Iron Resolve (1)"
+      ],
+      "ranged": [
+        {
+          "name": "Heavy Arbalest",
+          "range": "48\"",
+          "text": "Blast (D3), Piercing (2), Reload, Shattering (1)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "war-engine",
+          "name": "War Engine",
+          "category": "support",
+          "sp": 5,
+          "me": "-",
+          "sh": "5+",
+          "de": "4+",
+          "us": 1,
+          "att": 2,
+          "ne": "12+",
+          "ht": 2,
+          "points": 80
+        }
+      ]
+    },
+    {
+      "id": "cannon",
+      "name": "Cannon",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 2,
+      "traits": [
+        "Faithful"
+      ],
+      "special": [
+        "Iron Resolve (1)",
+        "Grapeshot"
+      ],
+      "ranged": [
+        {
+          "name": "Cannon",
+          "range": "48\"",
+          "text": "Blast (D3+1), Piercing (3), Reload, Shattering (D3)"
+        },
+        {
+          "name": "Grapeshot",
+          "range": "12\"",
+          "text": "Att: 12, Piercing (1)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "war-engine",
+          "name": "War Engine",
+          "category": "support",
+          "sp": 5,
+          "me": "-",
+          "sh": "5+",
+          "de": "4+",
+          "us": 1,
+          "att": 2,
+          "ne": "12+",
+          "ht": 2,
+          "points": 100
         }
       ]
     }
