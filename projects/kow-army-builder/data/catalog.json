@@ -1,0 +1,29 @@
+{
+  "game": "Kings of War",
+  "edition": "4th",
+  "disclaimer": "Unofficial fan tool. Unit catalogs are compiled from published Mantic Companion list exports and are incomplete. Verify every profile, option, and points cost against the Core Rulebook or Companion before play.",
+  "rulesSource": "https://www.manticgames.com/news/kings-of-war-4th-edition-building-armies/",
+  "companionUrl": "https://companion.manticgames.com/kings-of-war-4th-edition-list-builder/",
+  "armies": [
+    {
+      "id": "orcs",
+      "name": "Orcs",
+      "file": "orcs.json"
+    },
+    {
+      "id": "ratkin",
+      "name": "Ratkin",
+      "file": "ratkin.json"
+    },
+    {
+      "id": "kingdoms-of-men",
+      "name": "Kingdoms of Men",
+      "file": "kingdoms-of-men.json"
+    },
+    {
+      "id": "basilea",
+      "name": "Basilea",
+      "file": "basilea.json"
+    }
+  ]
+}

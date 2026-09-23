@@ -35,6 +35,7 @@ denlockhart.github.io/
   .nojekyll               # Required for GitHub Pages
   projects/
     army-builder/         # Valour & Fortitude army list builder
+    kow-army-builder/     # Kings of War 4th Edition army list builder
     hiit-timer/           # Configurable HIIT interval timer
     stratagem-sleeves/    # 40K stratagem sleeve PDF builder
       README.md
@@ -46,6 +47,7 @@ denlockhart.github.io/
 | Project | Folder | URL path |
 |---------|--------|----------|
 | Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` |
+| Kings of War Army Builder | `projects/kow-army-builder/` | `/projects/kow-army-builder/` |
 | HIIT Timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
 | Stratagem Sleeves | `projects/stratagem-sleeves/` | `/projects/stratagem-sleeves/` |
 
@@ -59,6 +61,7 @@ npx serve .
 
 - Home: http://localhost:3000/
 - Army Builder: http://localhost:3000/projects/army-builder/
+- Kings of War Army Builder: http://localhost:3000/projects/kow-army-builder/
 - HIIT Timer: http://localhost:3000/projects/hiit-timer/
 - Stratagem Sleeves: http://localhost:3000/projects/stratagem-sleeves/
 

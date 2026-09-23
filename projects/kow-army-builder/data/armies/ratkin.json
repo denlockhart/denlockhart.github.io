@@ -1,0 +1,416 @@
+{
+  "id": "ratkin",
+  "name": "Ratkin",
+  "sourceNote": "Full Ratkin roster from the Mantic Companion list builder (September 2026). Arcane Library spells that Companion hides behind a subscription are not listed. Mount options set Speed as printed.",
+  "commandOrders": [
+    {
+      "name": "Tenacity!",
+      "target": "3+",
+      "text": "The unit may re-roll a single failed to hit roll in Combat this Turn. It cannot be used to re-roll a dice for an attack that has the Blast special rule."
+    },
+    {
+      "name": "Tactical Retreat!",
+      "target": "4+",
+      "text": "If the unit performs a Back! order, it may move up to its Sp value, but may not make any pivots. This order may not be issued to a unit carrying a Loot Counter."
+    },
+    {
+      "name": "Plague Pots",
+      "target": "5+",
+      "text": "Units with the Ratpack Trait only. The unit gains the Ensnare special rule until start of its next Turn."
+    },
+    {
+      "name": "Scurrying Claws",
+      "target": "5+",
+      "text": "Units with the Ratpack Trait only. The unit gains the Strider special rule."
+    }
+  ],
+  "units": [
+    {
+      "id": "war-chief",
+      "name": "War Chief",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Individual", "Inspiring", "Rallying"],
+      "options": [
+        { "id": "fleabag", "name": "Mount on a fleabag — Sp 10, Hero (Cav)", "points": 20, "sp": 10 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 6, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 6, "ne": "15+", "ht": 2, "points": 175 }
+      ]
+    },
+    {
+      "id": "brood-mother",
+      "name": "Brood Mother",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "warlord",
+      "traits": ["Spellcaster"],
+      "special": ["Crushing Strength (1)", "Very Inspiring", "Radiance of Life", "Eat the Weak"],
+      "options": [
+        { "id": "drain-life-7", "name": "Drain Life (7)", "points": 0 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 6, "me": "4+", "sh": "-", "de": "5+", "us": 2, "att": 5, "ne": "14+", "ht": 3, "points": 195 }
+      ]
+    },
+    {
+      "id": "mother-cryza",
+      "name": "Mother Cryza",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": ["Spellcaster"],
+      "special": ["Cloak of Death", "Crushing Strength (1)", "Ensnare", "Very Inspiring"],
+      "makeCore": [{ "unit": "wretches", "sizes": ["horde"] }],
+      "options": [
+        { "id": "lightning-bolt-5", "name": "Lightning Bolt (5)", "points": 0 },
+        { "id": "bane-chant-3", "name": "Bane Chant (3)", "points": 0 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 6, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 5, "ne": "15+", "ht": 3, "points": 230 }
+      ]
+    },
+    {
+      "id": "scudku-zluk",
+      "name": "Scudku-z'luk",
+      "type": "hero-titan",
+      "typeLabel": "Hero (Ti)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": ["Crushing Strength (3)", "Fly", "Inspiring", "Rallying"],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 10, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 13, "ne": "19+", "ht": 5, "points": 320 }
+      ]
+    },
+    {
+      "id": "warlock",
+      "name": "Warlock",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": ["Spellcaster"],
+      "special": ["Individual", "Yielding"],
+      "options": [
+        { "id": "fleabag", "name": "Mount on a fleabag — Sp 10, Hero (Cav)", "points": 15, "sp": 10 },
+        { "id": "lightning-bolt-5", "name": "Lightning Bolt (5)", "points": 30 },
+        { "id": "bane-chant-3", "name": "Bane Chant (3)", "points": 30 },
+        { "id": "heal-4", "name": "Heal (4)", "points": 20 },
+        { "id": "hex-2", "name": "Hex (2)", "points": 10 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 6, "me": "5+", "sh": "-", "de": "4+", "us": 1, "att": 1, "ne": "11+", "ht": 2, "points": 70 }
+      ]
+    },
+    {
+      "id": "swarm-crier",
+      "name": "Swarm-crier",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": ["Individual", "Very Inspiring", "Yielding"],
+      "options": [
+        { "id": "fleabag", "name": "Mount on a fleabag — Sp 10, Hero (Cav)", "points": 15, "sp": 10 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 6, "me": "5+", "sh": "-", "de": "4+", "us": 1, "att": 1, "ne": "10+", "ht": 2, "points": 80 }
+      ]
+    },
+    {
+      "id": "birthing-daughter",
+      "name": "Birthing Daughter",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": ["Individual", "Inspiring", "Messenger"],
+      "ranged": [{ "name": "Blight Pistol", "range": "12\"", "text": "Att: 3, Piercing (1)" }],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 6, "me": "4+", "sh": "4+", "de": "4+", "us": 1, "att": 3, "ne": "13+", "ht": 2, "points": 125 }
+      ]
+    },
+    {
+      "id": "twitch-keenear",
+      "name": "Twitch Keenear",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "unique": true,
+      "traits": ["Spellcaster"],
+      "special": ["Individual", "Inspiring", "Eye of the Abyss"],
+      "options": [
+        { "id": "bane-chant-3", "name": "Bane Chant (3)", "points": 0 },
+        { "id": "hex-3", "name": "Hex (3)", "points": 0 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 6, "me": "5+", "sh": "-", "de": "4+", "us": 1, "att": 1, "ne": "12+", "ht": 2, "points": 145 }
+      ]
+    },
+    {
+      "id": "master-scurrier",
+      "name": "Master Scurrier",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 1,
+      "traits": [],
+      "special": ["Crushing Strength (1)", "Duellist (D3)", "Feint", "Individual", "Scout", "Stealthy", "Vicious"],
+      "ranged": [{ "name": "Blight Pistol", "range": "12\"", "text": "Piercing (1)" }],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 7, "me": "3+", "sh": "4+", "de": "4+", "us": 1, "att": 4, "ne": "12+", "ht": 2, "points": 155 }
+      ]
+    },
+    {
+      "id": "brute-enforcer",
+      "name": "Brute Enforcer",
+      "type": "hero-large-infantry",
+      "typeLabel": "Hero (Lrg Inf)",
+      "role": "champion",
+      "traits": [],
+      "special": ["Brutal (1)", "Crushing Strength (2)", "Rallying"],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 6, "me": "3+", "sh": "-", "de": "5+", "us": 1, "att": 3, "ne": "13+", "ht": 3, "points": 140 }
+      ]
+    },
+    {
+      "id": "warriors",
+      "name": "Warriors",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": ["Ratpack"],
+      "special": ["Rallying (Only when Horde Unit Size is chosen)"],
+      "options": [
+        {
+          "id": "spears",
+          "name": "Spears — Phalanx (+3 Att on Regiment / +5 Att on Horde)",
+          "pointsBySize": { "regiment": 10, "horde": 15 },
+          "attModBySize": { "regiment": 3, "horde": 5 },
+          "addSpecial": ["Phalanx"],
+          "onlySizes": ["regiment", "horde"]
+        },
+        {
+          "id": "legion",
+          "name": "Upgrade Horde to Legion (30 Att, Ne 27+, 200×120mm — requires the War Chief)",
+          "pointsBySize": { "horde": 40 },
+          "attBySize": { "horde": 30 },
+          "neBySize": { "horde": "27+" },
+          "nameBySize": { "horde": "Legion" },
+          "onlySizes": ["horde"],
+          "requiresUnit": "war-chief"
+        }
+      ],
+      "sizes": [
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 6, "me": "5+", "sh": "-", "de": "4+", "us": 2, "att": 12, "ne": "14+", "ht": 2, "points": 85 },
+        { "id": "horde", "name": "Horde", "category": "core", "sp": 6, "me": "5+", "sh": "-", "de": "4+", "us": 4, "att": 25, "ne": "21+", "ht": 2, "points": 150 }
+      ]
+    },
+    {
+      "id": "shock-troops",
+      "name": "Shock Troops",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": ["Ratpack"],
+      "special": ["Crushing Strength (1)", "Rallying (Only when Horde Unit Size is chosen)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 6, "me": "4+", "sh": "-", "de": "4+", "us": 1, "att": 12, "ne": "11+", "ht": 2, "points": 90 },
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 6, "me": "4+", "sh": "-", "de": "4+", "us": 2, "att": 15, "ne": "15+", "ht": 2, "points": 120 },
+        { "id": "horde", "name": "Horde", "category": "core", "sp": 6, "me": "4+", "sh": "-", "de": "4+", "us": 4, "att": 30, "ne": "24+", "ht": 2, "points": 220 }
+      ]
+    },
+    {
+      "id": "wretches",
+      "name": "Wretches",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": ["Vermin"],
+      "special": [],
+      "sizes": [
+        { "id": "horde", "name": "Horde", "category": "auxiliary", "sp": 6, "me": "5+", "sh": "-", "de": "2+", "us": 4, "att": 25, "ne": "20+", "ht": 2, "points": 105 }
+      ]
+    },
+    {
+      "id": "vermintide",
+      "name": "Vermintide",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": ["Vermin"],
+      "special": ["Height (1)", "Vicious (Combat)", "Wild Charge (D3)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 6, "me": "5+", "sh": "-", "de": "3+", "us": 1, "att": 8, "ne": "11+", "ht": 1, "points": 65 },
+        { "id": "regiment", "name": "Regiment", "category": "auxiliary", "sp": 6, "me": "5+", "sh": "-", "de": "3+", "us": 2, "att": 16, "ne": "15+", "ht": 1, "points": 95 }
+      ]
+    },
+    {
+      "id": "nightmares",
+      "name": "Nightmares",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [],
+      "special": ["Crushing Strength (1)", "Rallying (Only when Regiment Unit Size is chosen)", "Vicious"],
+      "ranged": [{ "name": "Blight Cannons", "range": "12\"" }],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "core", "sp": 6, "me": "4+", "sh": "4+", "de": "5+", "us": 1, "att": 8, "ne": "13+", "ht": 3, "points": 140 },
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 6, "me": "4+", "sh": "4+", "de": "5+", "us": 2, "att": 16, "ne": "16+", "ht": 3, "points": 230 }
+      ]
+    },
+    {
+      "id": "scurriers",
+      "name": "Scurriers",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": [],
+      "special": ["Feint", "Scout", "Stealthy", "Vicious"],
+      "ranged": [{ "name": "Blight Throwers", "range": "18\"" }],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "specialist", "sp": 7, "me": "5+", "sh": "5+", "de": "3+", "us": 1, "att": 10, "ne": "11+", "ht": 2, "points": 130 },
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 7, "me": "5+", "sh": "5+", "de": "3+", "us": 2, "att": 12, "ne": "15+", "ht": 2, "points": 160 }
+      ]
+    },
+    {
+      "id": "hackpaws",
+      "name": "Hackpaws",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": ["Ratpack"],
+      "special": ["Nimble", "Thunderous Charge (1)", "Vicious (Combat)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "specialist", "sp": 10, "me": "4+", "sh": "-", "de": "4+", "us": 1, "att": 8, "ne": "12+", "ht": 3, "points": 105 },
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 10, "me": "4+", "sh": "-", "de": "4+", "us": 2, "att": 16, "ne": "15+", "ht": 3, "points": 160 }
+      ]
+    },
+    {
+      "id": "tunnel-runners",
+      "name": "Tunnel Runners",
+      "type": "chariot",
+      "typeLabel": "Cht",
+      "role": "unit",
+      "traits": [],
+      "special": ["Brutal (1)", "Crushing Strength (1)", "Thunderous Charge (1)"],
+      "sizes": [
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 8, "me": "4+", "sh": "-", "de": "5+", "us": 2, "att": 24, "ne": "16+", "ht": 4, "points": 210 }
+      ]
+    },
+    {
+      "id": "clawshots",
+      "name": "Clawshots",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": [],
+      "special": [],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "support", "sp": 6, "me": "5+", "sh": "5+", "de": "5+", "us": 1, "att": 5, "ne": "10+", "ht": 2, "points": 100 }
+      ]
+    },
+    {
+      "id": "night-terror",
+      "name": "Night Terror",
+      "type": "monster",
+      "typeLabel": "Mon",
+      "role": "unit",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Height (3)"],
+      "sizes": [
+        { "id": "monster", "name": "Monster", "category": "support", "sp": 9, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 5, "ne": "14+", "ht": 3, "points": 130 }
+      ]
+    },
+    {
+      "id": "death-engine-spewer",
+      "name": "Death Engine Spewer",
+      "type": "monster-chariot",
+      "typeLabel": "Mon (Cht)",
+      "role": "unit",
+      "traits": [],
+      "special": ["Crushing Strength (1)", "Fearless"],
+      "ranged": [{ "name": "Rattlecannon", "range": "18\"", "text": "Piercing (2)" }],
+      "options": [
+        {
+          "id": "impaler",
+          "name": "Impaler Variant — Sp 8, De 5+, Crushing Strength (2), Rampage (D6), Vicious (Combat), loses Rattlecannon",
+          "points": 10,
+          "sp": 8,
+          "de": "5+",
+          "dropSpecial": ["Crushing Strength (1)"],
+          "addSpecial": ["Crushing Strength (2)", "Rampage (D6 - Combat)", "Vicious (Combat)"],
+          "dropRanged": true
+        }
+      ],
+      "sizes": [
+        { "id": "monster", "name": "Monster", "category": "support", "sp": 6, "me": "4+", "sh": "5+", "de": "4+", "us": 2, "att": "D6+7", "ne": "16+", "ht": 5, "points": 175 }
+      ]
+    },
+    {
+      "id": "tangle",
+      "name": "Tangle",
+      "type": "titan",
+      "typeLabel": "Ti",
+      "role": "unit",
+      "unique": true,
+      "traits": [],
+      "special": ["Aura (Headstrong)", "Inspiring", "Fearless", "Height (4)", "Rallying", "Vicious (Combat)", "The Will of the Nest"],
+      "options": [
+        { "id": "bane-chant-1", "name": "Bane Chant (1)", "points": 0 },
+        { "id": "lightning-bolt-3", "name": "Lightning Bolt (3)", "points": 0 },
+        { "id": "hex-1", "name": "Hex (1)", "points": 0 },
+        { "id": "weakness-1", "name": "Weakness (1)", "points": 0 }
+      ],
+      "sizes": [
+        { "id": "titan", "name": "Titan", "category": "support", "sp": 5, "me": "5+", "sh": "-", "de": "4+", "us": 2, "att": 9, "ne": "14+", "ht": 4, "points": 165 }
+      ]
+    },
+    {
+      "id": "mutant-rat-fiend",
+      "name": "Mutant Rat-fiend",
+      "type": "titan",
+      "typeLabel": "Ti",
+      "role": "unit",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Fearless", "Regeneration (5+)", "Strider", "Slayer (6)", "Vicious (Combat)", "The Chittering Throng"],
+      "sizes": [
+        { "id": "titan", "name": "Titan", "category": "support", "sp": 7, "me": "3+", "sh": "-", "de": "4+", "us": 2, "att": 9, "ne": "18+", "ht": 5, "points": 235 }
+      ]
+    },
+    {
+      "id": "blight-spewer",
+      "name": "Blight Spewer",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": [],
+      "ranged": [{ "name": "Blight Spewer", "range": "12\"", "text": "Piercing (1)" }],
+      "sizes": [
+        { "id": "war-engine", "name": "War Engine", "category": "support", "sp": 6, "me": "-", "sh": "4+", "de": "5+", "us": 1, "att": 10, "ne": "10+", "ht": 2, "points": 95 }
+      ]
+    },
+    {
+      "id": "shredder",
+      "name": "Shredder",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": [],
+      "ranged": [{ "name": "Shredder", "range": "48\"", "text": "Blast (D3), Piercing (1), Reload, Shattering (1)" }],
+      "sizes": [
+        { "id": "war-engine", "name": "War Engine", "category": "support", "sp": 5, "me": "-", "sh": "5+", "de": "5+", "us": 1, "att": 4, "ne": "10+", "ht": 2, "points": 95 }
+      ]
+    }
+  ]
+}

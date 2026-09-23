@@ -1,0 +1,121 @@
+{
+  "disclaimer": "Artefacts seen on published 4th-edition Companion lists. Confirm text and points in Companion.",
+  "artefacts": [
+    {
+      "id": "blade-of-slashing",
+      "name": "Blade of Slashing",
+      "points": 5,
+      "unique": true,
+      "restriction": null,
+      "text": "Whenever the unit rolls to hit in Combat, it can re-roll one of the dice that failed to hit."
+    },
+    {
+      "id": "ej-periscope",
+      "name": "Ej Periscope",
+      "points": 5,
+      "unique": true,
+      "restriction": "infantry-hero",
+      "text": "Infantry only. The hero gains the Leaper special rule."
+    },
+    {
+      "id": "sir-jesses-boots",
+      "name": "Sir Jesse's Boots of Striding",
+      "points": 15,
+      "unique": true,
+      "restriction": null,
+      "text": "Once per game, this unit gains both the Pathfinder and Strider special rules until the end of the Turn."
+    },
+    {
+      "id": "crown-of-the-wizard-king",
+      "name": "Crown of the Wizard King",
+      "points": 15,
+      "unique": true,
+      "restriction": "hero",
+      "text": "The hero gains an additional 6\" range on all of its spells that target friendly units."
+    },
+    {
+      "id": "aegis-of-the-elohi",
+      "name": "Aegis of the Elohi",
+      "points": 15,
+      "unique": true,
+      "restriction": null,
+      "text": "The unit gains Iron Resolve (+1)."
+    },
+    {
+      "id": "mead-of-madness",
+      "name": "Mead of Madness",
+      "points": 15,
+      "unique": true,
+      "restriction": null,
+      "addSpecial": ["Wild Charge (1)"],
+      "text": "The unit gains the Wild Charge (+1) special rule."
+    },
+    {
+      "id": "pipes-of-terror",
+      "name": "Pipes of Terror",
+      "points": 15,
+      "unique": true,
+      "restriction": null,
+      "addSpecial": ["Brutal (1)"],
+      "text": "The unit gains Brutal (1)."
+    },
+    {
+      "id": "brew-of-haste",
+      "name": "Brew of Haste",
+      "points": 20,
+      "unique": true,
+      "restriction": null,
+      "spMod": 1,
+      "text": "This unit increases its Speed stat by +1."
+    },
+    {
+      "id": "inspiring-talisman",
+      "name": "Inspiring Talisman",
+      "points": 30,
+      "unique": true,
+      "restriction": "hero",
+      "addSpecial": ["Inspiring"],
+      "text": "The hero gains the Inspiring special rule."
+    },
+    {
+      "id": "hammer-of-measured-force",
+      "name": "Hammer of Measured Force",
+      "points": 20,
+      "unique": true,
+      "restriction": null,
+      "text": "In Combat, this unit will always damage the enemy on a 4+ regardless of any other modifiers."
+    },
+    {
+      "id": "blessing-of-the-gods",
+      "name": "Blessing of the Gods",
+      "points": 25,
+      "unique": true,
+      "restriction": null,
+      "text": "The unit gains Elite."
+    },
+    {
+      "id": "chant-of-hate",
+      "name": "Chant of Hate",
+      "points": 25,
+      "unique": true,
+      "restriction": null,
+      "text": "The unit gains Vicious (Combat)."
+    },
+    {
+      "id": "brew-of-strength",
+      "name": "Brew of Strength",
+      "points": 40,
+      "unique": true,
+      "restriction": null,
+      "text": "The unit gains the Crushing Strength (+1) special rule."
+    },
+    {
+      "id": "brew-of-sharpness",
+      "name": "Brew of Sharpness",
+      "points": 45,
+      "unique": true,
+      "restriction": null,
+      "text": "The unit has a +1 to hit modifier with Combat attacks."
+    }
+  ]
+}

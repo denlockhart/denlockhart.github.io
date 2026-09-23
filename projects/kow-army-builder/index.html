@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kings of War — Army Builder</title>
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+  <header>
+    <h1>Kings of War</h1>
+    <p>Army Builder <span class="tag">4th Edition</span></p>
+  </header>
+  <main>
+    <div id="error-box" class="hidden"></div>
+
+    <section id="screen-setup" class="panel">
+      <h2>New Army</h2>
+      <div class="form-grid">
+        <label>Faction
+          <select id="faction-select"></select>
+        </label>
+        <label>Army name
+          <input id="army-name" type="text" placeholder="e.g. The Northern Host">
+        </label>
+        <label>Points limit
+          <select id="points-limit">
+            <option value="1000">1000</option>
+            <option value="1500">1500</option>
+            <option value="1995">1995</option>
+            <option value="2300" selected>2300</option>
+            <option value="2500">2500</option>
+          </select>
+        </label>
+      </div>
+      <p class="hint" id="sheet-info"></p>
+      <div class="actions">
+        <button type="button" class="primary" id="btn-start">Start Building</button>
+      </div>
+      <div id="saved-wrap" class="saved-wrap hidden">
+        <h3>Saved lists</h3>
+        <div id="saved-list"></div>
+      </div>
+    </section>
+
+    <section id="screen-builder" class="hidden">
+      <div class="summary-bar">
+        <div class="army-name-row">
+          <strong id="summary-army-name">(unnamed)</strong>
+          <span id="summary-faction" class="meta"></span>
+        </div>
+        <div>Points: <span id="points-used">0</span> / <span id="points-max">2300</span></div>
+        <div>Units: <span id="unit-count">0</span></div>
+        <div>US: <span id="us-total">0</span></div>
+      </div>
+      <p id="list-status" class="list-status"></p>
+      <div class="layout">
+        <div class="col">
+          <div class="panel">
+            <h2>Unit Catalog</h2>
+            <div class="filter-row" id="filter-row">
+              <button type="button" class="filter active" data-cat="all">All</button>
+              <button type="button" class="filter" data-cat="core">Core</button>
+              <button type="button" class="filter" data-cat="auxiliary">Aux</button>
+              <button type="button" class="filter" data-cat="specialist">Specialist</button>
+              <button type="button" class="filter" data-cat="support">Support</button>
+              <button type="button" class="filter" data-cat="commander">Commanders</button>
+            </div>
+            <label class="search-label">Search
+              <input id="catalog-search" type="search" placeholder="Unit name">
+            </label>
+            <div id="catalog-list" class="catalog-list"></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="panel">
+            <h2>Battalions</h2>
+            <p class="hint">Each battalion needs 1 Commander and 2 Core. Core unlocks Aux and Specialist. Every pair of Core and/or Specialist unlocks 1 Support and 1 Commander (max 4 Specialist / Support / Commanders). 4 Core unlocks another battalion. One Warlord per battalion.</p>
+            <div id="battalion-list"></div>
+            <button type="button" id="btn-add-battalion">+ Add Battalion</button>
+          </div>
+          <div class="panel" id="orders-panel">
+            <h2>Command Orders</h2>
+            <div id="orders-list" class="orders-list"></div>
+          </div>
+          <div class="panel actions-panel">
+            <div class="actions">
+              <button type="button" class="primary" id="btn-print">Print / Save PDF</button>
+              <button type="button" id="btn-copy">Copy List</button>
+              <button type="button" id="btn-save">Save List</button>
+              <button type="button" class="danger" id="btn-clear">Clear</button>
+              <button type="button" id="btn-back">Change Army</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="add-dialog">
+    <form method="dialog" id="add-form">
+      <h3 id="add-title">Add Unit</h3>
+      <p id="add-profile" class="profile-line"></p>
+      <label id="size-wrap">Size
+        <select id="add-size"></select>
+      </label>
+      <label>Battalion
+        <select id="add-battalion"></select>
+      </label>
+      <fieldset id="opt-fieldset" class="hidden">
+        <legend>Options</legend>
+        <div id="opt-list"></div>
+      </fieldset>
+      <label id="artefact-wrap">Artefact
+        <select id="add-artefact"></select>
+      </label>
+      <fieldset id="spell-fieldset" class="hidden">
+        <legend>Arcane Library <span class="meta">[U]</span></legend>
+        <div id="spell-list"></div>
+      </fieldset>
+      <p class="cost-line">Cost: <strong id="add-cost">0</strong> pts</p>
+      <p id="add-warn" class="hint"></p>
+      <div class="actions">
+        <button type="submit" class="primary" id="add-submit">Add to Army</button>
+        <button type="button" id="add-cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <section id="print-sheet" class="print-sheet" aria-hidden="true"></section>
+
+  <footer>
+    <p><a href="/">denlockhart.com</a> · Unofficial fan tool for <a href="https://www.manticgames.com/games/kings-of-war/" target="_blank" rel="noopener">Mantic Kings of War 4th Edition</a>. Verify lists against the <a href="https://companion.manticgames.com/kings-of-war-4th-edition-list-builder/" target="_blank" rel="noopener">Mantic Companion</a>.</p>
+  </footer>
+  <script src="app.js?v=7"></script>
+</body>
+</html>

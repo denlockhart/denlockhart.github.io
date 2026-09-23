@@ -1,0 +1,475 @@
+{
+  "id": "orcs",
+  "name": "Orcs",
+  "sourceNote": "Full Orcs roster from the Mantic Companion list builder (September 2026). Arcane Library spells that Companion hides behind a subscription are not listed. Mount options set Speed as printed.",
+  "commandOrders": [
+    {
+      "name": "Tenacity!",
+      "target": "3+",
+      "text": "The unit may re-roll a single failed to hit roll in Combat this Turn. It cannot be used to re-roll a dice for an attack that has the Blast special rule."
+    },
+    {
+      "name": "Tactical Retreat!",
+      "target": "4+",
+      "text": "If the unit performs a Back! order, it may move up to its Sp value, but may not make any pivots. This order may not be issued to a unit carrying a Loot Counter."
+    },
+    {
+      "name": "Green Rage",
+      "target": "5+",
+      "text": "Units with the Orc or Forged Traits only. When this unit attacks in a Combat this Turn, for each successful hit that rolls a natural 6, those hits are doubled, before rolling to damage (in effect they have Blast (2))."
+    },
+    {
+      "name": "Up and at 'em",
+      "target": "4+",
+      "text": "Units with the Orc Trait only. The unit gains the Wild Charge (n) special rule where n is the number of successful dice rolled to issue this order."
+    }
+  ],
+  "units": [
+    {
+      "id": "stormbringer",
+      "name": "Stormbringer",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Individual", "Inspiring"],
+      "options": [
+        { "id": "manticore", "name": "Mount on a Manticore — Sp 8, Hero (Cav)", "points": 25, "sp": 8 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 5, "ne": "15+", "ht": 2, "points": 145 }
+      ]
+    },
+    {
+      "id": "krudger",
+      "name": "Krudger",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Individual", "Inspiring"],
+      "options": [
+        { "id": "gore", "name": "Mount on a Gore — Sp 8, Hero (Cav)", "points": 25, "sp": 8 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 7, "ne": "14+", "ht": 2, "points": 150 }
+      ]
+    },
+    {
+      "id": "vohdler",
+      "name": "Vohdler",
+      "type": "hero-monstrous-infantry",
+      "typeLabel": "Hero (Mon Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Inspiring", "Pathfinder", "Spellward", "Visions from the Grand Seer"],
+      "makeCore": [{ "unit": "thunderseers", "sizes": ["troop", "regiment"] }],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 6, "me": "4+", "sh": "-", "de": "5+", "us": 2, "att": 9, "ne": "14+", "ht": 3, "points": 170 }
+      ]
+    },
+    {
+      "id": "thonaar",
+      "name": "Thonaar",
+      "type": "hero-cavalry",
+      "typeLabel": "Hero (Cav)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Individual", "Inspiring", "Thunderstruck"],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 8, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 7, "ne": "16+", "ht": 3, "points": 205 }
+      ]
+    },
+    {
+      "id": "stormbringer-on-helstrike-manticore",
+      "name": "Stormbringer on Helstrike Manticore",
+      "type": "hero-large-cavalry",
+      "typeLabel": "Hero (Lrg Cav)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Brutal (1)", "Crushing Strength (2)", "Fly", "Inspiring", "Lifeleech (1)"],
+      "makeCategory": [{ "unit": "helstrikers", "sizes": ["troop", "regiment"], "category": "specialist" }],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 10, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 5, "ne": "15+", "ht": 4, "points": 200 }
+      ]
+    },
+    {
+      "id": "krudger-on-winged-slasher",
+      "name": "Krudger on Winged Slasher",
+      "type": "hero-titan",
+      "typeLabel": "Hero (Ti)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Crushing Strength (3)", "Fly", "Inspiring"],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 10, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 12, "ne": "18+", "ht": 5, "points": 285 }
+      ]
+    },
+    {
+      "id": "stormbringer-on-winged-slasher",
+      "name": "Stormbringer on Winged Slasher",
+      "type": "hero-titan",
+      "typeLabel": "Hero (Ti)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Crushing Strength (3)", "Fly", "Inspiring"],
+      "ranged": [{ "name": "Storm Breath", "range": "12\"" }],
+      "makeCategory": [{ "unit": "helstrikers", "sizes": ["troop", "regiment"], "category": "specialist" }],
+      "sizes": [
+        { "id": "hero", "name": "Warlord", "category": "commander", "sp": 10, "me": "3+", "sh": "4+", "de": "5+", "us": 2, "att": 10, "ne": "19+", "ht": 5, "points": 305 }
+      ]
+    },
+    {
+      "id": "flagger",
+      "name": "Flagger",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": ["Crushing Strength (1)", "Individual", "Very Inspiring", "Yielding"],
+      "options": [
+        { "id": "gore", "name": "Mount on a Gore — Sp 8, Hero (Cav)", "points": 10, "sp": 8 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 5, "me": "4+", "sh": "-", "de": "4+", "us": 1, "att": 1, "ne": "11+", "ht": 2, "points": 80 }
+      ]
+    },
+    {
+      "id": "godspeaker",
+      "name": "Godspeaker",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": ["Spellcaster"],
+      "special": ["Crushing Strength (1)", "Individual", "Yielding", "Power of the Horde"],
+      "options": [
+        { "id": "fireball-4", "name": "Fireball (4)", "points": 25 },
+        { "id": "bane-chant-2", "name": "Bane Chant (2)", "points": 20 },
+        { "id": "drain-life-4", "name": "Drain Life (4)", "points": 20 },
+        { "id": "heal-2", "name": "Heal (2)", "points": 15 },
+        { "id": "hex-2", "name": "Hex (2)", "points": 10 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 5, "me": "4+", "sh": "-", "de": "4+", "us": 1, "att": 1, "ne": "12+", "ht": 2, "points": 85 }
+      ]
+    },
+    {
+      "id": "storm-caller",
+      "name": "Storm Caller",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": ["Spellcaster"],
+      "special": ["Crushing Strength (1)", "Individual", "Yielding", "Bloodfreeze"],
+      "options": [
+        { "id": "manticore", "name": "Mount on a Manticore — Sp 8, Hero (Cav)", "points": 15, "sp": 8 },
+        { "id": "lightning-bolt-6", "name": "Lightning Bolt (6)", "points": 35 },
+        { "id": "icy-breath-12", "name": "Icy Breath (12)", "points": 35 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 5, "me": "4+", "sh": "-", "de": "5+", "us": 1, "att": 1, "ne": "13+", "ht": 2, "points": 95 }
+      ]
+    },
+    {
+      "id": "riftforger",
+      "name": "Riftforger",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Individual", "Inspiring", "Hellforged Weapons"],
+      "options": [
+        { "id": "manticore", "name": "Mount on a Manticore — Sp 8, Hero (Cav)", "points": 15, "sp": 8 }
+      ],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 1, "att": 4, "ne": "12+", "ht": 2, "points": 125 }
+      ]
+    },
+    {
+      "id": "krusher",
+      "name": "Krusher",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Duellist (2)", "Fearless", "Individual", "Inspiring", "Wild Charge (D3)"],
+      "sizes": [
+        { "id": "hero", "name": "Champion", "category": "commander", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 1, "att": 6, "ne": "12+", "ht": 2, "points": 145 }
+      ]
+    },
+    {
+      "id": "skulks",
+      "name": "Skulks",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": ["Orc"],
+      "special": ["Scout"],
+      "ranged": [{ "name": "Bows", "range": "18\"", "text": "Piercing (1)" }],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 5, "me": "5+", "sh": "5+", "de": "3+", "us": 1, "att": 8, "ne": "11+", "ht": 2, "points": 85 },
+        { "id": "regiment", "name": "Regiment", "category": "auxiliary", "sp": 5, "me": "5+", "sh": "5+", "de": "3+", "us": 2, "att": 10, "ne": "15+", "ht": 2, "points": 115 }
+      ]
+    },
+    {
+      "id": "ax",
+      "name": "Ax",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": ["Orc"],
+      "special": ["Crushing Strength (1)"],
+      "options": [
+        {
+          "id": "legion",
+          "name": "Upgrade Horde to Legion (30 Att, Ne 28+, 250×150mm — requires a Krudger)",
+          "pointsBySize": { "horde": 35 },
+          "attBySize": { "horde": 30 },
+          "neBySize": { "horde": "28+" },
+          "nameBySize": { "horde": "Legion" },
+          "onlySizes": ["horde"],
+          "requiresUnit": "krudger"
+        }
+      ],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 5, "me": "4+", "sh": "-", "de": "5+", "us": 1, "att": 10, "ne": "11+", "ht": 2, "points": 90 },
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 5, "me": "4+", "sh": "-", "de": "5+", "us": 2, "att": 12, "ne": "15+", "ht": 2, "points": 120 },
+        { "id": "horde", "name": "Horde", "category": "core", "sp": 5, "me": "4+", "sh": "-", "de": "5+", "us": 4, "att": 25, "ne": "24+", "ht": 2, "points": 205 }
+      ]
+    },
+    {
+      "id": "greatax",
+      "name": "Greatax",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": ["Orc"],
+      "special": ["Crushing Strength (2)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 5, "me": "3+", "sh": "-", "de": "4+", "us": 1, "att": 10, "ne": "12+", "ht": 2, "points": 105 },
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 5, "me": "3+", "sh": "-", "de": "4+", "us": 2, "att": 12, "ne": "16+", "ht": 2, "points": 130 },
+        { "id": "horde", "name": "Horde", "category": "core", "sp": 5, "me": "3+", "sh": "-", "de": "4+", "us": 4, "att": 25, "ne": "25+", "ht": 2, "points": 230 }
+      ]
+    },
+    {
+      "id": "riftforged-legionaries",
+      "name": "Riftforged Legionaries",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": ["Forged"],
+      "special": ["Crushing Strength (1)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 1, "att": 10, "ne": "12+", "ht": 2, "points": 105 },
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 12, "ne": "16+", "ht": 2, "points": 135 },
+        { "id": "horde", "name": "Horde", "category": "core", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 4, "att": 25, "ne": "25+", "ht": 2, "points": 230 }
+      ]
+    },
+    {
+      "id": "morax",
+      "name": "Morax",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": ["Orc"],
+      "special": ["Crushing Strength (1)", "Fearless", "Wild Charge (D3)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 5, "me": "3+", "sh": "-", "de": "4+", "us": 1, "att": 15, "ne": "11+", "ht": 2, "points": 125 },
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 5, "me": "3+", "sh": "-", "de": "4+", "us": 2, "att": 20, "ne": "15+", "ht": 2, "points": 165 }
+      ]
+    },
+    {
+      "id": "orclings",
+      "name": "Orclings",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [],
+      "special": ["Height (1)", "Stealthy"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 5, "me": "5+", "sh": "-", "de": "3+", "us": 1, "att": 12, "ne": "11+", "ht": 1, "points": 65 }
+      ]
+    },
+    {
+      "id": "gore-riders",
+      "name": "Gore Riders",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": ["Orc"],
+      "special": ["Crushing Strength (1)", "Thunderous Charge (1)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "auxiliary", "sp": 8, "me": "3+", "sh": "-", "de": "5+", "us": 1, "att": 9, "ne": "12+", "ht": 3, "points": 130 },
+        { "id": "regiment", "name": "Regiment", "category": "core", "sp": 8, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 18, "ne": "15+", "ht": 3, "points": 195 }
+      ]
+    },
+    {
+      "id": "reborn-legionaries",
+      "name": "Reborn Legionaries",
+      "type": "heavy-infantry",
+      "typeLabel": "Hvy Inf",
+      "role": "unit",
+      "traits": ["Forged"],
+      "special": ["Crushing Strength (2)", "Inspiring (Self)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "specialist", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 1, "att": 10, "ne": "13+", "ht": 2, "points": 135 },
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 12, "ne": "17+", "ht": 2, "points": 165 }
+      ]
+    },
+    {
+      "id": "trolls",
+      "name": "Trolls",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Inspiring (Self)", "Regeneration (5+)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "specialist", "sp": 6, "me": "4+", "sh": "-", "de": "5+", "us": 1, "att": 8, "ne": "13+", "ht": 3, "points": 140 },
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 6, "me": "4+", "sh": "-", "de": "5+", "us": 2, "att": 16, "ne": "16+", "ht": 3, "points": 190 }
+      ]
+    },
+    {
+      "id": "thunderseers",
+      "name": "Thunderseers",
+      "type": "monstrous-infantry",
+      "typeLabel": "Mon Inf",
+      "role": "unit",
+      "traits": [],
+      "special": ["Crushing Strength (1)", "Pathfinder", "Spellward", "Visions from the Rift"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "specialist", "sp": 6, "me": "4+", "sh": "-", "de": "5+", "us": 1, "att": 15, "ne": "14+", "ht": 3, "points": 155 },
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 6, "me": "4+", "sh": "-", "de": "5+", "us": 2, "att": 30, "ne": "17+", "ht": 3, "points": 220 }
+      ]
+    },
+    {
+      "id": "tundra-wolves",
+      "name": "Tundra Wolves",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": [],
+      "special": ["Nimble", "Pathfinder", "Thunderous Charge (1)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "specialist", "sp": 9, "me": "3+", "sh": "-", "de": "4+", "us": 1, "att": 7, "ne": "12+", "ht": 3, "points": 110 },
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 9, "me": "3+", "sh": "-", "de": "4+", "us": 2, "att": 14, "ne": "15+", "ht": 3, "points": 160 }
+      ]
+    },
+    {
+      "id": "orc-chariots",
+      "name": "Orc Chariots",
+      "type": "chariot",
+      "typeLabel": "Cht",
+      "role": "unit",
+      "traits": ["Orc"],
+      "special": ["Brutal (1)", "Crushing Strength (1)", "Thunderous Charge (2)"],
+      "sizes": [
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 8, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 15, "ne": "16+", "ht": 4, "points": 200 }
+      ]
+    },
+    {
+      "id": "fight-wagons",
+      "name": "Fight Wagons",
+      "type": "chariot",
+      "typeLabel": "Cht",
+      "role": "unit",
+      "traits": ["Orc"],
+      "special": ["Brutal (1)", "Crushing Strength (1)", "Fearless"],
+      "sizes": [
+        { "id": "regiment", "name": "Regiment", "category": "specialist", "sp": 7, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 20, "ne": "16+", "ht": 4, "points": 215 }
+      ]
+    },
+    {
+      "id": "helstrikers",
+      "name": "Helstrikers",
+      "type": "large-cavalry",
+      "typeLabel": "Lrg Cav",
+      "role": "unit",
+      "traits": ["Forged"],
+      "special": ["Brutal (1)", "Crushing Strength (1)", "Fly", "Lifeleech (1)", "Thunderous Charge (1)"],
+      "sizes": [
+        { "id": "troop", "name": "Troop", "category": "support", "sp": 9, "me": "3+", "sh": "-", "de": "5+", "us": 1, "att": 9, "ne": "14+", "ht": 4, "points": 175 },
+        { "id": "regiment", "name": "Regiment", "category": "support", "sp": 9, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 18, "ne": "17+", "ht": 4, "points": 250 }
+      ]
+    },
+    {
+      "id": "ambarox",
+      "name": "Ambarox",
+      "type": "monster",
+      "typeLabel": "Mon",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": ["Height (4)"],
+      "ranged": [{ "name": "Energy Blast", "range": "36\"", "text": "Blast (D3), Piercing (1)" }],
+      "sizes": [
+        { "id": "monster", "name": "Monster", "category": "support", "sp": 5, "me": "4+", "sh": "5+", "de": "4+", "us": 2, "att": 3, "ne": "12+", "ht": 4, "points": 100 }
+      ]
+    },
+    {
+      "id": "war-drum",
+      "name": "War Drum",
+      "type": "monster",
+      "typeLabel": "Mon",
+      "role": "unit",
+      "limit": 2,
+      "traits": ["Orc"],
+      "special": ["Crushing Strength (1)", "Dread", "Fearless", "Height (2)", "Rallying"],
+      "sizes": [
+        { "id": "monster", "name": "Monster", "category": "support", "sp": 5, "me": "4+", "sh": "-", "de": "4+", "us": 2, "att": 3, "ne": "11+", "ht": 2, "points": 100 }
+      ]
+    },
+    {
+      "id": "stormslayer",
+      "name": "Stormslayer",
+      "type": "monster",
+      "typeLabel": "Mon",
+      "role": "unit",
+      "traits": ["Forged"],
+      "special": ["Crushing Strength (2)", "Fearless", "Inspiring (Self)", "Regeneration (5+)", "Slayer (D6)"],
+      "sizes": [
+        { "id": "monster", "name": "Monster", "category": "support", "sp": 7, "me": "3+", "sh": "-", "de": "4+", "us": 2, "att": 9, "ne": "16+", "ht": 5, "points": 185 }
+      ]
+    },
+    {
+      "id": "stormforged-shrine",
+      "name": "Stormforged Shrine",
+      "type": "titan",
+      "typeLabel": "Ti",
+      "role": "unit",
+      "unique": true,
+      "traits": [],
+      "special": ["Aura (Headstrong)", "Crushing Strength (1)", "Inspiring", "Chain Lightning"],
+      "options": [
+        { "id": "lightning-bolt-12", "name": "Lightning Bolt (12)", "points": 0 }
+      ],
+      "sizes": [
+        { "id": "titan", "name": "Titan", "category": "support", "sp": 5, "me": "3+", "sh": "-", "de": "5+", "us": 2, "att": 10, "ne": "17+", "ht": 5, "points": 245 }
+      ]
+    },
+    {
+      "id": "storm-giant",
+      "name": "Storm Giant",
+      "type": "titan",
+      "typeLabel": "Ti",
+      "role": "unit",
+      "traits": [],
+      "special": ["Brutal (1)", "Cloak of Death", "Crushing Strength (4)", "Height (6)", "Strider"],
+      "options": [
+        { "id": "cleaver", "name": "Giant Cleaver: Slayer (D6)", "points": 0, "addSpecial": ["Slayer (D6 - Combat)"], "excludes": ["club"] },
+        { "id": "club", "name": "Giant Club: Rampage (D6)", "points": 0, "addSpecial": ["Rampage (D6 - Combat)"], "excludes": ["cleaver"] },
+        { "id": "wind-blast", "name": "Wind Blast (6)", "points": 0 }
+      ],
+      "sizes": [
+        { "id": "titan", "name": "Titan", "category": "support", "sp": 7, "me": "4+", "sh": "-", "de": "5+", "us": 2, "att": "D6+8", "ne": "20+", "ht": 6, "points": 265 }
+      ]
+    }
+  ]
+}

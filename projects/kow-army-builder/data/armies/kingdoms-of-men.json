@@ -1,0 +1,266 @@
+{
+  "id": "kingdoms-of-men",
+  "name": "Kingdoms of Men",
+  "sourceNote": "Starter catalog from published 4th-edition Companion lists (including a 2500pt kowmasters export). Not the full 64-entry army.",
+  "commandOrders": [
+    {
+      "name": "Indomitable Will",
+      "target": "4+",
+      "text": "The unit gains the Headstrong and Inspiring (Self) special rules until the start of its next turn."
+    },
+    {
+      "name": "Brace for Impact",
+      "target": "5+",
+      "text": "Unengaged units with the Stoic Trait only. Unless the unit moves At the Double! or Charges this Turn, until the start of its next Turn the unit increases its De by one while being targeted by any attacks in its front facing."
+    }
+  ],
+  "units": [
+    {
+      "id": "baron-on-winged-beast",
+      "name": "Baron on Winged Beast",
+      "type": "hero-large-cavalry",
+      "typeLabel": "Hero (Lrg Cav)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Fly", "Very Inspiring"],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 9,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 8,
+          "ne": "14",
+          "ht": 4,
+          "points": 190
+        }
+      ]
+    },
+    {
+      "id": "the-captain",
+      "name": "The Captain",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "warlord",
+      "unique": true,
+      "traits": [],
+      "special": ["Crushing Strength (1)", "Rallying (Mercenary Trait only)", "Individual", "Very Inspiring", "Master Tactician"],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 5,
+          "ne": "15",
+          "ht": 2,
+          "points": 165
+        }
+      ]
+    },
+    {
+      "id": "wizard",
+      "name": "Wizard",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": ["Spellcaster"],
+      "special": ["Individual", "Yielding"],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 1,
+          "ne": "12",
+          "ht": 2,
+          "points": 60
+        }
+      ]
+    },
+    {
+      "id": "shield-wall",
+      "name": "Shield Wall",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": ["Stoic"],
+      "special": [],
+      "options": [
+        {
+          "id": "spears",
+          "name": "Spears",
+          "pointsBySize": { "regiment": 20, "horde": 25 },
+          "attBySize": { "regiment": 15 },
+          "addSpecial": ["Phalanx"]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 2,
+          "att": 12,
+          "ne": "15",
+          "ht": 2,
+          "points": 90
+        },
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 4,
+          "att": 30,
+          "ne": "24",
+          "ht": 2,
+          "points": 155
+        }
+      ]
+    },
+    {
+      "id": "knights",
+      "name": "Knights",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": ["Noble"],
+      "special": ["Headstrong", "Thunderous Charge (3)"],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "core",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 18,
+          "ne": "16",
+          "ht": 3,
+          "points": 200
+        }
+      ]
+    },
+    {
+      "id": "light-cavalry",
+      "name": "Light Cavalry",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": [],
+      "special": ["Feint", "Thunderous Charge (1)"],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 9,
+          "me": "4+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 7,
+          "ne": "12",
+          "ht": 3,
+          "points": 95
+        }
+      ]
+    },
+    {
+      "id": "beast-knights",
+      "name": "Beast Knights",
+      "type": "large-cavalry",
+      "typeLabel": "Lrg Cav",
+      "role": "unit",
+      "traits": ["Noble"],
+      "special": ["Crushing Strength (2)", "Thunderous Charge (1)"],
+      "options": [
+        {
+          "id": "fly",
+          "name": "Change Sp to 9 and Gain Fly",
+          "points": 50,
+          "sp": 9,
+          "addSpecial": ["Fly"]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "support",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 20,
+          "ne": "17",
+          "ht": 4,
+          "points": 230
+        }
+      ]
+    },
+    {
+      "id": "cannon",
+      "name": "Cannon",
+      "type": "war-engine",
+      "typeLabel": "War Eng",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": ["Grapeshot"],
+      "ranged": [
+        {
+          "name": "Cannon",
+          "range": "48\"",
+          "text": "Blast (D3+1), Piercing (3), Reload, Shattering (D3)"
+        },
+        {
+          "name": "Grapeshot",
+          "range": "12\"",
+          "text": "Att: 12, Piercing (1)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "engine",
+          "name": "War Engine",
+          "category": "support",
+          "sp": 5,
+          "me": "-",
+          "sh": "5+",
+          "de": "4+",
+          "us": 1,
+          "att": 2,
+          "ne": "11",
+          "ht": 2,
+          "points": 95
+        }
+      ]
+    }
+  ]
+}

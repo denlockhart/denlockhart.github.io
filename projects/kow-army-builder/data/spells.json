@@ -1,0 +1,55 @@
+{
+  "disclaimer": "Arcane Library spells are Unique [U]. Any unit with the Spellcaster trait may purchase them. Confirm remaining library entries in Companion.",
+  "spells": [
+    {
+      "id": "bane-chant",
+      "name": "Bane Chant",
+      "level": 2,
+      "points": 20,
+      "unique": true,
+      "range": "12\"",
+      "targets": "Friendly, CC",
+      "text": "If any hits are scored, instead of causing damage, for the rest of the Turn the unit gains Crushing Strength (+1). Multiple castings on the same target have no additional effect."
+    },
+    {
+      "id": "heal",
+      "name": "Heal",
+      "level": 4,
+      "points": 20,
+      "unique": true,
+      "range": "12\"",
+      "targets": "Friendly, CC",
+      "text": "Instead of causing damage, hits remove that many points of damage from the target."
+    },
+    {
+      "id": "surge",
+      "name": "Surge",
+      "level": 5,
+      "points": 20,
+      "unique": true,
+      "range": "12\"",
+      "targets": "Friendly, CC",
+      "text": "Hits are used to move a Shambling unit."
+    },
+    {
+      "id": "celestial-restoration",
+      "name": "Celestial Restoration",
+      "level": 3,
+      "points": 35,
+      "unique": true,
+      "range": "36\"",
+      "targets": "Friendly, CC, Indirect",
+      "text": "Blast (D3). Instead of causing damage, the total number of hits is the number of points of damage immediately removed from the target. Dice rolled to hit with this spell cannot be re-rolled."
+    },
+    {
+      "id": "blizzard",
+      "name": "Blizzard",
+      "level": 4,
+      "points": 40,
+      "unique": true,
+      "range": "30\"",
+      "targets": "Magical Missile",
+      "text": "Blast (D3), Frostbite, Piercing (1)."
+    }
+  ]
+}

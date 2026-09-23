@@ -1,0 +1,29 @@
+---
+description: Conventions for the Kings of War 4th Edition army builder
+globs: projects/kow-army-builder/**
+alwaysApply: false
+---
+
+# Kings of War Army Builder (`projects/kow-army-builder/`)
+
+Unofficial 4th-edition list builder. Vanilla HTML/CSS/JS.
+
+## Architecture
+
+- Single `state` object in `app.js`
+- Game data in `data/`; user lists in `localStorage` (`kow-army-builder-v1`)
+- Battalion validation lives in `battalionCounts()` / `battalionIssues()`
+
+## Battalion math
+
+- Aux max = Core (no cap of 4)
+- Specialist max = min(4, Core)
+- Support max = Commander max = min(4, floor((Core + Specialist) / 2))
+- New battalion requires 4 Core in the previous one
+- `makeCore` on a commander can change a unit's category in that battalion
+
+## Data
+
+- Do not invent points. Add units from Companion exports and record gaps in `sourceNote`.
+- Artefacts and Arcane Library spells are Unique `[U]`.
+- Local URL: **http://localhost:3000/projects/kow-army-builder/**

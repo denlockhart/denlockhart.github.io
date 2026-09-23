@@ -1,0 +1,294 @@
+{
+  "id": "basilea",
+  "name": "Basilea",
+  "sourceNote": "Starter catalog from a published 4th-edition Companion list (Basileans 2026, 2300pts). Not the full 43-entry army. Paladin Knights default to Specialist; High Paladin on Dragon makes their Regiments Core in that battalion.",
+  "commandOrders": [
+    {
+      "name": "Tenacity!",
+      "target": "3+",
+      "text": "The unit may re-roll a single failed to hit roll in Combat this Turn. It cannot be used to re-roll a dice for an attack that has the Blast special rule."
+    },
+    {
+      "name": "Tactical Retreat!",
+      "target": "4+",
+      "text": "If the unit performs a Back! order, it may move up to its Sp value, but may not make any pivots. This order may not be issued to a unit carrying a Loot Counter."
+    },
+    {
+      "name": "For the Glory of the Hegemon",
+      "target": "5+",
+      "text": "Units charging this Turn only. The unit gains the Elite (Combat) special rule."
+    },
+    {
+      "name": "Cleanse",
+      "target": "4+",
+      "text": "The unit gains Iron Resolve (+1) until the start of its next Turn, and any ongoing effects from spells, and the Frozen status, currently affecting this unit are removed."
+    },
+    {
+      "name": "Aegis of Kolosu",
+      "target": "4+",
+      "text": "Units with the Faithful Trait only. Until the start of its next Turn, the unit increases its De by one while being targeted by ranged attacks in its front facing."
+    },
+    {
+      "name": "Borne by Angels",
+      "target": "5+",
+      "text": "Infantry and Large Infantry units only. The unit gains the Fly special rule while executing an Advance! or At the Double! movement order."
+    },
+    {
+      "name": "Fell the Beast",
+      "target": "4+",
+      "text": "Infantry and Cavalry units only. The unit gains the Slayer (+nD3 – Combat) special rule, where n is the number of successful results on the dice rolled to issue this order."
+    }
+  ],
+  "units": [
+    {
+      "id": "high-paladin-on-dragon",
+      "name": "High Paladin on Dragon",
+      "type": "hero-titan",
+      "typeLabel": "Hero (Ti)",
+      "role": "warlord",
+      "traits": [],
+      "special": ["Crushing Strength (3)", "Fly", "Headstrong", "Inspiring", "Iron Resolve (1)"],
+      "makeCore": [{ "unit": "paladin-knights", "sizes": ["regiment"] }],
+      "ranged": [
+        {
+          "name": "Dragon's Breath",
+          "range": "12\"",
+          "text": ""
+        }
+      ],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Warlord",
+          "category": "commander",
+          "sp": 10,
+          "me": "3+",
+          "sh": "4+",
+          "de": "5+",
+          "us": 2,
+          "att": 10,
+          "ne": "19+",
+          "ht": 5,
+          "points": 320
+        }
+      ]
+    },
+    {
+      "id": "war-priest",
+      "name": "War Priest",
+      "type": "hero-infantry",
+      "typeLabel": "Hero (Inf)",
+      "role": "champion",
+      "limit": 2,
+      "traits": ["Spellcaster"],
+      "special": ["Crushing Strength (1)", "Individual", "Inspiring", "Iron Resolve (1)", "Yielding"],
+      "sizes": [
+        {
+          "id": "hero",
+          "name": "Champion",
+          "category": "commander",
+          "sp": 5,
+          "me": "5+",
+          "sh": "-",
+          "de": "4+",
+          "us": 1,
+          "att": 1,
+          "ne": "13+",
+          "ht": 2,
+          "points": 85
+        }
+      ]
+    },
+    {
+      "id": "paladin-monster-slayers",
+      "name": "Paladin Monster Slayers",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "unique": true,
+      "traits": ["Faithful"],
+      "special": ["Crushing Strength (2)", "Headstrong", "Iron Resolve (1)", "Slayer (D6 - Combat)"],
+      "sizes": [
+        {
+          "id": "horde",
+          "name": "Horde",
+          "category": "core",
+          "sp": 5,
+          "me": "3+",
+          "sh": "-",
+          "de": "4+",
+          "us": 4,
+          "att": 25,
+          "ne": "24+",
+          "ht": 2,
+          "points": 255
+        }
+      ]
+    },
+    {
+      "id": "gur-panthers",
+      "name": "Gur Panthers",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": [],
+      "special": ["Height (2)", "Nimble", "Pathfinder", "Vicious (Combat)"],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "auxiliary",
+          "sp": 10,
+          "me": "4+",
+          "sh": "-",
+          "de": "3+",
+          "us": 1,
+          "att": 6,
+          "ne": "11+",
+          "ht": 2,
+          "points": 95
+        }
+      ]
+    },
+    {
+      "id": "sisterhood-scouts",
+      "name": "Sisterhood Scouts",
+      "type": "infantry",
+      "typeLabel": "Inf",
+      "role": "unit",
+      "traits": ["Faithful", "Sisterhood"],
+      "special": ["Iron Resolve (1)", "Scout"],
+      "ranged": [
+        {
+          "name": "Bows",
+          "range": "24\"",
+          "text": "Vicious (Ranged)"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "troop",
+          "name": "Troop",
+          "category": "specialist",
+          "sp": 5,
+          "me": "4+",
+          "sh": "5+",
+          "de": "3+",
+          "us": 1,
+          "att": 10,
+          "ne": "12+",
+          "ht": 2,
+          "points": 115
+        }
+      ]
+    },
+    {
+      "id": "ogre-palace-guard",
+      "name": "Ogre Palace Guard",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [],
+      "special": ["Brutal (1)", "Crushing Strength (2)", "Iron Resolve (1)"],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 6,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 18,
+          "ne": "17+",
+          "ht": 3,
+          "points": 215
+        }
+      ]
+    },
+    {
+      "id": "paladin-knights",
+      "name": "Paladin Knights",
+      "type": "cavalry",
+      "typeLabel": "Cav",
+      "role": "unit",
+      "traits": ["Faithful"],
+      "special": ["Headstrong", "Iron Resolve (1)", "Thunderous Charge (3)"],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "specialist",
+          "sp": 8,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 18,
+          "ne": "17+",
+          "ht": 3,
+          "points": 215
+        }
+      ]
+    },
+    {
+      "id": "elohi",
+      "name": "Elohi",
+      "type": "large-infantry",
+      "typeLabel": "Lrg Inf",
+      "role": "unit",
+      "traits": [],
+      "special": ["Crushing Strength (2)", "Fearless", "Fly", "Inspiring", "Iron Resolve (1)"],
+      "sizes": [
+        {
+          "id": "regiment",
+          "name": "Regiment",
+          "category": "support",
+          "sp": 10,
+          "me": "3+",
+          "sh": "-",
+          "de": "5+",
+          "us": 2,
+          "att": 20,
+          "ne": "18+",
+          "ht": 3,
+          "points": 290
+        }
+      ]
+    },
+    {
+      "id": "phoenix",
+      "name": "Phoenix",
+      "type": "titan",
+      "typeLabel": "Ti",
+      "role": "unit",
+      "limit": 2,
+      "traits": [],
+      "special": ["Crushing Strength (1)", "Fly", "Radiance of Life", "Regeneration (4+)"],
+      "ranged": [
+        {
+          "name": "Firesparks",
+          "range": "18\"",
+          "text": "Att: 10"
+        }
+      ],
+      "sizes": [
+        {
+          "id": "titan",
+          "name": "Titan",
+          "category": "support",
+          "sp": 8,
+          "me": "3+",
+          "sh": "4+",
+          "de": "3+",
+          "us": 2,
+          "att": 3,
+          "ne": "17+",
+          "ht": 5,
+          "points": 180
+        }
+      ]
+    }
+  ]
+}
