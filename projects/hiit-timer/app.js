@@ -1,5 +1,6 @@
 const DEFAULT_WORK_SEC = 20;
 const DEFAULT_REST_SEC = 30;
+const GET_READY_SEC = 7;
 const MIN_INTERVAL_SEC = 5;
 const MAX_INTERVAL_SEC = 600;
 
@@ -272,8 +273,8 @@ function updateUI() {
     phaseLabel.textContent = "Get ready";
     timerDisplay.textContent = String(state.secondsLeft);
     roundLabel.textContent = "Starting Round 1 of " + state.totalRounds;
-    const elapsed = 3 - state.secondsLeft;
-    progressFill.style.width = (elapsed / 3) * 100 + "%";
+    const elapsed = GET_READY_SEC - state.secondsLeft;
+    progressFill.style.width = (elapsed / GET_READY_SEC) * 100 + "%";
     btnStart.disabled = true;
     btnPause.disabled = false;
     btnPause.textContent = state.running ? "Pause" : "Resume";
@@ -364,7 +365,7 @@ function start() {
   if (fresh) {
     state.phase = "countdown";
     state.round = 1;
-    state.secondsLeft = 3;
+    state.secondsLeft = GET_READY_SEC;
   }
   startInterval();
   updateUI();
