@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Food Tracker</title>
+  <meta name="description" content="Log foods for the day and see calories, carbs, and protein.">
+  <meta name="theme-color" content="#1c3d32">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Food Tracker">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css?v=19">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+    <div class="title-row">
+      <div>
+        <p class="eyebrow">Daily log</p>
+        <h1>Food Tracker</h1>
+        <p id="day-label" class="day-label"></p>
+      </div>
+      <button type="button" id="clear-day" class="text-btn" hidden>Clear day</button>
+    </div>
+
+    <section class="totals" aria-label="Totals for the day">
+      <div class="stat">
+        <span class="stat-label">Calories</span>
+        <strong id="total-calories">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Carbs</span>
+        <strong id="total-carbs">0</strong>
+        <span class="unit">g</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Protein</span>
+        <strong id="total-protein">0</strong>
+        <span class="unit">g</span>
+      </div>
+    </section>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel today-panel" aria-labelledby="today-heading">
+      <h2 id="today-heading">Today</h2>
+      <div class="col-head" aria-hidden="true">
+        <span>Food</span>
+        <span>Serving</span>
+        <span>Cal</span>
+        <span>Carbs</span>
+        <span>Protein</span>
+        <span></span>
+      </div>
+      <ul id="day-list" class="food-list"></ul>
+      <p id="day-empty" class="empty">Nothing logged yet. Select a food to add it.</p>
+      <section id="saved-days" class="saved-days" hidden>
+        <h2>Saved days</h2>
+        <ul id="saved-list" class="saved-list"></ul>
+      </section>
+    </section>
+
+    <section class="panel foods-panel" aria-labelledby="database-heading">
+      <h2 id="database-heading">All foods</h2>
+      <form id="add-food-form" class="add-form">
+        <label>
+          Name
+          <input id="food-name" name="name" type="text" required autocomplete="off" maxlength="80">
+        </label>
+        <label class="serving-field">
+          Serving
+          <input id="food-serving" name="serving" type="text" required autocomplete="off" maxlength="40" placeholder="1 cup">
+        </label>
+        <label>
+          Calories
+          <input id="food-calories" name="calories" type="number" min="0" step="0.1" required inputmode="decimal">
+        </label>
+        <label>
+          Carbs
+          <input id="food-carbs" name="carbs" type="number" min="0" step="0.1" required inputmode="decimal">
+        </label>
+        <label>
+          Protein
+          <input id="food-protein" name="protein" type="number" min="0" step="0.1" required inputmode="decimal">
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="add-submit" id="add-food-submit">Add food</button>
+          <button type="button" class="cancel-edit" id="cancel-edit" hidden>Cancel</button>
+        </div>
+        <p id="add-food-error" class="form-error" hidden></p>
+      </form>
+
+      <div class="db-item col-head" aria-hidden="true">
+        <div class="head-labels">
+          <span>Food</span>
+          <span>Serving</span>
+          <span>Cal</span>
+          <span>Carbs</span>
+          <span>Protein</span>
+        </div>
+        <div class="row-actions"></div>
+      </div>
+      <ul id="food-list" class="food-list"></ul>
+      <p id="food-empty" class="empty">No foods yet. Add one with the form above.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="/">denlockhart.com</a></p>
+  </footer>
+
+  <script src="foods.js?v=1"></script>
+  <script src="app.js?v=7"></script>
+</body>
+</html>
