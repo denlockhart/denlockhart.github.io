@@ -12,7 +12,6 @@ Deployed with [GitHub Pages](https://pages.github.com/) from this repository. Do
 | GitHub Pages default | https://denlockhart.github.io/ |
 | Valour & Fortitude Army Builder | https://www.denlockhart.com/projects/army-builder/ |
 | HIIT Timer | https://www.denlockhart.com/projects/hiit-timer/ |
-| Stratagem Sleeves | https://www.denlockhart.com/projects/stratagem-sleeves/ |
 | Source | https://github.com/denlockhart/denlockhart.github.io |
 
 ## Purpose
@@ -37,9 +36,6 @@ denlockhart.github.io/
     army-builder/         # Valour & Fortitude army list builder
     kow-army-builder/     # Kings of War 4th Edition army list builder
     hiit-timer/           # Configurable HIIT interval timer
-    stratagem-sleeves/    # 40K stratagem sleeve PDF builder
-      README.md
-      index.html, app.js, style.css, data/...
 ```
 
 ## Projects
@@ -49,7 +45,6 @@ denlockhart.github.io/
 | Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` |
 | Kings of War Army Builder | `projects/kow-army-builder/` | `/projects/kow-army-builder/` |
 | HIIT Timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
-| Stratagem Sleeves | `projects/stratagem-sleeves/` | `/projects/stratagem-sleeves/` |
 
 ## Local development
 
@@ -63,7 +58,6 @@ npx serve .
 - Army Builder: http://localhost:3000/projects/army-builder/
 - Kings of War Army Builder: http://localhost:3000/projects/kow-army-builder/
 - HIIT Timer: http://localhost:3000/projects/hiit-timer/
-- Stratagem Sleeves: http://localhost:3000/projects/stratagem-sleeves/
 
 ## Deploy with GitHub Pages
 
