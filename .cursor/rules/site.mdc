@@ -19,10 +19,7 @@ Static site hosting Dennis Lockhart's side projects. Not a single-app repo.
 |------|--------|-----|
 | army-builder | `projects/army-builder/` | `/projects/army-builder/` |
 | hiit-timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
-| stratagem-sleeves | `projects/stratagem-sleeves/` | `/projects/stratagem-sleeves/` |
 | tyranid-qrs | `projects/tyranid-qrs/` | `/projects/tyranid-qrs/` |
-| stock-game | `projects/stock-game/` | `/projects/stock-game/` |
-| addition-flashcards | `projects/addition-flashcards/` | `/projects/addition-flashcards/` |
 
 ## Local development
 
@@ -40,10 +37,7 @@ npm start
 | Home | http://localhost:3000/ |
 | Army Builder | http://localhost:3000/projects/army-builder/ |
 | HIIT Timer | http://localhost:3000/projects/hiit-timer/ |
-| Stratagem Sleeves | http://localhost:3000/projects/stratagem-sleeves/ |
 | Tyranids QRS | http://localhost:3000/projects/tyranid-qrs/ |
-| Market Day | http://localhost:3000/projects/stock-game/ |
-| Plus Practice | http://localhost:3000/projects/addition-flashcards/ |
 
 Short paths (`/army-builder/`, etc.) only work on Netlify — use `/projects/<slug>/` locally.
 
