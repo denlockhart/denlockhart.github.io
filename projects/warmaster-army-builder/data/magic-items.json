@@ -1,0 +1,157 @@
+{
+  "source": "Warmaster Armies v2.26, Magic Items Overview (p.88). Full descriptions are in the main rulebook, p.77.",
+  "items": [
+    {
+      "id": "battle-banner",
+      "name": "The Battle Banner",
+      "slot": "standard",
+      "summary": "+1 Attack.",
+      "choices": [
+        { "id": "superior", "label": "Superior — 5 Attacks, charging only", "points": 30, "attacks": 5 },
+        { "id": "major", "label": "Major — 3 Attacks", "points": 20, "attacks": 3 },
+        { "id": "minor", "label": "Minor — 2 Attacks", "points": 15, "attacks": 2 }
+      ]
+    },
+    {
+      "id": "banner-of-shielding",
+      "name": "The Banner of Shielding",
+      "slot": "standard",
+      "summary": "+1 Armour value.",
+      "choices": [
+        { "id": "major", "label": "Major — 5+ armour", "points": 30, "armour": ["5+"] },
+        { "id": "minor", "label": "Minor — 6+ or no armour", "points": 20, "armour": ["6+", "0"] }
+      ]
+    },
+    {
+      "id": "banner-of-fortitude",
+      "name": "The Banner of Fortitude",
+      "slot": "standard",
+      "summary": "+1 Hit.",
+      "choices": [
+        { "id": "only", "label": "3 Hits", "points": 30, "hits": 3 }
+      ]
+    },
+    {
+      "id": "banner-of-steadfastness",
+      "name": "The Banner of Steadfastness",
+      "slot": "standard",
+      "summary": "One shooting hit after saves is ignored.",
+      "choices": [
+        { "id": "superior", "label": "Superior — 4+ armour", "points": 15, "armour": ["4+"] },
+        { "id": "major", "label": "Major — 5+ armour", "points": 10, "armour": ["5+"] },
+        { "id": "minor", "label": "Minor — 6+ armour", "points": 5, "armour": ["6+"] }
+      ]
+    },
+    {
+      "id": "banner-of-fortune",
+      "name": "The Banner of Fortune",
+      "slot": "standard",
+      "summary": "Once per game, re-roll all the Attack dice in one Shooting or Combat roll.",
+      "choices": [
+        { "id": "superior", "label": "Superior — 5 Attacks, charging only", "points": 15, "attacks": 5 },
+        { "id": "major", "label": "Major — 3 Attacks", "points": 10, "attacks": 3 },
+        { "id": "minor", "label": "Minor — 2 Attacks", "points": 5, "attacks": 2 }
+      ]
+    },
+    {
+      "id": "crown-of-command",
+      "name": "Crown of Command",
+      "slot": "character",
+      "bearer": ["general"],
+      "points": 70,
+      "summary": "General only. The first Command roll each turn may be taken against an unmodified Command of 10. If that roll fails, the Crown is lost."
+    },
+    {
+      "id": "helm-of-dominion",
+      "name": "Helm of Dominion",
+      "slot": "character",
+      "bearer": ["general"],
+      "points": 40,
+      "summary": "General only. The General has +1 Command (maximum 10) for one Command phase."
+    },
+    {
+      "id": "orb-of-majesty",
+      "name": "Orb of Majesty",
+      "slot": "character",
+      "bearer": ["general"],
+      "points": 30,
+      "summary": "General only. Re-roll one failed Command roll against a Command value of 8, with all usual adjustments."
+    },
+    {
+      "id": "sceptre-of-sovereignty",
+      "name": "Sceptre of Sovereignty",
+      "slot": "character",
+      "bearer": ["general"],
+      "points": 20,
+      "summary": "General only. Ignore one Blunder rolled by the General or any other character. That order counts as successful."
+    },
+    {
+      "id": "ring-of-magic",
+      "name": "Ring of Magic",
+      "slot": "character",
+      "bearer": ["wizard"],
+      "points": 30,
+      "summary": "Wizard only. Cast one spell on a roll of 2+."
+    },
+    {
+      "id": "staff-of-spellbinding",
+      "name": "Staff of Spellbinding",
+      "slot": "character",
+      "bearer": ["wizard"],
+      "points": 30,
+      "summary": "Wizard or Runesmith. If an enemy Wizard fails to cast a spell, spellbind them on a 4+. A spellbound Wizard has -1 to cast. One use."
+    },
+    {
+      "id": "scroll-of-dispelling",
+      "name": "Scroll of Dispelling",
+      "slot": "character",
+      "bearer": ["wizard"],
+      "points": 20,
+      "summary": "Wizard or Runesmith. Dispel one enemy spell on a roll of 2+."
+    },
+    {
+      "id": "wand-of-power",
+      "name": "Wand of Power",
+      "slot": "character",
+      "bearer": ["wizard"],
+      "points": 10,
+      "summary": "Wizard only. Add +1 to one attempt to cast a spell."
+    },
+    {
+      "id": "rod-of-repetition",
+      "name": "Rod of Repetition",
+      "slot": "character",
+      "bearer": ["wizard"],
+      "points": 10,
+      "summary": "Wizard only. If a spell is cast successfully, once per game immediately try to cast another spell."
+    },
+    {
+      "id": "sword-of-destruction",
+      "name": "Sword of Destruction",
+      "slot": "character",
+      "points": 10,
+      "summary": "One enemy unit in combat with the unit carrying the sword must re-roll one successful Armour roll each combat round."
+    },
+    {
+      "id": "sword-of-fate",
+      "name": "Sword of Fate",
+      "slot": "character",
+      "points": 5,
+      "summary": "+1 Attack to the unit or character in the first Combat round."
+    },
+    {
+      "id": "sword-of-cleaving",
+      "name": "Sword of Cleaving",
+      "slot": "character",
+      "points": 10,
+      "summary": "Re-roll one unsuccessful Attack dice per combat round."
+    },
+    {
+      "id": "sword-of-might",
+      "name": "Sword of Might",
+      "slot": "character",
+      "points": 10,
+      "summary": "+1 Attack to the unit or character in the Combat phase."
+    }
+  ]
+}

@@ -32,6 +32,16 @@
   to = "/projects/hiit-timer/"
   status = 302
 
+[[redirects]]
+  from = "/warmaster-army-builder/*"
+  to = "/projects/warmaster-army-builder/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/warmaster-army-builder"
+  to = "/warmaster-army-builder/"
+  status = 301
+
 # Army builder API — legacy paths (app now uses relative data/ URLs)
 [[redirects]]
   from = "/api/catalog"
@@ -50,6 +60,16 @@
 
 [[headers]]
   for = "/projects/army-builder/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/projects/warmaster-army-builder/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/projects/warmaster-army-builder/data/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 

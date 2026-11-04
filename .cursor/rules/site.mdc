@@ -20,6 +20,7 @@ Static site hosting Dennis Lockhart's side projects. Not a single-app repo.
 | army-builder | `projects/army-builder/` | `/projects/army-builder/` |
 | hiit-timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
 | tyranid-qrs | `projects/tyranid-qrs/` | `/projects/tyranid-qrs/` |
+| warmaster-army-builder | `projects/warmaster-army-builder/` | `/projects/warmaster-army-builder/` |
 
 ## Local development
 
@@ -38,6 +39,7 @@ npm start
 | Army Builder | http://localhost:3000/projects/army-builder/ |
 | HIIT Timer | http://localhost:3000/projects/hiit-timer/ |
 | Tyranids QRS | http://localhost:3000/projects/tyranid-qrs/ |
+| Warmaster Army Builder | http://localhost:3000/projects/warmaster-army-builder/ |
 
 Short paths (`/army-builder/`, etc.) only work on Netlify — use `/projects/<slug>/` locally.
 

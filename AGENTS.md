@@ -73,6 +73,7 @@ Site URL: **http://localhost:3000/**
 | Army Builder | http://localhost:3000/projects/army-builder/ |
 | HIIT Timer | http://localhost:3000/projects/hiit-timer/ |
 | Tyranids QRS | http://localhost:3000/projects/tyranid-qrs/ |
+| Warmaster Army Builder | http://localhost:3000/projects/warmaster-army-builder/ |
 
 Use `/projects/<slug>/` paths locally (Netlify short URLs may not work with `serve`).
 

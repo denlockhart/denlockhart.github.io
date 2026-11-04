@@ -35,6 +35,7 @@ denlockhart.github.io/
   projects/
     army-builder/         # Valour & Fortitude army list builder
     kow-army-builder/     # Kings of War 4th Edition army list builder
+    warmaster-army-builder/ # Warmaster army list builder
     hiit-timer/           # Configurable HIIT interval timer
 ```
 
@@ -44,6 +45,7 @@ denlockhart.github.io/
 |---------|--------|----------|
 | Valour & Fortitude Army Builder | `projects/army-builder/` | `/projects/army-builder/` |
 | Kings of War Army Builder | `projects/kow-army-builder/` | `/projects/kow-army-builder/` |
+| Warmaster Army Builder | `projects/warmaster-army-builder/` | `/projects/warmaster-army-builder/` |
 | HIIT Timer | `projects/hiit-timer/` | `/projects/hiit-timer/` |
 
 ## Local development
@@ -57,6 +59,7 @@ npx serve .
 - Home: http://localhost:3000/
 - Army Builder: http://localhost:3000/projects/army-builder/
 - Kings of War Army Builder: http://localhost:3000/projects/kow-army-builder/
+- Warmaster Army Builder: http://localhost:3000/projects/warmaster-army-builder/
 - HIIT Timer: http://localhost:3000/projects/hiit-timer/
 
 ## Deploy with GitHub Pages

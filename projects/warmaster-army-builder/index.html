@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warmaster — Army Builder</title>
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <header>
+    <h1>Warmaster</h1>
+    <p>Army Builder <span class="tag">Armies v2.26</span></p>
+  </header>
+  <main>
+    <div id="error-box" class="hidden"></div>
+
+    <section id="screen-setup" class="panel">
+      <h2>New Army</h2>
+      <div class="form-grid">
+        <label>Faction
+          <select id="faction-select"></select>
+        </label>
+        <label>Army name
+          <input id="army-name" type="text" placeholder="e.g. Host of Naggaroth">
+        </label>
+        <label>Points limit
+          <input id="points-limit" type="number" min="1" step="1" value="2000">
+        </label>
+      </div>
+      <p class="hint" id="sheet-info"></p>
+      <div class="actions">
+        <button type="button" class="primary" id="btn-start">Start Building</button>
+      </div>
+      <div id="saved-wrap" class="saved-wrap hidden">
+        <h3>Saved lists</h3>
+        <div id="saved-list"></div>
+      </div>
+    </section>
+
+    <section id="screen-builder" class="hidden">
+      <div class="summary-bar">
+        <div class="army-name-row">
+          <strong id="summary-army-name">(unnamed)</strong>
+          <span id="summary-faction" class="meta"></span>
+        </div>
+        <div>Points: <span id="points-used">0</span> / <span id="points-max">2000</span></div>
+        <div>Units: <span id="unit-count">0</span></div>
+        <div id="scale-label" class="meta"></div>
+      </div>
+      <p id="list-status" class="list-status"></p>
+      <div class="layout">
+        <div class="col">
+          <div class="panel">
+            <h2>Army List</h2>
+            <div class="filter-row" id="filter-row">
+              <button type="button" class="filter active" data-cat="all">All</button>
+              <button type="button" class="filter" data-cat="troop">Troops</button>
+              <button type="button" class="filter" data-cat="character">Characters</button>
+            </div>
+            <label class="search-label">Search
+              <input id="catalog-search" type="search" placeholder="Unit name">
+            </label>
+            <div id="catalog-list" class="catalog-list"></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="panel">
+            <h2>Your Army</h2>
+            <p class="hint">Min/max is per full 1000 points. A 1500 point army uses the 1000 column. Below 1000, minimums are ignored. The General is a single character once minimums apply. Brigades are groups of units ordered together. Cold One Knights only brigade with each other. A War Hydra stands alone.</p>
+            <div id="army-list"></div>
+            <div id="list-special-rules"></div>
+            <div id="list-spells"></div>
+          </div>
+          <div class="panel actions-panel">
+            <div class="actions">
+              <button type="button" class="primary" id="btn-print">Print / Save PDF</button>
+              <button type="button" id="btn-copy">Copy List</button>
+              <button type="button" id="btn-save">Save List</button>
+              <button type="button" class="danger" id="btn-clear">Clear</button>
+              <button type="button" id="btn-back">Change Army</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="add-dialog">
+    <form id="add-form">
+      <h3 id="add-title">Add Unit</h3>
+      <p id="add-profile" class="profile-line"></p>
+      <label id="mount-wrap">Mount
+        <select id="add-mount"></select>
+      </label>
+      <label id="item-wrap">Magic item
+        <select id="add-item"></select>
+      </label>
+      <label id="brigade-wrap">Brigade
+        <select id="add-brigade"></select>
+      </label>
+      <p id="item-note" class="hint"></p>
+      <p class="cost-line">Cost: <strong id="add-cost">0</strong> pts</p>
+      <p id="add-warn" class="hint"></p>
+      <div class="actions">
+        <button type="submit" class="primary" id="add-submit">Add to Army</button>
+        <button type="button" id="add-cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <section id="print-sheet" class="print-sheet"></section>
+
+  <footer>
+    <p><a href="/">denlockhart.com</a> · Unofficial fan tool. Dark Elf profiles from Warmaster Armies v2.26. Verify lists against the book before play.</p>
+  </footer>
+  <script src="app.js?v=2"></script>
+</body>
+</html>
