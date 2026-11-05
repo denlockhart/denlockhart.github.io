@@ -1,0 +1,354 @@
+{
+  "id": "dogs-of-war",
+  "name": "Dogs of War",
+  "source": "Warmaster Armies v2.26, Dogs of War army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Dogs of War selector in Warmaster Armies v2.26. Generals, Wizards, and Heroes may ride a Griffon. The Paymaster is type Hero, so the Griffon is included for the Paymaster as well. Only the Paymaster may use the Pay Wagon, and the army can include only one Paymaster. One magic item per character and one magic standard per unit.",
+  "units": [
+    {
+      "id": "pikemen",
+      "name": "Pikemen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 50,
+      "min": 2,
+      "max": null,
+      "rules": ["pikemen"]
+    },
+    {
+      "id": "crossbowmen",
+      "name": "Crossbowmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "handgunners",
+      "name": "Handgunners",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 65,
+      "min": null,
+      "max": 2,
+      "rules": ["handgunners"]
+    },
+    {
+      "id": "swordsmen",
+      "name": "Swordsmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 45,
+      "min": null,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "ogres",
+      "name": "Ogres",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 105,
+      "min": null,
+      "max": 1,
+      "rules": ["ogres"]
+    },
+    {
+      "id": "dwarfs",
+      "name": "Dwarfs",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 4,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "marauders",
+      "name": "Marauders",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "light-cavalry",
+      "name": "Light Cavalry",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 75,
+      "min": null,
+      "max": 4,
+      "rules": ["light-cavalry"]
+    },
+    {
+      "id": "knights",
+      "name": "Knights",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "galloper-guns",
+      "name": "Galloper Guns",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/2+ bounce",
+      "hits": 2,
+      "armour": "0",
+      "command": null,
+      "unitSize": 2,
+      "points": 85,
+      "min": null,
+      "max": 1,
+      "rules": ["galloper-guns"]
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "8",
+      "hits": 8,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 1,
+      "points": 135,
+      "min": null,
+      "max": 1,
+      "brigade": "own-only",
+      "rules": ["giant"]
+    },
+    {
+      "id": "birdmen",
+      "name": "Birdmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 85,
+      "min": null,
+      "max": 1,
+      "rules": ["birdmen"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["griffon"],
+      "rules": []
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["griffon"],
+      "rules": []
+    },
+    {
+      "id": "paymaster",
+      "name": "Paymaster",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "armyMax": 1,
+      "mounts": ["griffon", "pay-wagon"],
+      "rules": ["paymaster"]
+    },
+    {
+      "id": "wizard",
+      "name": "Wizard",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["griffon"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "griffon",
+      "name": "Griffon",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["griffon"]
+    },
+    {
+      "id": "pay-wagon",
+      "name": "Pay Wagon",
+      "type": "Chariot Mount",
+      "attacks": "+1",
+      "points": 20,
+      "min": null,
+      "max": 1,
+      "rules": ["paymaster"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "pikemen",
+      "name": "Pikemen",
+      "text": "The pike is the traditional weapon of the mercenaries of Tilea. Twice as long as a spear and even longer than a cavalryman's lance, this is a truly fearsome although rather unwieldy weapon. Pikemen are based facing the short edge of the base in the same way as Cavalry, rather than the long edge like other Infantry. Pikemen cannot enter dense terrain (even partially). They still may be in a defended position on higher ground or behind a low obstacle as usual, but can only claim defended status when fighting to the front. An enemy does not receive charge bonuses when charging Pikemen in the front, nor do Pikemen receive any charge bonus themselves. A Pikemen stand cannot support or be supported by other infantry, only by other Pikemen stands. In all other respects they count as infantry (movement, pursuit, and so on)."
+    },
+    {
+      "id": "handgunners",
+      "name": "Handgunners",
+      "text": "A handgun shot can pierce armour far more easily than an arrow or a crossbow bolt. Count enemy Armour values as one worse (-1) than normal. One unit of Crossbowmen per full 1000 points can be replaced by Handgunners (including the 10 points extra in price) while still counting for the Crossbowmen min/max value. This unit still counts for the min/max value of Handgunners."
+    },
+    {
+      "id": "ogres",
+      "name": "Ogres",
+      "text": "Ogres flock to Dogs of War armies for the chance of a good fight and as much as they can eat. These creatures are notoriously fond of fresh human meat, although they will eat practically anything that was once alive (or still is). To represent this, an Ogre unit must use its Initiative to charge an enemy unit of humans (humans: Men, not Dwarfs, Elves, and so on) if it is within 20cm at the start of the Command phase and the Ogres can reach it. This happens automatically."
+    },
+    {
+      "id": "light-cavalry",
+      "name": "Light Cavalry",
+      "text": "Dogs of War armies make great use of expert light cavalry from all around the world. Empire Pistoliers, Arabian Desert Riders, Hobgoblin Wolf Riders, and Kislev Horse Archers are particularly adept at outmanoeuvring an enemy and harrying his flanks. Light cavalry has a shooting range of 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for the purpose of evading and shooting, including shooting at charging enemies. This unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "galloper-guns",
+      "name": "Galloper Guns",
+      "text": "These are lighter artillery than Dwarf or Empire cannons. They are shorter ranged, but can make up for their lighter shot by producing a higher volume of fire. Galloper Guns move 20cm (10cm at half pace). All the normal rules for artillery apply, as well as cannon rules for shooting: bounce through, no saves, and reduction of cover values (see the Rulebook, p.74). Because they are light guns they have a range of only 40cm. They may still shoot at a charging enemy by firing grapeshot as normal."
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "text": "Giants must always be given a separate order. They cannot be brigaded with other troops, although several Giants can be brigaded together if you so wish. If you attempt to give an order to a Giant and fail, you must take a test to see what it does. Ignore potential blunders; these are taken into account by the Giant Goes Wild chart. Where Giants are brigaded together, roll for each separately. Giants have a great many hits, 8 in fact, which are almost impossible to inflict during even a fairly lengthy combat engagement. Because Giants have so many hits we must consider the possibility of hurting the Giant and reducing its effectiveness in subsequent turns. Therefore, if a Giant has accumulated 5-7 hits by the end of the Shooting phase or Combat phase and is no longer engaged in combat, it is deemed to have been badly hurt. Once a Giant is badly hurt, all accumulated hits are discounted and its maximum Hits value and Attacks are halved for the rest of the battle (to 4 Hits and 4 Attacks). A Giant causes terror in its enemies. Giant Goes Wild (D6). Oh no! What's he doing now! 1. The Giant will neither move nor fight this turn but simply stands rooted to the spot looking dopey. 2. Move the Giant directly towards the nearest table edge. If he moves into another unit he will charge it regardless of which side it is on. If victorious in combat the Giant will hold his ground. 3. The Giant throws an object at the closest visible unit (friend or foe) within 5xD6 cm, inflicting 3 Attacks. If the target is in combat, the attacks contribute to the combat result; otherwise, resolve them in the Shooting phase. 4. The Giant moves straight forward at full pace in the direction he is facing. If he reaches an enemy unit he will charge. If he reaches a friendly unit he will walk straight through and out the other side if there is room and he has sufficient move. If he reaches a friendly unit and does not have sufficient move or enough room to walk all the way through, he halts on contact. A friendly unit that is walked through or contacted in this way instantly becomes confused. 5. The Giant moves towards the nearest enemy unit that he can see as fast as he can. If he reaches the foe he will charge. If friends are in the way he will walk through them, causing confusion as described above. If there is no visible enemy the Giant does nothing this Command phase. 6. The Giant gives a mighty bellow and rushes straight at the nearest enemy unit that he can see. Move the Giant at double his normal full pace move. If he reaches an enemy unit, he charges it and fights by jumping up and down on the foe, furiously doubling his Attacks value in the first round of combat. If there is no visible enemy the Giant does nothing this Command phase."
+    },
+    {
+      "id": "birdmen",
+      "name": "Birdmen",
+      "text": "Only half-mad nutters like Tileans would try to fly! The Birdmen wear insane contraptions of light wood covered in canvas that are shaped like wings and allow them to glide on the air currents. These wings allow the Birdmen to fly and still use their crossbows as normal. Because they are awkward flyers, they can be pursued by any type of enemy troops. Birdmen are based facing the long edge of the base in the same way as other infantry."
+    },
+    {
+      "id": "paymaster",
+      "name": "Paymaster and Pay Wagon",
+      "text": "There may only ever be one Paymaster in the army. Only the Paymaster may use the Pay Wagon. If the Pay Wagon is used, the Paymaster may bribe the units around him to fight harder. He may add +1 to all of his Command checks for a single turn only."
+    },
+    {
+      "id": "griffon",
+      "name": "Griffon",
+      "text": "Generals, Wizards, and Heroes may ride Griffons. The Griffon combines the appearance of a lion and an eagle. These creatures are hatched from stolen eggs and hand-reared to serve as mounts for favoured individuals. The Griffon can fly, increasing the rider's movement to 100cm, and it adds +2 Attacks to those of the rider. A unit which includes a Griffon causes terror in its enemies."
+    }
+  ],
+  "spells": [
+    {
+      "id": "ball-of-flame",
+      "name": "Ball of Flame",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "A ball of flame shoots from the Wizard's outstretched arm, burning all in its path. Draw an imaginary line 30cm long from the Wizard's stand in any direction you wish. The line will pass through any intervening units but not beyond terrain that would normally stop a missile shot, for example over the crest of a hill, more than 2cm of woodland, and so forth. Each unit under the line takes three shooting attacks worked out in the usual way. This spell can easily affect several units and will affect all units that fall beneath the line, including your own. Unengaged units can be driven back by a Ball of Flame as with ordinary shooting, even including friends. Engaged units cannot be driven back by the Ball of Flame but carry over any hits scored into the first round of combat. Any hits scored count as having been struck in the combat itself."
+    },
+    {
+      "id": "voice-of-command",
+      "name": "Voice of Command",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The Wizard's voice booms out across the battlefield, directing troops above the tumult of combat with the magical Voice of Command. The spell can be cast on any unengaged friendly unit within range regardless of whether the Wizard can see it or not. The spell affects only a single unit, never a brigade, and no supporting charge is possible. The unit can be moved just as if it had received an order in the Command phase. Character stands that have joined the unit will not move with it: they remain where they are."
+    },
+    {
+      "id": "weird-enchantment",
+      "name": "Weird Enchantment",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "A weird enchantment forms around the target unit and engulfs it in strange lights, scary nightmares, and disorientating special effects. This spell can be cast on any enemy unit within range regardless of whether the Wizard can see it or not. The spell lasts until the end of the opposing player's following turn. The unit moves at half pace in all situations, even when charging. The unit counts all enemies as terrifying (-1 Attack penalty) even when it is otherwise immune to terror. If the unit would normally cause terror then it ceases to do so and counts all enemies as terrifying just like everyone else. If the target is Undead or a Daemon it will not count enemies as terrifying, although all other penalties apply as described. Undead and Daemons are hard to spook."
+    },
+    {
+      "id": "teleport",
+      "name": "Teleport",
+      "cast": "2+",
+      "range": "N/A",
+      "text": "With a swirl of his cloak, a crack of thunder, and just a hint of maniacal laughter, the Wizard vanishes to reappear anywhere on the battlefield. The Wizard is moved to a new position anywhere on the table. He can leave or join a unit if he wishes, enabling a Wizard to move into or out of combat, for example. Once the Wizard has moved he can cast a second spell, but this must be a different spell and not a further Teleport. Roll to cast the second spell as normal. A Wizard that Teleports successfully can therefore potentially cast two spells that turn."
+    }
+  ]
+}

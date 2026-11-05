@@ -1,0 +1,340 @@
+{
+  "id": "orcs",
+  "name": "Orcs",
+  "source": "Warmaster Armies v2.26, Orc army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Orc selector in Warmaster Armies v2.26. Giants must be given their own orders. They cannot be brigaded with other troop types, though several Giants may be brigaded together. Orc and Goblin characters may ride a Wyvern or a Chariot. The Waaagh! spell names Boar Riders as Boar Boyz.",
+  "armyRules": [],
+  "units": [
+    {
+      "id": "orc-warriors",
+      "name": "Orc Warriors",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "goblins",
+      "name": "Goblins",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 30,
+      "min": 2,
+      "max": null,
+      "rules": ["goblins"]
+    },
+    {
+      "id": "black-orcs",
+      "name": "Black Orcs",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 1,
+      "rules": []
+    },
+    {
+      "id": "trolls",
+      "name": "Trolls",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 3,
+      "rules": ["trolls"]
+    },
+    {
+      "id": "ogres",
+      "name": "Ogres",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 105,
+      "min": null,
+      "max": 1,
+      "rules": ["ogres"]
+    },
+    {
+      "id": "boar-riders",
+      "name": "Boar Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "wolf-riders",
+      "name": "Wolf Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": null,
+      "max": null,
+      "rules": ["wolf-riders"]
+    },
+    {
+      "id": "wolf-chariots",
+      "name": "Wolf Chariots",
+      "kind": "troop",
+      "type": "Chariot",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 75,
+      "min": null,
+      "max": 3,
+      "rules": []
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "8",
+      "hits": 8,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 1,
+      "points": 135,
+      "min": null,
+      "max": 1,
+      "brigade": "own-only",
+      "rules": ["giant"]
+    },
+    {
+      "id": "rock-lobber",
+      "name": "Rock Lobber",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/3",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 1,
+      "points": 75,
+      "min": null,
+      "max": 1,
+      "rules": ["rock-lobber"]
+    },
+    {
+      "id": "orc-general",
+      "name": "Orc General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 95,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["wyvern", "chariot"],
+      "rules": ["orc-general"]
+    },
+    {
+      "id": "orc-hero",
+      "name": "Orc Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["wyvern", "chariot"],
+      "rules": []
+    },
+    {
+      "id": "orc-shaman",
+      "name": "Orc Shaman",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["wyvern", "chariot"],
+      "rules": []
+    },
+    {
+      "id": "goblin-hero",
+      "name": "Goblin Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 2,
+      "mounts": ["wyvern", "chariot"],
+      "rules": []
+    },
+    {
+      "id": "goblin-shaman",
+      "name": "Goblin Shaman",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 6,
+      "unitSize": 1,
+      "points": 30,
+      "min": null,
+      "max": 1,
+      "mounts": ["wyvern", "chariot"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "wyvern",
+      "name": "Wyvern",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["wyvern"]
+    },
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "type": "Chariot Mount",
+      "attacks": "+1",
+      "points": 5,
+      "min": null,
+      "max": 1,
+      "rules": ["chariot"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "goblins",
+      "name": "Goblins",
+      "text": "A Goblin unit is allowed to shoot as if it had bows, but its range is reduced to 15cm."
+    },
+    {
+      "id": "trolls",
+      "name": "Trolls",
+      "text": "When trying to issue an order to a unit of Trolls, or to a brigade that contains a unit of Trolls, any Command penalty applied for distance between the character and the Troll unit is always doubled. At 20cm no penalty applies, at 40cm the penalty is -2, at 60cm it is -4, and so on. Trolls can regenerate wounds. In each round of combat, after whole stands have been removed, Trolls automatically regenerate one outstanding hit. If no hits are left over after removing whole stands, regeneration has no effect. Regenerated hits still count towards the combat result for the round."
+    },
+    {
+      "id": "ogres",
+      "name": "Ogres",
+      "text": "If an Ogre unit can use its initiative to charge an enemy unit of humans at the start of the Command phase then it must do so. This happens automatically and their commander can do nothing about it. Humans encompasses all men, including Chaos Warriors and Marauders, but not Dwarfs, Elves, and so on."
+    },
+    {
+      "id": "wolf-riders",
+      "name": "Wolf Riders",
+      "text": "The Wolf Riders' range is restricted to 15cm. Wolf Riders have 360° vision: stands in this unit can draw a line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs a line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "text": "Giants must always be given a separate order. They cannot be brigaded with other troops, although several Giants can be brigaded together. If you attempt to give an order to a Giant and fail, you must take a test to see what it does. Ignore potential blunders: these are taken into account by the Giant Goes Wild chart. Roll a dice and consult the chart. Where Giants are brigaded together, roll for each separately. Giants have 8 hits, which are almost impossible to inflict during even a fairly lengthy combat engagement. If a Giant has accumulated 5-7 hits by the end of the Shooting phase or Combat phase and is no longer engaged in combat, it is deemed to have been badly hurt. Once a Giant is badly hurt, all accumulated hits are discounted and its maximum Hits and Attacks are halved for the rest of the battle, to 4 Hits and 4 Attacks. A Giant causes terror in its enemies. Giant Goes Wild (D6): 1. The Giant will neither move nor fight this turn, but simply stands rooted to the spot looking dopey. 2. Move the Giant directly towards the nearest table edge. If he moves into another unit he will charge it regardless of which side it is on. If victorious in combat the Giant will hold his ground. 3. The Giant throws an object at the closest visible unit, friend or foe, within 5×D6 cm, inflicting 3 Attacks. If the target is in combat, the attacks contribute to the combat result; otherwise resolve them in the Shooting phase. 4. The Giant moves straight forward at full pace in the direction he is facing. If he reaches an enemy unit he will charge. If he reaches a friendly unit he will walk straight through and out the other side if there is room and he has sufficient move. If he reaches a friendly unit and does not have sufficient move, or enough room to walk all the way through, he halts on contact. A friendly unit that is walked through or contacted in this way instantly becomes confused. 5. The Giant moves towards the nearest enemy unit that he can see, as fast as he can. If he reaches the foe he will charge. If friends are in the way he will walk through them, causing confusion as described above. If there is no visible enemy the Giant does nothing this Command phase. 6. The Giant gives a mighty bellow and rushes straight at the nearest enemy unit that he can see. Move the Giant at double his normal full pace move. If he reaches an enemy unit he charges it and fights by jumping up and down on the foe, furiously doubling his Attacks value in the first round of combat. If there is no visible enemy the Giant does nothing this Command phase."
+    },
+    {
+      "id": "rock-lobber",
+      "name": "Rock Lobber",
+      "text": "A Rock Lobber is a Stone Thrower as described in the rulebook, p.75."
+    },
+    {
+      "id": "orc-general",
+      "name": "Orc General",
+      "text": "Once per game, at any point in the Command phase, the Orc General motivates his troops forwards. For the remainder of that Command phase, the Orc General ignores the Command penalty for having an enemy within 20cm of a unit."
+    },
+    {
+      "id": "wyvern",
+      "name": "Wyvern",
+      "text": "Generals, Wizards, and Heroes can ride Wyverns. A Wyvern can fly, increasing its rider's move from 60cm to 100cm, and it adds +2 Attacks to those of its rider. A unit that includes a Wyvern rider causes terror in its enemies."
+    },
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "text": "A General, Wizard, or Hero can ride a Chariot. A character in a chariot adds +1 to his Attacks."
+    }
+  ],
+  "spells": [
+    {
+      "id": "foot-of-gork",
+      "name": "Foot of Gork",
+      "cast": "6+",
+      "range": "50cm",
+      "text": "A gigantic spectral green foot descends from the heavens with a mighty thunk, crushing the enemy to pulp and grinding their bones into the dirt. This spell can be cast on any unengaged enemy unit within range, whether or not the Shaman can see it. The spell cannot be cast on a unit engaged in combat. The unit suffers six attacks worked out in the usual way. A unit cannot be driven back by the Foot of Gork, because Gork's foot descends from above."
+    },
+    {
+      "id": "gotcha",
+      "name": "Gotcha",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "With a mighty heave, a huge green fist erupts from the Shaman's gaping mouth and strikes all within its path. Draw an imaginary line 30cm long from the Shaman's stand in any direction. The line passes through any intervening units but not beyond terrain that would normally stop a missile shot, for example over the crest of a hill, more than 2cm of woodland, and so forth. Each unit under the line takes three shooting attacks worked out in the usual way. The spell can easily affect several units and will affect all units that fall beneath the line, including your own. Unengaged units can be driven back by a Gotcha as with ordinary shooting, even including friends. Engaged units cannot be driven back by the Gotcha but carry over any hits scored into the first round of combat. Any hits scored count as having been struck in the combat itself."
+    },
+    {
+      "id": "gerroff",
+      "name": "Gerroff!",
+      "cast": "5+",
+      "range": "60cm",
+      "text": "The voice of Gork booms out across the battlefield, driving back his foes with a rancid gale-force yell. This spell can be cast on any unengaged enemy unit within range, whether or not the Shaman can see it. The spell cannot be cast on a unit engaged in combat. The enemy unit is driven back 1D6×5cm towards its own table edge. This is treated in the same way as a drive back from shooting, except that the direction is the shortest route to the table edge. A unit cannot be routed by a drive back from a Gerroff spell. If the unit leaves the table edge it must roll as described in the main Warmaster rules."
+    },
+    {
+      "id": "waaagh",
+      "name": "Waaagh!",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "The Shaman summons the power of the mighty Waaagh! to invigorate the greenskins. This spell can be cast on a friendly unit of Orcs or Goblins engaged in combat, including Black Orcs, Wolf Riders, Boar Riders, and any type of Orc or Goblin troops, but not Trolls, Ogres, Giants, or other non-greenskins. The spell can be cast whether or not the Shaman can see the target. The spell lasts for the duration of the following Combat phase. Every stand in the unit, including characters that have joined the unit, adds +1 to its Attacks value."
+    }
+  ]
+}

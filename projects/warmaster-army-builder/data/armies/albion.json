@@ -1,0 +1,278 @@
+{
+  "id": "albion",
+  "name": "Albion",
+  "source": "Warmaster Armies v2.26, Albion army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Albion selector in Warmaster Armies v2.26. Only a Druid may ride a Giant Eagle. Generals, Druids, and Heroes may ride a Chariot. The Fenbeast is not purchased. It is summoned by Summon Fenbeast, the selector gives it no points value, and it is listed here at 0 points. One magic item per character and one magic standard per unit.",
+  "units": [
+    {
+      "id": "warriors",
+      "name": "Warriors",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "slingers",
+      "name": "Slingers",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 40,
+      "min": 1,
+      "max": 6,
+      "rules": []
+    },
+    {
+      "id": "ogres",
+      "name": "Ogres",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 105,
+      "min": null,
+      "max": 2,
+      "rules": ["ogres"]
+    },
+    {
+      "id": "wolfhounds",
+      "name": "Wolfhounds",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 40,
+      "min": null,
+      "max": 6,
+      "rules": []
+    },
+    {
+      "id": "riders",
+      "name": "Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "chariots",
+      "name": "Chariots",
+      "kind": "troop",
+      "type": "Chariot",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 95,
+      "min": 1,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "8",
+      "hits": 8,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 1,
+      "points": 135,
+      "min": null,
+      "max": 1,
+      "brigade": "own-only",
+      "rules": ["giant"]
+    },
+    {
+      "id": "giant-eagles",
+      "name": "Giant Eagles",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 70,
+      "min": null,
+      "max": 1,
+      "rules": ["giant-eagles"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["chariot"],
+      "rules": []
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["chariot"],
+      "rules": []
+    },
+    {
+      "id": "druid",
+      "name": "Druid",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["giant-eagle", "chariot"],
+      "rules": []
+    },
+    {
+      "id": "fenbeast",
+      "name": "Fenbeast",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "6",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 1,
+      "points": 0,
+      "min": null,
+      "max": 1,
+      "brigade": "never",
+      "rules": ["fenbeast"]
+    }
+  ],
+  "mounts": [
+    {
+      "id": "giant-eagle",
+      "name": "Giant Eagle",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 20,
+      "min": null,
+      "max": 1,
+      "rules": ["giant-eagle"]
+    },
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "type": "Chariot Mount",
+      "attacks": "+1",
+      "points": 5,
+      "min": null,
+      "max": 1,
+      "rules": ["chariot"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "ogres",
+      "name": "Ogres",
+      "text": "If an Ogre unit can use its initiative to charge an enemy unit of humans at the start of the Command phase then it must do so. This happens automatically and their commander can do nothing about it. Humans encompasses all men, including Chaos Warriors and Marauders, but not Dwarfs, Elves, and so on."
+    },
+    {
+      "id": "giant",
+      "name": "Giant",
+      "text": "Giants must always be given a separate order. They cannot be brigaded with other troops, although several Giants can be brigaded together if you so wish. If you attempt to give an order to a Giant and fail, you must take a test to see what it does. Ignore potential blunders; these are taken into account by the Giant Goes Wild chart. Where Giants are brigaded together, roll for each separately. Giants have a great many hits, 8 in fact, which are almost impossible to inflict during even a fairly lengthy combat engagement. Because Giants have so many hits we must consider the possibility of hurting the Giant and reducing its effectiveness in subsequent turns. Therefore, if a Giant has accumulated 5-7 hits by the end of the Shooting phase or Combat phase and is no longer engaged in combat, it is deemed to have been badly hurt. Once a Giant is badly hurt, all accumulated hits are discounted and its maximum Hits value and Attacks are halved for the rest of the battle (to 4 Hits and 4 Attacks). A Giant causes terror in its enemies. Giant Goes Wild (D6). Oh no! What's he doing now! 1. The Giant will neither move nor fight this turn but simply stands rooted to the spot looking dopey. 2. Move the Giant directly towards the nearest table edge. If he moves into another unit he will charge it regardless of which side it is on. If victorious in combat the Giant will hold his ground. 3. The Giant throws an object at the closest visible unit (friend or foe) within 5xD6 cm, inflicting 3 Attacks. If the target is in combat, the attacks contribute to the combat result; otherwise, resolve them in the Shooting phase. 4. The Giant moves straight forward at full pace in the direction he is facing. If he reaches an enemy unit he will charge. If he reaches a friendly unit he will walk straight through and out the other side if there is room and he has sufficient move. If he reaches a friendly unit and does not have sufficient move or enough room to walk all the way through, he halts on contact. A friendly unit that is walked through or contacted in this way instantly becomes confused. 5. The Giant moves towards the nearest enemy unit that he can see as fast as he can. If he reaches the foe he will charge. If friends are in the way he will walk through them, causing confusion as described above. If there is no visible enemy the Giant does nothing this Command phase. 6. The Giant gives a mighty bellow and rushes straight at the nearest enemy unit that he can see. Move the Giant at double his normal full pace move. If he reaches an enemy unit, he charges it and fights by jumping up and down on the foe, furiously doubling his Attacks value in the first round of combat. If there is no visible enemy the Giant does nothing this Command phase."
+    },
+    {
+      "id": "giant-eagles",
+      "name": "Giant Eagles",
+      "text": "Giant Eagles can fly."
+    },
+    {
+      "id": "giant-eagle",
+      "name": "Giant Eagle",
+      "text": "Giant Eagles can be ridden by Druids only. An Eagle can fly, increasing its rider's move from 60 to 100cm, and it adds +2 Attacks to those of its rider."
+    },
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "text": "Generals, Druids, and Heroes can ride Chariots. An extra +1 Attack is added to those of its rider."
+    },
+    {
+      "id": "fenbeast",
+      "name": "Fenbeast",
+      "text": "A Fenbeast is an individual troop unit, but it cannot be fielded like other units in the standard way. A Fenbeast can appear on the battlefield only by the Druid's Summon Fenbeast spell. The selector lists its points as '-'. It does not have a points value. It cannot be brigaded with other troop units, not even other Fenbeasts. Fenbeasts never use their initiative to move in the Command phase. Because they are completely dominated by the will of the Druid who summoned them, the Druid counts as having a Command value of +1 when commanding the Fenbeast, that is 8 rather than 7. They can move through bogs as though they were open terrain. Unlike the wild Bog Beasts from the Dark Shadows campaign, a Fenbeast will make way for friendly troops. Fenbeasts are terrifying creatures and cause terror. Since it is summoned in the Shooting phase it cannot be given orders until the following turn. It may be removed from play if destroyed, or if the loss of a Druid reduces the number of Druids to less than the number of Fenbeasts, in which case the owning player chooses a Fenbeast and removes it. Fenbeasts may only be given orders by Druids. An army cannot have more summoned Fenbeasts in play than it has Druids."
+    }
+  ],
+  "spells": [
+    {
+      "id": "downpour",
+      "name": "Downpour",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "The Druid brings down a localised shower of fine, freezing rain upon his foes. The spell is cast upon the Druid himself and affects all enemy units within 30cm of the stand. The spell lasts until the end of the opposing player's following turn. The spell affects the opposing army's ability to issue commands. All enemy units within 30cm of the Druid suffer a -1 Command penalty. This penalty is applied when each order is issued: a unit might therefore be within 30cm of the Druid for one order but not for a second, for example."
+    },
+    {
+      "id": "storm-of-hail",
+      "name": "Storm of Hail",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The Druid harnesses the power of the weather to attack his enemies with enormous hailstones. The Druid targets a single enemy unit within range and that he can see. This has the effect of three shooting attacks except that it ignores any armour save the target may have. The target unit may be driven back in the same way as for shooting."
+    },
+    {
+      "id": "mists-of-albion",
+      "name": "Mists of Albion",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The Druid breathes out some of the mystical mist that surrounds his enigmatic homeland and envelops his compatriots, making them hard to target by enemy troops. This spell may be cast upon a single unengaged friendly Infantry unit within range, regardless of whether the caster can see them or not. The spell lasts until the start of the caster's next turn, or until the target unit moves in any way. The target Infantry unit counts as Defended, even if in open terrain."
+    },
+    {
+      "id": "summon-fenbeast",
+      "name": "Summon Fenbeast",
+      "cast": "6+",
+      "range": "30cm",
+      "text": "The Druid performs one of the most arcane rituals known to his order, using his power over the elements to bind together the horrific creature known as the Fenbeast. The Druid summons forth a Fenbeast. Once summoned, the Fenbeast is under the control of the summoning player. Since it is summoned in the Shooting phase it cannot be given orders until the following turn. It may be summoned into contact with an enemy unit only if that unit is already in combat. It may be removed from play if destroyed (like any other unit) or if the loss of a Druid character reduces the number of Druids to less than the number of Fenbeasts. The owning player chooses a Fenbeast and removes it from play. Summoning a Fenbeast unit does not influence army withdrawal calculation in any way and it does not have a points value. Fenbeasts may only be given orders by Druids. Fenbeasts may not be brigaded with other troops, not even other Fenbeasts. An army cannot have more summoned Fenbeasts in play than it has Druids."
+    }
+  ]
+}

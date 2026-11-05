@@ -1,0 +1,334 @@
+{
+  "id": "cathay",
+  "name": "Cathay",
+  "source": "Warmaster Armies v2.26, Cathay army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Cathay selector in Warmaster Armies v2.26. Brigades of six are allowed when they include at least two Bannermen and no chariots, cavalry, or Terracotta Warriors. The Chariot mount has no rider restriction in the list, so it is allowed on the General, a Hero, and the Sorcerer. A Tiger may be ridden by the General or a Hero. A Qilin may be ridden only by a Sorcerer. One Sorcerer in the army may ride a Celestial Dragon, which adds +1 Command. The Sorcerer's Attacks are +0. One magic item per character and one magic standard per unit.",
+  "armyRules": ["structure-and-discipline"],
+  "units": [
+    {
+      "id": "bannermen",
+      "name": "Bannermen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 50,
+      "min": 3,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "crossbows",
+      "name": "Crossbows",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 40,
+      "min": 1,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "handguns",
+      "name": "Handguns",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 50,
+      "min": null,
+      "max": null,
+      "rules": ["handguns"]
+    },
+    {
+      "id": "terracotta-warriors",
+      "name": "Terracotta Warriors",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 30,
+      "min": null,
+      "max": 6,
+      "brigade": "own-only",
+      "rules": ["terracotta-warriors"]
+    },
+    {
+      "id": "maneaters",
+      "name": "Maneaters",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 140,
+      "min": null,
+      "max": 1,
+      "rules": []
+    },
+    {
+      "id": "chariots",
+      "name": "Chariots",
+      "kind": "troop",
+      "type": "Chariots",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 1,
+      "rules": []
+    },
+    {
+      "id": "imperial-cavalry",
+      "name": "Imperial Cavalry",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "hu-cavalry",
+      "name": "Hu Cavalry",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": null,
+      "max": 3,
+      "rules": ["hu-cavalry"]
+    },
+    {
+      "id": "rocket-launcher",
+      "name": "Rocket Launcher",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/1D6",
+      "hits": 2,
+      "armour": "0",
+      "command": null,
+      "unitSize": 1,
+      "points": 55,
+      "min": null,
+      "max": 1,
+      "rules": ["rocket-launcher"]
+    },
+    {
+      "id": "triple-bows",
+      "name": "Triple Bows",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/2+skewer",
+      "hits": 2,
+      "armour": "0",
+      "command": null,
+      "unitSize": 2,
+      "points": 65,
+      "min": null,
+      "max": 1,
+      "rules": ["triple-bows"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["chariot", "tiger"],
+      "rules": []
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["chariot", "tiger"],
+      "rules": []
+    },
+    {
+      "id": "sorcerer",
+      "name": "Sorcerer",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["chariot", "celestial-dragon", "qilin"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "type": "Chariot Mount",
+      "attacks": "+1",
+      "points": 5,
+      "min": null,
+      "max": 1,
+      "rules": ["chariot"]
+    },
+    {
+      "id": "celestial-dragon",
+      "name": "Celestial Dragon",
+      "type": "Monstrous Mount",
+      "attacks": "+3",
+      "points": 100,
+      "min": null,
+      "max": 1,
+      "armyMax": 1,
+      "rules": ["celestial-dragon"]
+    },
+    {
+      "id": "tiger",
+      "name": "Tiger",
+      "type": "Special Mount",
+      "attacks": "+2",
+      "points": 20,
+      "min": null,
+      "max": 1,
+      "rules": ["tiger"]
+    },
+    {
+      "id": "qilin",
+      "name": "Qilin",
+      "type": "Special Mount",
+      "attacks": "+1",
+      "points": 15,
+      "min": null,
+      "max": 1,
+      "rules": ["qilin"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "structure-and-discipline",
+      "name": "Structure and Discipline",
+      "text": "To reflect their empire's high-quality military organisation and command arrangements, Cathay commanders may issue orders to brigades of up to 6 units instead of the usual 4. Those 6-unit brigades must include at least 2 units of Bannermen. A 6-unit brigade cannot include chariots, cavalry, or Terracotta Warriors."
+    },
+    {
+      "id": "handguns",
+      "name": "Handguns",
+      "text": "Any or all of the army's Crossbows units can be replaced by Handguns while still counting for the Crossbow min/max value. Their projectiles can pierce armour far more easily than a crossbow bolt. Units hit by Handguns get a -1 penalty for their armour rolls."
+    },
+    {
+      "id": "terracotta-warriors",
+      "name": "Terracotta Warriors",
+      "text": "These warriors are considered Undead, so they cannot act on initiative, are unaffected by terror or by an enemy within 20cm, and cannot be confused. They can only brigade with themselves, and they give and receive support only to and from each other. They can only be ordered by Sorcerers, who gain +1 Command when doing so."
+    },
+    {
+      "id": "hu-cavalry",
+      "name": "Hu Cavalry",
+      "text": "Hu Cavalry have a shooting range of 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. This unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "rocket-launcher",
+      "name": "Rocket Launcher",
+      "text": "The Rocket Launcher is treated as a Stone Thrower as described in the Rulebook (p.75), except it shoots 1D6 times per phase and any hits inflicted have an armour save with a -1 modifier, as for handguns. If the roll for the number of shots is a 1, the Rocket Launcher has misfired and you must roll another D6 on the Rocket Launcher Misfire chart. Rocket Launcher Misfire chart (D6): 1. KABOOM! The Rocket Launcher explodes in spectacular manner. 2–3. Dud. The rocket does only one attack. 4–5. Whoosh! The rocket overshoots and does D6 attacks on the first unit in the line of fire past the original target, regardless of range. If the result is 1, do not roll for the misfire again. If the target is engaged in combat, the hits are carried over into the Combat phase. If no target is behind the victim the rocket leaves the battlefield without causing any damage. 6. Big badaboom! The rocket does 2D6 attacks instead of the normal 1D6."
+    },
+    {
+      "id": "triple-bows",
+      "name": "Triple Bows",
+      "text": "Triple Bows are Bolt Throwers as described in the main rulebook (p.75)."
+    },
+    {
+      "id": "celestial-dragon",
+      "name": "Celestial Dragon",
+      "text": "One Sorcerer per army can be upgraded to become a dragon which flies, gives orders, casts spells, and causes terror. The Celestial Dragon adds +3 Attacks and +1 Command. The dragon cannot give orders to Terracotta Warriors."
+    },
+    {
+      "id": "tiger",
+      "name": "Tiger",
+      "text": "The Tiger adds +2 Attacks to its rider. Tigers cannot be ridden by Sorcerers."
+    },
+    {
+      "id": "qilin",
+      "name": "Qilin",
+      "text": "Only a Sorcerer can ride a Qilin. The Qilin adds +1 Attack to its rider. Once per battle the Qilin's magical power adds +1 to the dice roll when casting a spell. The player must announce that they are using the Qilin's magic before rolling to see if the spell works."
+    },
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "text": "The Chariot adds +1 Attack to its rider."
+    }
+  ],
+  "spells": [
+    {
+      "id": "glory-of-cathay",
+      "name": "Glory of Cathay",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "Channelling powerful lores, the sorcerer gifts remarkable accuracy and reloading dexterity to the empire's defenders. Their opponents are thereby subjected to ferocious shooting. This spell can be cast upon a friendly unit of unengaged missile-armed infantry or chariots within range. The Sorcerer does not need to be able to see the friendly unit or their intended target. When the spell is cast on a unit, it can shoot twice that turn instead of once. If it has already shot that turn it can therefore shoot again immediately. If it has yet to shoot it can shoot twice. When a unit shoots twice due to Glory of Cathay, the second shot is always at a -1 penalty and will therefore hit on a 5+."
+    },
+    {
+      "id": "lion-dogs-attack",
+      "name": "Lion Dogs Attack",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "Complex astromancy allows the sorcerer to surround enemies with bright and disorientating illusions in the form of terrible beasts. This spell can be cast on any enemy unit within range, whether or not the Sorcerer can see it. The spell takes effect until the end of the opposing player's next turn. Whilst the spell lasts the unit cannot charge, and if engaged in combat it will not pursue or advance. Even units that are otherwise obliged to charge, pursue, or advance will not do so if affected by this spell."
+    },
+    {
+      "id": "ferocity-of-tigers",
+      "name": "Ferocity of Tigers",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "Opening a portal to the past, the sorcerer imbues Cathay's troops with the spirit and stoicism of their ancestors. Filled with an overwhelming resolve to protect the emperor, they surge forward to slay his foes. This spell can be cast on a friendly unit engaged in combat, whether or not the Sorcerer can see the target. The spell lasts for the duration of the following combat phase. Every stand in the unit adds +1 to its Attacks. The unit also becomes immune to terror."
+    },
+    {
+      "id": "tranquility-of-heaven",
+      "name": "Tranquility of Heaven",
+      "cast": "5+",
+      "range": "15cm",
+      "text": "Bestilling the sound and fury of battle, the sorcerer magically deadens the fears of wavering soldiers, thus allowing the commands of their officers to be faithfully obeyed. All friendly units within 15cm of the Sorcerer count as immune to terror until the end of the enemy player's next turn."
+    }
+  ]
+}

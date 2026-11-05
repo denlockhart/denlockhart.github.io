@@ -1,0 +1,282 @@
+{
+  "id": "norse",
+  "name": "Norse",
+  "source": "Warmaster Armies v2.26, Norse army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Norse selector in Warmaster Armies v2.26. Any character may take the Were Kin upgrade. One Shaman in the army may be given the Horn of Resounding. Ulfwerener cannot take magic items. Storm Giants may brigade only with other Storm Giants. One magic item per character and one magic standard per unit.",
+  "units": [
+    {
+      "id": "bondsmen",
+      "name": "Bondsmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "huscarls",
+      "name": "Huscarls",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": 1,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "huntsmen",
+      "name": "Huntsmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": null,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "berserkers",
+      "name": "Berserkers",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 70,
+      "min": null,
+      "max": 1,
+      "rules": ["berserkers"]
+    },
+    {
+      "id": "ulfwerener",
+      "name": "Ulfwerener",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 1,
+      "noMagic": true,
+      "rules": ["ulfwerener"]
+    },
+    {
+      "id": "hird-horsemen",
+      "name": "Hird Horsemen",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "storm-giant",
+      "name": "Storm Giant",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "8",
+      "hits": 8,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 1,
+      "points": 135,
+      "min": null,
+      "max": 1,
+      "brigade": "own-only",
+      "rules": ["storm-giant"]
+    },
+    {
+      "id": "war-mammoth",
+      "name": "War Mammoth",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "8",
+      "hits": 10,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 1,
+      "points": 180,
+      "min": null,
+      "max": 1,
+      "rules": ["war-mammoth"]
+    },
+    {
+      "id": "valkyries",
+      "name": "Valkyries",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["valkyries"]
+    },
+    {
+      "id": "jarl",
+      "name": "Jarl",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["were-kin"],
+      "rules": []
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "mounts": ["were-kin"],
+      "rules": []
+    },
+    {
+      "id": "shaman",
+      "name": "Shaman",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "mounts": ["were-kin"],
+      "rules": [],
+      "bonuses": [
+        {
+          "id": "horn-of-resounding",
+          "name": "Horn of Resounding",
+          "points": 20,
+          "armyMax": 1,
+          "rules": ["horn-of-resounding"]
+        }
+      ]
+    }
+  ],
+  "mounts": [
+    {
+      "id": "were-kin",
+      "name": "Were Kin",
+      "type": "Special Mount",
+      "attacks": "+1",
+      "points": 40,
+      "min": null,
+      "max": 1,
+      "rules": ["were-kin"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "berserkers",
+      "name": "Berserkers",
+      "text": "Such is their eagerness to get into combat that a unit of Berserkers will always use its initiative to charge an enemy if possible and cannot be given orders instead. They never use their initiative to evade. They cannot be driven back by shooting and do not roll for drive backs. If victorious in combat, they must pursue or advance where possible. Berserkers are unaffected by enemies that cause terror in combat, so they do not suffer the usual -1 Attack modifier."
+    },
+    {
+      "id": "ulfwerener",
+      "name": "Ulfwerener",
+      "text": "Unlike usual infantry, the Ulfwerener are based facing the short edge in the same way as cavalry. They receive an additional +1 Attack modifier when they charge an enemy in the open, in the same way as monsters and chariots, and they can pursue cavalry and chariot troop types. Ulfwerener stands can never support or be supported. Because of their rather bestial nature, only characters with the Were Kin upgrade may join units of Ulfwerener. Ulfwerener units cannot take any magic items."
+    },
+    {
+      "id": "storm-giant",
+      "name": "Storm Giant",
+      "text": "Giants must always be given a separate order. They cannot be brigaded with other troops, although several Giants can be brigaded together. If you attempt to give an order to a Giant and fail, you must take a test to see what it does. Ignore potential blunders. These are taken into account by the Giant Goes Wild chart. Where Giants are brigaded together, roll for each separately. Giants have 8 hits, which are almost impossible to inflict during even a fairly lengthy combat engagement. If a Giant has accumulated 5–7 hits by the end of the Shooting phase or Combat phase and is no longer engaged in combat, it is deemed to have been badly hurt. Once a Giant is badly hurt, all accumulated hits are discounted and its maximum Hits value and Attacks are halved for the rest of the battle, to 4 Hits and 4 Attacks. A Giant causes terror in its enemies. Giant Goes Wild (D6): 1. The Giant will neither move nor fight this turn, but simply stands rooted to the spot looking dopey. 2. Move the Giant directly towards the nearest table edge. If he moves into another unit he will charge it regardless of which side it is on. If victorious in combat the Giant will hold his ground. 3. The Giant throws an object at the closest visible unit, friend or foe, within 5×D6 cm, inflicting 3 Attacks. If the target is in combat, the attacks contribute to the combat result. Otherwise resolve them in the Shooting phase. 4. The Giant moves straight forward at full pace in the direction he is facing. If he reaches an enemy unit he will charge. If he reaches a friendly unit he will walk straight through and out the other side if there is room and he has sufficient move. If he reaches a friendly unit and does not have sufficient move or enough room to walk all the way through, he halts on contact. A friendly unit that is walked through or contacted in this way instantly becomes confused. 5. The Giant moves towards the nearest enemy unit that he can see as fast as he can. If he reaches the foe he will charge. If friends are in the way he will walk through them, causing confusion as described above. If there is no visible enemy the Giant does nothing this Command phase. 6. The Giant gives a mighty bellow and rushes straight at the nearest enemy unit that he can see. Move the Giant at double his normal full pace move. If he reaches an enemy unit, he charges it and fights by jumping up and down on the foe, furiously doubling his Attacks value in the first round of combat. If there is no visible enemy the Giant does nothing this Command phase."
+    },
+    {
+      "id": "war-mammoth",
+      "name": "War Mammoth",
+      "text": "As the Mammoth is so gargantuan, it uses a 40 × 60mm base, with the short edge as the front. It causes terror and may attack troops on ramparts with its trunk in the same manner as a Giant. Alternatively, it may elect to batter a wall section or gateway with its tusks in the same manner as a battering ram. If a Norse War Mammoth is in base contact with a wall section, one Norse infantry unit may assault that wall section via the Mammoth, climbing ladders and ropes at the rear of the Mammoth and using boarding ramps to assault the fortress walls. This is not quite as effective as assaulting from a siege tower, so the enemy being assaulted counts as defended rather than in the open, but it is much better than counting the enemy as fortified. If a unit assaults in this manner, the War Mammoth may not attack with its trunk or batter the walls. If a War Mammoth has accumulated 6–9 hits by the end of the Shooting phase or Combat phase and is no longer engaged in combat, it is deemed to have been badly hurt. Once a Mammoth is badly hurt, all accumulated hits are discounted and its maximum Hits value and Attacks are halved for the rest of the battle, to 5 Hits and 4 Attacks."
+    },
+    {
+      "id": "valkyries",
+      "name": "Valkyries",
+      "text": "Valkyries can fly. Valkyries will always use their initiative to charge an enemy if possible and cannot be given orders instead. They will never use their initiative to evade. Valkyries are unaffected by enemies that cause terror in combat, and they do not suffer the usual -1 Attack modifier."
+    },
+    {
+      "id": "were-kin",
+      "name": "Were Kin",
+      "text": "The Were Kin special mount option may be taken by any character in a Norse army. It is not actually a mount, more an upgrade. A unit joined by the character with the Were Kin upgrade causes terror in its enemies. No terrain restrictions apply for Were Kin. Treat the character as having +1 extra Attack and causing terror."
+    },
+    {
+      "id": "horn-of-resounding",
+      "name": "Horn of Resounding",
+      "text": "A single Shaman in the army may be given this upgrade, granting the Shaman +1 Attack. Once per battle, the Horn can be used by the Shaman to inspire the units around him to fight harder. If the Horn is used, the Shaman may add +1 to all of his Command checks for that turn only."
+    }
+  ],
+  "spells": [
+    {
+      "id": "aspect-of-wulfen",
+      "name": "Aspect of Wulfen",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "The Shaman turns the friendly unit into an illusive pack of monstrous creatures, instilling fear in the hearts of enemies. This spell can be cast on a friendly unit within range, whether or not the Shaman can see it. The unit counts as causing terror for the duration of the Combat phase."
+    },
+    {
+      "id": "thunder-of-fowor",
+      "name": "Thunder of Fo'Wor",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "Lightning shoots from the Shaman's outstretched arm, burning all in its path. Draw an imaginary line 30cm long from the Shaman's stand in any direction you wish. The line will pass through any intervening units but not beyond terrain that would normally stop a missile shot, for example over the crest of a hill, more than 2cm of woodland, and so forth. Each unit under the line takes three shooting attacks worked out in the usual way. This spell can easily affect several units and will affect all units that fall beneath the line, including your own. Unengaged units can be driven back by Thunder of Fo'Wor as with ordinary shooting, even including friendly units. Engaged units cannot be driven back by Thunder of Fo'Wor, but carry over any hits scored into the first round of combat. Any hits scored count as having been struck in the combat itself."
+    },
+    {
+      "id": "eye-of-the-raven",
+      "name": "Eye of the Raven",
+      "cast": "5+",
+      "range": "N/A",
+      "text": "The Shaman sacrifices a sacred raven over a mystical flame, ingesting the ash that is quickly formed and giving him visions. The Norse player may re-roll a single D6 at any time during the rest of his turn, through his opponent's turn, or in his following turn up to the end of his next Command phase, when the effect of the spell ends if the re-roll has not already been used. The result of the re-roll cannot be changed in any way or re-rolled again, for example with an Orb of Majesty, a Banner of Fortune, or through other means. The re-roll from this spell cannot be used to re-roll any dice that another re-roll has already been used on. The re-roll cannot be used on a command blunder. Not even mystical foresight can avert such mishaps, but it can mitigate the effects, so it can be used to re-roll the dice on the blunder chart. For example, if the Norse player needed a 7 to command and rolled a 5 and a 3, he could re-roll the 5, hoping for a 4 or less and a successful command. Only one Eye of the Raven spell may be in effect per turn."
+    },
+    {
+      "id": "spite-of-lowkey",
+      "name": "Spite of Low'Key",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The Shaman makes a weird enchantment, calling the gods to curse the enemy with bad luck and failure. All enemy characters within 30cm of the spell caster that roll a double have those orders count as blunders. This works on all results from a double 1 to a double 5. All such doubles blunder and, as with all normal blunders, count as a failed order. The only exception is the enemy general, as he cannot blunder. The spell lasts until the end of the enemy Command phase."
+    }
+  ]
+}

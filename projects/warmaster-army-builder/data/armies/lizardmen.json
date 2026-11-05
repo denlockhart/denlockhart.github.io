@@ -1,0 +1,287 @@
+{
+  "id": "lizardmen",
+  "name": "Lizardmen",
+  "source": "Warmaster Armies v2.26, Lizardmen army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Lizardmen selector in Warmaster Armies v2.26. Born in Jungle applies to the whole army. A Salamander is an extra stand added to a Skink unit, not a separate troop. Only the Slann Mage may ride a Stegadon. Only a Saurus Hero may ride a Carnosaur. The Slann casts spells and may take one General or Wizard magic item. One magic item per character and one magic standard per unit.",
+  "armyRules": ["born-in-jungle"],
+  "units": [
+    {
+      "id": "skinks",
+      "name": "Skinks",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 35,
+      "min": 2,
+      "max": null,
+      "rules": ["skinks"],
+      "bonuses": [
+        {
+          "id": "salamander",
+          "name": "Salamander",
+          "points": 20,
+          "max": 2,
+          "rules": ["salamander"]
+        }
+      ]
+    },
+    {
+      "id": "saurus",
+      "name": "Saurus",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 80,
+      "min": 2,
+      "max": null,
+      "rules": ["reptilian"]
+    },
+    {
+      "id": "temple-guard",
+      "name": "Temple Guard",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 1,
+      "rules": ["reptilian"]
+    },
+    {
+      "id": "kroxigor",
+      "name": "Kroxigor",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 135,
+      "min": null,
+      "max": 2,
+      "rules": ["reptilian"]
+    },
+    {
+      "id": "cold-one-riders",
+      "name": "Cold One Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 140,
+      "min": null,
+      "max": 2,
+      "rules": ["reptilian"]
+    },
+    {
+      "id": "terradons",
+      "name": "Terradons",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 85,
+      "min": null,
+      "max": 1,
+      "rules": ["terradons"]
+    },
+    {
+      "id": "stegadon",
+      "name": "Stegadon",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "10/3",
+      "hits": 10,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 1,
+      "points": 225,
+      "min": null,
+      "max": 1,
+      "rules": ["stegadon"]
+    },
+    {
+      "id": "slann-mage",
+      "name": "Slann Mage Palanquin",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 0,
+      "unitSize": 1,
+      "points": 95,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "castsSpells": true,
+      "itemBearers": ["general", "wizard"],
+      "mounts": ["stegadon-mount"],
+      "rules": ["slann-mage"]
+    },
+    {
+      "id": "saurus-hero",
+      "name": "Saurus Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 6,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["carnosaur"],
+      "rules": []
+    },
+    {
+      "id": "skink-hero",
+      "name": "Skink Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 70,
+      "min": null,
+      "max": 3,
+      "rules": []
+    },
+    {
+      "id": "skink-shaman",
+      "name": "Skink Shaman",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 6,
+      "unitSize": 1,
+      "points": 30,
+      "min": null,
+      "max": 1,
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "stegadon-mount",
+      "name": "Stegadon",
+      "type": "Monstrous Mount",
+      "attacks": "+3",
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "rules": ["stegadon-mount"]
+    },
+    {
+      "id": "carnosaur",
+      "name": "Carnosaur",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 65,
+      "min": null,
+      "max": 1,
+      "rules": ["carnosaur"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "born-in-jungle",
+      "name": "Born in Jungle",
+      "text": "No command penalty is applied to any units in the Lizardmen army on account of dense terrain. The Lizardmen's ruin-infested jungle homeland is mostly dense terrain and they are used to communicating through thick jungle and narrow tunnels by a mix of instinct and bizarre sub-sonic noises inaudible to other races."
+    },
+    {
+      "id": "skinks",
+      "name": "Skinks",
+      "text": "Skinks have a shooting range of 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "reptilian",
+      "name": "Reptilian",
+      "text": "Reptilian troops can only be issued an order by a character within 20cm. If reptilian units form part of a brigade, an order can be issued so long as all reptilian units are within 20cm of the character issuing the order. This represents the creatures being cold-blooded brutes and slow to react."
+    },
+    {
+      "id": "salamander",
+      "name": "Salamander",
+      "text": "Salamander stands are not deployed as independent units. Any Skink infantry unit may add one stand of Salamanders. This brings the size of the unit to 4 stands: 3 regular stands plus the Salamander stand. A Salamander stand has 2 Attacks, 2 shooting attacks, and 3 Hits. Salamanders always have the same armour value as the rest of their unit. They fight as part of their unit and can be removed as a unit casualty if the player wishes. Salamander casualties never count for Command penalties. Salamander stands never cause the parent unit to be in irregular formation, no matter how they are placed. If a Salamander stand is attached to a Skink unit, the entire unit, including the Salamander, uses Salamander Venom shooting attacks. Enemy armour saves suffer a -1 penalty when hit by Salamander Venom (a 5+ save requires a roll of 6). Salamander stands have a range of 15cm and 360° vision in the same way as Skinks. If their unit is charged, Salamanders can shoot in the same way as any other shooting stand."
+    },
+    {
+      "id": "terradons",
+      "name": "Terradons",
+      "text": "Terradons can fly. Terradon riders have a shooting range of 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "stegadon",
+      "name": "Stegadon",
+      "text": "The Stegadon uses a 40 × 60mm base, with the short edge as the front. The Stegadon causes terror. It can only be brigaded with Skink units. It cannot be brigaded with Skink units that have attached Salamanders. It cannot be brigaded with any other units, including other Stegadons. The Stegadon's crew has a shooting range of 15cm and 360° vision. The unit can draw line of sight from all edges of its stand for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge an enemy. If a Stegadon has accumulated 6–9 hits by the end of the Shooting or Combat phase and is no longer engaged in combat, it is badly hurt. Once a Stegadon is badly hurt, all accumulated hits are discounted and its Hits and Attack values are halved for the remainder of the battle, to 5/2 Attacks and 5 Hits."
+    },
+    {
+      "id": "slann-mage",
+      "name": "Slann Mage",
+      "text": "The Slann Mage rides a palanquin carried by his bodyguard of Saurus warriors. His combat bonus is due to his bodyguard. The Slann Mage is the army's General, but he cannot give orders. He has foreseen the flow of the battle and given his Skink retainers instructions. Any Skink character within 20cm of the Slann can announce his use of the General's Divine Guidance, deducting 1 from his dice score (an 8 counts as 7, a 10 as 9, and so on). When Divine Guidance is used the Skink cannot blunder: a roll of double 6 counts as a fail. If a Divine Guidance roll is failed, the Slann's Divine Guidance cannot be used by any other characters that have not ordered yet that turn, and those characters add +1 to their first order rolls. The Slann is a great sorcerer. He can cast spells as a Wizard and can be given a magic item restricted to either a General or a Wizard. He can re-roll a failed spell on any dice result except a 1. If a spell is failed because a 1 is rolled, no re-roll is permitted. The Slann Mage can also cast his spell using a Skink Shaman as the focus. Work out range and line of sight as if the spell was cast by the Shaman. This does not affect the Shaman's own ability to cast spells that turn."
+    },
+    {
+      "id": "stegadon-mount",
+      "name": "Stegadon Mount",
+      "text": "The Slann Mage may ride on top of a Stegadon, adding +3 Attacks to its rider. If he rides a Stegadon, any unit he joins causes terror and the usual combat modifier applies. No other character can ride a Stegadon."
+    },
+    {
+      "id": "carnosaur",
+      "name": "Carnosaur",
+      "text": "A Saurus Hero can ride a Carnosaur. If a character rides a Carnosaur, any unit he joins causes terror. No other character can ride a Carnosaur."
+    }
+  ],
+  "spells": [
+    {
+      "id": "gaze-of-sotek",
+      "name": "Gaze of Sotek",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "Burning jade-coloured rays leap from the Wizard's lidded eyes, enshrouding and choking his enemies in writhing coils of magic. This spell can be cast on an enemy unit. The Wizard must be able to see his target. The spell cannot be directed at a unit engaged in combat. The Gaze of Sotek is treated like three ordinary shooting attacks except that armour has no effect: all targets count as having no armour. A unit can be driven back by the Gaze of Sotek as with ordinary shooting."
+    },
+    {
+      "id": "mazdamundis-revenge",
+      "name": "Mazdamundi's Revenge",
+      "cast": "4+",
+      "range": "60cm",
+      "text": "The Wizard's foes' bowels melt with dread, or possibly something much worse, hindering their movement as if hobbled. This spell can be cast on any enemy unit within range, whether or not the Wizard can see it. The spell lasts until the end of the opposing player's next turn. Whilst the spell lasts the unit cannot charge, and if engaged in combat it will not pursue or advance. Even units that are otherwise obliged to charge, pursue, or advance will not do so."
+    },
+    {
+      "id": "wings-of-the-jungle",
+      "name": "Wings of the Jungle",
+      "cast": "5+",
+      "range": "N/A",
+      "text": "An eerie aura surrounds the Wizard and his companions, lifting them into the air and transporting them from one place to another. The spell can be cast on any unengaged friendly unit that the Wizard has joined. The spell affects only a single unit, never a brigade, and no supporting charge is possible. The unit can be moved just as if it had received an order in the Command phase. The Wizard moves together with the unit and remains joined with it. Other character stands that have joined the unit do not move with it: they remain where they are."
+    },
+    {
+      "id": "shield-of-the-old-ones",
+      "name": "Shield of the Old Ones",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The enemy's blows are magically turned aside by the power of the Old Ones. This spell can be cast upon a friendly unit that is engaged in combat and within range. The Wizard does not have to be able to see the target. The effect lasts for the duration of the following Combat phase. The unit's armour value counts as one better, up to a maximum of 4+. Armour 0 counts as 6+, 6+ as 5+, and 5+ as 4+. If the unit's armour value is already 4+, or another bonus brings it to 4+, this spell has no effect."
+    }
+  ]
+}

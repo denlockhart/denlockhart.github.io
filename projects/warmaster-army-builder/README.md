@@ -1,6 +1,6 @@
 # Warmaster Army Builder
 
-Build Warmaster army lists from Warmaster Armies v2.26. The rosters so far are **Dark Elves**, **Ogre Kingdoms**, **Skaven**, **Bretonnia**, **Daemons**, and **Vampire Counts**.
+Build Warmaster army lists from Warmaster Armies v2.26. The builder includes the army lists in that book, from Empire through Nippon. Regiments of Renown are not included.
 
 - **Local:** http://localhost:3000/projects/warmaster-army-builder/
 - **Folder:** `projects/warmaster-army-builder/`
@@ -23,6 +23,25 @@ projects/warmaster-army-builder/
     armies/bretonnia.json
     armies/daemons.json
     armies/vampire-counts.json
+    armies/empire.json
+    armies/tomb-kings.json
+    armies/chaos.json
+    armies/orcs.json
+    armies/high-elves.json
+    armies/dwarfs.json
+    armies/lizardmen.json
+    armies/kislev.json
+    armies/araby.json
+    armies/dogs-of-war.json
+    armies/albion.json
+    armies/goblins.json
+    armies/witch-hunters.json
+    armies/chaos-dwarfs.json
+    armies/wood-elves.json
+    armies/beastmen.json
+    armies/norse.json
+    armies/cathay.json
+    armies/nippon.json
 ```
 
 ## Data vs user saves

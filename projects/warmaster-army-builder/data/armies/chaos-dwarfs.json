@@ -1,0 +1,318 @@
+{
+  "id": "chaos-dwarfs",
+  "name": "Chaos Dwarfs",
+  "source": "Warmaster Armies v2.26, Chaos Dwarfs army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Chaos Dwarfs selector in Warmaster Armies v2.26. Any character may ride a Great Taurus. Only a Sorcerer may ride a Lammasu, and the army includes only one. For 25 points the General may be a Sorcerer Lord, who casts spells and may take a Wizard magic item. One magic item per character and one magic standard per unit.",
+  "units": [
+    {
+      "id": "chaos-dwarfs",
+      "name": "Chaos Dwarfs",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 4,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": 2,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "blunderbusses",
+      "name": "Blunderbusses",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/2",
+      "hits": 4,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 2,
+      "rules": ["blunderbusses"]
+    },
+    {
+      "id": "hobgoblins",
+      "name": "Hobgoblins",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 45,
+      "min": null,
+      "max": null,
+      "rules": ["hobgoblins"]
+    },
+    {
+      "id": "black-orcs",
+      "name": "Black Orcs",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 1,
+      "rules": []
+    },
+    {
+      "id": "orc-slaves",
+      "name": "Orc Slaves",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 40,
+      "min": null,
+      "max": 2,
+      "rules": ["orc-slaves"]
+    },
+    {
+      "id": "hobgoblin-wolf-riders",
+      "name": "Hobgoblin Wolf Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 75,
+      "min": null,
+      "max": null,
+      "rules": ["hobgoblins"]
+    },
+    {
+      "id": "bull-centaurs",
+      "name": "Bull Centaurs",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 140,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "earthshaker-cannon",
+      "name": "Earthshaker Cannon",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 1,
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "rules": ["earthshaker-cannon"]
+    },
+    {
+      "id": "death-rocket",
+      "name": "Death Rocket",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/1D6",
+      "hits": 2,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 1,
+      "points": 60,
+      "min": null,
+      "max": 1,
+      "rules": ["death-rocket"]
+    },
+    {
+      "id": "bolt-thrower",
+      "name": "Bolt Thrower",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/2+skewer",
+      "hits": 2,
+      "armour": "0",
+      "command": null,
+      "unitSize": 2,
+      "points": 65,
+      "min": null,
+      "max": 1,
+      "rules": ["bolt-thrower"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["great-taurus"],
+      "rules": [],
+      "bonuses": [
+        {
+          "id": "sorcerer-lord",
+          "name": "Sorcerer Lord",
+          "points": 25,
+          "max": 1,
+          "castsSpells": true,
+          "itemBearers": ["wizard"],
+          "rules": ["sorcerer-lord"]
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "mounts": ["great-taurus"],
+      "rules": []
+    },
+    {
+      "id": "sorcerer",
+      "name": "Sorcerer",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "mounts": ["great-taurus", "lammasu"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "great-taurus",
+      "name": "Great Taurus",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["great-taurus"]
+    },
+    {
+      "id": "lammasu",
+      "name": "Lammasu",
+      "type": "Monstrous Mount",
+      "attacks": "+1",
+      "points": 35,
+      "min": null,
+      "max": 1,
+      "armyMax": 1,
+      "rules": ["lammasu"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "blunderbusses",
+      "name": "Blunderbusses",
+      "text": "Units with Blunderbusses have a shooting range of 15cm. The unit has 2 shooting attacks. Units hit by Blunderbusses get a -1 penalty for their armour rolls. One unit of Blunderbusses per full 1000 points can replace a unit of Warriors while still counting for the Chaos Dwarfs min/max value. That unit still counts towards the Blunderbusses maximum."
+    },
+    {
+      "id": "hobgoblins",
+      "name": "Hobgoblins",
+      "text": "Hobgoblins and Hobgoblin Wolf Riders carry an assortment of smaller ranged arms, so they may only shoot up to 15cm and have 360° vision. Stands in the unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge an enemy. Hobgoblins and Orcs have a strong hatred, so units of Hobgoblins or Hobgoblin Wolf Riders may not brigade with units of Black Orcs or Orc Slaves unless a Chaos Dwarfs or Blunderbuss unit is part of the brigade."
+    },
+    {
+      "id": "orc-slaves",
+      "name": "Orc Slaves",
+      "text": "Slaves are captives forced to work and fight for their cruel masters. A unit of Slaves suffers an additional -1 Command penalty when given an order. This penalty is waived if the Slaves are brigaded with Black Orcs, Chaos Dwarfs, or Blunderbusses."
+    },
+    {
+      "id": "earthshaker-cannon",
+      "name": "Earthshaker Cannon",
+      "text": "The Earthshaker acts as a Stone Thrower as described in the Rulebook (p.75). Drive back from the Earthshaker shot causes confusion on rolls of 4+ rather than the usual 6+. In addition the Earthshaker shot causes confusion in units in base contact with the victim on a roll of 6 on a D6, rolled separately for each unit. The total number of Earthshakers and Death Rockets is limited so that only 1 piece of this kind is allowed per 1000 points."
+    },
+    {
+      "id": "death-rocket",
+      "name": "Death Rocket",
+      "text": "The Death Rocket acts like a Stone Thrower as described in the Rulebook (p.75), except it shoots 1D6 times per phase and hits inflicted on the target can still be saved by armour with a -1 modifier. If the roll for the number of shots is a 1, the Death Rocket has misfired and you must roll a D6 on the Death Rocket Misfire chart. The total number of Earthshakers and Death Rockets is limited so that only 1 piece of this kind is allowed per 1000 points. Death Rocket Misfire chart (D6): 1. KABOOM! The Death Rocket explodes in spectacular manner. 2–3. Dud. The rocket does only one attack. 4–5. Whoosh! The rocket overshoots and does D6 attacks on the first unit in the line of fire past the original target, regardless of range. If the result is 1, do not roll for the misfire again. If the target is engaged in combat, the hits are carried over into the Combat phase. If no target is behind the victim the rocket leaves the battlefield without causing any damage. 6. Big badaboom! The rocket does 2D6 attacks instead of the normal 1D6."
+    },
+    {
+      "id": "bolt-thrower",
+      "name": "Bolt Thrower",
+      "text": "The Hobgoblin Bolt Thrower is a Bolt Thrower as described in the main Rulebook (p.75)."
+    },
+    {
+      "id": "great-taurus",
+      "name": "Great Taurus",
+      "text": "Any character may be mounted on a Great Taurus. It adds +2 Attacks to its rider. This mighty beast is fearsome to face on the battlefield. The Great Taurus causes terror and is able to fly."
+    },
+    {
+      "id": "lammasu",
+      "name": "Lammasu",
+      "text": "The Lammasu is a magical creature trained to serve the Chaos Dwarfs. A Chaos Dwarf Sorcerer may be mounted on a Lammasu. It adds +1 Attack to its rider. A Lammasu is able to fly. Once per turn you can attempt to dispel one hostile spell cast on one friendly unit within 30cm of the Lammasu on a roll of 4+ on a D6. There can only be one Lammasu in the army."
+    },
+    {
+      "id": "sorcerer-lord",
+      "name": "Sorcerer Lord",
+      "text": "The General may be a true Sorcerer Lord, maybe even one of the living ancestors from Zharr-Naggrund. A Sorcerer Lord can cast spells like a Wizard and can carry a magic item restricted to a Wizard. Once during the battle a Sorcerer Lord can add +1 to the dice when attempting to cast a spell. The player must announce that the Sorcerer Lord's special spell casting bonus is being used before rolling for the spell."
+    }
+  ],
+  "spells": [
+    {
+      "id": "flaming-hand",
+      "name": "Flaming Hand",
+      "cast": "4+",
+      "range": "N/A",
+      "text": "The Sorcerer's hand glows like molten steel as he calls forth the strength of the forges of the earth. This can only be cast if the Sorcerer has joined a unit in combat. The spell automatically makes three attacks on one enemy unit which is touching the unit the Sorcerer has joined. These are worked out in the usual way. Any hits scored are carried over into the first round of combat and count as having been struck in combat."
+    },
+    {
+      "id": "volcanic-eruption",
+      "name": "Volcanic Eruption",
+      "cast": "6+",
+      "range": "30cm",
+      "text": "The Sorcerer calls forth a storm of magma from beneath the earth. Each enemy unit within 30cm of the Sorcerer's stand takes 3 Attacks worked out in the normal way. A unit is not driven back by the Volcanic Eruption. Engaged units carry over any hits scored into the first round of combat, and hits caused by the Volcanic Eruption count as having been struck in the combat itself."
+    },
+    {
+      "id": "word-of-fear",
+      "name": "Word of Fear",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "The Sorcerer speaks a blasphemous litany that instils fear in the hearts of his enemies. This spell can be cast on a friendly unit within range, whether or not the Sorcerer can see it. The unit counts as causing terror for the duration of the Combat phase."
+    },
+    {
+      "id": "meteor-storm",
+      "name": "Meteor Storm",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The Sorcerer hurls flaming stones from his fingertips toward the enemy, battering everything in its path. Draw an imaginary line 30cm long extending from the Sorcerer's stand in any direction you wish. The line will pass through any intervening units but not beyond terrain that would normally stop a missile shot, for example over the crest of a hill, more than 2cm of woodland, and so forth. Each unit under the line takes three shooting attacks worked out in the usual way. This spell can easily affect several units and will affect all units that fall beneath its path, including your own. Unengaged units can be driven back by the Meteor Storm as with ordinary shooting. Engaged units cannot be driven back, but carry over any hits that are scored into the first round of combat. Hits caused by the Meteor Storm count as having been struck in the combat itself."
+    }
+  ]
+}

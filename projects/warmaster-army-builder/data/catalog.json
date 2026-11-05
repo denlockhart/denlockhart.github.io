@@ -32,6 +32,101 @@
       "id": "vampire-counts",
       "name": "Vampire Counts",
       "file": "vampire-counts.json"
+    },
+    {
+      "id": "empire",
+      "name": "Empire",
+      "file": "empire.json"
+    },
+    {
+      "id": "tomb-kings",
+      "name": "Tomb Kings",
+      "file": "tomb-kings.json"
+    },
+    {
+      "id": "chaos",
+      "name": "Chaos",
+      "file": "chaos.json"
+    },
+    {
+      "id": "orcs",
+      "name": "Orcs",
+      "file": "orcs.json"
+    },
+    {
+      "id": "high-elves",
+      "name": "High Elves",
+      "file": "high-elves.json"
+    },
+    {
+      "id": "dwarfs",
+      "name": "Dwarfs",
+      "file": "dwarfs.json"
+    },
+    {
+      "id": "lizardmen",
+      "name": "Lizardmen",
+      "file": "lizardmen.json"
+    },
+    {
+      "id": "kislev",
+      "name": "Kislev",
+      "file": "kislev.json"
+    },
+    {
+      "id": "araby",
+      "name": "Araby",
+      "file": "araby.json"
+    },
+    {
+      "id": "dogs-of-war",
+      "name": "Dogs of War",
+      "file": "dogs-of-war.json"
+    },
+    {
+      "id": "albion",
+      "name": "Albion",
+      "file": "albion.json"
+    },
+    {
+      "id": "goblins",
+      "name": "Goblins",
+      "file": "goblins.json"
+    },
+    {
+      "id": "witch-hunters",
+      "name": "Witch Hunters",
+      "file": "witch-hunters.json"
+    },
+    {
+      "id": "chaos-dwarfs",
+      "name": "Chaos Dwarfs",
+      "file": "chaos-dwarfs.json"
+    },
+    {
+      "id": "wood-elves",
+      "name": "Wood Elves",
+      "file": "wood-elves.json"
+    },
+    {
+      "id": "beastmen",
+      "name": "Beastmen",
+      "file": "beastmen.json"
+    },
+    {
+      "id": "norse",
+      "name": "Norse",
+      "file": "norse.json"
+    },
+    {
+      "id": "cathay",
+      "name": "Cathay",
+      "file": "cathay.json"
+    },
+    {
+      "id": "nippon",
+      "name": "Nippon",
+      "file": "nippon.json"
     }
   ]
 }

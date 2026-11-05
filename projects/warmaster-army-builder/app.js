@@ -129,7 +129,7 @@ function itemChoicesFor(unit, extraRoles) {
   for (const role of extraRoles || []) roles.add(role);
   for (const item of state.magicItems) {
     if (unit.kind === "character") {
-      if (item.slot !== "character") continue;
+      if (unit.noMagic || item.slot !== "character") continue;
       if (item.excludeFactions?.includes(state.army?.id)) continue;
       if (item.bearer && !item.bearer.some((role) => roles.has(role))) continue;
       options.push({

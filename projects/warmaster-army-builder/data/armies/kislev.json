@@ -1,0 +1,288 @@
+{
+  "id": "kislev",
+  "name": "Kislev",
+  "source": "Warmaster Armies v2.26, Kislev army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Kislev selector in Warmaster Armies v2.26. A General, Hero, or Shaman may ride a Bear. A single Shaman in the army may be assisted by a Yozhin. The General may be a Tzarina. A Tzarina casts spells and may take a Wizard magic item. The Tzarina's sled is not a chariot. One magic item per character and one magic standard per unit.",
+  "units": [
+    {
+      "id": "winged-lancers",
+      "name": "Winged Lancers",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 3,
+      "rules": ["winged-lancers"]
+    },
+    {
+      "id": "horse-archers",
+      "name": "Horse Archers",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 75,
+      "min": 2,
+      "max": null,
+      "rules": ["kislevite-horsemen"]
+    },
+    {
+      "id": "cossacks",
+      "name": "Cossacks",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 95,
+      "min": null,
+      "max": 2,
+      "rules": ["kislevite-horsemen"]
+    },
+    {
+      "id": "bowmen",
+      "name": "Bowmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": null,
+      "max": null,
+      "rules": ["bowmen"]
+    },
+    {
+      "id": "red-guard",
+      "name": "Red Guard",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "rules": ["red-guard"]
+    },
+    {
+      "id": "axemen",
+      "name": "Axemen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 45,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "bears",
+      "name": "Bears",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 4,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "rules": ["bears"]
+    },
+    {
+      "id": "war-wagon",
+      "name": "War Wagon",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "4/4",
+      "hits": 4,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 1,
+      "points": 125,
+      "min": null,
+      "max": 1,
+      "rules": ["war-wagon"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["bear"],
+      "rules": [],
+      "bonuses": [
+        {
+          "id": "tzarina",
+          "name": "Tzarina",
+          "points": 25,
+          "max": 1,
+          "castsSpells": true,
+          "itemBearers": ["wizard"],
+          "rules": ["tzarina"]
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["bear"],
+      "rules": []
+    },
+    {
+      "id": "shaman",
+      "name": "Shaman",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["bear", "yozhin"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "bear",
+      "name": "Bear",
+      "type": "Special Mount",
+      "attacks": "+1",
+      "points": 10,
+      "min": null,
+      "max": 1,
+      "rules": ["bear-mount"]
+    },
+    {
+      "id": "yozhin",
+      "name": "Yozhin",
+      "type": "Monstrous Mount",
+      "attacks": "+1",
+      "points": 40,
+      "min": null,
+      "max": 1,
+      "armyMax": 1,
+      "rules": ["yozhin"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "winged-lancers",
+      "name": "Winged Lancers",
+      "text": "Winged Lancers receive +1 Attack in the first round of every combat when fighting to the front, and are immune to terror."
+    },
+    {
+      "id": "kislevite-horsemen",
+      "name": "Horse Archers, Cossacks",
+      "text": "Kislevite horsemen have a shooting range of 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "bowmen",
+      "name": "Bowmen",
+      "text": "One unit of Bowmen per full 1000 points can replace a unit of Axemen while still counting for the Axemen min/max value."
+    },
+    {
+      "id": "red-guard",
+      "name": "Red Guard",
+      "text": "In addition to traditional Kislevite long axes, Red Guard are armed with handguns. Count enemy armour values as one worse than normal when shot by a handgun. An armour value of 3+ counts as 4+, 4+ as 5+, and 5+ as 6+. An armour value of 6+ cannot save against a handgun."
+    },
+    {
+      "id": "bears",
+      "name": "Bears",
+      "text": "Bears are defined as infantry, which gives them the appropriate mobility for such creatures. They add +1 Attack when they charge an enemy in the open, in the same way as monsters and chariots. A Bear unit can only give support and be supported by other Bear units. Bears must pursue a retreating enemy where possible and must advance if they are able to do so. Bears never count as defended when they are outside dense terrain. These rules apply only to Bear units, not to characters riding a Bear or to Shamans that have transformed into a Monster Bear."
+    },
+    {
+      "id": "war-wagon",
+      "name": "War Wagon",
+      "text": "The War Wagon consists of a wagon stand and a horse team stand. The unit must always be in one of two formations: a column with the horse team in front of the wagon, or a laager with the horse team placed beside the wagon edge to edge. The War Wagon cannot charge and moves 20cm at full pace. A War Wagon unit moving more than 5cm must end its move in column formation. After a successful order, if at least one stand moves no more than 5cm, the unit may end its move in laager formation. The War Wagon may enter laager formation as part of an evade, following the 5cm movement restriction. The War Wagon's attacks are shared between the stands: a total of 4 melee attacks that can be directed from either the horse team or the wagon stand, and a total of 4 shooting attacks with 360° vision. Count enemy armour values as one worse than normal when shot by a War Wagon. A War Wagon in column formation cannot pursue. Unlike other artillery it can retreat from combat and is not destroyed if forced to do so. A War Wagon in laager formation counts as a defended unit, with no sides or rear. It cannot make way. It cannot be driven back or routed by shooting, but roll for defended drive backs to see if it becomes confused. A War Wagon in laager formation will neither pursue nor retreat. If obliged to retreat, it instead remains in place, is not destroyed, continues to count as defended, and enemy stands do not receive any pursuit bonuses against it in subsequent rounds of combat. Either stand can be removed as a casualty. If the horse team stand is removed, the wagon stand counts as in laager formation for the remainder of the game. If the wagon stand is removed, the remaining horse team stand has no armour, no attacks, and counts as in column formation. Any Kislev infantry unit with a side edge of one stand touching wholly the short edge of a laagered wagon stand counts as defended for shooting and combat. This advantage applies only in the first round of combat."
+    },
+    {
+      "id": "bear-mount",
+      "name": "Bear Mount",
+      "text": "Generals, Heroes, and Shamans can ride a Bear. The Bear adds +1 Attack to its rider."
+    },
+    {
+      "id": "yozhin",
+      "name": "Yozhin",
+      "text": "This creature lives in swamps near Praag since the great incursion of Chaos. A Yozhin strongly hates any kind of Chaos, being a (possibly) Chaos-twisted creature itself. Only powerful Shamans may summon a Yozhin and make it fight on their side. A single Shaman in the army can be assisted by a Yozhin. A Yozhin has no restriction on entering water, boggy, or swamp terrain. A unit joined by a Yozhin-riding Shaman causes terror. A Yozhin adds +1 Attack to the Shaman's Attacks."
+    },
+    {
+      "id": "tzarina",
+      "name": "Tzarina",
+      "text": "The General may be a Tzarina of the royal blood, perhaps Tzarina Katrina herself. The Tzarina rides a horse-drawn sled. This is not a chariot. The Tzarina can cast spells like a Wizard and can carry a magic item restricted to a Wizard. Once during the battle the Tzarina can add +1 to the dice when attempting to cast a spell. The player must announce that the Tzarina's spell casting bonus is being used before rolling for the spell."
+    }
+  ],
+  "spells": [
+    {
+      "id": "monster-bear",
+      "name": "Monster Bear!",
+      "cast": "5+",
+      "range": "N/A",
+      "text": "The Wizard transforms himself into a gigantic ferocious supernatural bear and hurls himself into the enemy's ranks. The Wizard can cast this spell on himself if he has joined a unit that is engaged in combat. The spell lasts for the duration of the following Combat phase. The unit causes terror and the Wizard gains a further +2 Attack bonus that he adds to the unit in the regular way. If the Tzarina uses this spell she adds +4 Attacks: +2 as General and +2 from Monster Bear."
+    },
+    {
+      "id": "icy-blast",
+      "name": "Icy Blast",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "An icy blast shoots from the Wizard's outstretched arm and strikes his foes. This spell can be cast on an enemy unit. The Wizard must be able to see his target. The spell cannot be directed at a unit engaged in combat. The Icy Blast is treated like three ordinary shooting attacks except that armour has no effect: all targets count as having no armour. A unit can be driven back by an Icy Blast as with ordinary shooting."
+    },
+    {
+      "id": "chill",
+      "name": "Chill",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "A fierce chill envelops the unit, freezing its warriors and hindering its ability to fight. This spell can be cast upon an enemy unit that is engaged in combat and is within range. The Wizard does not have to be able to see the target. The spell lasts for the duration of the following Combat phase. Every stand in the unit, including characters that have joined the unit, deducts 1 from its Attacks."
+    },
+    {
+      "id": "freeze",
+      "name": "Freeze",
+      "cast": "6+",
+      "range": "60cm",
+      "text": "An ill wind turns the enemy so brittle that wood, flesh, and even iron shatters and falls to the ground in splinters. This spell can be cast at an enemy unit within range, whether or not the Wizard can see it. The spell cannot be directed at a unit engaged in combat. Roll a D6. If the score exceeds the number of hits that the target troop type has, one stand is destroyed and removed as a casualty. If not, the target is unscathed. A unit cannot be driven back by Freeze."
+    }
+  ]
+}

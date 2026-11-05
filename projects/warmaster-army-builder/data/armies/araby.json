@@ -1,0 +1,281 @@
+{
+  "id": "araby",
+  "name": "Araby",
+  "source": "Warmaster Armies v2.26, Araby army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Araby selector in Warmaster Armies v2.26. A Wizard may be accompanied by a Djinn. A character may ride an Elephant, but cannot then join friendly cavalry. The Flying Carpet is a flying chariot mount. The text does not name which characters may ride it, so it is offered to the General, Hero, and Wizard. One magic item per character and one magic standard per unit.",
+  "units": [
+    {
+      "id": "spearmen",
+      "name": "Spearmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 45,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "bowmen",
+      "name": "Bowmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "guards",
+      "name": "Guards",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 65,
+      "min": null,
+      "max": 4,
+      "rules": ["guards"]
+    },
+    {
+      "id": "knights",
+      "name": "Knights",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "desert-riders",
+      "name": "Desert Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 75,
+      "min": null,
+      "max": null,
+      "rules": ["desert-riders"]
+    },
+    {
+      "id": "camel-riders",
+      "name": "Camel Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 100,
+      "min": null,
+      "max": 2,
+      "rules": ["camel-riders"]
+    },
+    {
+      "id": "magic-carpets",
+      "name": "Magic Carpets",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "1/2",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 85,
+      "min": null,
+      "max": 1,
+      "rules": ["magic-carpets"]
+    },
+    {
+      "id": "elephants",
+      "name": "Elephants",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "5",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 200,
+      "min": null,
+      "max": 1,
+      "rules": ["elephants"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["flying-carpet", "elephant"],
+      "rules": []
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["flying-carpet", "elephant"],
+      "rules": []
+    },
+    {
+      "id": "wizard",
+      "name": "Wizard",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["flying-carpet", "elephant", "djinn"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "flying-carpet",
+      "name": "Flying Carpet",
+      "type": "Chariot Mount",
+      "attacks": "+0",
+      "points": 10,
+      "min": null,
+      "max": 1,
+      "rules": ["flying-carpet"]
+    },
+    {
+      "id": "elephant",
+      "name": "Elephant",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 65,
+      "min": null,
+      "max": 1,
+      "rules": ["elephant-mount"]
+    },
+    {
+      "id": "djinn",
+      "name": "Djinn",
+      "type": "Monstrous Mount",
+      "attacks": "+2/+2",
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "rules": ["djinn"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "guards",
+      "name": "Guards",
+      "text": "The Sultan's Guards are so unquestioningly loyal that they will obey the first order given to them each turn on a Command roll of 10 or less, so long as the order comes from the General himself. No penalties are applied to this order. Further orders are given using the General's normal Command value and penalties. This applies only to Guards and not to brigades that include Guards and other units."
+    },
+    {
+      "id": "desert-riders",
+      "name": "Desert Riders",
+      "text": "Desert Riders have a shooting range of 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "camel-riders",
+      "name": "Camel Riders",
+      "text": "Camel Riders ignore distance modifiers when commands are issued to them. This applies only to Camel Riders and not to brigades that include Camel Riders and other units. Characters are still bound by their maximum command ranges and cannot issue orders to units beyond range. Because camels are intractable, all orders are issued with a Command penalty of -1. This penalty applies to any unit of Camel Riders and to any brigade that contains one or more units of Camel Riders."
+    },
+    {
+      "id": "magic-carpets",
+      "name": "Magic Carpets",
+      "text": "Magic Carpets can fly. They are rated as aerial cavalry, as this is the closest categorisation to their type. Because they are awkward flyers, they can be pursued by any type of enemy troops. They have a shooting range of 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "elephants",
+      "name": "Elephants",
+      "text": "Elephants cause terror and cannot be brigaded with cavalry. If an Elephant unit would for any reason become confused, it will stampede instead. The stampede ceases at the end of their player's next Command phase. Stampeding Elephants cannot be given orders or use initiative. At the beginning of the Command phase, prior to resolving any movement generated by initiative, roll one D6 for each affected unit. 1–2: Move towards the nearest enemy unit as far as possible. If they contact an enemy unit they charge. If they contact a friendly unit, they burst through. 3–4: Move directly away from the nearest enemy unit as far as possible. If the elephants contact an enemy unit, they charge. If they contact a friendly unit, they burst through. 5: Move towards the nearest friendly unit as far as possible. If the elephants contact any unit, friendly or enemy, they charge. 6: Move directly away from the nearest friendly unit as far as possible. If the elephants contact any unit, friendly or enemy, they charge. Stampeding Elephants that charge fight in the Combat phase. They count as enemies for the duration of the combat. If the Elephants win a combat round they must pursue if possible, and will continue to do so each round. Should their opponents be destroyed, they will not advance but will halt."
+    },
+    {
+      "id": "flying-carpet",
+      "name": "Flying Carpet",
+      "text": "The Flying Carpet is a flying chariot mount."
+    },
+    {
+      "id": "elephant-mount",
+      "name": "Elephant",
+      "text": "The Elephant mount is a standard monster mount, except that a character mounted on an Elephant cannot join a unit of friendly cavalry. A unit joined by a character riding an Elephant causes terror."
+    },
+    {
+      "id": "djinn",
+      "name": "Djinn",
+      "text": "The Djinn accompanies its master and can transform both of them into a whirlwind, enabling the stand to fly as a normal flying mount. If the Wizard has a Djinn he can also cast the Curse of the Djinn spell with a +1 casting bonus. The Djinn has +2 shooting attacks. These are added to a stand from a unit that the character has joined, and can only be used when the character joins a unit. If the Wizard is accompanied by a Djinn, any unit he joins causes terror."
+    }
+  ],
+  "spells": [
+    {
+      "id": "sand-storm",
+      "name": "Sand Storm",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "The Wizard commands the desert spirits to engulf his foes in a swirling cloud of choking sand and dust. The spell is cast upon the Wizard himself and affects all enemy units within 30cm of the stand. The spell lasts until the end of the opposing player's following turn. All enemy units within 30cm of the Arabian Wizard suffer a -1 Command penalty. This penalty is applied when each order is issued. A unit might be within 30cm of the Sorcerer for one order but not for a second."
+    },
+    {
+      "id": "mirage",
+      "name": "Mirage",
+      "cast": "4+",
+      "range": "60cm",
+      "text": "The Wizard creates the illusion of a huge host of fearsome warriors bearing down upon his foes. To use this spell the player needs an additional unit chosen from the Araby list. This can be infantry, cavalry, or monsters. This unit becomes the illusion and is immediately placed within 60cm of the Wizard and more than 20cm from any enemy units. The illusionary unit cannot move or fight, for it is not really there. The illusionary unit is treated as if it were real by the enemy until an enemy unit charges into contact with it, touches it as an incidental contact during combat, advances upon it, or brings it into combat in any other fashion. Command penalties are suffered for proximity, and enemy shooters must target the illusion if it is the closest target. It cannot be harmed. The illusionary unit is also dispelled immediately if the Araby player moves any of his units or characters through it. Whilst the Mirage unit is on the battlefield the Wizard cannot cast any other spells. If the player wishes the Wizard to cast a new spell, the Mirage comes to an end and the Wizard can then attempt a new spell as normal."
+    },
+    {
+      "id": "sunstrike",
+      "name": "Sunstrike",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "Bright beams of burning energy leap from the Wizard's eyes and scythe through all before him. Draw an imaginary line 30cm long from the Wizard's stand in any direction. The line passes through any intervening units, but not beyond terrain that would normally stop a missile shot, for example over the crest of a hill or through more than 2cm of woodland. Each unit under the line takes three shooting attacks worked out in the usual way, and all relevant modifiers are applied. This spell can affect several units and affects all units that fall beneath its path, including your own. Unengaged units can be driven back by Sunstrike as with ordinary shooting, whether friend or foe. Engaged units cannot be driven back, but carry over any hits that are scored into the first round of combat. Hits caused by the Sunstrike count as having been struck in the combat itself."
+    },
+    {
+      "id": "curse-of-the-djinn",
+      "name": "Curse of the Djinn",
+      "cast": "6+",
+      "range": "30cm",
+      "text": "The Wizard channels the immense power of the Djinn through his own body and lays a terrible curse upon his foes. The Wizard may cast this spell on an enemy unit within range. The target unit must re-roll all successful armour saves for the duration of the following close combat phase. If the Wizard has a Djinn, he adds +1 to his dice roll when casting this spell, and therefore casts successfully on a 5+."
+    }
+  ]
+}

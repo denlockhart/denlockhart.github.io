@@ -1,0 +1,302 @@
+{
+  "id": "witch-hunters",
+  "name": "Witch Hunters",
+  "source": "Warmaster Armies v2.26, Witch Hunter army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Witch Hunter selector in Warmaster Armies v2.26. Warhounds are not a unit. Any infantry unit may add one Warhound stand for 20 points. Only a Warrior Priest may ride the War Altar. The army can include only one War Altar, and only if it includes at least one unit of Flagellants. One magic item per character and one magic standard per unit.",
+  "armyRules": ["chaos-and-undead"],
+  "units": [
+    {
+      "id": "zealots",
+      "name": "Zealots",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 35,
+      "min": 3,
+      "max": null,
+      "rules": ["zealots"],
+      "bonuses": [
+        {
+          "id": "warhounds",
+          "name": "Warhounds",
+          "points": 20,
+          "rules": ["warhounds"]
+        }
+      ]
+    },
+    {
+      "id": "halberdiers",
+      "name": "Halberdiers",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 45,
+      "min": null,
+      "max": 4,
+      "rules": [],
+      "bonuses": [
+        {
+          "id": "warhounds",
+          "name": "Warhounds",
+          "points": 20,
+          "rules": ["warhounds"]
+        }
+      ]
+    },
+    {
+      "id": "crossbowmen",
+      "name": "Crossbowmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": null,
+      "max": 2,
+      "rules": [],
+      "bonuses": [
+        {
+          "id": "warhounds",
+          "name": "Warhounds",
+          "points": 20,
+          "rules": ["warhounds"]
+        }
+      ]
+    },
+    {
+      "id": "handgunners",
+      "name": "Handgunners",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 65,
+      "min": null,
+      "max": 4,
+      "rules": ["handgunners"],
+      "bonuses": [
+        {
+          "id": "warhounds",
+          "name": "Warhounds",
+          "points": 20,
+          "rules": ["warhounds"]
+        }
+      ]
+    },
+    {
+      "id": "flagellants",
+      "name": "Flagellants",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 70,
+      "min": null,
+      "max": 4,
+      "rules": ["flagellants"],
+      "bonuses": [
+        {
+          "id": "warhounds",
+          "name": "Warhounds",
+          "points": 20,
+          "rules": ["warhounds"]
+        }
+      ]
+    },
+    {
+      "id": "knights",
+      "name": "Knights",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 1,
+      "rules": []
+    },
+    {
+      "id": "pistoliers",
+      "name": "Pistoliers",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 95,
+      "min": null,
+      "max": 1,
+      "rules": ["pistoliers"]
+    },
+    {
+      "id": "cannon",
+      "name": "Cannon",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/2+ bounce",
+      "hits": 2,
+      "armour": "0",
+      "command": null,
+      "unitSize": 2,
+      "points": 85,
+      "min": null,
+      "max": 1,
+      "rules": ["cannon"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "rules": []
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "warrior-priest",
+      "name": "Warrior Priest",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 55,
+      "min": null,
+      "max": 1,
+      "mounts": ["war-altar"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "war-altar",
+      "name": "War Altar",
+      "type": "Chariot Mount",
+      "attacks": "+2",
+      "points": 15,
+      "min": null,
+      "max": 1,
+      "armyMax": 1,
+      "requiresUnit": "flagellants",
+      "rules": ["war-altar"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "chaos-and-undead",
+      "name": "Chaos and Undead",
+      "text": "The abilities of some units in the Witch Hunter army affect Chaos and/or Undead. Chaos means the Chaos army, Daemons army, Beastmen army, Chaos Dwarfs army, and Skaven army. Undead means the Tomb Kings army and the Vampire Counts army, including units of Ghouls."
+    },
+    {
+      "id": "zealots",
+      "name": "Zealots",
+      "text": "Zealots form the main part of a Witch Hunter army, and are drawn from mobs whipped up by priests' sermons. These troops gain +1 Attack in the first round of combat against Undead or Chaos, regardless of who charged, and will always use their initiative to charge these enemies if possible. If victorious in combat with Undead or Chaos-like enemies they must pursue or advance where possible."
+    },
+    {
+      "id": "handgunners",
+      "name": "Handgunners",
+      "text": "Count enemy Armour values as one worse than normal when shot by a handgun. An Armour value of 3+ counts as 4+, 4+ as 5+, and 5+ as 6+, whilst an Armour value of 6+ cannot save against a handgun."
+    },
+    {
+      "id": "flagellants",
+      "name": "Flagellants",
+      "text": "So keen are they to meet their maker that a unit of Flagellants will always use its initiative to charge an enemy if possible and cannot be given orders instead. They will never use their initiative to evade. They cannot be driven back by shooting and do not roll for drive backs. If victorious in combat they must pursue or advance where possible. Flagellants are unaffected by enemies that cause terror in combat, so they do not suffer the usual -1 Attack modifier."
+    },
+    {
+      "id": "warhounds",
+      "name": "Warhounds",
+      "text": "Warhound stands are not deployed as independent units. Instead, any infantry unit may add one stand of Warhounds. This brings the size of the unit to 4 stands: 3 regular stands plus the Warhound stand. The selector gives that stand Attacks 3, Hits 3, Armour 0 or 6+, and a unit-size increase of +1 for 20 points, with no min or max. Warhounds always have the same Armour value as the rest of their unit. They fight as part of their unit and can be removed as a unit casualty if the player wishes. Warhound casualties never count for Command penalties. Warhound stands never cause the parent unit to be in irregular formation, no matter how they are placed. An infantry unit containing a Warhound stand gains the ability to pursue Cavalry and Chariots."
+    },
+    {
+      "id": "pistoliers",
+      "name": "Pistoliers",
+      "text": "Pistoliers have a shooting range of only 15cm and 360° vision. Stands in this unit can draw line of sight from all edges for the purpose of evading and shooting, including shooting at charging enemies. This unit still needs line of sight from its front edge to charge an enemy."
+    },
+    {
+      "id": "cannon",
+      "name": "Cannons",
+      "text": "See the Warmaster Rulebook, p.74."
+    },
+    {
+      "id": "war-altar",
+      "name": "War Altar",
+      "text": "A Warrior Priest may be mounted on a War Altar. A Warrior Priest with a War Altar suffers a movement reduction to 30cm. The army can only ever include one War Altar, and it can only be included if there is at least 1 unit of Flagellants in the army. The War Altar adds +2 Attacks to the Warrior Priest and can be used to add +1 to the Warrior Priest's dice roll to cast a spell once per battle. The player must announce that the War Altar's spell bonus is being used before rolling the dice to determine if the spell is cast."
+    }
+  ],
+  "spells": [
+    {
+      "id": "sanctuary",
+      "name": "Sanctuary",
+      "cast": "5+",
+      "range": "N/A",
+      "text": "The Warrior Priest consecrates the ground before the troops, warding off evil. The Wizard must be with the unit to affect it. The unit counts as being defended, even if in the open. If the unit is already defended, it counts as fortified. This also affects Cavalry units, even though they are not normally able to receive this bonus. The effect lasts until the unit moves, the Warrior Priest leaves it, or he casts another spell."
+    },
+    {
+      "id": "doctrine-of-sigmar",
+      "name": "Doctrine of Sigmar",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "Through the rousing speech of Sigmar's chosen, troops are directed across the field of battle. The spell can be cast on any unengaged friendly unit within range regardless of whether the Warrior Priest can see it or not. The spell affects only a single unit, never a brigade, and no supporting charge is possible. The unit can be moved just as if it had received an order in the Command phase. Character stands that have joined the unit will not move with it: they remain where they are."
+    },
+    {
+      "id": "holy-fervour",
+      "name": "Holy Fervour",
+      "cast": "4+",
+      "range": "N/A",
+      "text": "Enraged by their blasphemous enemies, the troops rush forward thirsty for blood. The Wizard must be with the unit to affect it. If successfully cast on a friendly unit, each stand, including character stands, gains +1 Attack during the following Combat phase."
+    },
+    {
+      "id": "divine-curse",
+      "name": "Divine Curse",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "Speaking the words of Magnus the Pious himself, the Warrior Priest smites his foes. This spell can be cast on any enemy unit within range regardless of whether the Priest can see it or not. The spell lasts until the end of the opposing player's following turn. The unit moves at half pace in all situations, even when charging. The unit counts all enemies as terrifying (-1 Attack penalty) even when it is otherwise immune to terror. If the unit would normally cause terror then it ceases to do so and counts all enemies as terrifying just like everyone else. If the target is Undead or a Daemon it will not count enemies as terrifying, although all other penalties apply as described. Undead and Daemons are hard to spook."
+    }
+  ]
+}
