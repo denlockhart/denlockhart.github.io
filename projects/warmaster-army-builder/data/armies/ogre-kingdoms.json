@@ -1,0 +1,298 @@
+{
+  "id": "ogre-kingdoms",
+  "name": "Ogre Kingdoms",
+  "source": "Warmaster Armies v2.26, Ogre Kingdoms army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Ogre Kingdoms selector in Warmaster Armies v2.26. The Bull Rhinox is a mount for the Tyrant, Bruiser, and Butcher. One magic item per character and one magic standard per unit. Gnoblars cannot be given magic items.",
+  "units": [
+    {
+      "id": "bull-ogres",
+      "name": "Bull Ogres",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 105,
+      "min": 2,
+      "max": null,
+      "rules": ["bull-ogres"]
+    },
+    {
+      "id": "leadbelchers",
+      "name": "Leadbelchers",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/2",
+      "hits": 4,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 2,
+      "rules": ["leadbelchers"]
+    },
+    {
+      "id": "ironguts",
+      "name": "Ironguts",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 140,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "yhetees",
+      "name": "Yhetees",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 4,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 2,
+      "rules": ["yhetees"]
+    },
+    {
+      "id": "gnoblars",
+      "name": "Gnoblars",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 30,
+      "min": null,
+      "max": 4,
+      "noMagic": true,
+      "rules": ["gnoblars"]
+    },
+    {
+      "id": "gorgers",
+      "name": "Gorgers",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 1,
+      "rules": ["gorgers"]
+    },
+    {
+      "id": "rhinox-riders",
+      "name": "Rhinox Riders",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "5",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 200,
+      "min": null,
+      "max": 1,
+      "rules": ["rhinox-riders"]
+    },
+    {
+      "id": "sabretusks",
+      "name": "Sabretusks",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 40,
+      "min": null,
+      "max": 1,
+      "rules": []
+    },
+    {
+      "id": "slave-giant",
+      "name": "Slave Giant",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "8",
+      "hits": 8,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 1,
+      "points": 135,
+      "min": null,
+      "max": 1,
+      "brigade": "own-only",
+      "rules": ["slave-giant"]
+    },
+    {
+      "id": "scrap-launcher",
+      "name": "Scrap Launcher",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/3",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 1,
+      "points": 75,
+      "min": null,
+      "max": 1,
+      "rules": ["scrap-launcher"]
+    },
+    {
+      "id": "tyrant",
+      "name": "Tyrant",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["bull-rhinox"],
+      "rules": []
+    },
+    {
+      "id": "bruiser",
+      "name": "Bruiser",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "mounts": ["bull-rhinox"],
+      "rules": []
+    },
+    {
+      "id": "butcher",
+      "name": "Butcher",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "mounts": ["bull-rhinox"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "bull-rhinox",
+      "name": "Bull Rhinox",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 65,
+      "min": null,
+      "max": 1,
+      "rules": ["bull-rhinox"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "bull-ogres",
+      "name": "Bull Ogres",
+      "text": "If an Ogre unit can use its initiative to charge an enemy unit of humans at the start of the Command phase then it must do so. This happens automatically and their commander can do nothing about it. 'Humans' encompasses all 'men' including Chaos Warriors and Marauders, but not Dwarfs, Elves etc."
+    },
+    {
+      "id": "leadbelchers",
+      "name": "Leadbelchers",
+      "text": "Leadbelchers' cannons have a range of 15cm. The unit has 2 shooting attacks. Leadbelchers' shooting attacks impose a -1 penalty to armour rolls."
+    },
+    {
+      "id": "yhetees",
+      "name": "Yhetees",
+      "text": "If a unit of Yhetees is charging against an enemy in the open it receives an additional +1 Attack modifier in the same way as chariots and monsters. A Yhetee unit can only give support and be supported by other Yhetee units and must pursue retreating enemies where possible and must advance into a combat if they are able to do so."
+    },
+    {
+      "id": "gnoblars",
+      "name": "Gnoblars",
+      "text": "The unit is allowed to shoot as if it had bows but its range is reduced to 15cm. A Gnoblar stand cannot be supported by other kinds of infantry, only by other Gnoblar stands. Gnoblars can support other kinds of infantry as normal. Gnoblars cannot be given magic items. Characters cannot join Gnoblar units."
+    },
+    {
+      "id": "gorgers",
+      "name": "Gorgers",
+      "text": "When trying to issue an order to a unit of Gorgers or to a brigade that contains a unit of Gorgers, there is always a -1 Command penalty due their beastly and unruly nature. Gorgers always ignore distance modifiers when receiving orders and can pursue any type of retreating enemy. Gorgers do not have to be deployed before the game if the player does not wish to do so. Instead individual units can be infiltrated onto the battlefield once the game has begun. To infiltrate a unit, the Ogre player nominates the point where he wants the Gorgers to appear and issues an infiltration order from any character. The character does not have to be within his normal command range to issue an infiltration order; the character's command range is considered to extend over the entire tabletop when issuing an infiltration order. Treat the order as issued to the nominated point, and apply the Gorgers' standard -1 and any modifiers for proximity of enemy. The nominated point must lie either on the table within dense terrain or on any base edge other than the enemy player's own table edge. If successful, place one stand on the nominated spot and arrange the rest of the unit into formation around it. The infiltrated unit cannot be placed so that it touches an enemy unit. Once deployed, orders can be given to the unit by the same character that gave the infiltration order. The infiltrating unit is considered to have used its first order to deploy. If the infiltration order is failed the unit is not deployed and cannot infiltrate that turn; it can attempt to infiltrate in a subsequent turn at the same or a different place. Gorgers don't suffer a -1 Command penalty for dense terrain."
+    },
+    {
+      "id": "rhinox-riders",
+      "name": "Rhinox Riders",
+      "text": "Units of Rhinox Riders are unaffected by terror. Rhinox Riders receive +1 Attack when charging against an enemy in the open in the same way as chariots and monsters."
+    },
+    {
+      "id": "slave-giant",
+      "name": "Slave Giant",
+      "text": "Giants must always be given a separate order. They cannot be brigaded with other troops, although several Giants can be brigaded together. If you attempt to give an order to a Giant and fail then you must take a test to see what it does. Ignore potential blunders; these are taken into account by the Giant Goes Wild chart. Where Giants are brigaded together, roll for each separately. Giants have 8 hits. If a Giant has accumulated 5–7 hits by the end of the Shooting phase or Combat phase and is no longer engaged in combat, it is badly hurt. Once a Giant is badly hurt, all accumulated hits are discounted and its maximum Hits and Attacks are halved for the rest of the battle (to 4 Hits and 4 Attacks). A Giant causes terror. Giant Goes Wild (D6): 1. The Giant neither moves nor fights this turn. 2. Move the Giant towards the nearest table edge. If it contacts a unit it charges, whichever side that unit is on. If victorious it holds its ground. 3. The Giant throws an object at the closest visible unit, friend or foe, within 5×D6 cm, inflicting 3 Attacks. If the target is in combat the attacks count towards the combat; otherwise resolve them in the Shooting phase. 4. The Giant moves straight forward at full pace. It charges an enemy it reaches. It walks through a friendly unit and out the other side if there is room and sufficient move; otherwise it halts on contact. A friendly unit walked through or contacted becomes confused. 5. The Giant moves as fast as it can towards the nearest visible enemy and charges if it reaches them, walking through friends and confusing them. If no enemy is visible it does nothing. 6. The Giant moves at double pace towards the nearest visible enemy. If it charges, its Attacks are doubled in the first round. If no enemy is visible it does nothing."
+    },
+    {
+      "id": "scrap-launcher",
+      "name": "Scrap Launcher",
+      "text": "A Scrap Launcher is a Stone Thrower. See the main rulebook, p.75."
+    },
+    {
+      "id": "bull-rhinox",
+      "name": "Bull Rhinox",
+      "text": "A Tyrant, Bruiser, or Butcher may ride a Bull Rhinox. A unit joined by a character mounted on a Bull Rhinox causes terror."
+    }
+  ],
+  "spells": [
+    {
+      "id": "tooth-cracker",
+      "name": "Tooth Cracker",
+      "cast": "3+",
+      "range": "30cm",
+      "text": "The Butcher grinds his way through a lump of earth-encrusted bedrock taken from the peak of a mountain, imbuing himself and his fellows with supernatural resilience. This often costs the Butcher more than a couple of teeth. This spell can only be cast on an unengaged friendly unit within range, whether or not the Butcher can see it. The target cannot be driven back by enemy shooting until your next turn. In addition the unit cannot become confused for any reason until the end of your next Command phase."
+    },
+    {
+      "id": "bone-cruncher",
+      "name": "Bone Cruncher",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "Shovelling dry bones into his mouth, the Butcher crunches his way through femurs, ribs, and skulls. As he points at his foes and spits his bloody curse, the enemy find their own bones breaking within their bodies. Cast on an enemy unit the Butcher can see that is not engaged in combat. Bone Cruncher is treated like three ordinary shooting attacks except that armour has no effect: all targets count as having no armour. A unit can be driven back by Bone Cruncher as with ordinary shooting."
+    },
+    {
+      "id": "bull-gorger",
+      "name": "Bull Gorger",
+      "cast": "4+",
+      "range": "Joined unit",
+      "text": "The Butcher devours the heart of a Bull Rhinox and imbues himself and his charges with the strength of a charging Rhinox. This spell can be cast if the Butcher has joined a unit in combat. It affects the unit he has joined, and lasts for the duration of the following Combat phase. Every stand in the unit, including characters that have joined it, adds +1 to its Attacks. The Butcher himself is included. Other characters who have also joined the unit receive the +1 on whichever character fights."
+    },
+    {
+      "id": "troll-guts",
+      "name": "Troll Guts",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The Butcher forces down the toxic guts of a Stone Troll and transfers the troll's supernatural abilities onto himself and his companions. Cast on one friendly unit within range that is engaged in combat. The unit's Hits value increases by +1 until the end of the following Combat phase. At the end of that phase the Hits value returns to normal, so any outstanding hits are applied and can cause the loss of stands."
+    }
+  ]
+}

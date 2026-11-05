@@ -123,12 +123,15 @@ function choiceMatches(choice, unit) {
   return true;
 }
 
-function itemChoicesFor(unit) {
+function itemChoicesFor(unit, extraRoles) {
   const options = [];
+  const roles = new Set(unit.itemBearers || [unit.type.toLowerCase()]);
+  for (const role of extraRoles || []) roles.add(role);
   for (const item of state.magicItems) {
     if (unit.kind === "character") {
       if (item.slot !== "character") continue;
-      if (item.bearer && !item.bearer.includes(unit.type.toLowerCase())) continue;
+      if (item.excludeFactions?.includes(state.army?.id)) continue;
+      if (item.bearer && !item.bearer.some((role) => roles.has(role))) continue;
       options.push({
         key: item.id,
         itemId: item.id,
@@ -136,8 +139,9 @@ function itemChoicesFor(unit) {
         label: `${item.name} — ${item.points} pts`,
         points: item.points,
         summary: item.summary,
+        description: item.description || item.summary,
       });
-    } else if (item.slot === "standard") {
+    } else if (item.slot === "standard" && !unit.noMagic) {
       for (const choice of item.choices || []) {
         if (!choiceMatches(choice, unit)) continue;
         options.push({
@@ -147,6 +151,7 @@ function itemChoicesFor(unit) {
           label: `${item.name} (${choice.label}) — ${choice.points} pts`,
           points: choice.points,
           summary: item.summary,
+          description: item.description || item.summary,
         });
       }
     }
@@ -157,7 +162,7 @@ function itemChoicesFor(unit) {
 function findChoice(itemId, choiceId) {
   const item = itemById(itemId);
   if (!item) return null;
-  if (!choiceId) return { item, choice: null, points: item.points || 0, label: item.name, summary: item.summary };
+  if (!choiceId) return { item, choice: null, points: item.points || 0, label: item.name, summary: item.summary, description: item.description || item.summary };
   const choice = (item.choices || []).find((row) => row.id === choiceId);
   if (!choice) return null;
   return {
@@ -166,6 +171,7 @@ function findChoice(itemId, choiceId) {
     points: choice.points,
     label: `${item.name} (${choice.label})`,
     summary: item.summary,
+    description: item.description || item.summary,
   };
 }
 
@@ -174,11 +180,13 @@ function entryCost(entry, kind) {
     const unit = unitById(entry.unitId);
     const mount = entry.mountId ? mountById(entry.mountId) : null;
     const item = entry.itemId ? findChoice(entry.itemId, null) : null;
-    return (unit?.points || 0) + (mount?.points || 0) + (item?.points || 0);
+    const bonusPoints = bonusesFor(entry).reduce((sum, bonus) => sum + (bonus.points || 0), 0);
+    return (unit?.points || 0) + (mount?.points || 0) + (item?.points || 0) + bonusPoints;
   }
   const unit = unitById(entry.unitId);
   const item = entry.itemId ? findChoice(entry.itemId, entry.choiceId) : null;
-  return (unit?.points || 0) + (item?.points || 0);
+  const bonusPoints = bonusesFor(entry).reduce((sum, bonus) => sum + (bonus.points || 0), 0);
+  return (unit?.points || 0) + (item?.points || 0) + bonusPoints;
 }
 
 function armyPoints() {
@@ -228,15 +236,24 @@ function troopTitle(entry) {
   return unitById(entry.unitId)?.name || "Unit";
 }
 
+function armyHasCaster() {
+  return state.list.characters.some((entry) => {
+    const unit = unitById(entry.unitId);
+    return unit?.castsSpells || unit?.type === "Wizard" || bonusesFor(entry).some((bonus) => bonus.castsSpells);
+  });
+}
+
 function usedRuleIds() {
-  const ids = new Set();
+  const ids = new Set(state.army?.armyRules || []);
   for (const entry of state.list.characters) {
     const unit = unitById(entry.unitId);
     (unit?.rules || []).forEach((id) => ids.add(id));
     if (entry.mountId) (mountById(entry.mountId)?.rules || []).forEach((id) => ids.add(id));
+    bonusesFor(entry).forEach((bonus) => (bonus.rules || []).forEach((id) => ids.add(id)));
   }
   for (const entry of state.list.troops) {
     (unitById(entry.unitId)?.rules || []).forEach((id) => ids.add(id));
+    bonusesFor(entry).forEach((bonus) => (bonus.rules || []).forEach((id) => ids.add(id)));
   }
   return [...ids];
 }
@@ -248,6 +265,17 @@ function armyIssues() {
   const spent = armyPoints();
   if (spent > limit) issues.push(`Over the points limit by ${spent - limit}.`);
 
+  const itemCounts = new Map();
+  for (const entry of [...state.list.characters, ...state.list.troops]) {
+    if (!entry.itemId) continue;
+    itemCounts.set(entry.itemId, (itemCounts.get(entry.itemId) || 0) + 1);
+  }
+  for (const [id, count] of itemCounts) {
+    if (count < 2) continue;
+    const item = itemById(id);
+    issues.push(`${item?.name || "Magic item"}: only one in the army (have ${count}).`);
+  }
+
   for (const unit of state.army.units) {
     const count = countUnit(unit.id);
     const bounds = boundsFor(unit, limit);
@@ -256,6 +284,21 @@ function armyIssues() {
     }
     if (count > bounds.max) {
       issues.push(`${unit.name}: no more than ${bounds.max} (have ${count}).`);
+    }
+  }
+
+  const seenBonuses = new Set();
+  for (const unit of state.army.units) {
+    for (const bonus of unit.bonuses || []) {
+      if (seenBonuses.has(bonus.id)) continue;
+      seenBonuses.add(bonus.id);
+      const cap = boundsFor(bonus, limit);
+      if (cap.max === Infinity) continue;
+      const taken = countBonus(bonus.id);
+      if (taken > cap.max) {
+        const where = bonus.armyMax != null ? `${cap.max} in the army` : `${cap.max}`;
+        issues.push(`${bonus.name}: no more than ${where} (have ${taken}).`);
+      }
     }
   }
 
@@ -285,9 +328,15 @@ function armyIssues() {
     if (units.some((unit) => unit.brigade === "never")) {
       issues.push(`${name} includes a unit that cannot be brigaded.`);
     }
-    const cold = units.filter((unit) => unit.brigade === "own-only");
-    if (cold.length && cold.length !== units.length) {
-      issues.push(`${name}: Cold One Knights can only brigade with other Cold One Knights.`);
+    const restricted = units.filter((unit) => unit.brigade === "own-only");
+    const kinds = new Set(restricted.map((unit) => unit.id));
+    if (restricted.length && (restricted.length !== units.length || kinds.size > 1)) {
+      const names = [...new Set(restricted.map((unit) => unit.name))];
+      const own = names[0].endsWith("s") ? names[0] : `${names[0]}s`;
+      const who = names.length === 1
+        ? `${names[0]} can only brigade with other ${own}`
+        : `${names.join(" and ")} can only brigade with their own type`;
+      issues.push(`${name}: ${who}.`);
     }
   }
   return issues;
@@ -341,10 +390,34 @@ function renderCatalog() {
   }).join("");
 }
 
+function bonusIdsOf(entry) {
+  if (Array.isArray(entry?.bonusIds)) return entry.bonusIds.filter(Boolean);
+  return entry?.bonusId ? [entry.bonusId] : [];
+}
+
+function bonusesFor(entry) {
+  const unit = unitById(entry?.unitId);
+  const ids = new Set(bonusIdsOf(entry));
+  return (unit?.bonuses || []).filter((bonus) => ids.has(bonus.id));
+}
+
+function countBonus(id, exceptEntryId) {
+  const rows = [...state.list.characters, ...state.list.troops];
+  return rows.filter((entry) => entry.id !== exceptEntryId && bonusIdsOf(entry).includes(id)).length;
+}
+
+function selectedBonusIds() {
+  return [...document.querySelectorAll("#add-bonus input:checked")].map((input) => input.value);
+}
+
 function itemNote(entry, kind) {
-  if (!entry.itemId) return "";
-  const found = findChoice(entry.itemId, kind === "troop" ? entry.choiceId : null);
-  return found ? found.label : "";
+  const bits = [];
+  if (entry.itemId) {
+    const found = findChoice(entry.itemId, kind === "troop" ? entry.choiceId : null);
+    if (found) bits.push(found.label);
+  }
+  for (const bonus of bonusesFor(entry)) bits.push(`${bonus.name} — ${bonus.points} pts`);
+  return bits.join(" · ");
 }
 
 function renderArmy() {
@@ -384,6 +457,7 @@ function renderArmy() {
   $("army-list").innerHTML = chunks.join("");
   renderRules();
   renderSpells();
+  renderMagicItems();
 }
 
 function renderTroopGroup(title, brigadeId, troops, isBrigade) {
@@ -423,14 +497,34 @@ function renderRules() {
   ).join("")}`;
 }
 
-function renderSpells() {
-  const host = $("list-spells");
-  const hasWizard = state.list.characters.some((entry) => unitById(entry.unitId)?.type === "Wizard");
-  if (!hasWizard) {
+function usedMagicItems() {
+  const seen = new Map();
+  for (const entry of [...state.list.characters, ...state.list.troops]) {
+    if (!entry.itemId || seen.has(entry.itemId)) continue;
+    const found = findChoice(entry.itemId, entry.choiceId || null);
+    if (found) seen.set(entry.itemId, found);
+  }
+  return [...seen.values()];
+}
+
+function renderMagicItems() {
+  const host = $("list-items");
+  const items = usedMagicItems();
+  if (!items.length) {
     host.innerHTML = "";
     return;
   }
-  host.innerHTML = `<h3>Sorceress spells</h3>${state.army.spells.map((spell) =>
+  host.innerHTML = `<h3>Magic items</h3>${items.map((found) =>
+    `<article class="rule-item"><strong>${esc(found.label)}</strong><p>${esc(found.description)}</p></article>`
+  ).join("")}`;
+}
+function renderSpells() {
+  const host = $("list-spells");
+  if (!armyHasCaster()) {
+    host.innerHTML = "";
+    return;
+  }
+  host.innerHTML = `<h3>Spells</h3>${state.army.spells.map((spell) =>
     `<article class="rule-item"><strong>${esc(spell.name)}</strong><p class="meta">${esc(spell.cast)} to cast · ${esc(spell.range)}</p><p>${esc(spell.text)}</p></article>`
   ).join("")}`;
 }
@@ -457,10 +551,8 @@ function openAdd(unit, existing, kind) {
   $("add-submit").textContent = existing ? "Save" : "Add to Army";
 
   const mountWrap = $("mount-wrap");
-  const itemWrap = $("item-wrap");
   const brigadeWrap = $("brigade-wrap");
   const mountSelect = $("add-mount");
-  const itemSelect = $("add-item");
   const brigadeSelect = $("add-brigade");
 
   if (unit.kind === "character") {
@@ -488,26 +580,51 @@ function openAdd(unit, existing, kind) {
     }
   }
 
-  const choices = itemChoicesFor(unit);
-  if (!choices.length) {
-    itemWrap.classList.add("hidden");
-    itemSelect.innerHTML = "";
-    $("item-note").textContent = "";
-  } else {
-    itemWrap.classList.remove("hidden");
-    itemSelect.innerHTML = `<option value="">None</option>` + choices.map((choice) =>
-      `<option value="${esc(choice.key)}">${esc(choice.label)}</option>`
+  const bonusWrap = $("bonus-wrap");
+  const bonusHost = $("add-bonus");
+  const picked = new Set(bonusIdsOf(existing));
+  if (unit.bonuses?.length) {
+    bonusWrap.classList.remove("hidden");
+    bonusHost.innerHTML = unit.bonuses.map((bonus) =>
+      `<label class="bonus-option"><input type="checkbox" value="${esc(bonus.id)}"${picked.has(bonus.id) ? " checked" : ""}> ${esc(bonus.name)} — +${bonus.points} pts</label>`
     ).join("");
-    const current = existing?.itemId
-      ? (existing.choiceId ? `${existing.itemId}:${existing.choiceId}` : existing.itemId)
-      : "";
-    itemSelect.value = current;
-    const selected = choices.find((choice) => choice.key === itemSelect.value);
-    $("item-note").textContent = selected?.summary || "One magic item per character, or one magic standard per unit.";
+  } else {
+    bonusWrap.classList.add("hidden");
+    bonusHost.innerHTML = "";
   }
+
+  fillItems(unit, existing);
 
   updateAddCost();
   $("add-dialog").showModal();
+}
+
+function selectedExtraRoles(unit) {
+  const ids = new Set(selectedBonusIds());
+  return (unit.bonuses || []).filter((bonus) => ids.has(bonus.id)).flatMap((bonus) => bonus.itemBearers || []);
+}
+
+function fillItems(unit, existing) {
+  const itemWrap = $("item-wrap");
+  const itemSelect = $("add-item");
+  const choices = itemChoicesFor(unit, selectedExtraRoles(unit));
+  const previous = itemSelect.value;
+  if (!choices.length) {
+    itemWrap.classList.add("hidden");
+    itemSelect.innerHTML = "";
+    $("item-note").textContent = unit.noMagic ? `${unit.name} cannot be given magic items.` : "";
+    return;
+  }
+  itemWrap.classList.remove("hidden");
+  itemSelect.innerHTML = `<option value="">None</option>` + choices.map((choice) =>
+    `<option value="${esc(choice.key)}">${esc(choice.label)}</option>`
+  ).join("");
+  const current = existing?.itemId
+    ? (existing.choiceId ? `${existing.itemId}:${existing.choiceId}` : existing.itemId)
+    : previous;
+  if ([...itemSelect.options].some((option) => option.value === current)) itemSelect.value = current;
+  const selected = choices.find((choice) => choice.key === itemSelect.value);
+  $("item-note").textContent = selected?.description || selected?.summary || "One magic item per character, or one magic standard per unit.";
 }
 
 function selectedItem() {
@@ -525,8 +642,20 @@ function updateAddCost() {
     cost += mountById($("add-mount").value)?.points || 0;
   }
   cost += selectedItem()?.points || 0;
+  for (const id of selectedBonusIds()) {
+    const bonus = (unit.bonuses || []).find((row) => row.id === id);
+    cost += bonus?.points || 0;
+  }
   $("add-cost").textContent = String(cost);
   const warnings = [];
+  for (const id of selectedBonusIds()) {
+    const bonus = (unit.bonuses || []).find((row) => row.id === id);
+    if (!bonus) continue;
+    const cap = boundsFor(bonus, state.list.pointsLimit);
+    if (cap.max === Infinity) continue;
+    const taken = countBonus(bonus.id, state.pending.entryId);
+    if (taken >= cap.max) warnings.push(`${bonus.name} is already at its maximum of ${cap.max}.`);
+  }
   if (!state.pending.entryId) {
     const bounds = boundsFor(unit, state.list.pointsLimit);
     if (countUnit(unit.id) >= bounds.max) {
@@ -553,6 +682,7 @@ function commitPending() {
       unitId: unit.id,
       mountId: $("add-mount").value || null,
       itemId: item?.item.id || null,
+      bonusIds: selectedBonusIds(),
     };
     if (pending.entryId) {
       const index = state.list.characters.findIndex((row) => row.id === pending.entryId);
@@ -573,6 +703,7 @@ function commitPending() {
       brigadeId,
       itemId: item?.item.id || null,
       choiceId: item?.choice?.id || null,
+      bonusIds: selectedBonusIds(),
     };
     if (pending.entryId) {
       const index = state.list.troops.findIndex((row) => row.id === pending.entryId);
@@ -645,7 +776,14 @@ function listAsText() {
     lines.push("", "Special rules");
     for (const rule of rules) lines.push(`${rule.name}: ${rule.text}`);
   }
-  if (list.characters.some((entry) => unitById(entry.unitId)?.type === "Wizard")) {
+  const magic = usedMagicItems();
+  if (magic.length) {
+    lines.push("", "Magic items");
+    for (const found of magic) {
+      lines.push(`${found.label}: ${found.description}`);
+    }
+  }
+  if (armyHasCaster()) {
     lines.push("", "Spells");
     for (const spell of state.army.spells) {
       lines.push(`${spell.name} (${spell.cast}, ${spell.range})`);
@@ -676,11 +814,14 @@ function renderPrint() {
   const rules = usedRuleIds().map(ruleById).filter(Boolean).map((rule) =>
     `<article class="print-rule"><strong>${esc(rule.name)}</strong><p>${esc(rule.text)}</p></article>`
   ).join("");
-  const spells = list.characters.some((entry) => unitById(entry.unitId)?.type === "Wizard")
+  const spells = armyHasCaster()
     ? state.army.spells.map((spell) =>
       `<article class="print-rule"><strong>${esc(spell.name)} — ${esc(spell.cast)} · ${esc(spell.range)}</strong><p>${esc(spell.text)}</p></article>`
     ).join("")
     : "";
+  const magic = usedMagicItems().map((found) =>
+    `<article class="print-rule"><strong>${esc(found.label)}</strong><p>${esc(found.description)}</p></article>`
+  ).join("");
   $("print-sheet").innerHTML = `
     <h1>${esc(list.name || "Unnamed army")}</h1>
     <p class="print-meta">${esc(state.army.name)} · ${armyPoints()} / ${list.pointsLimit} pts · Warmaster Armies v2.26</p>
@@ -689,6 +830,7 @@ function renderPrint() {
       <tbody>${rows.join("")}</tbody>
     </table>
     <p><strong>Total ${armyPoints()} pts</strong></p>
+    ${magic ? `<h2>Magic items</h2>${magic}` : ""}
     ${rules ? `<h2>Special rules</h2>${rules}` : ""}
     ${spells ? `<h2 class="after-gap">Spells</h2>${spells}` : ""}
   `;
@@ -802,9 +944,14 @@ function bindUi() {
     else if (removeBr) ungroup(removeBr.dataset.removeBrigade);
   });
   $("add-mount").addEventListener("change", updateAddCost);
+  $("add-bonus").addEventListener("change", () => {
+    const unit = unitById(state.pending?.unitId);
+    if (unit) fillItems(unit, null);
+    updateAddCost();
+  });
   $("add-item").addEventListener("change", () => {
     const item = selectedItem();
-    $("item-note").textContent = item?.summary || "One magic item per character, or one magic standard per unit.";
+    $("item-note").textContent = item?.description || item?.summary || "One magic item per character, or one magic standard per unit.";
     updateAddCost();
   });
   $("add-form").addEventListener("submit", (event) => {

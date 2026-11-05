@@ -1,0 +1,271 @@
+{
+  "id": "vampire-counts",
+  "name": "Vampire Counts",
+  "source": "Warmaster Armies v2.26, Vampire Counts army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Vampire Counts selector in Warmaster Armies v2.26. The Undead rules apply to every unit except Ghouls. Ethereal Hosts and Dire Wolves cannot be given magic items. The Vampire Lord can cast spells and may take one General or Wizard magic item. Any character may ride a Winged Nightmare. A Black Coach is for a Vampire Lord or Vampire. One magic item per character and one magic standard per unit.",
+  "armyRules": ["undead"],
+  "units": [
+    {
+      "id": "skeletons",
+      "name": "Skeletons",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 30,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "zombies",
+      "name": "Zombies",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2",
+      "hits": 4,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 35,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "ghouls",
+      "name": "Ghouls",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": null,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "grave-guard",
+      "name": "Grave Guard",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": null,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "ethereal-host",
+      "name": "Ethereal Host",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 4,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 2,
+      "noMagic": true,
+      "rules": ["ethereal-host"]
+    },
+    {
+      "id": "black-knights",
+      "name": "Black Knights",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "dire-wolves",
+      "name": "Dire Wolves",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 40,
+      "min": null,
+      "max": 4,
+      "noMagic": true,
+      "rules": ["dire-wolves"]
+    },
+    {
+      "id": "fell-bats",
+      "name": "Fell Bats",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 65,
+      "min": null,
+      "max": 1,
+      "rules": ["fell-bats"]
+    },
+    {
+      "id": "vampire-lord",
+      "name": "Vampire Lord",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 150,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "castsSpells": true,
+      "itemBearers": ["general", "wizard"],
+      "mounts": ["winged-nightmare", "black-coach"],
+      "rules": ["vampire-lord"]
+    },
+    {
+      "id": "vampire",
+      "name": "Vampire",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["winged-nightmare", "black-coach"],
+      "rules": []
+    },
+    {
+      "id": "necromancer",
+      "name": "Necromancer",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["winged-nightmare"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "winged-nightmare",
+      "name": "Winged Nightmare",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["winged-nightmare"]
+    },
+    {
+      "id": "black-coach",
+      "name": "Black Coach",
+      "type": "Chariot Mount",
+      "attacks": "+1",
+      "points": 40,
+      "min": null,
+      "max": 1,
+      "rules": ["black-coach"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "undead",
+      "name": "Undead",
+      "text": "These rules apply to every unit except Ghouls. Ghouls are ordinary mortal troops. Undead units never act on initiative. An Undead unit only moves in the Command phase if given an order, aside from Fell Bats, which can home back. An Undead unit cannot make a supporting charge to support a unit of Ghouls that is charging on initiative. Undead units are unaffected by the -1 Command penalty for an enemy within 20cm. Undead units are unaffected by the -1 Combat penalty for fighting terrifying troops. Undead units are unaffected by the Confusion rule. They cannot become confused for any reason."
+    },
+    {
+      "id": "ethereal-host",
+      "name": "Ethereal Host",
+      "text": "Ethereal Host attacks always inflict a hit on a score of 4+, whether the enemy is in the open, defended, or fortified. The enemy otherwise counts as in the open, defended, or fortified in all respects, so charge bonuses apply or do not apply depending on that status. Ethereal Hosts cannot be driven back by shooting and do not roll for drive backs. They cause terror. An Ethereal Host cannot be given a magic item."
+    },
+    {
+      "id": "dire-wolves",
+      "name": "Dire Wolves",
+      "text": "If the unit charges an enemy in the open it receives an additional +1 Attack, in the same way as chariots and monsters. Dire Wolves cannot be given a magic item."
+    },
+    {
+      "id": "fell-bats",
+      "name": "Fell Bats",
+      "text": "Fell Bats can fly. They cannot use initiative, but they are allowed to home back. No order is required to home back. They are based along the long edge of the stand, in the same way as infantry, rather than the short edge like other monsters."
+    },
+    {
+      "id": "vampire-lord",
+      "name": "Vampire Lord",
+      "text": "The Vampire Lord is the army's General and can cast spells in the same way as a Wizard. The Vampire Lord can be given a magic item restricted to either a General or a Wizard. The Vampire Lord's command range extends over the whole battlefield."
+    },
+    {
+      "id": "winged-nightmare",
+      "name": "Winged Nightmare",
+      "text": "Any character can ride a Winged Nightmare. It can fly, increasing its rider's move to 100cm and adding +2 to its rider's Attacks. A unit joined by a character riding a Winged Nightmare causes terror."
+    },
+    {
+      "id": "black-coach",
+      "name": "Black Coach",
+      "text": "A Vampire Lord or Vampire can ride in a Black Coach. It adds +1 to its occupant's Attacks. A unit joined by a character riding in the Black Coach causes terror."
+    }
+  ],
+  "spells": [
+    {
+      "id": "raise-dead",
+      "name": "Raise Dead",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "At the Wizard's beckoning the mangled corpses that litter the battleground rise from the dead to continue the slaughter. Cast on a combat engagement within 30cm. The Wizard does not have to see any unit in the engagement. A single engagement can be affected only once in a turn, however many units are involved. Whether a combat is a legal target is judged when the dice to cast the spell is rolled, so pursuit or an advance can later bring two units of raised dead into the same engagement. A Skeleton unit of three stands is created. Each stand must be placed so that its front edge contacts an enemy stand from the targeted engagement, or so that it supports a friendly stand from the same engagement, including raised stands. The placement may not split the engagement into smaller engagements. If raised stands come into contact with unengaged enemy units, those units join the engagement after the raised unit is placed, as with incidental contact during pursuit. If it is impossible to position every stand in combat or support, the unit is not deployed and the spell fails. Raised dead do not count as charging in the first round of combat. Raised dead are ignored when working out the break point and victory points at the end of the game."
+    },
+    {
+      "id": "vanhels-danse-macabre",
+      "name": "Vanhel's Danse Macabre",
+      "cast": "5+",
+      "range": "40cm",
+      "text": "The bodies of the dead move under the powerful influence of necromantic magic, renewing their vigour once more. Cast on any friendly unit apart from Ghouls, whether or not the Wizard can see it. The spell affects only a single unit, never a brigade, and no supporting charge is possible. The unit can be moved as if it had received an order in the Command phase. Characters who have joined the unit do not move with it."
+    },
+    {
+      "id": "death-bolt",
+      "name": "Death Bolt",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "A fearsome bolt of sorcerous lightning flies from the Wizard's outstretched fingertips and strikes an enemy unit. The Wizard must be able to see the target, and the spell cannot be directed against a unit in combat. It is treated like three ordinary shooting attacks except that armour has no effect: all targets count as having no armour. A unit can be driven back as with ordinary shooting."
+    },
+    {
+      "id": "curse-of-years",
+      "name": "Curse of Years",
+      "cast": "6+",
+      "range": "Joined unit",
+      "text": "The Wizard's enemies crumble to dust as he smites them with the corrupting Curse of Years. The Wizard can cast this spell if he has joined a unit in combat. Cast on any single enemy unit that is touching the unit the Wizard has joined. The target takes six attacks worked out in the usual way. Any hits scored are carried over into the first round of combat and count as having been struck in the first round for working out combat results."
+    }
+  ]
+}

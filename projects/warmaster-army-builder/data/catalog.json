@@ -1,12 +1,37 @@
 {
   "game": "Warmaster",
   "edition": "Armies v2.26",
-  "disclaimer": "Unofficial fan tool. The Dark Elf roster is taken from Warmaster Armies v2.26. Magic-item points are the overview in that book; full item wording is in the main rulebook. Verify every list before play.",
+  "disclaimer": "Unofficial fan tool. Rosters are taken from Warmaster Armies v2.26. Magic-item points are the overview in that book; full item wording is in the main rulebook. Verify every list before play.",
   "armies": [
     {
       "id": "dark-elves",
       "name": "Dark Elves",
       "file": "dark-elves.json"
+    },
+    {
+      "id": "ogre-kingdoms",
+      "name": "Ogre Kingdoms",
+      "file": "ogre-kingdoms.json"
+    },
+    {
+      "id": "skaven",
+      "name": "Skaven",
+      "file": "skaven.json"
+    },
+    {
+      "id": "bretonnia",
+      "name": "Bretonnia",
+      "file": "bretonnia.json"
+    },
+    {
+      "id": "daemons",
+      "name": "Daemons",
+      "file": "daemons.json"
+    },
+    {
+      "id": "vampire-counts",
+      "name": "Vampire Counts",
+      "file": "vampire-counts.json"
     }
   ]
 }

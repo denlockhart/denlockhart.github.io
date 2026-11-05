@@ -1,0 +1,316 @@
+{
+  "id": "skaven",
+  "name": "Skaven",
+  "source": "Warmaster Armies v2.26, Skaven army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Skaven selector in Warmaster Armies v2.26. The Rat Ogre Bodyguard is a mount for the Grey Seer, Hero, and Warlock. One magic item per character and one magic standard per unit. The Grey Seer may take an item restricted to a General or a Wizard. Rat Swarms cannot be given magic items. A Screaming Bell is limited to one in the army.",
+  "armyRules": ["strength-in-numbers", "vermintide", "under-the-lash"],
+  "units": [
+    {
+      "id": "clanrats",
+      "name": "Clanrats",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 40,
+      "min": 2,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "stormvermin",
+      "name": "Stormvermin",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "jezzails",
+      "name": "Jezzails",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 70,
+      "min": null,
+      "max": 2,
+      "rules": ["jezzails"]
+    },
+    {
+      "id": "plague-monks",
+      "name": "Plague Monks",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "5",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 70,
+      "min": null,
+      "max": 2,
+      "rules": ["plague-monks"]
+    },
+    {
+      "id": "rat-swarms",
+      "name": "Rat Swarms",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 25,
+      "min": 2,
+      "max": null,
+      "noMagic": true,
+      "rules": ["rat-swarms"]
+    },
+    {
+      "id": "gutter-runners",
+      "name": "Gutter Runners",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 60,
+      "min": null,
+      "max": 2,
+      "rules": ["gutter-runners"]
+    },
+    {
+      "id": "rat-ogres",
+      "name": "Rat Ogres",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "warp-lightning-cannon",
+      "name": "Warp Lightning Cannon",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/3",
+      "hits": 2,
+      "armour": "0",
+      "command": null,
+      "unitSize": 2,
+      "points": 60,
+      "min": null,
+      "max": 1,
+      "rules": ["warp-lightning-cannon"]
+    },
+    {
+      "id": "doom-wheel",
+      "name": "Doom Wheel",
+      "kind": "troop",
+      "type": "Machine",
+      "attacks": "5",
+      "hits": 4,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 1,
+      "points": 125,
+      "min": null,
+      "max": 1,
+      "rules": ["doom-wheel"]
+    },
+    {
+      "id": "screaming-bell",
+      "name": "Screaming Bell",
+      "kind": "troop",
+      "type": "Machine",
+      "attacks": "0",
+      "hits": 4,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 1,
+      "points": 125,
+      "min": null,
+      "max": 1,
+      "armyMax": 1,
+      "rules": ["screaming-bell"]
+    },
+    {
+      "id": "grey-seer",
+      "name": "Grey Seer",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 130,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "castsSpells": true,
+      "itemBearers": ["general", "wizard"],
+      "mounts": ["rat-ogre-bodyguard"],
+      "rules": ["grey-seer"]
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 70,
+      "min": null,
+      "max": 2,
+      "mounts": ["rat-ogre-bodyguard"],
+      "rules": []
+    },
+    {
+      "id": "warlock",
+      "name": "Warlock",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 6,
+      "unitSize": 1,
+      "points": 30,
+      "min": null,
+      "max": 1,
+      "mounts": ["rat-ogre-bodyguard"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "rat-ogre-bodyguard",
+      "name": "Rat Ogre Bodyguard",
+      "type": "Special Mount",
+      "attacks": "+1",
+      "points": 10,
+      "min": null,
+      "max": 1,
+      "rules": ["rat-ogre-bodyguard"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "strength-in-numbers",
+      "name": "Strength in Numbers",
+      "text": "Brigades may be of any size and are not restricted to the normal four unit maximum."
+    },
+    {
+      "id": "vermintide",
+      "name": "Vermintide",
+      "text": "Skaven units that win a round of combat can choose to pursue retreating enemy units regardless of troop type. Any Skaven units, including artillery, can pursue any enemy units, including flyers, cavalry, and chariots. Skaven are still constrained by terrain and fortified status the same as other armies. They cannot pursue if fortified."
+    },
+    {
+      "id": "under-the-lash",
+      "name": "Under the Lash",
+      "text": "All Skaven characters have a Command range of 20cm, whether General, Hero, or Wizard. Even Skaven Generals have a Command range of 20cm."
+    },
+    {
+      "id": "jezzails",
+      "name": "Jezzails",
+      "text": "Count enemy armour values as one worse than normal when shot by a jezzail. An armour value of 3+ counts as 4+, 5+ counts as 6+, and 6+ cannot save against a jezzail."
+    },
+    {
+      "id": "plague-monks",
+      "name": "Plague Monks",
+      "text": "A unit of Plague Monks will always use its initiative to charge an enemy if possible and cannot be given orders instead. They will never use their initiative to evade. They cannot be driven back by shooting and never roll for drive backs. If victorious in combat they must pursue or advance where possible. Plague Monks are unaffected by enemies that cause terror in combat and do not suffer the usual -1 Attack modifier."
+    },
+    {
+      "id": "rat-swarms",
+      "name": "Rat Swarms",
+      "text": "Rat Swarms cannot be driven back by shooting and do not roll for drive backs. A Rat Swarm stand cannot be supported by other kinds of infantry, only by other Rat Swarm stands. Rat Swarms can support other kinds of infantry as normal. A Rat Swarm cannot be given magic items."
+    },
+    {
+      "id": "gutter-runners",
+      "name": "Gutter Runners",
+      "text": "Gutter Runners are armed with throwing stars and darts, and shoot as if they had bows, but their range is reduced to 15cm and they have 360° vision. Stands in this unit can draw line of sight from all edges for evading and shooting, including shooting at charging enemies. The unit still needs line of sight from its front edge to charge. Gutter Runners do not have to be deployed before the game. Individual units can be infiltrated once the game has begun. The Skaven player nominates the point where the Gutter Runners will appear and issues an infiltration order from any character. That character's command range extends over the entire tabletop for the order. Treat the order as issued to the nominated point, and apply modifiers for distance and proximity of the enemy, but ignore penalties for dense terrain. The point must lie on the table within dense terrain or on any base edge other than the enemy player's own table edge. If successful, place one stand on the nominated spot and arrange the rest of the unit around it. The unit cannot be placed touching an enemy. Afterwards, orders can be given by the same character that gave the infiltration order. Skaven characters may ignore Under the Lash when ordering Gutter Runners and use the normal command range for their type. The infiltrating unit has used its first order to deploy. If the order fails, the unit is not deployed and can try again in a later turn, at the same place or a different one. Gutter Runners do not suffer a -1 Command penalty for dense terrain."
+    },
+    {
+      "id": "warp-lightning-cannon",
+      "name": "Warp Lightning Cannon",
+      "text": "The Warp Lightning Cannon follows the rules for Elven Bolt Throwers in the main rulebook, p.75, but it can move up to 20cm. A half pace move is 10cm. When making a shooting attack, any roll of double 1s to hit causes the Warp Lightning Cannon unit to become confused. This includes stand-and-shoot attacks."
+    },
+    {
+      "id": "doom-wheel",
+      "name": "Doom Wheel",
+      "text": "When the Doom Wheel charges against targets in the open it receives D6 bonus Attacks in addition to the normal +1 Attack for charging. This bonus applies only when charging, not during pursuits, advances, or when the Doom Wheel is charged itself. The Doom Wheel has a move of 20cm and causes terror."
+    },
+    {
+      "id": "grey-seer",
+      "name": "Grey Seer",
+      "text": "The Grey Seer is the army's General and can use Skaven magic in the same manner as a Warlock. The Grey Seer can be given a magic item restricted to either a General or a Wizard."
+    },
+    {
+      "id": "screaming-bell",
+      "name": "Screaming Bell",
+      "text": "A Screaming Bell uses a 40 × 60mm base, with the short edge as the front. It cannot move of its own accord. It can only move in the Command phase if it forms a brigade with one or more infantry units, and then it moves 20cm at infantry pace. It cannot move using initiative, cannot be driven back by shooting, and does not roll for drive backs. In combat it is automatically destroyed if forced to retreat. It will pursue, advance, and fall back only while it is touching a Skaven infantry unit at the start and end of its move. All Skaven units touching the Screaming Bell ignore the usual penalty for terror while they remain so. Any Skaven Hero or Warlock within 30cm of the Screaming Bell adds +1 to their Command. Any enemy character within 30cm deducts -1 from their Command. A Skaven army can include only one Screaming Bell, no matter how large the army."
+    },
+    {
+      "id": "rat-ogre-bodyguard",
+      "name": "Rat Ogre Bodyguard",
+      "text": "The Grey Seer, Heroes, and Warlocks can have a Rat Ogre Bodyguard. A character with a bodyguard adds +1 to his Attacks."
+    }
+  ],
+  "spells": [
+    {
+      "id": "wither",
+      "name": "Wither",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "The caster inflicts a wasting, shrinking sickness on the enemy. Cast on an enemy unit that is engaged in combat and within range. The Wizard does not have to see the target. The spell lasts for the duration of the following Combat phase. Every stand in the unit, including characters that have joined it, deducts -1 from its Attacks."
+    },
+    {
+      "id": "warp-lightning",
+      "name": "Warp Lightning",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "An arc of warp energy strikes the foe. Cast on an enemy unit the Wizard can see that is not engaged in combat. Warp Lightning is treated like three ordinary shooting attacks except that armour has no effect: all targets count as having no armour. A unit can be driven back by Warp Lightning as with ordinary shooting."
+    },
+    {
+      "id": "death-frenzy",
+      "name": "Death Frenzy",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "The caster drives a friendly unit into a frenzy. Cast on a friendly unit that is engaged in combat and within range. The Wizard does not have to see the target. The effect lasts for the following Combat phase, and the bonus attacks are added to the unit's total attacks each round. Roll one D6 at a time and add the results. The player may roll up to one dice per stand, and may stop after any dice. If a second or later dice matches any dice already rolled, the whole Death Frenzy total is inflicted on the Skaven unit instead of the enemy, and those rebound attacks are struck only once, in the first round of combat."
+    },
+    {
+      "id": "plague",
+      "name": "Plague",
+      "cast": "6+",
+      "range": "30cm",
+      "text": "A swirling cloud of virulence envelops the enemy. Cast on any unengaged enemy unit within range, whether or not the Wizard can see it. It cannot be cast on a unit engaged in combat. The unit suffers six attacks worked out in the usual way. A unit cannot be driven back by Plague."
+    }
+  ]
+}

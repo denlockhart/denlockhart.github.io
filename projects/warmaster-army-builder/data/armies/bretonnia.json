@@ -1,0 +1,301 @@
+{
+  "id": "bretonnia",
+  "name": "Bretonnia",
+  "source": "Warmaster Armies v2.26, Bretonnian army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Bretonnian selector in Warmaster Armies v2.26. A Unicorn is a mount for the Enchantress only. A Pegasus can be ridden by the General, a Hero, or the Enchantress. A Hippogriff can be ridden by the General or a Hero. The Grail Reliquae can be given to one Peasant unit in the whole army. One magic item per character and one magic standard per unit.",
+  "armyRules": ["feudal-society"],
+  "units": [
+    {
+      "id": "men-at-arms",
+      "name": "Men-at-Arms",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 45,
+      "min": 1,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "bowmen",
+      "name": "Bowmen",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 55,
+      "min": null,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "peasants",
+      "name": "Peasants",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 30,
+      "min": null,
+      "max": 4,
+      "rules": ["peasants"],
+      "bonuses": [
+        {
+          "id": "grail-reliquae",
+          "name": "Grail Reliquae",
+          "points": 60,
+          "armyMax": 1,
+          "rules": ["grail-reliquae"]
+        }
+      ]
+    },
+    {
+      "id": "squires",
+      "name": "Squires",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3/1",
+      "hits": 3,
+      "armour": "6+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": 1,
+      "max": 4,
+      "rules": []
+    },
+    {
+      "id": "knights",
+      "name": "Knights",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": 1,
+      "max": null,
+      "rules": ["knights"]
+    },
+    {
+      "id": "grail-knights",
+      "name": "Grail Knights",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 3,
+      "points": 120,
+      "min": null,
+      "max": 1,
+      "rules": ["knights", "grail-knights"]
+    },
+    {
+      "id": "pegasus-knights",
+      "name": "Pegasus Knights",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["knights", "pegasus-knights"]
+    },
+    {
+      "id": "trebuchet",
+      "name": "Trebuchet",
+      "kind": "troop",
+      "type": "Artillery",
+      "attacks": "1/4",
+      "hits": 4,
+      "armour": "0",
+      "command": null,
+      "unitSize": 1,
+      "points": 100,
+      "min": null,
+      "max": 1,
+      "rules": ["trebuchet"]
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["pegasus", "hippogriff"],
+      "rules": []
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 2,
+      "mounts": ["pegasus", "hippogriff"],
+      "rules": []
+    },
+    {
+      "id": "enchantress",
+      "name": "Enchantress",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+0",
+      "hits": null,
+      "armour": null,
+      "command": 7,
+      "unitSize": 1,
+      "points": 45,
+      "min": null,
+      "max": 1,
+      "mounts": ["unicorn", "pegasus"],
+      "rules": []
+    }
+  ],
+  "mounts": [
+    {
+      "id": "unicorn",
+      "name": "Unicorn",
+      "type": "Special Mount",
+      "attacks": "+1",
+      "points": 15,
+      "min": null,
+      "max": 1,
+      "rules": ["unicorn"]
+    },
+    {
+      "id": "pegasus",
+      "name": "Pegasus",
+      "type": "Monstrous Mount",
+      "attacks": "+1",
+      "points": 15,
+      "min": null,
+      "max": 1,
+      "rules": ["pegasus"]
+    },
+    {
+      "id": "hippogriff",
+      "name": "Hippogriff",
+      "type": "Monstrous Mount",
+      "attacks": "+2",
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["hippogriff"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "feudal-society",
+      "name": "Feudal Society",
+      "text": "The Bretonnian army calculates when it must withdraw by counting only units of Knights, Grail Knights, and Pegasus Knights. Once the army has lost half or more of those units, it must withdraw."
+    },
+    {
+      "id": "peasants",
+      "name": "Peasants",
+      "text": "A unit of Peasants suffers an additional -1 Command penalty when given an order. This penalty is waived if the Peasant unit is part of a brigade that includes at least one non-Peasant unit. Peasants cannot use initiative to charge, though they can use initiative to evade. Peasants can make supporting charges. When they charge they receive no bonus Attack modifier for doing so."
+    },
+    {
+      "id": "knights",
+      "name": "Knights",
+      "text": "A Knight unit will always use its initiative to charge an enemy if possible and cannot be given orders instead. They will never use their initiative to evade. Knights are unaffected by enemies that cause terror in combat and do not suffer the usual -1 Attack modifier."
+    },
+    {
+      "id": "grail-knights",
+      "name": "Grail Knights",
+      "text": "If a unit of Grail Knights is charging against an enemy in the open it receives an additional +1 Attack modifier in the same way as chariots and monsters."
+    },
+    {
+      "id": "pegasus-knights",
+      "name": "Pegasus Knights",
+      "text": "Pegasus Knights can fly."
+    },
+    {
+      "id": "trebuchet",
+      "name": "Trebuchet",
+      "text": "A Trebuchet uses a 40 × 60mm base, with the short edge as the front. It can move, but it cannot shoot in a turn when it moved. If it is driven back more than 10cm by shooting it is destroyed. Drive backs of less than 10cm are ignored. If it is forced to retreat from combat it is destroyed like other artillery. It is not affected by the Gerroff!!! spell. Range is 80cm. Fortified targets count as defended, and defended targets count as in the open. No armour roll is made against a Trebuchet shot. It may not shoot at charging enemies. It can shoot over friends and over obstacles on lower ground, as other artillery can. If no target is in sight it may shoot blind at the nearest enemy unit in range that it cannot see, hitting on 6+ whether the target is in the open, defended, or fortified."
+    },
+    {
+      "id": "unicorn",
+      "name": "Unicorn",
+      "text": "Only an Enchantress can ride a Unicorn. The Unicorn adds +1 to the Enchantress's Attacks. Once per battle its magical power adds +1 to the dice roll when casting a spell. Announce that the bonus is being used before rolling to cast."
+    },
+    {
+      "id": "pegasus",
+      "name": "Pegasus",
+      "text": "A General, Hero, or Enchantress can ride a Pegasus. It adds +1 Attack to the rider and allows the character to fly."
+    },
+    {
+      "id": "hippogriff",
+      "name": "Hippogriff",
+      "text": "A General or Hero can ride a Hippogriff. It can fly, increasing the rider's move from 60cm to 100cm, and it adds +2 Attacks to the rider. A unit that includes a Hippogriff rider causes terror."
+    },
+    {
+      "id": "grail-reliquae",
+      "name": "Grail Reliquae",
+      "text": "This sacred item can be given to one unit of Peasants in the whole army. That unit, and every Peasant unit touching it, becomes Grail Pilgrims for as long as they keep contact. Grail Pilgrims are immune to terror, do not suffer the -1 Command penalty, and get +1 Attack. They still do not get +1 Attack for charging in the open. They must attack by initiative if possible, and they cannot be driven back or confused. Before acting with a Peasant unit, check whether it is still touching the unit that carries the Grail Reliquae. If it is, it counts as Grail Pilgrims. If it is not, it is ordinary Peasants."
+    }
+  ],
+  "spells": [
+    {
+      "id": "shield-of-combat",
+      "name": "Shield of Combat",
+      "cast": "4+",
+      "range": "Joined unit",
+      "text": "The enemy's blows are magically deflected. An Enchantress can cast this on a unit she has joined. It lasts until the end of the opposing player's following turn. The unit can re-roll any failed armour rolls during the Combat phase. This does not include hits from enemy missiles during a charge, which count as shooting and are covered by Aerial Shield. Only a single re-roll is permitted."
+    },
+    {
+      "id": "eerie-mist",
+      "name": "Eerie Mist",
+      "cast": "4+",
+      "range": "30cm",
+      "text": "An eerie mist rises about an enemy unit. Cast on any enemy unit within range, whether or not the Enchantress can see it. It lasts until the end of the opposing player's following turn. The unit cannot use its initiative. Any order given to the unit, or to a brigade it is part of, suffers a -1 Command penalty."
+    },
+    {
+      "id": "aerial-shield",
+      "name": "Aerial Shield",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "Enemy missiles vanish in mid-air. Cast on a friendly unit whether or not the Enchantress can see it. The spell lasts until the beginning of the next Bretonnian Shooting phase. Enemies that shoot at the enchanted unit get -1 on shooting rolls. The roll to hit can never become worse than 6+, so a fortified unit is still hit on 6+."
+    },
+    {
+      "id": "ladys-favour",
+      "name": "Lady's Favour",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "A vision of the Lady leads the Bretonnians into battle or away from danger. Cast on any unengaged friendly unit within range, whether or not the Enchantress can see it. It affects only that unit, never a brigade, and no supporting charge is possible. The unit can be moved as if it had received an order in the Command phase. Characters who have joined the unit do not move with it."
+    }
+  ]
+}

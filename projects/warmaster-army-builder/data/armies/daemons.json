@@ -1,0 +1,323 @@
+{
+  "id": "daemons",
+  "name": "Daemons",
+  "source": "Warmaster Armies v2.26, Daemon army list",
+  "sourceNote": "Profiles, min/max, special rules, and spells are from the Daemon selector in Warmaster Armies v2.26. Daemonic Wings and the Favour of the Gods are options for Daemon characters, one of each per full 1,000 points. Any Daemon character may ride a Chariot. The Daemon Overlord may take wizard powers for 25 points, and then may take one General or Wizard magic item. Daemon Swarms cannot be given magic items. One magic item per character and one magic standard per unit.",
+  "armyRules": ["ignore-terror", "daemonic-instability"],
+  "units": [
+    {
+      "id": "daemon-horde",
+      "name": "Daemon Horde",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 75,
+      "min": 3,
+      "max": null,
+      "rules": []
+    },
+    {
+      "id": "daemon-swarm",
+      "name": "Daemon Swarm",
+      "kind": "troop",
+      "type": "Infantry",
+      "attacks": "2",
+      "hits": 4,
+      "armour": "0",
+      "command": null,
+      "unitSize": 3,
+      "points": 45,
+      "min": null,
+      "max": 4,
+      "noMagic": true,
+      "rules": ["daemon-swarm"]
+    },
+    {
+      "id": "daemon-cavalry",
+      "name": "Daemon Cavalry",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "4",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 110,
+      "min": null,
+      "max": 3,
+      "rules": []
+    },
+    {
+      "id": "daemon-hounds",
+      "name": "Daemon Hounds",
+      "kind": "troop",
+      "type": "Cavalry",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 90,
+      "min": null,
+      "max": 2,
+      "rules": []
+    },
+    {
+      "id": "daemon-chariots",
+      "name": "Daemon Chariots",
+      "kind": "troop",
+      "type": "Chariots",
+      "attacks": "3",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 95,
+      "min": null,
+      "max": 3,
+      "rules": []
+    },
+    {
+      "id": "daemon-beasts",
+      "name": "Daemon Beasts",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "5",
+      "hits": 4,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 200,
+      "min": null,
+      "max": 1,
+      "rules": []
+    },
+    {
+      "id": "daemon-flyers",
+      "name": "Daemon Flyers",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "2",
+      "hits": 3,
+      "armour": "5+",
+      "command": null,
+      "unitSize": 3,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "rules": ["daemon-flyers"]
+    },
+    {
+      "id": "greater-daemon",
+      "name": "Greater Daemon",
+      "kind": "troop",
+      "type": "Monster",
+      "attacks": "8",
+      "hits": 6,
+      "armour": "4+",
+      "command": null,
+      "unitSize": 1,
+      "points": 280,
+      "min": null,
+      "max": 1,
+      "rules": ["greater-daemon"]
+    },
+    {
+      "id": "daemon-overlord",
+      "name": "Daemon Overlord",
+      "kind": "character",
+      "type": "General",
+      "attacks": "+2",
+      "hits": null,
+      "armour": null,
+      "command": 9,
+      "unitSize": 1,
+      "points": 125,
+      "min": 1,
+      "max": 1,
+      "fixed": true,
+      "mounts": ["chariot"],
+      "rules": ["daemon-overlord"],
+      "bonuses": [
+        {
+          "id": "wizard-powers",
+          "name": "Wizard powers",
+          "points": 25,
+          "castsSpells": true,
+          "itemBearers": ["wizard"]
+        },
+        {
+          "id": "daemonic-wings",
+          "name": "Daemonic Wings",
+          "points": 10,
+          "max": 1,
+          "rules": ["daemonic-wings"]
+        },
+        {
+          "id": "favour-of-the-gods",
+          "name": "Favour of the Gods",
+          "points": 50,
+          "max": 1,
+          "rules": ["favour-of-the-gods"]
+        }
+      ]
+    },
+    {
+      "id": "daemon-lord-hero",
+      "name": "Daemon Lord Hero",
+      "kind": "character",
+      "type": "Hero",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 80,
+      "min": null,
+      "max": 1,
+      "mounts": ["chariot"],
+      "rules": [],
+      "bonuses": [
+        {
+          "id": "daemonic-wings",
+          "name": "Daemonic Wings",
+          "points": 10,
+          "max": 1,
+          "rules": ["daemonic-wings"]
+        },
+        {
+          "id": "favour-of-the-gods",
+          "name": "Favour of the Gods",
+          "points": 50,
+          "max": 1,
+          "rules": ["favour-of-the-gods"]
+        }
+      ]
+    },
+    {
+      "id": "daemon-sorcerer",
+      "name": "Daemon Sorcerer",
+      "kind": "character",
+      "type": "Wizard",
+      "attacks": "+1",
+      "hits": null,
+      "armour": null,
+      "command": 8,
+      "unitSize": 1,
+      "points": 90,
+      "min": null,
+      "max": 1,
+      "mounts": ["chariot"],
+      "rules": [],
+      "bonuses": [
+        {
+          "id": "daemonic-wings",
+          "name": "Daemonic Wings",
+          "points": 10,
+          "max": 1,
+          "rules": ["daemonic-wings"]
+        },
+        {
+          "id": "favour-of-the-gods",
+          "name": "Favour of the Gods",
+          "points": 50,
+          "max": 1,
+          "rules": ["favour-of-the-gods"]
+        }
+      ]
+    }
+  ],
+  "mounts": [
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "type": "Chariot Mount",
+      "attacks": "+1",
+      "points": 5,
+      "min": null,
+      "max": 1,
+      "rules": ["chariot"]
+    }
+  ],
+  "specialRules": [
+    {
+      "id": "ignore-terror",
+      "name": "Ignore Terror",
+      "text": "All units ignore the -1 Attack penalty in combat for fighting terrifying troops. You cannot frighten them at all."
+    },
+    {
+      "id": "daemonic-instability",
+      "name": "Daemonic Instability",
+      "text": "At the start of your Command phase, before initiative moves, every friendly Daemon unit that has lost at least one stand must take a Daemonic Instability test. Roll a D6. If the unit has lost two stands and is more than 20cm from a friendly Daemon Wizard, deduct 1 from the roll. 0–1: one stand is destroyed and fades back into the Realm of Chaos. A character with the unit is destroyed if the last stand is removed. 2–3: the unit becomes confused. 4–5: no effect, and a confused unit ceases to be confused. 6: the unit regains one stand, placed behind, in front of, or beside another stand from the same unit and facing the same way. If the stand cannot be placed, it is not added."
+    },
+    {
+      "id": "daemon-swarm",
+      "name": "Daemon Swarms",
+      "text": "Daemon Swarms cannot be driven back by shooting and do not roll for drive backs. A Daemon Swarm cannot be given a magic item."
+    },
+    {
+      "id": "daemon-flyers",
+      "name": "Daemon Flyers",
+      "text": "Daemon Flyers can fly. They face the long edge of the stand, in the same way as infantry, rather than the short edge like most other monsters."
+    },
+    {
+      "id": "greater-daemon",
+      "name": "Greater Daemons",
+      "text": "Greater Daemons can fly whether or not the model has wings. They cause terror. A Greater Daemon that has accumulated 4–5 hits at the end of the Shooting or Combat phase, and is no longer engaged, is badly hurt. Once badly hurt, accumulated hits are discounted and its Hits and Attacks are halved for the rest of the battle, to 3 Hits and 4 Attacks."
+    },
+    {
+      "id": "daemon-overlord",
+      "name": "Daemon Overlord",
+      "text": "The Daemon Overlord is the army's General. The Overlord's command range extends over the whole battlefield. For 25 points the Overlord may have the powers of a Wizard. An Overlord with those powers may be given one magic item restricted to either a General or a Wizard, and knows the Daemon spells."
+    },
+    {
+      "id": "daemonic-wings",
+      "name": "Daemonic Wings",
+      "text": "A Daemon character with Daemonic Wings can fly."
+    },
+    {
+      "id": "favour-of-the-gods",
+      "name": "Favour of the Gods",
+      "text": "A Daemon Overlord, Daemon Lord Hero, or Daemon Sorcerer with the Favour of the Gods gains +1 Attack and causes terror."
+    },
+    {
+      "id": "chariot",
+      "name": "Chariot",
+      "text": "A Daemon Overlord, Daemon Sorcerer, or Daemon Lord Hero can ride a Chariot. The chariot adds +1 Attack to the rider."
+    }
+  ],
+  "spells": [
+    {
+      "id": "summon-daemons",
+      "name": "Summon Daemons",
+      "cast": "4+",
+      "range": "60cm",
+      "text": "Fresh Daemons emerge from the warp. Cast on any friendly Daemon unit that started as three stands and has lost one or two stands, whether or not the Wizard can see it. The unit regains one stand, placed behind, in front of, or beside another stand from the same unit and facing the same way. If the unit is in combat, the new stand may be placed touching the enemy and counts as charging if the unit charged. If the stand cannot be placed, the spell does not work."
+    },
+    {
+      "id": "daemonic-rage",
+      "name": "Daemonic Rage",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "This spell affects every friendly unit within range and lasts for the following Combat phase. Every unit gains +1 Attack. That attack can be allocated to any stand in the unit, and can be allocated to a different stand in each combat round."
+    },
+    {
+      "id": "sorcerous-blast",
+      "name": "Sorcerous Blast",
+      "cast": "5+",
+      "range": "30cm",
+      "text": "A bolt of black lightning strikes the foe. Cast on an enemy unit the Wizard can see that is not engaged in combat. It is treated like three ordinary shooting attacks except that armour has no effect: all targets count as having no armour. A unit can be driven back as with ordinary shooting."
+    },
+    {
+      "id": "frenzy-of-chaos",
+      "name": "Frenzy of Chaos",
+      "cast": "6+",
+      "range": "30cm",
+      "text": "Cast on a friendly unit that is engaged in combat and within range. The Wizard does not have to see the target. The effect lasts until the end of the following Combat phase. The unit can re-roll any failed attacks in combat. A dice that has already been re-rolled cannot be re-rolled again."
+    }
+  ]
+}
