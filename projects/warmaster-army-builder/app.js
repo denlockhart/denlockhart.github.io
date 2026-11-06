@@ -473,6 +473,7 @@ function renderTroopGroup(title, brigadeId, troops, isBrigade) {
           <div class="stats">${esc(note)} · ${entryCost(entry, "troop")} pts</div>
         </div>
         <div class="actions">
+          ${isBrigade ? `<button type="button" class="tiny" data-duplicate-troop="${esc(entry.id)}">+ Unit</button>` : ""}
           <button type="button" class="tiny" data-edit-troop="${esc(entry.id)}">Edit</button>
           <button type="button" class="tiny danger" data-remove-troop="${esc(entry.id)}">Remove</button>
         </div>
@@ -728,6 +729,20 @@ function removeTroop(id) {
   renderAll();
 }
 
+function duplicateTroop(id) {
+  const source = state.list.troops.find((row) => row.id === id);
+  if (!source?.brigadeId) return;
+  state.list.troops.push({
+    id: uid(),
+    unitId: source.unitId,
+    brigadeId: source.brigadeId,
+    itemId: null,
+    choiceId: null,
+    bonusIds: bonusIdsOf(source).slice(),
+  });
+  renderAll();
+}
+
 function ungroup(brigadeId) {
   for (const troop of state.list.troops) {
     if (troop.brigadeId === brigadeId) troop.brigadeId = null;
@@ -933,6 +948,7 @@ function bindUi() {
     const removeChar = event.target.closest("[data-remove-character]");
     const removeTr = event.target.closest("[data-remove-troop]");
     const removeBr = event.target.closest("[data-remove-brigade]");
+    const duplicate = event.target.closest("[data-duplicate-troop]");
     if (editCharacter) {
       const entry = state.list.characters.find((row) => row.id === editCharacter.dataset.editCharacter);
       openAdd(unitById(entry.unitId), entry, "character");
@@ -942,6 +958,7 @@ function bindUi() {
     } else if (removeChar) removeCharacter(removeChar.dataset.removeCharacter);
     else if (removeTr) removeTroop(removeTr.dataset.removeTroop);
     else if (removeBr) ungroup(removeBr.dataset.removeBrigade);
+    else if (duplicate) duplicateTroop(duplicate.dataset.duplicateTroop);
   });
   $("add-mount").addEventListener("change", updateAddCost);
   $("add-bonus").addEventListener("change", () => {
