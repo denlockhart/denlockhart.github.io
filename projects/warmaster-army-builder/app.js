@@ -440,6 +440,7 @@ function renderArmy() {
         <div class="stats">${esc(extra)} · ${entryCost(entry, "character")} pts</div>
       </div>
       <div class="actions">
+        <button type="button" class="tiny" data-duplicate-character="${esc(entry.id)}">+ Unit</button>
         <button type="button" class="tiny" data-edit-character="${esc(entry.id)}">Edit</button>
         <button type="button" class="tiny danger" data-remove-character="${esc(entry.id)}">Remove</button>
       </div>
@@ -473,7 +474,7 @@ function renderTroopGroup(title, brigadeId, troops, isBrigade) {
           <div class="stats">${esc(note)} · ${entryCost(entry, "troop")} pts</div>
         </div>
         <div class="actions">
-          ${isBrigade ? `<button type="button" class="tiny" data-duplicate-troop="${esc(entry.id)}">+ Unit</button>` : ""}
+          <button type="button" class="tiny" data-duplicate-troop="${esc(entry.id)}">+ Unit</button>
           <button type="button" class="tiny" data-edit-troop="${esc(entry.id)}">Edit</button>
           <button type="button" class="tiny danger" data-remove-troop="${esc(entry.id)}">Remove</button>
         </div>
@@ -729,9 +730,22 @@ function removeTroop(id) {
   renderAll();
 }
 
+function duplicateCharacter(id) {
+  const source = state.list.characters.find((row) => row.id === id);
+  if (!source) return;
+  state.list.characters.push({
+    id: uid(),
+    unitId: source.unitId,
+    mountId: source.mountId || null,
+    itemId: null,
+    bonusIds: bonusIdsOf(source).slice(),
+  });
+  renderAll();
+}
+
 function duplicateTroop(id) {
   const source = state.list.troops.find((row) => row.id === id);
-  if (!source?.brigadeId) return;
+  if (!source) return;
   state.list.troops.push({
     id: uid(),
     unitId: source.unitId,
@@ -808,24 +822,56 @@ function listAsText() {
   return lines.join("\n");
 }
 
+function printGroupKey(entry, kind) {
+  const bonuses = bonusIdsOf(entry).slice().sort().join(",");
+  if (kind === "character") return [entry.unitId, entry.mountId || "", entry.itemId || "", bonuses].join("|");
+  return [entry.unitId, entry.itemId || "", entry.choiceId || "", bonuses].join("|");
+}
+
+function groupSameUnits(entries, kind) {
+  const groups = [];
+  const index = new Map();
+  for (const entry of entries) {
+    const key = printGroupKey(entry, kind);
+    let group = index.get(key);
+    if (!group) {
+      group = [];
+      index.set(key, group);
+      groups.push(group);
+    }
+    group.push(entry);
+  }
+  return groups;
+}
+
 function renderPrint() {
   const list = state.list;
   const rows = [];
   const pushRow = (name, detail, pts) => {
     rows.push(`<tr><td>${esc(name)}<div class="fine">${esc(detail)}</div></td><td class="pts">${pts}</td></tr>`);
   };
-  for (const entry of list.characters) {
-    const unit = unitById(entry.unitId);
-    pushRow(characterTitle(entry), [profileLine(unit), itemNote(entry, "character")].filter(Boolean).join(" · "), entryCost(entry, "character"));
-  }
-  for (const entry of list.troops.filter((troop) => !troop.brigadeId)) {
-    pushRow(troopTitle(entry), [profileLine(unitById(entry.unitId)), itemNote(entry, "troop"), "Independent"].filter(Boolean).join(" · "), entryCost(entry, "troop"));
-  }
-  for (const brigade of list.brigades) {
-    for (const entry of list.troops.filter((troop) => troop.brigadeId === brigade.id)) {
-      pushRow(troopTitle(entry), [profileLine(unitById(entry.unitId)), itemNote(entry, "troop"), brigade.name].filter(Boolean).join(" · "), entryCost(entry, "troop"));
-    }
-  }
+  const pushGroup = (group, kind) => {
+    const entry = group[0];
+    const count = group.length;
+    const title = kind === "character" ? characterTitle(entry) : troopTitle(entry);
+    const pts = group.reduce((sum, row) => sum + entryCost(row, kind), 0);
+    const places = group.map((row) => {
+      if (!row.brigadeId) return "Independent";
+      return list.brigades.find((brigade) => brigade.id === row.brigadeId)?.name || "Brigade";
+    });
+    const place = kind === "troop" && new Set(places).size === 1 ? places[0] : "";
+    pushRow(
+      count > 1 ? `${title} × ${count}` : title,
+      [profileLine(unitById(entry.unitId)), itemNote(entry, kind), place].filter(Boolean).join(" · "),
+      pts
+    );
+  };
+  const troopsInPrintOrder = [
+    ...list.troops.filter((troop) => !troop.brigadeId),
+    ...list.brigades.flatMap((brigade) => list.troops.filter((troop) => troop.brigadeId === brigade.id)),
+  ];
+  for (const group of groupSameUnits(list.characters, "character")) pushGroup(group, "character");
+  for (const group of groupSameUnits(troopsInPrintOrder, "troop")) pushGroup(group, "troop");
   const rules = usedRuleIds().map(ruleById).filter(Boolean).map((rule) =>
     `<article class="print-rule"><strong>${esc(rule.name)}</strong><p>${esc(rule.text)}</p></article>`
   ).join("");
@@ -949,6 +995,7 @@ function bindUi() {
     const removeTr = event.target.closest("[data-remove-troop]");
     const removeBr = event.target.closest("[data-remove-brigade]");
     const duplicate = event.target.closest("[data-duplicate-troop]");
+    const duplicateCharacterButton = event.target.closest("[data-duplicate-character]");
     if (editCharacter) {
       const entry = state.list.characters.find((row) => row.id === editCharacter.dataset.editCharacter);
       openAdd(unitById(entry.unitId), entry, "character");
@@ -959,6 +1006,7 @@ function bindUi() {
     else if (removeTr) removeTroop(removeTr.dataset.removeTroop);
     else if (removeBr) ungroup(removeBr.dataset.removeBrigade);
     else if (duplicate) duplicateTroop(duplicate.dataset.duplicateTroop);
+    else if (duplicateCharacterButton) duplicateCharacter(duplicateCharacterButton.dataset.duplicateCharacter);
   });
   $("add-mount").addEventListener("change", updateAddCost);
   $("add-bonus").addEventListener("change", () => {

@@ -263,28 +263,28 @@
       "name": "Doom Bolt",
       "cast": "5+",
       "range": "30cm",
-      "text": "A bolt of pure malicious darkness arcs from the Sorceress's fingertip and stabs towards the foes of the Dark Elves. Draw an imaginary line 30cm long from the Sorceress's stand in any direction. The line passes through intervening units, but not beyond terrain that would normally stop a missile shot, such as the crest of a hill or more than 2cm of woodland. Each unit under the line takes three shooting attacks. This can affect several units, including your own. Unengaged units can be driven back, even friends. Engaged units cannot be driven back, but hits carry over into the first round of combat and count as having been struck in the combat itself."
+      "text": "A bolt of pure malicious darkness arcs from the Sorceress's fingertip and stabs towards the foes of the Dark Elves. Draw an imaginary line 30cm long from the Sorceress's stand in any direction you wish. The line passes through any intervening units, but not beyond terrain that would normally stop a missile shot, for example over the crest of a hill, more than 2cm of woodland, and so forth. Each unit under the line takes three shooting attacks worked out in the usual way. This spell can affect several units and will affect all units that fall beneath the line, including your own. Unengaged units can be driven back by a Doom Bolt as with ordinary shooting, even including friends. Engaged units cannot be driven back by the Doom Bolt, but carry over any hits scored into the first round of combat. Any hits scored count as having been struck in the combat itself."
     },
     {
       "id": "black-horror",
       "name": "Black Horror",
       "cast": "6+",
       "range": "50cm",
-      "text": "A whirling vortex of dark energy surrounds and drags its victims into the infernal realms of Khaine, the Lord of Murder. Cast on an enemy unit the Sorceress can see that is not engaged in combat. The unit suffers 4 Attacks with no armour saves. Hits do not cause a drive back."
+      "text": "A whirling vortex of dark energy surrounds and drags its victims into the infernal realms of Khaine, the Lord of Murder. This spell can be cast on an enemy unit the Sorceress can see and which is not engaged in combat. The unit suffers 4 Attacks with no saves for armour. A unit that takes hits from the Black Horror is not driven back. The vortex sucks its victims down, so they have no chance to avoid it."
     },
     {
       "id": "dominion",
       "name": "Dominion",
       "cast": "4+",
       "range": "60cm",
-      "text": "Upon invoking the curse of Khaine, an unnatural and unbearable agony suffuses his foes. Cast on any enemy unit within range, whether or not the Sorceress can see it. The spell lasts until the end of the opposing player's next turn. Whilst it lasts, the unit cannot charge, and if engaged it will not pursue or advance. Even units otherwise obliged to charge, pursue, or advance will not do so."
+      "text": "Upon invoking the curse of the foul god Khaine, an unnatural and unbearable agony suffuses the body of his foes. This spell can be cast on any enemy unit within range, whether or not the Sorceress can see it. The spell lasts until the end of the opposing player's next turn. Whilst the spell lasts, the unit cannot charge, and if engaged in combat it will not pursue or advance. Even units that are otherwise obliged to charge, pursue, or advance will not do so if affected by Dominion."
     },
     {
       "id": "soul-stealer",
       "name": "Soul Stealer",
       "cast": "5+",
-      "range": "Joined unit",
-      "text": "Invoking the daemons of the abyss, the Sorceress tears the souls from her enemies. She can cast this if she has joined a unit in combat, on one enemy unit touching that unit. The target takes three attacks. Targets get no armour save: all Armour values count as 0. Hits carry over into the first round of combat and count as having been struck in the first round."
+      "range": "N/A",
+      "text": "Invoking the daemons of the abyss, the Sorceress tears the souls from her enemies. The Sorceress can cast this spell if she has joined a unit in combat. The spell can be cast on any single enemy unit that is touching the unit the Sorceress has joined. The target takes three attacks worked out in the usual way. Targets get no armour saving throws: all Armour values count as 0. Any hits scored are carried over into the first round of combat and count as having been struck in the first round when working out combat results."
     }
   ]
 }
