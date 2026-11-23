@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Screen</title>
+  <meta name="description" content="Pick a folder of images on Windows and click one to show it on a second monitor.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="titles">
+      <p class="eyebrow"><a href="/">denlockhart.com</a></p>
+      <h1>Player Screen</h1>
+      <p class="tagline">Click an image here. It replaces the picture on the other window.</p>
+    </div>
+    <div class="actions">
+      <button type="button" id="choose" class="primary">Choose folder</button>
+      <button type="button" id="open-display">Open player screen</button>
+      <button type="button" id="blank" disabled>Blank</button>
+      <div class="fit" role="group" aria-label="How the image fits the player screen">
+        <button type="button" id="fit-contain" aria-pressed="true">Whole image</button>
+        <button type="button" id="fit-cover" aria-pressed="false">Fill screen</button>
+      </div>
+    </div>
+  </header>
+
+  <p id="status" class="status" role="status">Choose a folder of images. Use Brave, Microsoft Edge, or Chrome on this Windows PC.</p>
+
+  <main id="stage" class="stage">
+    <section id="empty" class="empty">
+      <h2>Two windows, one PC</h2>
+      <ol>
+        <li>Choose a folder of images, or drop the folder on this page.</li>
+        <li>Open the player screen. Windows places that window to the right of this one.</li>
+        <li>Drag it onto your other monitor and press Full screen there.</li>
+        <li>Click an image here. The other screen replaces the previous picture.</li>
+      </ol>
+    </section>
+    <ul id="grid" class="grid" hidden></ul>
+  </main>
+
+  <div id="dropveil" class="dropveil" hidden>Drop a folder of images</div>
+  <input id="folder-input" type="file" webkitdirectory directory multiple hidden>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
